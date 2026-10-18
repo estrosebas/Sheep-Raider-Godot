@@ -4,7 +4,7 @@
   "channel": "stable",
   "product_id": "ralph-wolf",
   "bootstrap_abi": 1,
-  "bundled_sequence": 1,
+  "bundled_sequence": 3,
   "public_key": "res://config/updates_public.pem",
   "key_id": "release-1",
   "storage": "user://updates",

@@ -9,7 +9,7 @@ param(
 $ErrorActionPreference='Stop'
 if ($HostName -notmatch '^[A-Za-z0-9_.@-]+$') { throw 'Host SSH inválido.' }
 if ($RemoteUpdatesDirectory -notmatch '^/[A-Za-z0-9_./-]+/updates$' -or $RemoteUpdatesDirectory.Contains('..')) { throw 'La ruta pública absoluta debe terminar en /updates, sin espacios ni ..' }
-$sshOptions=@('-o','BatchMode=yes','-o','StrictHostKeyChecking=yes')
+$sshOptions=@('-o','BatchMode=yes','-o','StrictHostKeyChecking=yes','-o','ServerAliveInterval=15','-o','ServerAliveCountMax=4')
 if ($IdentityFile) { $sshOptions+=@('-i',$IdentityFile) }
 if ($KnownHostsFile) { $sshOptions+=@('-o',"UserKnownHostsFile=$KnownHostsFile") }
 $localRoot=(Resolve-Path -LiteralPath $LocalUpdatesDirectory).Path
@@ -34,6 +34,8 @@ foreach ($manifest in Get-ChildItem -LiteralPath (Join-Path $localRoot 'stable')
         if ($LASTEXITCODE -ne 0) { throw 'No se pudo crear el destino.' }
         & scp @sshOptions -P $Port $localPackage "$($HostName):$remotePackage.next"
         if ($LASTEXITCODE -ne 0) { throw 'Subida incompleta; no se activa el manifiesto.' }
+        $uploadedHash=(& ssh @sshOptions -p $Port $HostName "sha256sum '$remotePackage.next'")
+        if ($LASTEXITCODE -ne 0 -or -not $uploadedHash -or ([string]$uploadedHash).Split(' ')[0] -ne $localHash) { throw 'El paquete remoto no coincide; no se activa el manifiesto.' }
         & ssh @sshOptions -p $Port $HostName "mv '$remotePackage.next' '$remotePackage'"
         if ($LASTEXITCODE -ne 0) { throw 'No se pudo activar el paquete.' }
     }

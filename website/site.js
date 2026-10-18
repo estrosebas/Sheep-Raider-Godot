@@ -1,5 +1,5 @@
 'use strict';
-let releaseVersion = '1.0.2';
+let releaseVersion = '1.0.4';
 fetch('/downloads/latest.json', {cache: 'no-store'})
   .then(response => {if (!response.ok) throw new Error('Unavailable'); return response.json();})
   .then(release => {
