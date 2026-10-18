@@ -1,4 +1,6 @@
-# May be run as an external script by the exported EXE. No gameplay/save writes.
+# Run with the Godot console tool and an isolated --updates-test-config.
+# Release templates use the project's main scene; --script is an editor/tool flag.
+# This probe performs no gameplay/save writes.
 extends SceneTree
 func _init(): call_deferred("run")
 func run():
