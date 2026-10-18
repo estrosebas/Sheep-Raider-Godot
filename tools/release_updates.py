@@ -37,7 +37,7 @@ def keygen(private: Path, public: Path):
         os.chmod(private, 0o600)
     public.parent.mkdir(parents=True, exist_ok=True)
     encoded = key.public_key().public_bytes(serialization.Encoding.PEM, serialization.PublicFormat.SubjectPublicKeyInfo)
-    if public.exists() and public.read_bytes() != encoded:
+    if public.exists() and serialization.load_pem_public_key(public.read_bytes()).public_numbers() != key.public_key().public_numbers():
         raise ValueError('La clave pública ya existe y es diferente. No rotarla accidentalmente.')
     public.write_bytes(encoded)
     print('Clave pública lista:', public)
@@ -121,8 +121,10 @@ def main():
     config=json.loads(CONFIG.read_text()); config['engine_version']=args.engine_version
     # Signing must use the public key embedded in the bootstrap, not a new key.
     private=serialization.load_pem_private_key(args.private_key.read_bytes(),password=None)
-    expected=private.public_key().public_bytes(serialization.Encoding.PEM,serialization.PublicFormat.SubjectPublicKeyInfo)
-    if (ROOT/'config/updates_public.pem').read_bytes()!=expected:
+    # Git on Windows may check PEM text out with CRLF. Compare the actual RSA
+    # parameters, not its line-ending representation; a different key still fails.
+    public=serialization.load_pem_public_key((ROOT/'config/updates_public.pem').read_bytes())
+    if public.public_numbers()!=private.public_key().public_numbers():
         raise ValueError('La clave privada no corresponde a la pública del juego.')
     if args.command=='sign-pack':
         make_release(args.pack,args.output,args.platform,args.version,args.sequence,args.private_key,config); return

@@ -2,8 +2,10 @@
 
 Estado: implementación local disponible. Cliente y generador de paquetes firmados
 para Windows y Android mediante APK directa; dominio configurado:
-https://sheepraider.nooxtools.me/updates/. El despliegue sigue pendiente y se dejó
-local a petición del usuario. Guía vigente: [UPDATES_DEPLOYMENT.md](UPDATES_DEPLOYMENT.md).
+https://sheepraider.nooxtools.me/updates/. Código y workflow publicados en
+https://github.com/estrosebas/Sheep-Raider-Godot; runner Windows registrado.
+El despliegue al VPS sigue pendiente. Guía vigente:
+[UPDATES_DEPLOYMENT.md](UPDATES_DEPLOYMENT.md).
 El resto de este documento conserva el diseño inicial como referencia.
 
 ## Dos versiones independientes

@@ -68,6 +68,10 @@ jobs:
           foreach ($key in @('INPUT_SEQUENCE','INPUT_VERSION','INPUT_PLATFORM','INPUT_DEPLOY','PRIVATE_KEY_PATH')) {
             Add-Content -LiteralPath $env:GITHUB_ENV -Value "$key=$([Environment]::GetEnvironmentVariable($key))"
           }
+      - name: Check update signing
+        run: |
+          python -m unittest discover -s tools -p test_update_signing.py
+          if ($LASTEXITCODE -ne 0) { throw 'Update signing tests failed.' }
       - name: Import resources
         run: |
           & $env:GODOT_PATH --headless --path . --editor --quit
