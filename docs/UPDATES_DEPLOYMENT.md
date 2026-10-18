@@ -2,9 +2,17 @@
 
 ## Qué está implementado
 
-**Estado actual: solo local, por decisión del usuario.** No se ha configurado
-un remoto Git, runner ni acceso al VPS. El workflow queda preparado para cuando
-se cree el repositorio; no es necesario activarlo para seguir desarrollando.
+**Repositorio conectado:** https://github.com/estrosebas/Sheep-Raider-Godot.
+El workflow ya está publicado en main y se registró el runner Windows
+ralphwolf-estro-pc, instalado fuera del proyecto en
+C:\Users\estro\.ralphwolf\actions-runner. Se configuraron las variables de Godot
+y de ubicación de la clave de firma. El acceso al VPS sigue pendiente.
+
+La publicación inicial es una instantánea limpia del proyecto. El historial
+anterior, que contiene un ZIP de build de 165 MiB, se conserva en la rama local
+master. Trabajar en codex/github-publication, que sigue origin/main; para subir:
+
+    git push origin HEAD:main
 
 El arranque consulta https://sheepraider.nooxtools.me/updates/ en PC y Android.
 Web mantiene su despliegue normal; en editor/F6 se evita la consulta salvo
@@ -52,7 +60,7 @@ La clave SSH de acceso al VPS es otra clave distinta.
 Se eligió un runner Windows en TU PC para usar exactamente el Godot y plantillas
 ya instalados. No requiere compilar dentro de la VPS.
 
-1. Subir el repositorio a GitHub (el checkout local aún no tiene remote).
+1. El repositorio ya está subido y origin está configurado.
 2. En GitHub, Settings -> Actions -> Runners -> New self-hosted runner, Windows.
    Instalarlo FUERA de este repositorio y añadir la etiqueta ralphwolf.
    Ejecutarlo bajo tu usuario, con acceso a Godot y a la clave de publicación.
@@ -125,8 +133,18 @@ No hace falta tocar la web Godot que vive en la raíz del dominio.
 No poner claves privadas ni archivos del repositorio en public_html.
 
 La consulta real del endpoint Windows respondió404 durante la implementación:
-todavía no hay publicación en ese dominio. No se configuró el VPS ni GitHub
-desde esta sesión; faltan repositorio/runner, variables y secrets.
+todavía no hay publicación en ese dominio. GitHub y el runner ya están
+configurados; faltan las variables de destino VPS y sus dos secrets SSH.
+
+## Encender el runner para una publicación
+
+No se instaló un servicio automático. Para atender un único trabajo y salir:
+
+    & "$env:USERPROFILE\.ralphwolf\actions-runner\run.cmd" --once
+
+Ejecutarlo en PowerShell y después iniciar el workflow desde GitHub (o viceversa,
+el trabajo esperará en cola). El PC debe permanecer encendido y conectado hasta
+que finalice. La etiqueta ralphwolf ya está asignada al runner.
 
 ## Publicación local opcional
 
@@ -160,4 +178,4 @@ Los paquetes de contenido 1.0.1, secuencia 1, están en builds/updates para Wind
 y Android arm64 (~151 MiB cada uno). No son EXE/APK: son los ZIP de actualización.
 builds/updates-initial-validation conserva la primera exportación de prueba y no
 se debe publicar. No se han reexportado los binarios base ni probado una descarga
-en un teléfono real. GitHub Actions y la subida SSH siguen pendientes de activar.
+en un teléfono real. La subida SSH al VPS sigue pendiente de activar.
