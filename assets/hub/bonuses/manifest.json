@@ -1,0 +1,283 @@
+{
+  "source": "BonusManager::g_bonusEntries / PackJpeg::Open / MCardManager::PostLoadInit",
+  "entries": [
+    {
+      "kind": "images",
+      "pack": "PERSO",
+      "price": 1,
+      "images": [
+        "res://assets/hub/bonuses/perso/PERSO001.JPG",
+        "res://assets/hub/bonuses/perso/PERSO002.JPG",
+        "res://assets/hub/bonuses/perso/PERSO003.JPG",
+        "res://assets/hub/bonuses/perso/PERSO004.JPG",
+        "res://assets/hub/bonuses/perso/PERSO005.JPG",
+        "res://assets/hub/bonuses/perso/PERSO006.JPG",
+        "res://assets/hub/bonuses/perso/PERSO007.JPG",
+        "res://assets/hub/bonuses/perso/PERSO008.JPG",
+        "res://assets/hub/bonuses/perso/PERSO009.JPG",
+        "res://assets/hub/bonuses/perso/PERSO010.JPG",
+        "res://assets/hub/bonuses/perso/PERSO011.JPG",
+        "res://assets/hub/bonuses/perso/PERSO012.JPG",
+        "res://assets/hub/bonuses/perso/PERSO013.JPG",
+        "res://assets/hub/bonuses/perso/PERSO014.JPG",
+        "res://assets/hub/bonuses/perso/PERSO015.JPG",
+        "res://assets/hub/bonuses/perso/PERSO016.JPG",
+        "res://assets/hub/bonuses/perso/PERSO017.JPG",
+        "res://assets/hub/bonuses/perso/PERSO018.JPG",
+        "res://assets/hub/bonuses/perso/PERSO019.JPG",
+        "res://assets/hub/bonuses/perso/PERSO020.JPG",
+        "res://assets/hub/bonuses/perso/PERSO021.JPG",
+        "res://assets/hub/bonuses/perso/PERSO022.JPG",
+        "res://assets/hub/bonuses/perso/PERSO023.JPG",
+        "res://assets/hub/bonuses/perso/PERSO024.JPG",
+        "res://assets/hub/bonuses/perso/PERSO025.JPG"
+      ]
+    },
+    {
+      "kind": "images",
+      "pack": "DECOR",
+      "price": 2,
+      "images": [
+        "res://assets/hub/bonuses/decor/DECOR001.JPG",
+        "res://assets/hub/bonuses/decor/DECOR002.JPG",
+        "res://assets/hub/bonuses/decor/DECOR003.JPG",
+        "res://assets/hub/bonuses/decor/DECOR004.JPG",
+        "res://assets/hub/bonuses/decor/DECOR005.JPG",
+        "res://assets/hub/bonuses/decor/DECOR006.JPG",
+        "res://assets/hub/bonuses/decor/DECOR007.JPG",
+        "res://assets/hub/bonuses/decor/DECOR008.JPG",
+        "res://assets/hub/bonuses/decor/DECOR009.JPG",
+        "res://assets/hub/bonuses/decor/DECOR010.JPG",
+        "res://assets/hub/bonuses/decor/DECOR011.JPG",
+        "res://assets/hub/bonuses/decor/DECOR012.JPG",
+        "res://assets/hub/bonuses/decor/DECOR013.JPG",
+        "res://assets/hub/bonuses/decor/DECOR014.JPG",
+        "res://assets/hub/bonuses/decor/DECOR015.JPG",
+        "res://assets/hub/bonuses/decor/DECOR016.JPG",
+        "res://assets/hub/bonuses/decor/DECOR017.JPG"
+      ]
+    },
+    {
+      "kind": "images",
+      "pack": "STORY",
+      "price": 2,
+      "images": [
+        "res://assets/hub/bonuses/story/STORY001.JPG",
+        "res://assets/hub/bonuses/story/STORY002.JPG",
+        "res://assets/hub/bonuses/story/STORY003.JPG",
+        "res://assets/hub/bonuses/story/STORY004.JPG",
+        "res://assets/hub/bonuses/story/STORY005.JPG",
+        "res://assets/hub/bonuses/story/STORY006.JPG",
+        "res://assets/hub/bonuses/story/STORY007.JPG",
+        "res://assets/hub/bonuses/story/STORY008.JPG",
+        "res://assets/hub/bonuses/story/STORY009.JPG",
+        "res://assets/hub/bonuses/story/STORY010.JPG",
+        "res://assets/hub/bonuses/story/STORY011.JPG",
+        "res://assets/hub/bonuses/story/STORY012.JPG",
+        "res://assets/hub/bonuses/story/STORY013.JPG",
+        "res://assets/hub/bonuses/story/STORY014.JPG",
+        "res://assets/hub/bonuses/story/STORY015.JPG",
+        "res://assets/hub/bonuses/story/STORY016.JPG",
+        "res://assets/hub/bonuses/story/STORY017.JPG",
+        "res://assets/hub/bonuses/story/STORY018.JPG",
+        "res://assets/hub/bonuses/story/STORY019.JPG",
+        "res://assets/hub/bonuses/story/STORY020.JPG"
+      ]
+    },
+    {
+      "kind": "images",
+      "pack": "COLOR",
+      "price": 1,
+      "images": [
+        "res://assets/hub/bonuses/color/COLOR001.JPG",
+        "res://assets/hub/bonuses/color/COLOR002.JPG",
+        "res://assets/hub/bonuses/color/COLOR003.JPG",
+        "res://assets/hub/bonuses/color/COLOR004.JPG",
+        "res://assets/hub/bonuses/color/COLOR005.JPG",
+        "res://assets/hub/bonuses/color/COLOR006.JPG",
+        "res://assets/hub/bonuses/color/COLOR007.JPG",
+        "res://assets/hub/bonuses/color/COLOR008.JPG",
+        "res://assets/hub/bonuses/color/COLOR009.JPG",
+        "res://assets/hub/bonuses/color/COLOR010.JPG",
+        "res://assets/hub/bonuses/color/COLOR011.JPG",
+        "res://assets/hub/bonuses/color/COLOR012.JPG",
+        "res://assets/hub/bonuses/color/COLOR013.JPG",
+        "res://assets/hub/bonuses/color/COLOR014.JPG",
+        "res://assets/hub/bonuses/color/COLOR015.JPG",
+        "res://assets/hub/bonuses/color/COLOR016.JPG",
+        "res://assets/hub/bonuses/color/COLOR017.JPG"
+      ]
+    },
+    {
+      "kind": "images",
+      "pack": "TEAM",
+      "price": 2,
+      "images": [
+        "res://assets/hub/bonuses/team/TEAM0001.JPG",
+        "res://assets/hub/bonuses/team/TEAM0002.JPG",
+        "res://assets/hub/bonuses/team/TEAM0003.JPG",
+        "res://assets/hub/bonuses/team/TEAM0004.JPG",
+        "res://assets/hub/bonuses/team/TEAM0005.JPG",
+        "res://assets/hub/bonuses/team/TEAM0006.JPG",
+        "res://assets/hub/bonuses/team/TEAM0007.JPG",
+        "res://assets/hub/bonuses/team/TEAM0008.JPG",
+        "res://assets/hub/bonuses/team/TEAM0009.JPG",
+        "res://assets/hub/bonuses/team/TEAM0010.JPG",
+        "res://assets/hub/bonuses/team/TEAM0011.JPG",
+        "res://assets/hub/bonuses/team/TEAM0012.JPG",
+        "res://assets/hub/bonuses/team/TEAM0013.JPG",
+        "res://assets/hub/bonuses/team/TEAM0014.JPG",
+        "res://assets/hub/bonuses/team/TEAM0015.JPG",
+        "res://assets/hub/bonuses/team/TEAM0016.JPG",
+        "res://assets/hub/bonuses/team/TEAM0017.JPG",
+        "res://assets/hub/bonuses/team/TEAM0018.JPG",
+        "res://assets/hub/bonuses/team/TEAM0019.JPG",
+        "res://assets/hub/bonuses/team/TEAM0020.JPG",
+        "res://assets/hub/bonuses/team/TEAM0021.JPG",
+        "res://assets/hub/bonuses/team/TEAM0022.JPG",
+        "res://assets/hub/bonuses/team/TEAM0023.JPG"
+      ]
+    },
+    {
+      "kind": "images",
+      "pack": "INTRO",
+      "price": 3,
+      "images": [
+        "res://assets/hub/bonuses/intro/STORYINTRO1.JPG",
+        "res://assets/hub/bonuses/intro/STORYINTRO2.JPG",
+        "res://assets/hub/bonuses/intro/STORYINTRO3.JPG",
+        "res://assets/hub/bonuses/intro/STORYINTRO4.JPG",
+        "res://assets/hub/bonuses/intro/STORYINTRO5.JPG",
+        "res://assets/hub/bonuses/intro/STORYINTRO6.JPG",
+        "res://assets/hub/bonuses/intro/STORYINTRO7.JPG",
+        "res://assets/hub/bonuses/intro/STORYINTRO8.JPG"
+      ]
+    },
+    {
+      "kind": "text",
+      "price": 3,
+      "text_index": 25
+    },
+    {
+      "kind": "text",
+      "price": 3,
+      "text_index": 26
+    }
+  ],
+  "pedestals": [
+    {
+      "res": 13,
+      "class_id": 190,
+      "class_name": "BonusManager",
+      "model_res": 12,
+      "pos": [
+        11.64,
+        0.0,
+        15.39
+      ],
+      "rot": [
+        0,
+        352,
+        0
+      ],
+      "props": {
+        "0x0": 560
+      },
+      "camera": {
+        "focal": 1236,
+        "rotation": [
+          0,
+          3858,
+          0
+        ],
+        "eye": [
+          1220,
+          -582,
+          1607
+        ]
+      }
+    },
+    {
+      "res": 48,
+      "class_id": 98,
+      "class_name": "MCardManager",
+      "model_res": 11,
+      "pos": [
+        17.26,
+        0.0,
+        11.03
+      ],
+      "rot": [
+        0,
+        614,
+        0
+      ],
+      "props": {
+        "0x0": 536
+      },
+      "camera": {
+        "focal": 1236,
+        "rotation": [
+          170,
+          3493,
+          0
+        ],
+        "eye": [
+          1809,
+          -651,
+          1206
+        ]
+      }
+    }
+  ],
+  "sprites": {
+    "locked": {
+      "path": "res://assets/hub/bonuses/locked.png",
+      "resource": 229,
+      "bitmap": 121,
+      "page": 12,
+      "rect": [
+        96,
+        126,
+        64,
+        48
+      ]
+    },
+    "unlocked": {
+      "path": "res://assets/hub/bonuses/unlocked.png",
+      "resource": 230,
+      "bitmap": 122,
+      "page": 13,
+      "rect": [
+        0,
+        0,
+        64,
+        48
+      ]
+    },
+    "background": {
+      "path": "res://assets/hub/bonuses/background.png",
+      "resource": 46,
+      "bitmap": 110,
+      "page": 1,
+      "rect": [
+        0,
+        0,
+        256,
+        240
+      ]
+    },
+    "arrow": {
+      "path": "res://assets/hub/bonuses/arrow.png",
+      "resource": 28,
+      "bitmap": 25,
+      "page": 7,
+      "rect": [
+        208,
+        64,
+        48,
+        24
+      ]
+    }
+  }
+}

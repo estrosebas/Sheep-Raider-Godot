@@ -1,0 +1,24 @@
+{
+  "class_id": 41,
+  "slug": "flute",
+  "label": "Flauta",
+  "mesh": "res://assets/items/flute/worn.tres",
+  "materials": {},
+  "source_level": "Lvl-04",
+  "source_resource": 74,
+  "source_model": 12,
+  "loop_animations": [
+    "flute1",
+    "walkf1",
+    "standf1",
+    "objet",
+    "link"
+  ],
+  "attach_joint": 18,
+  "held_pose": "link",
+  "held_pose_source": "Flute::MSG_PICKUP selects LINK; HELD_STATE_BEGIN/END only changes state/sound",
+  "playing_speed": 2.0,
+  "sam_radius": 3.0,
+  "sound_id": 37,
+  "sound_path": "res://assets/items/flute/flute_tune.wav"
+}

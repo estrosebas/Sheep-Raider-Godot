@@ -1,0 +1,24 @@
+# ARCHIVO: aproximación inicial descartada, no se ejecuta ni se importa.
+# Reconstrucción del generador de geometría probado antes de copiar el asset.
+# Cambiaba el follaje por ocho esferas de pocos polígonos, ligadas al hueso 1.
+# Se probó con textura original, sombras por bandas y contorno invertido;
+# después con material/color nativo sin bandas. Ambos acabados fueron
+# descartados por el usuario: la silueta ya no parecía el arbusto original.
+# Se conserva como referencia para experimentos futuros, no como opción activa.
+extends RefCounted
+
+static func build(material: Material) -> Node3D:
+	var root = Node3D.new()
+	var lobes = [Vector4(0,.64,0,.57),Vector4(-.35,.45,.12,.35),Vector4(.34,.49,.1,.36),Vector4(0,.49,-.34,.37),Vector4(.08,.47,.35,.36),Vector4(-.2,.89,-.05,.32),Vector4(.21,.88,.09,.32),Vector4(0,1.09,0,.24)]
+	for lobe in lobes:
+		var instance = MeshInstance3D.new()
+		var sphere = SphereMesh.new()
+		sphere.radius = lobe.w
+		sphere.height = lobe.w*2
+		sphere.radial_segments = 12
+		sphere.rings = 6
+		instance.mesh = sphere
+		instance.material_override = material
+		instance.position = Vector3(lobe.x,lobe.y,lobe.z)
+		root.add_child(instance)
+	return root

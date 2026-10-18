@@ -1,0 +1,64 @@
+# Material definitions for Sheep Raider Level 00
+
+newmtl mat_untextured
+Kd 0.42 0.55 0.32
+
+newmtl mat_page_-1
+Kd 0.42 0.55 0.32
+
+newmtl mat_page_0
+Kd 1.0 1.0 1.0
+map_Kd textures/page_0.png
+
+newmtl mat_page_1
+Kd 1.0 1.0 1.0
+map_Kd textures/page_1.png
+
+newmtl mat_page_2
+Kd 1.0 1.0 1.0
+map_Kd textures/page_2.png
+
+newmtl mat_page_3
+Kd 1.0 1.0 1.0
+map_Kd textures/page_3.png
+
+newmtl mat_page_4
+Kd 1.0 1.0 1.0
+map_Kd textures/page_4.png
+
+newmtl mat_page_5
+Kd 1.0 1.0 1.0
+map_Kd textures/page_5.png
+
+newmtl mat_page_6
+Kd 1.0 1.0 1.0
+map_Kd textures/page_6.png
+
+newmtl mat_page_7
+Kd 1.0 1.0 1.0
+map_Kd textures/page_7.png
+
+newmtl mat_page_8
+Kd 1.0 1.0 1.0
+map_Kd textures/page_8.png
+
+newmtl mat_page_9
+Kd 1.0 1.0 1.0
+map_Kd textures/page_9.png
+
+newmtl mat_page_10
+Kd 1.0 1.0 1.0
+map_Kd textures/page_10.png
+
+newmtl mat_page_11
+Kd 1.0 1.0 1.0
+map_Kd textures/page_11.png
+
+newmtl mat_page_12
+Kd 1.0 1.0 1.0
+map_Kd textures/page_12.png
+
+newmtl mat_page_13
+Kd 1.0 1.0 1.0
+map_Kd textures/page_13.png
+

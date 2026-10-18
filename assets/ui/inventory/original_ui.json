@@ -1,0 +1,425 @@
+{
+  "cloud": {
+    "resource": 25,
+    "source": "C:\\Users\\estro\\Downloads\\Sheep.Dog.and.Wolf\\Sheep.Dog.and.Wolf\\Sheep.Dog.and.Wolf\\Levels\\Lvl-00\\Lvl-00.DAV",
+    "frames": [
+      {
+        "bitmap": 65,
+        "rect": [
+          96,
+          63,
+          48,
+          32
+        ],
+        "page": 11,
+        "path": "res://assets/ui/inventory/cloud_0.png"
+      },
+      {
+        "bitmap": 66,
+        "rect": [
+          128,
+          0,
+          48,
+          32
+        ],
+        "page": 11,
+        "path": "res://assets/ui/inventory/cloud_1.png"
+      },
+      {
+        "bitmap": 67,
+        "rect": [
+          0,
+          189,
+          48,
+          32
+        ],
+        "page": 11,
+        "path": "res://assets/ui/inventory/cloud_2.png"
+      }
+    ],
+    "size": [
+      47,
+      31
+    ]
+  },
+  "icons": {
+    "10": {
+      "bitmap": 25,
+      "rect": [
+        160,
+        104,
+        32,
+        24
+      ],
+      "page": 9,
+      "path": "res://assets/ui/inventory/icon_10.png",
+      "resource": 18,
+      "resource_name": "DAV_IDI_IFUICONB",
+      "source": "C:\\Users\\estro\\Downloads\\Sheep.Dog.and.Wolf\\Sheep.Dog.and.Wolf\\Sheep.Dog.and.Wolf\\Levels\\Lvl-00\\Lvl-00.DAV"
+    },
+    "2": {
+      "bitmap": 31,
+      "rect": [
+        160,
+        207,
+        32,
+        24
+      ],
+      "page": 6,
+      "path": "res://assets/ui/inventory/icon_2.png",
+      "resource": 16,
+      "resource_name": "DAV_IDI_IDYICONB",
+      "source": "C:\\Users\\estro\\Downloads\\Sheep.Dog.and.Wolf\\Sheep.Dog.and.Wolf\\Sheep.Dog.and.Wolf\\Levels\\Lvl-01\\Lvl-01.DAV"
+    },
+    "3": {
+      "bitmap": 20,
+      "rect": [
+        128,
+        175,
+        32,
+        24
+      ],
+      "page": 6,
+      "path": "res://assets/ui/inventory/icon_3.png",
+      "resource": 45,
+      "resource_name": "DAV_IDI_ILAICONB",
+      "source": "C:\\Users\\estro\\Downloads\\Sheep.Dog.and.Wolf\\Sheep.Dog.and.Wolf\\Sheep.Dog.and.Wolf\\Levels\\Lvl-01\\Lvl-01.DAV"
+    },
+    "7": {
+      "bitmap": 96,
+      "rect": [
+        32,
+        212,
+        32,
+        24
+      ],
+      "page": 9,
+      "path": "res://assets/ui/inventory/icon_7.png",
+      "resource": 50,
+      "resource_name": "DAV_IDI_IVEICONB",
+      "source": "C:\\Users\\estro\\Downloads\\Sheep.Dog.and.Wolf\\Sheep.Dog.and.Wolf\\Sheep.Dog.and.Wolf\\Levels\\Lvl-02\\Lvl-02.DAV"
+    },
+    "39": {
+      "bitmap": 98,
+      "rect": [
+        180,
+        152,
+        32,
+        24
+      ],
+      "page": 9,
+      "path": "res://assets/ui/inventory/icon_39.png",
+      "resource": 61,
+      "resource_name": "DAV_IDI_IFLICONB",
+      "source": "C:\\Users\\estro\\Downloads\\Sheep.Dog.and.Wolf\\Sheep.Dog.and.Wolf\\Sheep.Dog.and.Wolf\\Levels\\Lvl-02\\Lvl-02.DAV"
+    },
+    "42": {
+      "bitmap": 111,
+      "rect": [
+        144,
+        88,
+        32,
+        24
+      ],
+      "page": 9,
+      "path": "res://assets/ui/inventory/icon_42.png",
+      "resource": 80,
+      "resource_name": "DAV_IDI_IEAICONB",
+      "source": "C:\\Users\\estro\\Downloads\\Sheep.Dog.and.Wolf\\Sheep.Dog.and.Wolf\\Sheep.Dog.and.Wolf\\Levels\\Lvl-03\\Lvl-03.DAV"
+    },
+    "41": {
+      "bitmap": 84,
+      "rect": [
+        220,
+        224,
+        32,
+        24
+      ],
+      "page": 7,
+      "path": "res://assets/ui/inventory/icon_41.png",
+      "resource": 59,
+      "resource_name": "DAV_IDI_IFTICONB",
+      "source": "C:\\Users\\estro\\Downloads\\Sheep.Dog.and.Wolf\\Sheep.Dog.and.Wolf\\Sheep.Dog.and.Wolf\\Levels\\Lvl-04\\Lvl-04.DAV"
+    },
+    "64": {
+      "bitmap": 116,
+      "rect": [
+        224,
+        12,
+        32,
+        24
+      ],
+      "page": 7,
+      "path": "res://assets/ui/inventory/icon_64.png",
+      "resource": 76,
+      "resource_name": "DAV_IDI_IMNICONB",
+      "source": "C:\\Users\\estro\\Downloads\\Sheep.Dog.and.Wolf\\Sheep.Dog.and.Wolf\\Sheep.Dog.and.Wolf\\Levels\\Lvl-06\\Lvl-06.DAV"
+    },
+    "58": {
+      "bitmap": 109,
+      "rect": [
+        200,
+        232,
+        32,
+        24
+      ],
+      "page": 7,
+      "path": "res://assets/ui/inventory/icon_58.png",
+      "resource": 72,
+      "resource_name": "DAV_IDI_ICHICONB",
+      "source": "C:\\Users\\estro\\Downloads\\Sheep.Dog.and.Wolf\\Sheep.Dog.and.Wolf\\Sheep.Dog.and.Wolf\\Levels\\Lvl-06\\Lvl-06.DAV"
+    },
+    "61": {
+      "bitmap": 121,
+      "rect": [
+        24,
+        210,
+        32,
+        24
+      ],
+      "page": 9,
+      "path": "res://assets/ui/inventory/icon_61.png",
+      "resource": 108,
+      "resource_name": "DAV_IDI_IDTICONB",
+      "source": "C:\\Users\\estro\\Downloads\\Sheep.Dog.and.Wolf\\Sheep.Dog.and.Wolf\\Sheep.Dog.and.Wolf\\Levels\\Lvl-07\\Lvl-07.DAV"
+    },
+    "80": {
+      "bitmap": 109,
+      "rect": [
+        144,
+        192,
+        32,
+        24
+      ],
+      "page": 9,
+      "path": "res://assets/ui/inventory/icon_80.png",
+      "resource": 101,
+      "resource_name": "DAV_IDI_IDUICONB",
+      "source": "C:\\Users\\estro\\Downloads\\Sheep.Dog.and.Wolf\\Sheep.Dog.and.Wolf\\Sheep.Dog.and.Wolf\\Levels\\Lvl-07\\Lvl-07.DAV"
+    },
+    "62": {
+      "bitmap": 93,
+      "rect": [
+        64,
+        216,
+        32,
+        24
+      ],
+      "page": 9,
+      "path": "res://assets/ui/inventory/icon_62.png",
+      "resource": 102,
+      "resource_name": "DAV_IDI_IPRICONB",
+      "source": "C:\\Users\\estro\\Downloads\\Sheep.Dog.and.Wolf\\Sheep.Dog.and.Wolf\\Sheep.Dog.and.Wolf\\Levels\\Lvl-08\\Lvl-08.DAV"
+    },
+    "93": {
+      "bitmap": 91,
+      "rect": [
+        196,
+        208,
+        32,
+        24
+      ],
+      "page": 11,
+      "path": "res://assets/ui/inventory/icon_93.png",
+      "resource": 66,
+      "resource_name": "DAV_IDI_IGAICONB",
+      "source": "C:\\Users\\estro\\Downloads\\Sheep.Dog.and.Wolf\\Sheep.Dog.and.Wolf\\Sheep.Dog.and.Wolf\\Levels\\Lvl-09\\Lvl-09.DAV"
+    },
+    "85": {
+      "bitmap": 70,
+      "rect": [
+        96,
+        196,
+        32,
+        24
+      ],
+      "page": 11,
+      "path": "res://assets/ui/inventory/icon_85.png",
+      "resource": 68,
+      "resource_name": "DAV_IDI_IC4ICONB",
+      "source": "C:\\Users\\estro\\Downloads\\Sheep.Dog.and.Wolf\\Sheep.Dog.and.Wolf\\Sheep.Dog.and.Wolf\\Levels\\Lvl-09\\Lvl-09.DAV"
+    },
+    "99": {
+      "bitmap": 130,
+      "rect": [
+        192,
+        224,
+        32,
+        24
+      ],
+      "page": 10,
+      "path": "res://assets/ui/inventory/icon_99.png",
+      "resource": 106,
+      "resource_name": "DAV_IDI_ICLICONB",
+      "source": "C:\\Users\\estro\\Downloads\\Sheep.Dog.and.Wolf\\Sheep.Dog.and.Wolf\\Sheep.Dog.and.Wolf\\Levels\\Lvl-11\\Lvl-11.DAV"
+    },
+    "100": {
+      "bitmap": 83,
+      "rect": [
+        64,
+        224,
+        32,
+        24
+      ],
+      "page": 10,
+      "path": "res://assets/ui/inventory/icon_100.png",
+      "resource": 139,
+      "resource_name": "DAV_IDI_ITRICONB",
+      "source": "C:\\Users\\estro\\Downloads\\Sheep.Dog.and.Wolf\\Sheep.Dog.and.Wolf\\Sheep.Dog.and.Wolf\\Levels\\Lvl-11\\Lvl-11.DAV"
+    },
+    "108": {
+      "bitmap": 98,
+      "rect": [
+        208,
+        184,
+        32,
+        24
+      ],
+      "page": 7,
+      "path": "res://assets/ui/inventory/icon_108.png",
+      "resource": 115,
+      "resource_name": "DAV_IDI_IPMICONB",
+      "source": "C:\\Users\\estro\\Downloads\\Sheep.Dog.and.Wolf\\Sheep.Dog.and.Wolf\\Sheep.Dog.and.Wolf\\Levels\\Lvl-12\\Lvl-12.DAV"
+    },
+    "67": {
+      "bitmap": 114,
+      "rect": [
+        0,
+        232,
+        32,
+        24
+      ],
+      "page": 10,
+      "path": "res://assets/ui/inventory/icon_67.png",
+      "resource": 110,
+      "resource_name": "DAV_IDI_ICPICONB",
+      "source": "C:\\Users\\estro\\Downloads\\Sheep.Dog.and.Wolf\\Sheep.Dog.and.Wolf\\Sheep.Dog.and.Wolf\\Levels\\Lvl-13\\Lvl-13.DAV"
+    },
+    "66": {
+      "bitmap": 119,
+      "rect": [
+        32,
+        4,
+        32,
+        24
+      ],
+      "page": 9,
+      "path": "res://assets/ui/inventory/icon_66.png",
+      "resource": 97,
+      "resource_name": "DAV_IDI_IAIICONB",
+      "source": "C:\\Users\\estro\\Downloads\\Sheep.Dog.and.Wolf\\Sheep.Dog.and.Wolf\\Sheep.Dog.and.Wolf\\Levels\\Lvl-13\\Lvl-13.DAV"
+    },
+    "68": {
+      "bitmap": 115,
+      "rect": [
+        208,
+        4,
+        32,
+        24
+      ],
+      "page": 9,
+      "path": "res://assets/ui/inventory/icon_68.png",
+      "resource": 111,
+      "resource_name": "DAV_IDI_ICPICONC",
+      "source": "C:\\Users\\estro\\Downloads\\Sheep.Dog.and.Wolf\\Sheep.Dog.and.Wolf\\Sheep.Dog.and.Wolf\\Levels\\Lvl-13\\Lvl-13.DAV"
+    },
+    "121": {
+      "bitmap": 116,
+      "rect": [
+        64,
+        228,
+        32,
+        24
+      ],
+      "page": 9,
+      "path": "res://assets/ui/inventory/icon_121.png",
+      "resource": 162,
+      "resource_name": "DAV_IDI_ICPICOND",
+      "source": "C:\\Users\\estro\\Downloads\\Sheep.Dog.and.Wolf\\Sheep.Dog.and.Wolf\\Sheep.Dog.and.Wolf\\Levels\\Lvl-13\\Lvl-13.DAV"
+    },
+    "125": {
+      "bitmap": 103,
+      "rect": [
+        96,
+        216,
+        32,
+        24
+      ],
+      "page": 8,
+      "path": "res://assets/ui/inventory/icon_125.png",
+      "resource": 127,
+      "resource_name": "DAV_IDI_ICFICONB",
+      "source": "C:\\Users\\estro\\Downloads\\Sheep.Dog.and.Wolf\\Sheep.Dog.and.Wolf\\Sheep.Dog.and.Wolf\\Levels\\Lvl-14\\Lvl-14.DAV"
+    },
+    "131": {
+      "bitmap": 69,
+      "rect": [
+        64,
+        216,
+        32,
+        24
+      ],
+      "page": 8,
+      "path": "res://assets/ui/inventory/icon_131.png",
+      "resource": 158,
+      "resource_name": "DAV_IDI_IASICONB",
+      "source": "C:\\Users\\estro\\Downloads\\Sheep.Dog.and.Wolf\\Sheep.Dog.and.Wolf\\Sheep.Dog.and.Wolf\\Levels\\Lvl-14\\Lvl-14.DAV"
+    },
+    "132": {
+      "bitmap": 88,
+      "rect": [
+        192,
+        224,
+        32,
+        24
+      ],
+      "page": 9,
+      "path": "res://assets/ui/inventory/icon_132.png",
+      "resource": 118,
+      "resource_name": "DAV_IDI_IMGICONB",
+      "source": "C:\\Users\\estro\\Downloads\\Sheep.Dog.and.Wolf\\Sheep.Dog.and.Wolf\\Sheep.Dog.and.Wolf\\Levels\\Lvl-14\\Lvl-14.DAV"
+    },
+    "129": {
+      "bitmap": 136,
+      "rect": [
+        128,
+        216,
+        32,
+        24
+      ],
+      "page": 8,
+      "path": "res://assets/ui/inventory/icon_129.png",
+      "resource": 121,
+      "resource_name": "DAV_IDI_IFFICONB",
+      "source": "C:\\Users\\estro\\Downloads\\Sheep.Dog.and.Wolf\\Sheep.Dog.and.Wolf\\Sheep.Dog.and.Wolf\\Levels\\Lvl-14\\Lvl-14.DAV"
+    },
+    "141": {
+      "bitmap": 117,
+      "rect": [
+        0,
+        24,
+        32,
+        24
+      ],
+      "page": 5,
+      "path": "res://assets/ui/inventory/icon_141.png",
+      "resource": 164,
+      "resource_name": "DAV_IDI_IORICONB",
+      "source": "C:\\Users\\estro\\Downloads\\Sheep.Dog.and.Wolf\\Sheep.Dog.and.Wolf\\Sheep.Dog.and.Wolf\\Levels\\Lvl-15\\Lvl-15.DAV"
+    },
+    "144": {
+      "bitmap": 72,
+      "rect": [
+        224,
+        56,
+        32,
+        24
+      ],
+      "page": 8,
+      "path": "res://assets/ui/inventory/icon_144.png",
+      "resource": 172,
+      "resource_name": "DAV_IDI_IGHICONB",
+      "source": "C:\\Users\\estro\\Downloads\\Sheep.Dog.and.Wolf\\Sheep.Dog.and.Wolf\\Sheep.Dog.and.Wolf\\Levels\\Lvl-17\\Lvl-17.DAV"
+    }
+  }
+}

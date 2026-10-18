@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>$GODOT_PROJECT_NAME</title>
+  $GODOT_HEAD_INCLUDE
+  <style>
+    * { box-sizing: border-box; }
+    [hidden] { display:none!important; }
+    html,body { margin:0; width:100%; height:100%; overflow:hidden; background:#060912; color:#fff8dd; }
+    body { font:16px/1.5 system-ui,sans-serif; }
+    #canvas { display:block; width:100%; height:100%; outline:none; touch-action:none; }
+    #loading { position:fixed; inset:0; display:grid; align-content:end; padding:clamp(20px,5vw,64px); background:#060912; }
+    #art { position:absolute; inset:0; width:100%; height:100%; object-fit:contain; }
+    #loading::before { content:""; position:absolute; inset:0; background:linear-gradient(transparent 35%,#060912e8 88%); z-index:1; }
+    #panel { position:relative; z-index:2; width:min(680px,100%); margin:auto; text-align:center; }
+    .eyebrow { margin:0; font-size:12px; letter-spacing:.22em; color:#ffe1a3; }
+    h1 { margin:4px 0 12px; font:900 clamp(30px,5vw,52px)/1.1 Georgia,serif; color:#ffda60; text-shadow:0 3px 0 #40201b; }
+    #phase { margin:0 0 12px; }
+    progress { display:block; width:100%; height:14px; border:2px solid #eee2be; border-radius:2px; background:#10172b; accent-color:#ffda60; }
+    progress::-webkit-progress-bar { background:#10172b; }
+    progress::-webkit-progress-value { background:#ffda60; }
+    progress::-moz-progress-bar { background:#ffda60; }
+    #hint { min-height:2.8em; margin:12px 0 0; font-size:13px; color:#e4e1d6; }
+    #web-controls { margin:6px 0 0; font-size:12px; color:#ffe1a3; }
+    #error { display:none; max-height:28vh; overflow:auto; white-space:pre-wrap; text-align:left; padding:14px; background:#331a21; color:#ffe0d9; border:1px solid #b16b64; border-radius:5px; font-size:13px; }
+    button { display:none; margin:12px auto 0; padding:10px 24px; border:0; border-radius:4px; background:#ffda60; color:#201c16; font:700 16px system-ui; cursor:pointer; }
+    @media(max-height:520px) { #loading { padding:16px; } h1 { font-size:28px; } #hint { min-height:0; margin:7px 0 0; } }
+  </style>
+</head>
+<body>
+  <canvas id="canvas" tabindex="0">Necesitas un navegador compatible con WebGL 2.</canvas>
+  <section id="loading" data-phase="download" aria-label="Carga del juego">
+    <img id="art" src="$GODOT_SPLASH" alt="Los planos de Ralph y Lucas sobre una mesa de animación">
+    <div id="panel">
+      <p class="eyebrow">UN MUNDO POR RECORDAR</p>
+      <h1>Sheep Raider</h1>
+      <p id="phase" role="status">Preparando la descarga…</p>
+      <progress id="progress" aria-label="Descarga del juego"></progress>
+      <p id="hint">La primera carga puede tardar. Después podrás elegir el idioma del juego.</p>
+      <p id="web-controls">WASD · Mantén C: sigilo · Espacio: saltar · E: interactuar</p>
+      <pre id="error"></pre>
+      <button id="retry" type="button">Volver a intentar</button>
+    </div>
+  </section>
+  <noscript>Activa JavaScript para ejecutar el juego.</noscript>
+  <script>
+    'use strict';
+    const config = $GODOT_CONFIG;
+    const canvas = document.getElementById('canvas');
+    const overlay = document.getElementById('loading');
+    const phase = document.getElementById('phase');
+    const progress = document.getElementById('progress');
+    const hint = document.getElementById('hint');
+    const details = document.getElementById('error');
+    const retry = document.getElementById('retry');
+    const session = Date.now().toString(36);
+    let failed = false;
+    let running = false;
+    let restoreFetch = () => {};
+
+    // In supported browsers, protect gameplay shortcuts while the player has
+    // explicitly entered fullscreen. Windowed play uses C instead of Ctrl.
+    // Escape remains available to leave fullscreen; OS shortcuts stay owned by OS.
+    const keyboard = navigator.keyboard;
+    document.addEventListener('fullscreenchange', async () => {
+      if (!keyboard || typeof keyboard.lock !== 'function') return;
+      if (!document.fullscreenElement) {
+        keyboard.unlock();
+        canvas.dataset.keyboardLock = 'off';
+        return;
+      }
+      try {
+        await keyboard.lock(['KeyW','KeyA','KeyS','KeyD','KeyR','Tab','F5','F6','F8']);
+        if (document.fullscreenElement) canvas.dataset.keyboardLock = 'active';
+        else keyboard.unlock();
+      } catch (_) {
+        // Permissions/support vary. C still works without Keyboard Lock.
+        canvas.dataset.keyboardLock = 'unavailable';
+      }
+    });
+
+    function fail(reason) {
+      if (failed || running) return;
+      failed = true;
+      restoreFetch();
+      overlay.dataset.phase = 'error';
+      phase.textContent = 'No se pudo iniciar el juego';
+      progress.hidden = true;
+      hint.textContent = 'Vuelve a cargar la página. Si el problema continúa, comparte el detalle de abajo.';
+      details.textContent = reason instanceof Error ? reason.message : String(reason);
+      details.style.display = 'block';
+      retry.style.display = 'block';
+      console.error('[Ralph Wolf]', reason);
+    }
+    retry.addEventListener('click', () => location.reload());
+    window.addEventListener('error', event => { if (event.message) fail(event.error || event.message); });
+    window.addEventListener('unhandledrejection', event => fail(event.reason));
+
+    // Hestia's static-file policy can cache JS for years. A fresh script URL
+    // and revalidated engine files prevent mixing exports with older cached files.
+    function revalidateEngineFiles() {
+      const original = window.fetch;
+      const names = [config.executable+'.wasm', config.mainPack || config.executable+'.pck'];
+      const wrapper = function(input, init) {
+        const url = new URL(input instanceof Request ? input.url : input, location.href);
+        if (url.origin === location.origin && names.some(name => url.pathname.endsWith('/'+name))) {
+          // Revalidate large files with ETag/Last-Modified instead of giving
+          // them unique URLs: unchanged packs can still use the HTTP cache.
+          return original.call(window,input,Object.assign({},init,{cache:'no-cache'}));
+        }
+        return original.call(window,input,init);
+      };
+      window.fetch = wrapper;
+      restoreFetch = () => { if (window.fetch === wrapper) window.fetch = original; };
+    }
+
+    async function start() {
+      if (location.protocol === 'file:') {
+        throw new Error('Abre esta exportación desde un servidor HTTP/HTTPS, no con doble clic sobre el HTML.');
+      }
+      const script = document.createElement('script');
+      script.src = '$GODOT_URL?export='+session;
+      await new Promise((resolve,reject) => {
+        script.onload = resolve;
+        script.onerror = () => reject(new Error('No se pudo descargar el motor. Comprueba que se subieron todos los archivos de la exportación.'));
+        document.head.appendChild(script);
+      });
+      const missing = Engine.getMissingFeatures({threads:$GODOT_THREADS_ENABLED});
+      if (missing.length) throw new Error('El navegador no ofrece estas funciones necesarias:\n'+missing.join('\n'));
+      revalidateEngineFiles();
+      const engine = new Engine(config);
+      await engine.startGame({
+        onProgress(current,total) {
+          if (failed) return;
+          if (total > 0 && current >= total) {
+            overlay.dataset.phase = 'initializing';
+            progress.value = 1; progress.max = 1;
+            phase.textContent = 'Preparando el escenario…';
+            hint.textContent = 'Descarga completa. El juego está preparando sus recursos.';
+          } else if (total > 0 && current > 0) {
+            progress.max = total; progress.value = current;
+            phase.textContent = 'Descargando el juego · '+Math.floor(current/total*100)+' %';
+            hint.textContent = (current/1048576).toFixed(1)+' / '+(total/1048576).toFixed(1)+' MB';
+          }
+        },
+        onPrintError(...parts) {
+          const message = parts.join(' ');
+          console.error(message);
+          if (/^(SCRIPT ERROR:|ERROR:|Aborted|RuntimeError:|LinkError:)/.test(message)) fail(message);
+        }
+      });
+      restoreFetch();
+      if (failed) return;
+      // Keep the artwork over the canvas until the engine can draw its scene.
+      await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+      running = true;
+      overlay.dataset.phase = 'ready';
+      overlay.hidden = true;
+      overlay.style.display = 'none';
+      canvas.focus();
+    }
+    start().catch(fail);
+  </script>
+</body>
+</html>

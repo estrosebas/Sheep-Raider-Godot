@@ -1,0 +1,827 @@
+[
+  {
+    "res": 49,
+    "class_name": "Rock",
+    "model_res": 11,
+    "position": [
+      -38.09,
+      7.03,
+      30.61
+    ],
+    "boxes": [
+      {
+        "flags": 4,
+        "min": [
+          -123,
+          -133,
+          -124
+        ],
+        "max": [
+          124,
+          131,
+          124
+        ]
+      }
+    ]
+  },
+  {
+    "res": 50,
+    "class_name": "Rock",
+    "model_res": 14,
+    "position": [
+      -30.38,
+      5.04,
+      17.75
+    ],
+    "boxes": [
+      {
+        "flags": 4,
+        "min": [
+          -85,
+          -85,
+          -85
+        ],
+        "max": [
+          85,
+          85,
+          85
+        ]
+      }
+    ]
+  },
+  {
+    "res": 51,
+    "class_name": "SensibleButton",
+    "model_res": 6,
+    "position": [
+      -23.98,
+      6.77,
+      17.8
+    ],
+    "boxes": [
+      {
+        "flags": 0,
+        "min": [
+          -35,
+          -45,
+          -37
+        ],
+        "max": [
+          40,
+          0,
+          36
+        ]
+      }
+    ]
+  },
+  {
+    "res": 54,
+    "class_name": "Mailbox",
+    "model_res": 4,
+    "position": [
+      -88.83,
+      -1.56,
+      0.25
+    ],
+    "boxes": [
+      {
+        "flags": 0,
+        "min": [
+          -46,
+          -102,
+          -25
+        ],
+        "max": [
+          45,
+          -1,
+          22
+        ]
+      }
+    ]
+  },
+  {
+    "res": 57,
+    "class_name": "FallingGate",
+    "model_res": 7,
+    "position": [
+      -37.54,
+      0.99,
+      8.2
+    ],
+    "boxes": [
+      {
+        "flags": 0,
+        "min": [
+          -193,
+          -363,
+          -61
+        ],
+        "max": [
+          189,
+          -15,
+          46
+        ]
+      }
+    ]
+  },
+  {
+    "res": 58,
+    "class_name": "FallingRock",
+    "model_res": 37,
+    "position": [
+      15.07,
+      6.48,
+      -43.28
+    ],
+    "boxes": [
+      {
+        "flags": 0,
+        "min": [
+          -393,
+          -704,
+          -400
+        ],
+        "max": [
+          369,
+          -4,
+          321
+        ]
+      }
+    ]
+  },
+  {
+    "res": 59,
+    "class_name": "FallingRock",
+    "model_res": 37,
+    "position": [
+      -9.62,
+      6.54,
+      33.52
+    ],
+    "boxes": [
+      {
+        "flags": 0,
+        "min": [
+          -393,
+          -704,
+          -400
+        ],
+        "max": [
+          369,
+          -4,
+          321
+        ]
+      }
+    ]
+  },
+  {
+    "res": 60,
+    "class_name": "FallingRock",
+    "model_res": 37,
+    "position": [
+      -73.88,
+      -3.23,
+      -4.25
+    ],
+    "boxes": [
+      {
+        "flags": 0,
+        "min": [
+          -393,
+          -704,
+          -400
+        ],
+        "max": [
+          369,
+          -4,
+          321
+        ]
+      }
+    ]
+  },
+  {
+    "res": 61,
+    "class_name": "SignPost",
+    "model_res": 9,
+    "position": [
+      -85.7,
+      0.0,
+      -39.57
+    ],
+    "boxes": [
+      {
+        "flags": 2,
+        "min": [
+          -40,
+          -177,
+          -40
+        ],
+        "max": [
+          40,
+          0,
+          40
+        ]
+      }
+    ]
+  },
+  {
+    "res": 62,
+    "class_name": "SignPost",
+    "model_res": 9,
+    "position": [
+      -73.91,
+      0.0,
+      -39.28
+    ],
+    "boxes": [
+      {
+        "flags": 2,
+        "min": [
+          -40,
+          -177,
+          -40
+        ],
+        "max": [
+          40,
+          0,
+          40
+        ]
+      }
+    ]
+  },
+  {
+    "res": 63,
+    "class_name": "SignPost",
+    "model_res": 9,
+    "position": [
+      -61.96,
+      0.0,
+      -40.92
+    ],
+    "boxes": [
+      {
+        "flags": 2,
+        "min": [
+          -40,
+          -177,
+          -40
+        ],
+        "max": [
+          40,
+          0,
+          40
+        ]
+      }
+    ]
+  },
+  {
+    "res": 64,
+    "class_name": "Cactus",
+    "model_res": 12,
+    "position": [
+      143.08,
+      6.57,
+      57.25
+    ],
+    "boxes": [
+      {
+        "flags": 2,
+        "min": [
+          -18,
+          -292,
+          -25
+        ],
+        "max": [
+          21,
+          0,
+          33
+        ]
+      }
+    ]
+  },
+  {
+    "res": 65,
+    "class_name": "Cactus",
+    "model_res": 12,
+    "position": [
+      88.28,
+      6.57,
+      -50.51
+    ],
+    "boxes": [
+      {
+        "flags": 2,
+        "min": [
+          -18,
+          -292,
+          -25
+        ],
+        "max": [
+          21,
+          0,
+          33
+        ]
+      }
+    ]
+  },
+  {
+    "res": 66,
+    "class_name": "Cactus",
+    "model_res": 12,
+    "position": [
+      174.25,
+      6.57,
+      -19.71
+    ],
+    "boxes": [
+      {
+        "flags": 2,
+        "min": [
+          -18,
+          -292,
+          -25
+        ],
+        "max": [
+          21,
+          0,
+          33
+        ]
+      }
+    ]
+  },
+  {
+    "res": 67,
+    "class_name": "Cactus",
+    "model_res": 12,
+    "position": [
+      65.75,
+      6.51,
+      55.72
+    ],
+    "boxes": [
+      {
+        "flags": 2,
+        "min": [
+          -18,
+          -292,
+          -25
+        ],
+        "max": [
+          21,
+          0,
+          33
+        ]
+      }
+    ]
+  },
+  {
+    "res": 68,
+    "class_name": "Cactus",
+    "model_res": 12,
+    "position": [
+      124.39,
+      6.57,
+      58.24
+    ],
+    "boxes": [
+      {
+        "flags": 2,
+        "min": [
+          -18,
+          -292,
+          -25
+        ],
+        "max": [
+          21,
+          0,
+          33
+        ]
+      }
+    ]
+  },
+  {
+    "res": 69,
+    "class_name": "Cactus",
+    "model_res": 12,
+    "position": [
+      50.08,
+      6.57,
+      38.06
+    ],
+    "boxes": [
+      {
+        "flags": 2,
+        "min": [
+          -18,
+          -292,
+          -25
+        ],
+        "max": [
+          21,
+          0,
+          33
+        ]
+      }
+    ]
+  },
+  {
+    "res": 70,
+    "class_name": "Cactus",
+    "model_res": 12,
+    "position": [
+      32.78,
+      6.57,
+      32.15
+    ],
+    "boxes": [
+      {
+        "flags": 2,
+        "min": [
+          -18,
+          -292,
+          -25
+        ],
+        "max": [
+          21,
+          0,
+          33
+        ]
+      }
+    ]
+  },
+  {
+    "res": 71,
+    "class_name": "Cactus",
+    "model_res": 12,
+    "position": [
+      169.48,
+      6.5,
+      -12.48
+    ],
+    "boxes": [
+      {
+        "flags": 2,
+        "min": [
+          -18,
+          -292,
+          -25
+        ],
+        "max": [
+          21,
+          0,
+          33
+        ]
+      }
+    ]
+  },
+  {
+    "res": 72,
+    "class_name": "Cactus",
+    "model_res": 12,
+    "position": [
+      5.32,
+      6.53,
+      31.35
+    ],
+    "boxes": [
+      {
+        "flags": 2,
+        "min": [
+          -18,
+          -292,
+          -25
+        ],
+        "max": [
+          21,
+          0,
+          33
+        ]
+      }
+    ]
+  },
+  {
+    "res": 73,
+    "class_name": "Cactus",
+    "model_res": 12,
+    "position": [
+      138.33,
+      6.5,
+      -21.57
+    ],
+    "boxes": [
+      {
+        "flags": 2,
+        "min": [
+          -18,
+          -292,
+          -25
+        ],
+        "max": [
+          21,
+          0,
+          33
+        ]
+      }
+    ]
+  },
+  {
+    "res": 74,
+    "class_name": "Cactus",
+    "model_res": 12,
+    "position": [
+      153.21,
+      6.7,
+      -30.37
+    ],
+    "boxes": [
+      {
+        "flags": 2,
+        "min": [
+          -18,
+          -292,
+          -25
+        ],
+        "max": [
+          21,
+          0,
+          33
+        ]
+      }
+    ]
+  },
+  {
+    "res": 75,
+    "class_name": "Cactus",
+    "model_res": 12,
+    "position": [
+      69.0,
+      6.54,
+      -43.64
+    ],
+    "boxes": [
+      {
+        "flags": 2,
+        "min": [
+          -18,
+          -292,
+          -25
+        ],
+        "max": [
+          21,
+          0,
+          33
+        ]
+      }
+    ]
+  },
+  {
+    "res": 76,
+    "class_name": "Cactus",
+    "model_res": 12,
+    "position": [
+      66.14,
+      6.67,
+      42.96
+    ],
+    "boxes": [
+      {
+        "flags": 2,
+        "min": [
+          -18,
+          -292,
+          -25
+        ],
+        "max": [
+          21,
+          0,
+          33
+        ]
+      }
+    ]
+  },
+  {
+    "res": 80,
+    "class_name": "MiscStatic",
+    "model_res": 13,
+    "position": [
+      178.02,
+      6.58,
+      4.94
+    ],
+    "boxes": [
+      {
+        "flags": 0,
+        "min": [
+          -118,
+          -253,
+          -113
+        ],
+        "max": [
+          122,
+          -3,
+          127
+        ]
+      }
+    ]
+  },
+  {
+    "res": 81,
+    "class_name": "MiscStatic",
+    "model_res": 13,
+    "position": [
+      173.95,
+      6.58,
+      41.01
+    ],
+    "boxes": [
+      {
+        "flags": 0,
+        "min": [
+          -118,
+          -253,
+          -113
+        ],
+        "max": [
+          122,
+          -3,
+          127
+        ]
+      }
+    ]
+  },
+  {
+    "res": 82,
+    "class_name": "MiscStatic",
+    "model_res": 13,
+    "position": [
+      152.14,
+      6.58,
+      62.41
+    ],
+    "boxes": [
+      {
+        "flags": 0,
+        "min": [
+          -118,
+          -253,
+          -113
+        ],
+        "max": [
+          122,
+          -3,
+          127
+        ]
+      }
+    ]
+  },
+  {
+    "res": 83,
+    "class_name": "MiscStatic",
+    "model_res": 13,
+    "position": [
+      122.79,
+      6.58,
+      -24.2
+    ],
+    "boxes": [
+      {
+        "flags": 0,
+        "min": [
+          -118,
+          -253,
+          -113
+        ],
+        "max": [
+          122,
+          -3,
+          127
+        ]
+      }
+    ]
+  },
+  {
+    "res": 84,
+    "class_name": "MiscStatic",
+    "model_res": 13,
+    "position": [
+      57.58,
+      6.58,
+      30.41
+    ],
+    "boxes": [
+      {
+        "flags": 0,
+        "min": [
+          -118,
+          -253,
+          -113
+        ],
+        "max": [
+          122,
+          -3,
+          127
+        ]
+      }
+    ]
+  },
+  {
+    "res": 85,
+    "class_name": "MiscStatic",
+    "model_res": 13,
+    "position": [
+      86.55,
+      6.58,
+      56.78
+    ],
+    "boxes": [
+      {
+        "flags": 0,
+        "min": [
+          -118,
+          -253,
+          -113
+        ],
+        "max": [
+          122,
+          -3,
+          127
+        ]
+      }
+    ]
+  },
+  {
+    "res": 86,
+    "class_name": "MiscStatic",
+    "model_res": 13,
+    "position": [
+      162.13,
+      6.58,
+      -25.62
+    ],
+    "boxes": [
+      {
+        "flags": 0,
+        "min": [
+          -118,
+          -253,
+          -113
+        ],
+        "max": [
+          122,
+          -3,
+          127
+        ]
+      }
+    ]
+  },
+  {
+    "res": 87,
+    "class_name": "MiscStatic",
+    "model_res": 13,
+    "position": [
+      73.07,
+      6.58,
+      50.79
+    ],
+    "boxes": [
+      {
+        "flags": 0,
+        "min": [
+          -118,
+          -253,
+          -113
+        ],
+        "max": [
+          122,
+          -3,
+          127
+        ]
+      }
+    ]
+  },
+  {
+    "res": 89,
+    "class_name": "MiscStatic",
+    "model_res": 13,
+    "position": [
+      95.08,
+      6.58,
+      -44.98
+    ],
+    "boxes": [
+      {
+        "flags": 0,
+        "min": [
+          -118,
+          -253,
+          -113
+        ],
+        "max": [
+          122,
+          -3,
+          127
+        ]
+      }
+    ]
+  }
+]

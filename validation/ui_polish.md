@@ -1,0 +1,9 @@
+# Entrada de idioma, tipografía y pausa
+
+La entrada PUSH conservaba su ángulo final original y el selector luego giraba al idioma guardado. Ahora la orientación inicial recibe un offset constante calculado entre ese ángulo final y target_angle(selected). Se aplica a toda la animación original, conservando desplazamiento y velocidad angular; el último fotograma coincide con la selección. Si se cambia el idioma durante PUSH, el offset se interpola sin salto.
+
+OriginalGameFont utiliza el atlas FONT_GAME ya recuperado, envuelto como BMFont para que Label pueda usarlo. original_font_atlas.png conserva los mismos bytes de font.png; es una copia separada porque el importador BMFont desactiva la importación de las imágenes de sus páginas como Texture2D y el HUD necesita la textura original. Incluye caracteres latinos y aliases CP1252. El generador reproducible es tools/build_original_ui_font.py. Diálogos de Lucas/Porky y etiquetas del tutorial comparten fuente y color con los letreros; se mantiene el tiempo de las páginas y la voz.
+
+La pausa se adapta a la referencia PS1 proporcionada por el usuario: letras amarillas más legibles, seleccionado blanco con la vibración original, grano tenue y filtro de la escena hacia azul/violeta desaturado. El filtro preserva detalles del fotograma de juego. Se oculta el aviso de interacción mientras hay pausa y se restaura su visibilidad anterior al reanudar. Se mantienen las opciones adicionales Guardar/Cargar del port.
+
+Validación: tools/test_ui_polish.gd comprueba continuidad de rotación en los cuatro idiomas, destino elegido, fuente bitmap/acentos, páginas temporizadas y pausa/restauración de avisos. Capturas GPU pause_ps1_style.png y level01_english_dialogue.png. Son ajustes del port usando assets originales, no una afirmación de equivalencia pixel a pixel con el render de PS1.

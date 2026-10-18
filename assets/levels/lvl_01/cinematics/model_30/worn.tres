@@ -1,0 +1,35 @@
+[gd_resource type="ArrayMesh" format=4]
+
+[ext_resource type="Shader" path="res://shaders/retro_blend.gdshader" id="1_oxyq3"]
+[ext_resource type="Texture2D" path="res://assets/levels/lvl_01/cinematics/model_30/textures/page_6.png" id="2_fnwpv"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5ll3c"]
+render_priority = 0
+shader = ExtResource("1_oxyq3")
+shader_parameter/albedo_texture = ExtResource("2_fnwpv")
+shader_parameter/albedo_texture_linear = ExtResource("2_fnwpv")
+shader_parameter/use_linear_filter = null
+shader_parameter/vertex_color_scale = 1.9921875
+shader_parameter/original_tint_color = null
+shader_parameter/original_tint_amount = null
+shader_parameter/use_legacy_skin = null
+shader_parameter/legacy_joint_palette = null
+shader_parameter/tunnel_projection = null
+shader_parameter/tunnel_road_point = null
+shader_parameter/tunnel_wall_point = null
+shader_parameter/tunnel_farthest_view_z = null
+
+[resource]
+_surfaces = [{
+"aabb": AABB(-0.3488, -0.1, -0.2962, 0.6976, 0.1988, 0.5924),
+"attribute_data": PackedByteArray("gICA/y7/AT7bin0/gICA/0sfej40gGc/gICA/0sfej7bin0/gICA/y7/AT7bin0/gICA/y7/AT40gGc/gICA/0sfej40gGc/KChQ/y7/AT48iDU/KChQ/2cKnT40gBc/KChQ/2cKnT48iDU/KChQ/y7/AT48iDU/KChQ/y7/AT40gBc/KChQ/2cKnT40gBc/gICA/8x/AD/binU/gICA/9OHHj80gF8/gICA/9OHHj/binU/gICA/8x/AD/binU/gICA/8x/AD80gF8/gICA/9OHHj80gF8/"),
+"bone_aabbs": [AABB(0, 0, 0, -1, -1, -1), AABB(-0.3488, 0, -0.2962, 0.6976, 1e-05, 0.5924), AABB(-0.21, 0.0988, -0.2075, 0.4888, 9.998679e-06, 0.415), AABB(-0.21, -0.1, -0.2075, 0.4888, 9.998679e-06, 0.415)],
+"format": 34359741465,
+"material": SubResource("ShaderMaterial_5ll3c"),
+"name": "mat_page_6",
+"primitive": 3,
+"skin_data": PackedByteArray("AwAAAAAAAAD//wAAAAAAAAMAAAAAAAAA//8AAAAAAAADAAAAAAAAAP//AAAAAAAAAwAAAAAAAAD//wAAAAAAAAMAAAAAAAAA//8AAAAAAAADAAAAAAAAAP//AAAAAAAAAQAAAAAAAAD//wAAAAAAAAEAAAAAAAAA//8AAAAAAAABAAAAAAAAAP//AAAAAAAAAQAAAAAAAAD//wAAAAAAAAEAAAAAAAAA//8AAAAAAAABAAAAAAAAAP//AAAAAAAAAgAAAAAAAAD//wAAAAAAAAIAAAAAAAAA//8AAAAAAAACAAAAAAAAAP//AAAAAAAAAgAAAAAAAAD//wAAAAAAAAIAAAAAAAAA//8AAAAAAAACAAAAAAAAAP//AAAAAAAA"),
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 18,
+"vertex_data": PackedByteArray("PQpXvs3MzL3helS+4L6OPs3MzL3helQ+4L6OPs3MzL3helS+PQpXvs3MzL3helS+PQpXvs3MzL3helQ+4L6OPs3MzL3helQ+6pWyvgAAAICHp5e+6pWyPgAAAICHp5c+6pWyPgAAAICHp5e+6pWyvgAAAICHp5e+6pWyvgAAAICHp5c+6pWyPgAAAICHp5c+PQpXvqhXyj3helS+4L6OPqhXyj3helQ+4L6OPqhXyj3helS+PQpXvqhXyj3helS+PQpXvqhXyj3helQ+4L6OPqhXyj3helQ+")
+}]

@@ -1,0 +1,11 @@
+# Zonas de prueba del laboratorio
+
+Las puertas Nivel 00 y Nivel 01 están en el costado derecho (X=20), con nombres planos sobre el suelo. Conservan sus destinos y la animación de apertura. La zona de lechugas incluye una oveja adicional y seis plantas originales del modelo 5 de Lvl01, fuera del radio de atracción inicial de seis metros: recogerlas y colocarlas permite probar seguimiento y consumo. Se usa la misma clase LettuceItem y el mismo flujo de animación/validación de colocación de los niveles.
+
+En el costado izquierdo hay trece botones de música y uno para detenerla. Entrar con Ralph activa el botón una vez; ovejas y otros cuerpos no cambian la selección. Verde indica selección actual. No se reproduce audio espacial: la prueba usa un único AudioStreamPlayer para evitar superponer canciones.
+
+Fuente verificada: sdw-decomp/src/engine/stream_player.cpp, g_levelMusicClip[18] y StreamPlayer_LoaderThread. El original de PC asigna trece WAV distintos a dieciocho niveles y activa looping=1; StreamSound::ReadWave en stream_sound.cpp rebobina WaveFile::ResetFile al terminar el data chunk. No se encontraron intervalos de subcanción en este reproductor PC. No se inventaron separaciones temporales basadas en cambios musicales dentro de un WAV.
+
+tools/extract_lab_music.py copia los WAV sin convertirlos ni dividirlos, y registra sus límites exactos PCM y la asignación original a niveles en assets/audio/music/catalog.json. OriginalMusicSegment admite start_time, end_time y loop_start para futuros assets con varias canciones; convierte estos tiempos a muestras para repetir sin saltos gestionados por frames. Cuando se dispone del número exacto de muestras y coincide la frecuencia, usa ese límite. Cada fuente original es estéreo PCM de 16 bits, 16000 Hz. Los botones actuales repiten el archivo completo como el reproductor PC.
+
+Validación: tools/test_lab_stations.gd comprueba puertas, etiquetas en el suelo, recogida/colocación de lechuga y acercamiento de oveja, selección de los trece WAV, límites exactos, sección parcial de un mismo archivo, rechazo de intervalo inválido y botón de detener. Ejecución headless y con GPU: cero fallos. Capturas: lab_stations.png y lab_music_pads.png.

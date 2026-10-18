@@ -1,0 +1,146 @@
+[
+  {
+    "original": "remaster/pantallas_carga/remasters/LEV00.png",
+    "runtime": "res://assets/ui/loading/modern/LEV00.jpg",
+    "size": [
+      1502,
+      704
+    ],
+    "sha256": "f9eca57a7405b9ce9773b868234a703d0a1c11632a952fbec9c7900436c87d71"
+  },
+  {
+    "original": "remaster/pantallas_carga/remasters/LEV01.png",
+    "runtime": "res://assets/ui/loading/modern/LEV01.jpg",
+    "size": [
+      1502,
+      704
+    ],
+    "sha256": "d71f31afcaef4ca6dfce6775196222c4d5fac22a1b279aa462dfbfcf60ac2707"
+  },
+  {
+    "original": "remaster/pantallas_carga/remasters/LEV02.png",
+    "runtime": "res://assets/ui/loading/modern/LEV02.jpg",
+    "size": [
+      1502,
+      704
+    ],
+    "sha256": "32d5d4d6492334c69d872d7605be8f677be1da86b0d46172c925ecd94375cce0"
+  },
+  {
+    "original": "remaster/pantallas_carga/remasters/LEV03.png",
+    "runtime": "res://assets/ui/loading/modern/LEV03.jpg",
+    "size": [
+      1502,
+      704
+    ],
+    "sha256": "a5d06e02eb6f7f88fcd0ce57620d6b2882a003c3e5971503eb62fb36479da229"
+  },
+  {
+    "original": "remaster/pantallas_carga/remasters/LEV04.png",
+    "runtime": "res://assets/ui/loading/modern/LEV04.jpg",
+    "size": [
+      1502,
+      704
+    ],
+    "sha256": "b800b9d419d794c89b3da4115b7582c1fe10d1dfe89bf9761d44b7a8e57cc6cb"
+  },
+  {
+    "original": "remaster/pantallas_carga/remasters/LEV05.png",
+    "runtime": "res://assets/ui/loading/modern/LEV05.jpg",
+    "size": [
+      1502,
+      704
+    ],
+    "sha256": "9d49d1f54e64cacaa19a3d4ccfa6d85057fd22703fc7f3cd1940501cc0a32392"
+  },
+  {
+    "original": "remaster/pantallas_carga/remasters/LEV06.png",
+    "runtime": "res://assets/ui/loading/modern/LEV06.jpg",
+    "size": [
+      1506,
+      704
+    ],
+    "sha256": "5adba89925e4df5bd61b1d03973312a166eb8183e882709fb2a19255cce645b8"
+  },
+  {
+    "original": "remaster/pantallas_carga/remasters/LEV07.png",
+    "runtime": "res://assets/ui/loading/modern/LEV07.jpg",
+    "size": [
+      1502,
+      704
+    ],
+    "sha256": "ad75de1d885626e214de35a1bf02d3e1d5deb21f1a3fc42162354185c7f228a2"
+  },
+  {
+    "original": "remaster/pantallas_carga/remasters/LEV08.png",
+    "runtime": "res://assets/ui/loading/modern/LEV08.jpg",
+    "size": [
+      1502,
+      704
+    ],
+    "sha256": "6ea063f7270adfc5c25c9606bb4cd42b219bc34b9c66c9f9a559bd134d2ca7d5"
+  },
+  {
+    "original": "remaster/pantallas_carga/remasters/LEV09.png",
+    "runtime": "res://assets/ui/loading/modern/LEV09.jpg",
+    "size": [
+      1502,
+      704
+    ],
+    "sha256": "9243c34d121008e52a2915457677e183319b1116f61c62e0a634d8310b73ef61"
+  },
+  {
+    "original": "remaster/pantallas_carga/remasters/LEV10.png",
+    "runtime": "res://assets/ui/loading/modern/LEV10.jpg",
+    "size": [
+      1502,
+      704
+    ],
+    "sha256": "c1fc947655707cd16f413bb20cf6bbfc266680f8e2ee17c7cf619b398b73313d"
+  },
+  {
+    "original": "remaster/pantallas_carga/remasters/LEV11.png",
+    "runtime": "res://assets/ui/loading/modern/LEV11.jpg",
+    "size": [
+      1502,
+      704
+    ],
+    "sha256": "49136320651fa40d5e405796b7defcaef5b186d6251688ebe947ff0f5e1f0d99"
+  },
+  {
+    "original": "remaster/pantallas_carga/remasters/LEV12.png",
+    "runtime": "res://assets/ui/loading/modern/LEV12.jpg",
+    "size": [
+      1502,
+      704
+    ],
+    "sha256": "2e715bc2de916626ec14dd50924f7db8c4da28b39068ec75e93af283e5a174ff"
+  },
+  {
+    "original": "remaster/pantallas_carga/remasters/LEV13.png",
+    "runtime": "res://assets/ui/loading/modern/LEV13.jpg",
+    "size": [
+      1506,
+      704
+    ],
+    "sha256": "992dbd806e6d109010877ddc86c802346e7955b39b026c0b054e1c4d991e9f87"
+  },
+  {
+    "original": "remaster/pantallas_carga/remasters/LEV14.png",
+    "runtime": "res://assets/ui/loading/modern/LEV14.jpg",
+    "size": [
+      1502,
+      704
+    ],
+    "sha256": "bd4a16faec75daa374d976a631e1f413c2b412c391dbc68e421a0550734af22e"
+  },
+  {
+    "original": "remaster/pantallas_carga/remasters/LEV15.png",
+    "runtime": "res://assets/ui/loading/modern/LEV15.jpg",
+    "size": [
+      1502,
+      704
+    ],
+    "sha256": "996b0b1dc002b6d3a65d839c27afc89e947cce4953b5faa9cb3328c5bfa89fd7"
+  }
+]

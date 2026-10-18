@@ -1,0 +1,354 @@
+{
+  "sharks": [
+    {
+      "res": 59,
+      "class_id": 50,
+      "class_name": "Shark",
+      "model_res": 19,
+      "pos": [
+        -46.65,
+        -9.49,
+        31.35
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ],
+      "props": {
+        "0x0": 0,
+        "0x4": 547,
+        "0x8": 360,
+        "0xc": 640,
+        "0x10": 531
+      },
+      "directory": "res://assets/levels/lvl_04/models/19",
+      "boxes": [
+        {
+          "flags": 0,
+          "min": [
+            -49,
+            -56,
+            -71
+          ],
+          "max": [
+            49,
+            34,
+            101
+          ]
+        }
+      ],
+      "watch_over_cave": false,
+      "zones": [
+        {
+          "flags": 0,
+          "min": [
+            -5263,
+            650,
+            2338
+          ],
+          "max": [
+            -3564,
+            1298,
+            4679
+          ]
+        }
+      ],
+      "route": [
+        [
+          -3986,
+          939,
+          3997
+        ],
+        [
+          -3867,
+          939,
+          3856
+        ],
+        [
+          -3967,
+          939,
+          3590
+        ],
+        [
+          -4089,
+          939,
+          3314
+        ],
+        [
+          -4137,
+          924,
+          3015
+        ],
+        [
+          -4178,
+          933,
+          2697
+        ],
+        [
+          -4429,
+          939,
+          2579
+        ],
+        [
+          -4621,
+          939,
+          2713
+        ],
+        [
+          -4720,
+          939,
+          2926
+        ],
+        [
+          -4631,
+          939,
+          3287
+        ],
+        [
+          -4420,
+          939,
+          3579
+        ],
+        [
+          -4243,
+          939,
+          3898
+        ]
+      ],
+      "detect_height": 3.6,
+      "authored_detect_range": 6.4,
+      "detection_distance": 96.0,
+      "patrol_speed": 3.5,
+      "lunge_speed": 9.0,
+      "bite_distance": 1.6,
+      "aim_seconds": 2.0,
+      "corner_entry_distance": 0.8,
+      "corner_blend_distance": 1.6,
+      "source": "objects/shark.cpp::UpdateWolfChecks/UpdateAi/RunState/SetState/FollowPath",
+      "bubble_frames": [
+        "res://assets/levels/lvl_04/effects/shark/bubbles/frame_0.png",
+        "res://assets/levels/lvl_04/effects/shark/bubbles/frame_1.png",
+        "res://assets/levels/lvl_04/effects/shark/bubbles/frame_2.png"
+      ],
+      "ripple_frames": [
+        "res://assets/levels/lvl_04/effects/shark/ripples/frame_0.png",
+        "res://assets/levels/lvl_04/effects/shark/ripples/frame_1.png",
+        "res://assets/levels/lvl_04/effects/shark/ripples/frame_2.png"
+      ]
+    },
+    {
+      "res": 61,
+      "class_id": 50,
+      "class_name": "Shark",
+      "model_res": 19,
+      "pos": [
+        -47.660000000000004,
+        -2.95,
+        12.5
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ],
+      "props": {
+        "0x0": 0,
+        "0x4": 579,
+        "0x8": 360,
+        "0xc": 640,
+        "0x10": 535
+      },
+      "directory": "res://assets/levels/lvl_04/models/19",
+      "boxes": [
+        {
+          "flags": 0,
+          "min": [
+            -49,
+            -56,
+            -71
+          ],
+          "max": [
+            49,
+            34,
+            101
+          ]
+        }
+      ],
+      "watch_over_cave": false,
+      "zones": [
+        {
+          "flags": 0,
+          "min": [
+            -5263,
+            -59,
+            -195
+          ],
+          "max": [
+            -3564,
+            588,
+            1839
+          ]
+        }
+      ],
+      "route": [
+        [
+          -4426,
+          312,
+          1560
+        ],
+        [
+          -4193,
+          312,
+          1449
+        ],
+        [
+          -4124,
+          312,
+          1184
+        ],
+        [
+          -4105,
+          312,
+          791
+        ],
+        [
+          -4074,
+          312,
+          414
+        ],
+        [
+          -4183,
+          312,
+          196
+        ],
+        [
+          -4429,
+          312,
+          104
+        ],
+        [
+          -4621,
+          312,
+          238
+        ],
+        [
+          -4720,
+          312,
+          451
+        ],
+        [
+          -4778,
+          312,
+          755
+        ],
+        [
+          -4773,
+          312,
+          1241
+        ],
+        [
+          -4643,
+          312,
+          1517
+        ]
+      ],
+      "detect_height": 3.6,
+      "authored_detect_range": 6.4,
+      "detection_distance": 96.0,
+      "patrol_speed": 3.5,
+      "lunge_speed": 9.0,
+      "bite_distance": 1.6,
+      "aim_seconds": 2.0,
+      "corner_entry_distance": 0.8,
+      "corner_blend_distance": 1.6,
+      "source": "objects/shark.cpp::UpdateWolfChecks/UpdateAi/RunState/SetState/FollowPath",
+      "bubble_frames": [
+        "res://assets/levels/lvl_04/effects/shark/bubbles/frame_0.png",
+        "res://assets/levels/lvl_04/effects/shark/bubbles/frame_1.png",
+        "res://assets/levels/lvl_04/effects/shark/bubbles/frame_2.png"
+      ],
+      "ripple_frames": [
+        "res://assets/levels/lvl_04/effects/shark/ripples/frame_0.png",
+        "res://assets/levels/lvl_04/effects/shark/ripples/frame_1.png",
+        "res://assets/levels/lvl_04/effects/shark/ripples/frame_2.png"
+      ]
+    }
+  ],
+  "sounds": {
+    "4": "res://assets/levels/lvl_04/audio/4.wav",
+    "35": "res://assets/levels/lvl_04/audio/35.wav",
+    "40": "res://assets/levels/lvl_04/audio/40.wav",
+    "72": "res://assets/levels/lvl_04/audio/72.wav",
+    "81": "res://assets/levels/lvl_04/audio/81.wav",
+    "87": "res://assets/levels/lvl_04/audio/87.wav",
+    "120": "res://assets/levels/lvl_04/audio/120.wav",
+    "196": "res://assets/levels/lvl_04/audio/196.wav",
+    "199": "res://assets/levels/lvl_04/audio/199.wav",
+    "202": "res://assets/levels/lvl_04/audio/202.wav",
+    "236": "res://assets/levels/lvl_04/audio/236.wav",
+    "237": "res://assets/levels/lvl_04/audio/237.wav",
+    "280": "res://assets/levels/lvl_04/audio/280.wav",
+    "73": "res://assets/levels/lvl_04/audio/73.wav",
+    "5": "res://assets/levels/lvl_04/audio/5.wav",
+    "14": "res://assets/levels/lvl_04/audio/14.wav",
+    "30": "res://assets/levels/lvl_04/audio/30.wav",
+    "33": "res://assets/levels/lvl_04/audio/33.wav",
+    "77": "res://assets/levels/lvl_04/audio/77.wav",
+    "109": "res://assets/levels/lvl_04/audio/109.wav",
+    "51": "res://assets/levels/lvl_04/audio/51.wav",
+    "195": "res://assets/levels/lvl_04/audio/195.wav",
+    "78": "res://assets/levels/lvl_04/audio/78.wav",
+    "82": "res://assets/levels/lvl_04/audio/82.wav",
+    "83": "res://assets/levels/lvl_04/audio/83.wav",
+    "29": "res://assets/levels/lvl_04/audio/29.wav",
+    "80": "res://assets/levels/lvl_04/audio/80.wav",
+    "52": "res://assets/levels/lvl_04/audio/52.wav",
+    "54": "res://assets/levels/lvl_04/audio/54.wav",
+    "62": "res://assets/levels/lvl_04/audio/62.wav",
+    "90": "res://assets/levels/lvl_04/audio/90.wav",
+    "96": "res://assets/levels/lvl_04/audio/96.wav",
+    "129": "res://assets/levels/lvl_04/audio/129.wav",
+    "134": "res://assets/levels/lvl_04/audio/134.wav",
+    "176": "res://assets/levels/lvl_04/audio/176.wav",
+    "186": "res://assets/levels/lvl_04/audio/186.wav",
+    "187": "res://assets/levels/lvl_04/audio/187.wav",
+    "251": "res://assets/levels/lvl_04/audio/251.wav",
+    "265": "res://assets/levels/lvl_04/audio/265.wav",
+    "266": "res://assets/levels/lvl_04/audio/266.wav",
+    "18": "res://assets/levels/lvl_04/audio/18.wav",
+    "107": "res://assets/levels/lvl_04/audio/107.wav",
+    "108": "res://assets/levels/lvl_04/audio/108.wav",
+    "116": "res://assets/levels/lvl_04/audio/116.wav",
+    "102": "res://assets/levels/lvl_04/audio/102.wav",
+    "311": "res://assets/levels/lvl_04/audio/311.wav",
+    "91": "res://assets/levels/lvl_04/audio/91.wav",
+    "330": "res://assets/levels/lvl_04/audio/330.wav",
+    "92": "res://assets/levels/lvl_04/audio/92.wav",
+    "61": "res://assets/levels/lvl_04/audio/61.wav",
+    "322": "res://assets/levels/lvl_04/audio/322.wav",
+    "323": "res://assets/levels/lvl_04/audio/323.wav",
+    "324": "res://assets/levels/lvl_04/audio/324.wav",
+    "37": "res://assets/levels/lvl_04/audio/37.wav",
+    "93": "res://assets/levels/lvl_04/audio/93.wav",
+    "66": "res://assets/levels/lvl_04/audio/66.wav",
+    "253": "res://assets/levels/lvl_04/audio/253.wav",
+    "252": "res://assets/levels/lvl_04/audio/252.wav",
+    "114": "res://assets/levels/lvl_04/audio/114.wav",
+    "179": "res://assets/levels/lvl_04/audio/179.wav",
+    "115": "res://assets/levels/lvl_04/audio/115.wav",
+    "247": "res://assets/levels/lvl_04/audio/247.wav",
+    "138": "res://assets/levels/lvl_04/audio/138.wav",
+    "136": "res://assets/levels/lvl_04/audio/136.wav",
+    "74": "res://assets/levels/lvl_04/audio/74.wav",
+    "274": "res://assets/levels/lvl_04/audio/274.wav",
+    "128": "res://assets/levels/lvl_04/audio/128.wav",
+    "53": "res://assets/levels/lvl_04/audio/53.wav",
+    "111": "res://assets/levels/lvl_04/audio/111.wav",
+    "112": "res://assets/levels/lvl_04/audio/112.wav",
+    "248": "res://assets/levels/lvl_04/audio/248.wav",
+    "250": "res://assets/levels/lvl_04/audio/250.wav",
+    "249": "res://assets/levels/lvl_04/audio/249.wav"
+  },
+  "scale": 0.01
+}

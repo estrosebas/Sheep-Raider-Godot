@@ -1,0 +1,63 @@
+[gd_resource type="ArrayMesh" format=4]
+
+[ext_resource type="Shader" path="res://shaders/retro_opaque.gdshader" id="1_gu5a3"]
+[ext_resource type="Texture2D" path="res://assets/levels/scene/textures/page_0.png" id="2_ah6be"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_uhw48"]
+render_priority = 0
+shader = ExtResource("1_gu5a3")
+shader_parameter/use_linear_filter = null
+shader_parameter/vertex_color_scale = 1.0
+shader_parameter/original_tint_color = null
+shader_parameter/original_tint_amount = null
+shader_parameter/use_legacy_skin = null
+shader_parameter/legacy_joint_palette = null
+shader_parameter/tunnel_projection = null
+shader_parameter/tunnel_road_point = null
+shader_parameter/tunnel_wall_point = null
+shader_parameter/tunnel_farthest_view_z = null
+shader_parameter/is_textured = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pm8j0"]
+render_priority = 0
+shader = ExtResource("1_gu5a3")
+shader_parameter/albedo_texture = ExtResource("2_ah6be")
+shader_parameter/albedo_texture_linear = ExtResource("2_ah6be")
+shader_parameter/use_linear_filter = null
+shader_parameter/vertex_color_scale = 1.9921875
+shader_parameter/original_tint_color = null
+shader_parameter/original_tint_amount = null
+shader_parameter/use_legacy_skin = null
+shader_parameter/legacy_joint_palette = null
+shader_parameter/tunnel_projection = null
+shader_parameter/tunnel_road_point = null
+shader_parameter/tunnel_wall_point = null
+shader_parameter/tunnel_farthest_view_z = null
+shader_parameter/is_textured = true
+
+[resource]
+_surfaces = [{
+"aabb": AABB(-0.6762, 0.0038, 0.015, 1.3624, 1.4412, 0.065),
+"attribute_data": PackedByteArray("AAAA/wAAAAAAAAAAAAAA/wAAAAAAAAAAAAAA/wAAAAAAAAAAAAAA/wAAAAAAAAAAAAAA/wAAAAAAAAAAAAAA/wAAAAAAAAAAAAAA/wAAAAAAAAAAAAAA/wAAAAAAAAAAAAAA/wAAAAAAAAAAAAAA/wAAAAAAAAAAAAAA/wAAAAAAAAAAAAAA/wAAAAAAAAAAAAAA/wAAAAAAAAAAAAAA/wAAAAAAAAAAAAAA/wAAAAAAAAAAAAAA/wAAAAAAAAAAAAAA/wAAAAAAAAAAAAAA/wAAAAAAAAAA"),
+"bone_aabbs": [AABB(0, 0, 0, -1, -1, -1), AABB(-0.6762, 0.0038, 0.015, 1.3623999, 1.4412, 0.065)],
+"format": 34359741465,
+"material": SubResource("ShaderMaterial_uhw48"),
+"name": "mat_page_-1",
+"primitive": 3,
+"skin_data": PackedByteArray("AQAAAAAAAAD//wAAAAAAAAEAAAAAAAAA//8AAAAAAAABAAAAAAAAAP//AAAAAAAAAQAAAAAAAAD//wAAAAAAAAEAAAAAAAAA//8AAAAAAAABAAAAAAAAAP//AAAAAAAAAQAAAAAAAAD//wAAAAAAAAEAAAAAAAAA//8AAAAAAAABAAAAAAAAAP//AAAAAAAAAQAAAAAAAAD//wAAAAAAAAEAAAAAAAAA//8AAAAAAAABAAAAAAAAAP//AAAAAAAAAQAAAAAAAAD//wAAAAAAAAEAAAAAAAAA//8AAAAAAAABAAAAAAAAAP//AAAAAAAAAQAAAAAAAAD//wAAAAAAAAEAAAAAAAAA//8AAAAAAAABAAAAAAAAAP//AAAAAAAA"),
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 18,
+"vertex_data": PackedByteArray("SOEqP2wJeTuPwnU8zqovP8P1uD8K16M9FYwqP2wJeTsK16M9zqovP8P1uD8K16M9SOEqP2wJeTuPwnU8zqovP8P1uD+PwnU8H4Urv2wJeTsK16M9cRstv8P1uD+PwnU8H4Urv2wJeTuPwnU8cRstv8P1uD+PwnU8H4Urv2wJeTsK16M9cRstv8P1uD8K16M9FYwqP2wJeTsK16M9H4Urv2wJeTuPwnU8SOEqP2wJeTuPwnU8FYwqP2wJeTsK16M9H4Urv2wJeTsK16M9H4Urv2wJeTuPwnU8")
+}, {
+"aabb": AABB(-0.6762, 0.0038, 0.015, 1.3624, 1.4412, 0.065),
+"attribute_data": PackedByteArray("eHSA/+SDPj9d/oM9eHSA/8x/AD/f4Is9eHSA/8x/AD9d/oM9eHSA/8x/AD/f4Is9eHSA/+SDPj9d/oM9eHSA/+SDPj/f4Is9eHSA/8gH/T6X/4A+eHSA/5f/gD7IB/0+eHSA/5f/gD6X/4A+eHSA/+SDPj9d/oM9eHSA/8x/AD/IB50+eHSA/8x/AD9d/oM9eHSA/8x/AD/IB50+eHSA/+SDPj9d/oM9eHSA/+SDPj/IB50+eHSA/5f/gD7IB/0+eHSA/8gH/T6X/4A+eHSA/8gH/T7IB/0+"),
+"bone_aabbs": [AABB(0, 0, 0, -1, -1, -1), AABB(-0.6762, 0.0038, 0.015, 1.3624, 1.44121, 0.065)],
+"format": 34359741465,
+"material": SubResource("ShaderMaterial_pm8j0"),
+"name": "mat_page_0",
+"primitive": 3,
+"skin_data": PackedByteArray("AQAAAAAAAAD//wAAAAAAAAEAAAAAAAAA//8AAAAAAAABAAAAAAAAAP//AAAAAAAAAQAAAAAAAAD//wAAAAAAAAEAAAAAAAAA//8AAAAAAAABAAAAAAAAAP//AAAAAAAAAQAAAAAAAAD//wAAAAAAAAEAAAAAAAAA//8AAAAAAAABAAAAAAAAAP//AAAAAAAAAQAAAAAAAAD//wAAAAAAAAEAAAAAAAAA//8AAAAAAAABAAAAAAAAAP//AAAAAAAAAQAAAAAAAAD//wAAAAAAAAEAAAAAAAAA//8AAAAAAAABAAAAAAAAAP//AAAAAAAAAQAAAAAAAAD//wAAAAAAAAEAAAAAAAAA//8AAAAAAAABAAAAAAAAAP//AAAAAAAA"),
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 18,
+"vertex_data": PackedByteArray("cRstv8P1uD+PwnU8zqovP8P1uD8K16M9zqovP8P1uD+PwnU8zqovP8P1uD8K16M9cRstv8P1uD+PwnU8cRstv8P1uD8K16M9zqovP8P1uD+PwnU8H4Urv2wJeTuPwnU8cRstv8P1uD+PwnU8cRstv8P1uD8K16M9FYwqP2wJeTsK16M9zqovP8P1uD8K16M9FYwqP2wJeTsK16M9cRstv8P1uD8K16M9H4Urv2wJeTsK16M9H4Urv2wJeTuPwnU8zqovP8P1uD+PwnU8SOEqP2wJeTuPwnU8")
+}]

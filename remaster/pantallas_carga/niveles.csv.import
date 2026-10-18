@@ -1,0 +1,19 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://cup72ibx7ko2j"
+
+[deps]
+
+files=["res://remaster/pantallas_carga/niveles.nivel.translation", "res://remaster/pantallas_carga/niveles.carpeta.translation", "res://remaster/pantallas_carga/niveles.imagen.translation", "res://remaster/pantallas_carga/niveles.variante.translation", "res://remaster/pantallas_carga/niveles.ancho.translation", "res://remaster/pantallas_carga/niveles.alto.translation", "res://remaster/pantallas_carga/niveles.sha256.translation", "res://remaster/pantallas_carga/niveles.origen.translation"]
+
+source_file="res://remaster/pantallas_carga/niveles.csv"
+dest_files=["res://remaster/pantallas_carga/niveles.nivel.translation", "res://remaster/pantallas_carga/niveles.carpeta.translation", "res://remaster/pantallas_carga/niveles.imagen.translation", "res://remaster/pantallas_carga/niveles.variante.translation", "res://remaster/pantallas_carga/niveles.ancho.translation", "res://remaster/pantallas_carga/niveles.alto.translation", "res://remaster/pantallas_carga/niveles.sha256.translation", "res://remaster/pantallas_carga/niveles.origen.translation"]
+
+[params]
+
+compress=1
+delimiter=0
+unescape_keys=false
+unescape_translations=true

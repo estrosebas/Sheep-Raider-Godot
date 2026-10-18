@@ -1,0 +1,202 @@
+{
+  "items": [
+    {
+      "res": 104,
+      "class_id": 42,
+      "class_name": "elastic",
+      "model_res": 21,
+      "pos": [
+        13.51,
+        22.92,
+        25.36
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ],
+      "props": {
+        "0x0": 5000,
+        "0x4": 500,
+        "0x8": 596,
+        "0xc": 1150,
+        "0x10": 2000
+      },
+      "max_length": 11.5,
+      "distance": 50.0,
+      "height": 5.0,
+      "speed": 20.0,
+      "camera": {
+        "focal": 619,
+        "rotation": [
+          96,
+          3033,
+          0
+        ],
+        "eye": [
+          -1061,
+          -772,
+          -3206
+        ]
+      }
+    }
+  ],
+  "trees": [
+    {
+      "res": 98,
+      "class_id": 45,
+      "class_name": "ElasticTree",
+      "model_res": 10,
+      "pos": [
+        14.18,
+        9.98,
+        10.26
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ],
+      "props": {
+        "0x0": 570,
+        "0x4": 628
+      },
+      "directory": "res://assets/levels/lvl_03/models/10",
+      "pull_up_point": [
+        1369,
+        -2400,
+        821
+      ],
+      "pull_up_box": {
+        "min": [
+          1369,
+          -2400,
+          821
+        ],
+        "max": [
+          1454,
+          -2355,
+          877
+        ]
+      },
+      "restriction": 570
+    },
+    {
+      "res": 99,
+      "class_id": 45,
+      "class_name": "ElasticTree",
+      "model_res": 10,
+      "pos": [
+        -1.97,
+        -0.08,
+        -17.79
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ],
+      "props": {
+        "0x0": 0,
+        "0x4": 609
+      },
+      "directory": "res://assets/levels/lvl_03/models/10",
+      "pull_up_point": [
+        -294,
+        -1315,
+        -2171
+      ],
+      "pull_up_box": {
+        "min": [
+          -294,
+          -1315,
+          -2171
+        ],
+        "max": [
+          -251,
+          -1284,
+          -2142
+        ]
+      },
+      "restriction": 0
+    },
+    {
+      "res": 100,
+      "class_id": 45,
+      "class_name": "ElasticTree",
+      "model_res": 10,
+      "pos": [
+        24.47,
+        10.47,
+        -3.66
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ],
+      "props": {
+        "0x0": 562,
+        "0x4": 629
+      },
+      "directory": "res://assets/levels/lvl_03/models/10",
+      "pull_up_point": [
+        2239,
+        -2392,
+        -408
+      ],
+      "pull_up_box": {
+        "min": [
+          2239,
+          -2392,
+          -408
+        ],
+        "max": [
+          2314,
+          -2355,
+          -335
+        ]
+      },
+      "restriction": 562
+    },
+    {
+      "res": 101,
+      "class_id": 45,
+      "class_name": "ElasticTree",
+      "model_res": 9,
+      "pos": [
+        9.55,
+        -0.2,
+        -17.51
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ],
+      "props": {
+        "0x0": 0,
+        "0x4": 610
+      },
+      "directory": "res://assets/levels/lvl_03/models/9",
+      "pull_up_point": [
+        1079,
+        -1315,
+        -2243
+      ],
+      "pull_up_box": {
+        "min": [
+          1079,
+          -1315,
+          -2243
+        ],
+        "max": [
+          1122,
+          -1284,
+          -2214
+        ]
+      },
+      "restriction": 0
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "source": "HiddenRocks::MSG_QUERY_COVER / Wolf::COVER_APPROACH,COVER_ENTER,HIDDEN / MSG_WOLF_IS_VISIBLE",
+  "source_level": "Lvl-03",
+  "gap_units": 10,
+  "scale": 0.01,
+  "toward_side_angle_units": 682,
+  "side_headings": [
+    1024,
+    0,
+    2048,
+    3072
+  ],
+  "visibility": "ScnObject::IsOnSameSideAs(observer,coverObject)",
+  "port": "Free camera; HIDE1 smoothly centres Ralph on the selected face. Keep the capsule outside the solid box and align only the visual torso to the actual rock triangles. Releasing cover restores the mesh origin; blocked approaches cancel without teleporting. Release directional input to stay hidden, move away or sideways with Ctrl to resume sneak."
+}

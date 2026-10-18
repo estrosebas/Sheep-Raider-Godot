@@ -1,0 +1,83 @@
+{
+  "source": "Levels/Lvl-01/Lvl-01.DAV",
+  "range_units": 600,
+  "y_range_units": 150,
+  "assets": {
+    "DAV_IDI_IGLCRAI1": [
+      {
+        "bitmap": 85,
+        "page": 6,
+        "rect": [
+          32,
+          183,
+          48,
+          32
+        ]
+      },
+      {
+        "bitmap": 86,
+        "page": 6,
+        "rect": [
+          160,
+          104,
+          48,
+          32
+        ]
+      },
+      {
+        "bitmap": 87,
+        "page": 6,
+        "rect": [
+          32,
+          151,
+          48,
+          32
+        ]
+      },
+      {
+        "bitmap": 88,
+        "page": 6,
+        "rect": [
+          160,
+          175,
+          48,
+          32
+        ]
+      },
+      {
+        "bitmap": 89,
+        "page": 6,
+        "rect": [
+          192,
+          143,
+          48,
+          32
+        ]
+      }
+    ],
+    "DAV_IDI_IMOICONB": {
+      "resource": 48,
+      "bitmap": 12,
+      "page": 6,
+      "rect": [
+        96,
+        143,
+        32,
+        24
+      ]
+    },
+    "DAV_IDI_ILAICONB": {
+      "resource": 45,
+      "bitmap": 20,
+      "page": 6,
+      "rect": [
+        128,
+        175,
+        32,
+        24
+      ]
+    }
+  },
+  "resource": 25,
+  "frames": 5
+}

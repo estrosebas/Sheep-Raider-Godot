@@ -1,0 +1,66 @@
+[gd_resource type="ArrayMesh" format=4]
+
+[ext_resource type="Shader" path="res://shaders/retro_opaque.gdshader" id="1_x4rsb"]
+[ext_resource type="Texture2D" path="res://assets/levels/lvl_03/textures/page_5.png" id="2_uwug5"]
+[ext_resource type="Shader" path="res://shaders/retro_blend.gdshader" id="3_kpud3"]
+[ext_resource type="Texture2D" path="res://assets/levels/lvl_03/textures/page_8.png" id="4_g6ncu"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pagq2"]
+render_priority = 0
+shader = ExtResource("1_x4rsb")
+shader_parameter/albedo_texture = ExtResource("2_uwug5")
+shader_parameter/albedo_texture_linear = ExtResource("2_uwug5")
+shader_parameter/use_linear_filter = null
+shader_parameter/vertex_color_scale = 1.9921875
+shader_parameter/original_tint_color = null
+shader_parameter/original_tint_amount = null
+shader_parameter/use_legacy_skin = null
+shader_parameter/legacy_joint_palette = null
+shader_parameter/tunnel_projection = null
+shader_parameter/tunnel_road_point = null
+shader_parameter/tunnel_wall_point = null
+shader_parameter/tunnel_farthest_view_z = null
+shader_parameter/is_textured = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_1sg1a"]
+render_priority = 0
+shader = ExtResource("3_kpud3")
+shader_parameter/albedo_texture = ExtResource("4_g6ncu")
+shader_parameter/albedo_texture_linear = ExtResource("4_g6ncu")
+shader_parameter/use_linear_filter = null
+shader_parameter/vertex_color_scale = 1.9921875
+shader_parameter/original_tint_color = null
+shader_parameter/original_tint_amount = null
+shader_parameter/use_legacy_skin = null
+shader_parameter/legacy_joint_palette = null
+shader_parameter/tunnel_projection = null
+shader_parameter/tunnel_road_point = null
+shader_parameter/tunnel_wall_point = null
+shader_parameter/tunnel_farthest_view_z = null
+
+[resource]
+_surfaces = [{
+"aabb": AABB(-0.78, 0, -0.71, 1.48, 0.99, 1.38),
+"attribute_data": PackedByteArray("gICA/34Acj7kg34/gICA/34Acj7kg34/gICA/34Acj7kg34/UVFR/wcItj7kg34/UVFR/5eojj4HCF4/UVFR/2cPtD7c12k/UVFR/2cPtD7c12k/UVFR/5eojj4HCF4/UVFR//n3uT4HCF4/ZmZm/3AI9T7kg34/ZmZm/xhg3z5Q/GA/ZmZm/3AI9T6wA18/ZmZm/xhg3z5Q/GA/ZmZm/3AI9T7Mf0A/ZmZm/3AI9T6wA18/ZmZm//n3uT4HCF4/ZmZm/xhg3z5Q/GA/ZmZm/2cPtD7c12k/gICA/wcItj7kg34/gICA/34Acj6wA18/gICA/wcItj4kKFY/gICA/34Acj6wA18/gICA/wcItj7kg34/gICA/34Acj7kg34/gICA/5eojj7Mf0A/gICA/34Acj6wA18/gICA/34Acj7Mf0A/ZmZm/wcItj4kKFY/ZmZm/3dn3T7kg34/ZmZm/wcItj7kg34/ZmZm/3dn3T7kg34/ZmZm/wcItj4kKFY/ZmZm/3AI9T46QFA/ZmZm/wcItj7kg34/ZmZm/xhg3z5Q/GA/ZmZm/3AI9T7kg34/ZmZm/wcItj7kg34/ZmZm/2cPtD7c12k/ZmZm/xhg3z5Q/GA/ZmZm/3AI9T7Mf0A/ZmZm/xhg3z5Q/GA/ZmZm/6gAuD7Mf0A/UVFR/6gAuD7Mf0A/UVFR/5eojj4HCF4/UVFR/34Acj7pQ08/ZmZm/wcItj4kKFY/ZmZm/xYYsj7Mf0A/ZmZm/3AI9T46QFA/gICA/5eojj7Mf0A/gICA/wcItj4kKFY/gICA/34Acj6wA18/ZmZm/3AI9T46QFA/ZmZm/3AI9T7kg34/ZmZm/3dn3T7kg34/UVFR/5eojj4HCF4/UVFR/6gAuD7Mf0A/UVFR//n3uT4HCF4/ZmZm//n3uT4HCF4/ZmZm/6gAuD7Mf0A/ZmZm/xhg3z5Q/GA/UVFR/34Acj7Mf0A/UVFR/6gAuD7Mf0A/UVFR/34Acj7pQ08/UVFR/34Acj7kg34/UVFR/34Acj7pQ08/UVFR/5eojj4HCF4/UVFR/34Acj7kg34/UVFR/5eojj4HCF4/UVFR/wcItj7kg34/gICA/34Acj7kg34/gICA/34Acj7kg34/gICA/34Acj7kg34/gICA/xYYsj7Mf0A/gICA/wcItj4kKFY/gICA/5eojj7Mf0A/gICA/34Acj7kg34/gICA/34Acj7kg34/gICA/34Acj7kg34/ZmZm/3AI9T7Mf0A/ZmZm/3AI9T46QFA/ZmZm/xYYsj7Mf0A/"),
+"format": 34359742489,
+"index_count": 81,
+"index_data": PackedByteArray("AAACAAEAAwAFAAQABgAIAAcACQALAAoADAAOAA0ADwARABAAEgAUABMAFQAXABYAGAAaABkAGwAdABwAHgAgAB8AIQAjACIAJAAmACUAJwApACgAKgAsACsALQAvAC4AMAAyADEAMwA1ADQANgA4ADcAOQA7ADoAPAA+AD0APwBBAEAAQgBEAEMARQBHAEYASABKAEkASwBNAEwATgBQAE8A"),
+"material": SubResource("ShaderMaterial_pagq2"),
+"name": "mat_page_5",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 81,
+"vertex_data": PackedByteArray("j8L1PKRwfT+F69G+XI/CPj0KVz8K16O+7FG4PtejcD8zM7M+H4UrPwAAAACamRk/7FG4PVyPAj8fhSs/MzMzP4Xr0T72KBw/MzMzP4Xr0T72KBw/7FG4PVyPAj8fhSs/hesRP+F6FD+PwvU+9igcPwAAAABSuB6/16MwP2Zm5j4K16M8SOH6PmZm5j7NzAy/16MwP2Zm5j4K16M8XI/CPj0KVz8K16O+SOH6PmZm5j7NzAy/hesRP+F6FD+PwvU+16MwP2Zm5j4K16M8MzMzP4Xr0T72KBw/ZmYmvwAAAACPwjW/SOH6PmZm5j7NzAy/hesRv1yPQj9SuB6/SOH6PmZm5j7NzAy/ZmYmvwAAAACPwjW/9igcPwAAAABSuB6/j8L1PKRwfT+F69G+SOH6PmZm5j7NzAy/XI/CPj0KVz8K16O+hesRv1yPQj9SuB6/FK5HvwAAAAAK1yM9ZmYmvwAAAACPwjW/FK5HvwAAAAAK1yM9hesRv1yPQj9SuB6/9igcv1K4Hj9cjwI/H4UrPwAAAACamRk/16MwP2Zm5j4K16M89igcPwAAAABSuB6/H4UrPwAAAACamRk/MzMzP4Xr0T72KBw/16MwP2Zm5j4K16M8XI/CPj0KVz8K16O+16MwP2Zm5j4K16M87FG4PtejcD8zM7M+7FG4PtejcD8zM7M+7FG4PVyPAj8fhSs/9igcv1K4Hj9cjwI/hesRv1yPQj9SuB6/rkfhvh+Faz/sUbi+9igcv1K4Hj9cjwI/j8L1PKRwfT+F69G+hesRv1yPQj9SuB6/SOH6PmZm5j7NzAy/9igcv1K4Hj9cjwI/ZmYmvwAAAAAfhSs/FK5HvwAAAAAK1yM97FG4PVyPAj8fhSs/7FG4PtejcD8zM7M+hesRP+F6FD+PwvU+hesRP+F6FD+PwvU+7FG4PtejcD8zM7M+16MwP2Zm5j4K16M89ijcvkjhej8K16M+7FG4PtejcD8zM7M+9igcv1K4Hj9cjwI/ZmYmvwAAAAAfhSs/9igcv1K4Hj9cjwI/7FG4PVyPAj8fhSs/ZmYmvwAAAAAfhSs/7FG4PVyPAj8fhSs/H4UrPwAAAACamRk/9ijcvkjhej8K16M+rkfhvh+Faz/sUbi+j8L1PKRwfT+F69G+rkfhvh+Faz/sUbi+hesRv1yPQj9SuB6/j8L1PKRwfT+F69G+j8L1PKRwfT+F69G+7FG4PtejcD8zM7M+9ijcvkjhej8K16M+9ijcvkjhej8K16M+9igcv1K4Hj9cjwI/rkfhvh+Faz/sUbi+")
+}, {
+"aabb": AABB(-0.98, 0, -0.93, 1.9000001, 1e-05, 1.85),
+"attribute_data": PackedByteArray("AAAA/8x/YD+TAPU9AAAA/8x/YD+TAPU9AAAA/8x/YD+TAPU9AAAA/8x/YD+TAPU9AAAA/8x/YD+TAPU9AAAA/8x/YD+TAPU9AAAA/8x/YD+TAPU9AAAA/8x/YD+TAPU9AAAA/8x/YD+TAPU9AAAA/8x/YD+TAPU9AAAA/8x/YD+TAPU9AAAA/8x/YD+TAPU9AAAA/8x/YD+TAPU9AAAA/8x/YD+TAPU9AAAA/8x/YD+TAPU9AAAA/8x/YD+TAPU9AAAA/8x/YD+TAPU9AAAA/8x/YD+TAPU9AAAA/8x/YD+TAPU9AAAA/8x/YD+TAPU9AAAA/8x/YD+TAPU9AAAA/8x/YD+TAPU9AAAA/8x/YD+TAPU9AAAA/8x/YD+TAPU9AAAA/8x/YD+TAPU9AAAA/8x/YD+TAPU9AAAA/8x/YD+TAPU9AAAA/8x/YD+TAPU9AAAA/8x/YD+TAPU9AAAA/8x/YD+TAPU9"),
+"format": 34359742489,
+"index_count": 30,
+"index_data": PackedByteArray("AAACAAEAAwAFAAQABgAIAAcACQALAAoADAAOAA0ADwARABAAEgAUABMAFQAXABYAGAAaABkAGwAdABwA"),
+"material": SubResource("ShaderMaterial_1sg1a"),
+"name": "mat_page_8",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 30,
+"vertex_data": PackedByteArray("H4VrPwAAAADhelQ/9igcPwAAAABSuB6/PQpXPwAAAADhelS/H4VrPwAAAADhelQ/H4UrPwAAAACamRk/9igcPwAAAABSuB6/pHA9vwAAAAAfhWs/H4UrPwAAAACamRk/H4VrPwAAAADhelQ/pHA9vwAAAAAfhWs/ZmYmvwAAAAAfhSs/H4UrPwAAAACamRk/SOF6vwAAAADNzEw9ZmYmvwAAAAAfhSs/pHA9vwAAAAAfhWs/SOF6vwAAAADNzEw9FK5HvwAAAAAK1yM9ZmYmvwAAAAAfhSs/pHA9vwAAAAB7FG6/FK5HvwAAAAAK1yM9SOF6vwAAAADNzEw9pHA9vwAAAAB7FG6/ZmYmvwAAAACPwjW/FK5HvwAAAAAK1yM9PQpXPwAAAADhelS/ZmYmvwAAAACPwjW/pHA9vwAAAAB7FG6/PQpXPwAAAADhelS/9igcPwAAAABSuB6/ZmYmvwAAAACPwjW/")
+}]

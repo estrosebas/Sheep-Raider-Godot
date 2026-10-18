@@ -1,0 +1,20 @@
+{
+  "source": "original PS1 LEV00.EBS, decoded LEV00.png",
+  "crop": [
+    148,
+    208,
+    359,
+    229
+  ],
+  "frame_origin": [
+    148,
+    208
+  ],
+  "inner_rect": [
+    154,
+    215,
+    195,
+    7
+  ],
+  "fill": "sampled chalk border colours; dynamic fill reconstruction"
+}

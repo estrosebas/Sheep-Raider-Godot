@@ -1,0 +1,26 @@
+[gd_resource type="ArrayMesh" format=4]
+
+[ext_resource type="Shader" path="res://shaders/retro_opaque.gdshader" id="1_pd5c1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qy0ia"]
+render_priority = 0
+shader = ExtResource("1_pd5c1")
+shader_parameter/use_linear_filter = null
+shader_parameter/vertex_color_scale = 1.0
+shader_parameter/use_legacy_skin = null
+shader_parameter/legacy_joint_palette = null
+shader_parameter/is_textured = false
+
+[resource]
+_surfaces = [{
+"aabb": AABB(-0.31, -0.35, -0.12, 0.63, 0.68, 0.24),
+"attribute_data": PackedByteArray("4eHh/wAAAAAAAAAA4eHh/wAAAAAAAAAA4eHh/wAAAAAAAAAA4eHh/wAAAAAAAAAA4eHh/wAAAAAAAAAA4eHh/wAAAAAAAAAA4eHh/wAAAAAAAAAA4eHh/wAAAAAAAAAA4eHh/wAAAAAAAAAA4eHh/wAAAAAAAAAA4eHh/wAAAAAAAAAA4eHh/wAAAAAAAAAA4eHh/wAAAAAAAAAA4eHh/wAAAAAAAAAA4eHh/wAAAAAAAAAA4eHh/wAAAAAAAAAA4eHh/wAAAAAAAAAA4eHh/wAAAAAAAAAA4eHh/wAAAAAAAAAA4eHh/wAAAAAAAAAA4eHh/wAAAAAAAAAA4eHh/wAAAAAAAAAA4eHh/wAAAAAAAAAA4eHh/wAAAAAAAAAA4eHh/wAAAAAAAAAA4eHh/wAAAAAAAAAA4eHh/wAAAAAAAAAA4eHh/wAAAAAAAAAA4eHh/wAAAAAAAAAA4eHh/wAAAAAAAAAA4eHh/wAAAAAAAAAA4eHh/wAAAAAAAAAA4eHh/wAAAAAAAAAA4eHh/wAAAAAAAAAA4eHh/wAAAAAAAAAA4eHh/wAAAAAAAAAA"),
+"format": 34359742489,
+"index_count": 36,
+"index_data": PackedByteArray("AAACAAEAAwAFAAQABgAIAAcACQALAAoADAAOAA0ADwARABAAEgAUABMAFQAXABYAGAAaABkAGwAdABwAHgAgAB8AIQAjACIA"),
+"material": SubResource("ShaderMaterial_qy0ia"),
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 36,
+"vertex_data": PackedByteArray("7FG4vTMzs76PwvW9CtejPh+Fa76PwvU9CtejPh+Fa76PwvW97FG4vTMzs76PwvW97FG4vTMzs76PwvU9CtejPh+Fa76PwvU9CtejPh+Fa76PwvW9CtejPcP1qD6PwvU9CtejPcP1qD6PwvW9CtejPh+Fa76PwvW9CtejPh+Fa76PwvU9CtejPcP1qD6PwvU9CtejPcP1qD6PwvW9UrievgAAgD6PwvU9UrievgAAgD6PwvW9CtejPcP1qD6PwvW9CtejPcP1qD6PwvU9UrievgAAgD6PwvU9UrievgAAgD6PwvW97FG4vTMzs76PwvU97FG4vTMzs76PwvW9UrievgAAgD6PwvW9UrievgAAgD6PwvU97FG4vTMzs76PwvU9CtejPcP1qD6PwvW97FG4vTMzs76PwvW9CtejPh+Fa76PwvW9CtejPcP1qD6PwvW9UrievgAAgD6PwvW97FG4vTMzs76PwvW9CtejPcP1qD6PwvU97FG4vTMzs76PwvU9UrievgAAgD6PwvU9CtejPcP1qD6PwvU9CtejPh+Fa76PwvU97FG4vTMzs76PwvU9")
+}]

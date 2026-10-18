@@ -1,0 +1,230 @@
+[
+  {
+    "archivo": "originales/controles/hand.png",
+    "descripcion": "IGLUSEDA: dibujo del menú Usar; antigua identificación como mano corregida",
+    "origen": "assets/ui/mobile/hand.png",
+    "sha256": "df216589d56cce9a30d08a2d2c6d5c01445dcd752f8789400620ea245ea01344"
+  },
+  {
+    "archivo": "originales/controles/use_highlight.png",
+    "descripcion": "Usar resaltado / candidato",
+    "origen": "assets/ui/mobile/use_highlight.png",
+    "sha256": "619078ac5d68fb4390df7b554d3e06d7492c1842a106665cccfc26160734e1fc"
+  },
+  {
+    "archivo": "originales/controles/arrow.png",
+    "descripcion": "Flecha / navegacion",
+    "origen": "assets/ui/mobile/arrow.png",
+    "sha256": "be21e1ef5e3a7fe748350bb0d3747b4e5908026825a8a79d72dc294aad06f853"
+  },
+  {
+    "archivo": "originales/controles/exit.png",
+    "descripcion": "Puerta / salir",
+    "origen": "assets/ui/mobile/exit.png",
+    "sha256": "c9128d684bda933cb762c5c61f3f4e6e1235c567ddabb790d4e7f8fa158c4195"
+  },
+  {
+    "archivo": "originales/inventario/icon_10.png",
+    "descripcion": "10: Cohete",
+    "origen": "assets/ui/inventory/icon_10.png",
+    "sha256": "3856215d334ad49fceeec9500652bb0df0e549ba13ef3337fd604f36d07e6c13"
+  },
+  {
+    "archivo": "originales/inventario/icon_100.png",
+    "descripcion": "100: DAV_IDI_ITRICONB",
+    "origen": "assets/ui/inventory/icon_100.png",
+    "sha256": "7688a9514e6613c54bf5a5006b895a5cfc3194431f0e8fdc68983148888080e5"
+  },
+  {
+    "archivo": "originales/inventario/icon_108.png",
+    "descripcion": "108: DAV_IDI_IPMICONB",
+    "origen": "assets/ui/inventory/icon_108.png",
+    "sha256": "56e1f627f511ba793640324a545836371169f881baf401718b6b8fd790c7b25d"
+  },
+  {
+    "archivo": "originales/inventario/icon_121.png",
+    "descripcion": "121: DAV_IDI_ICPICOND",
+    "origen": "assets/ui/inventory/icon_121.png",
+    "sha256": "4411a21c94403527fa1913c26c60f5057b3ad347ca00389282f71b8c6bcc888e"
+  },
+  {
+    "archivo": "originales/inventario/icon_125.png",
+    "descripcion": "125: Disfraz de fantasma",
+    "origen": "assets/ui/inventory/icon_125.png",
+    "sha256": "fed99020658222bbf4335982d3136d2fb0d02af9fee4be25c48bc256643b0a97"
+  },
+  {
+    "archivo": "originales/inventario/icon_129.png",
+    "descripcion": "129: DAV_IDI_IFFICONB",
+    "origen": "assets/ui/inventory/icon_129.png",
+    "sha256": "13fc6b4696a0c76a52fa11cdf6e4599976253b243cceb42a15f9737554ddd8b9"
+  },
+  {
+    "archivo": "originales/inventario/icon_131.png",
+    "descripcion": "131: DAV_IDI_IASICONB",
+    "origen": "assets/ui/inventory/icon_131.png",
+    "sha256": "ac454a6379e5f6b70efaaa72b3d706b350ac996538e2ac8aa145d80b27bf8ca4"
+  },
+  {
+    "archivo": "originales/inventario/icon_132.png",
+    "descripcion": "132: DAV_IDI_IMGICONB",
+    "origen": "assets/ui/inventory/icon_132.png",
+    "sha256": "e4a91a7fa0eb9835992e55710cca40dd2fff17fb0436df78cb7c7f8296d230b8"
+  },
+  {
+    "archivo": "originales/inventario/icon_141.png",
+    "descripcion": "141: DAV_IDI_IORICONB",
+    "origen": "assets/ui/inventory/icon_141.png",
+    "sha256": "f8b93d84c84dfe534f4f548a198a2dc2d262ca35f4cac627f5b8f9eece6c5aa3"
+  },
+  {
+    "archivo": "originales/inventario/icon_144.png",
+    "descripcion": "144: DAV_IDI_IGHICONB",
+    "origen": "assets/ui/inventory/icon_144.png",
+    "sha256": "f66b52ce6d2eeb3e41e8742ac9b5aedc006704ea33c13e14a5cfdd37c3e2d433"
+  },
+  {
+    "archivo": "originales/inventario/icon_2.png",
+    "descripcion": "2: Dinamita",
+    "origen": "assets/ui/inventory/icon_2.png",
+    "sha256": "e7058f2aead34a70b99af9770eeba6e6bc88870a1e334413929c30dbd74647ba"
+  },
+  {
+    "archivo": "originales/inventario/icon_3.png",
+    "descripcion": "3: Lechuga",
+    "origen": "assets/ui/inventory/icon_3.png",
+    "sha256": "f8950dcad5e7904a2f58bf7582ea7f0f7f4ae4f4331a4560b3e984318c452fad"
+  },
+  {
+    "archivo": "originales/inventario/icon_39.png",
+    "descripcion": "39: Perfume",
+    "origen": "assets/ui/inventory/icon_39.png",
+    "sha256": "7f6000c62eae91652f8ebfc50c1282816895abe72a93d389ba344d27970f888d"
+  },
+  {
+    "archivo": "originales/inventario/icon_41.png",
+    "descripcion": "41: Flauta",
+    "origen": "assets/ui/inventory/icon_41.png",
+    "sha256": "55233e4f672f523be5c03d5e9e153bb766b6a6b63b38ff653a8375f1dfb70010"
+  },
+  {
+    "archivo": "originales/inventario/icon_42.png",
+    "descripcion": "42: ElÃ¡stico",
+    "origen": "assets/ui/inventory/icon_42.png",
+    "sha256": "8bdd4dd24f168ef6120a9afce76e2c5d24bbc892dec4e01e5ceb81635ff2d5b9"
+  },
+  {
+    "archivo": "originales/inventario/icon_58.png",
+    "descripcion": "58: DAV_IDI_ICHICONB",
+    "origen": "assets/ui/inventory/icon_58.png",
+    "sha256": "58a2a98169c807b1ae315f77370964e695b93f6dd93f05716f6c89d46192cf04"
+  },
+  {
+    "archivo": "originales/inventario/icon_61.png",
+    "descripcion": "61: DAV_IDI_IDTICONB",
+    "origen": "assets/ui/inventory/icon_61.png",
+    "sha256": "7650ed3f441121ce9608568ddf367b8ea4331bc91d813581e6fc0fb8ecb89e17"
+  },
+  {
+    "archivo": "originales/inventario/icon_62.png",
+    "descripcion": "62: DAV_IDI_IPRICONB",
+    "origen": "assets/ui/inventory/icon_62.png",
+    "sha256": "61f0585eaea1ccfcc9f0bf804a839182d8efc2f0a99413f36fe9aec0d3ce141e"
+  },
+  {
+    "archivo": "originales/inventario/icon_64.png",
+    "descripcion": "64: DAV_IDI_IMNICONB",
+    "origen": "assets/ui/inventory/icon_64.png",
+    "sha256": "ed8318024fe179324dda6749857950b2ce77e09ecf7b398b3fb0059f4f1fc851"
+  },
+  {
+    "archivo": "originales/inventario/icon_66.png",
+    "descripcion": "66: ImÃƒÂ¡n",
+    "origen": "assets/ui/inventory/icon_66.png",
+    "sha256": "e0d0249dfdadcd0de339937540883715c873b1873b579d2391712f1603a5ceb4"
+  },
+  {
+    "archivo": "originales/inventario/icon_67.png",
+    "descripcion": "67: DAV_IDI_ICPICONB",
+    "origen": "assets/ui/inventory/icon_67.png",
+    "sha256": "350b323828cb0bba03e67207b5a6296b6373a8926d3996ceacb4aa32a22393b5"
+  },
+  {
+    "archivo": "originales/inventario/icon_68.png",
+    "descripcion": "68: DAV_IDI_ICPICONC",
+    "origen": "assets/ui/inventory/icon_68.png",
+    "sha256": "c256f705c05ca21d7919d49f975a74b58d48cec3af933d1105a181ca9fd78db6"
+  },
+  {
+    "archivo": "originales/inventario/icon_7.png",
+    "descripcion": "7: Ventilador",
+    "origen": "assets/ui/inventory/icon_7.png",
+    "sha256": "e8047a787325eddc87fc2ba0c9a26578758906f720653dbc9253ad1164a7fc53"
+  },
+  {
+    "archivo": "originales/inventario/icon_80.png",
+    "descripcion": "80: Disfraz de oveja",
+    "origen": "assets/ui/inventory/icon_80.png",
+    "sha256": "ca43c16d8d2b056db95077b0143e8115ec1ccdc2dfd6ef09ca163ed1a3434897"
+  },
+  {
+    "archivo": "originales/inventario/icon_85.png",
+    "descripcion": "85: DAV_IDI_IC4ICONB",
+    "origen": "assets/ui/inventory/icon_85.png",
+    "sha256": "b0c4630ab28a28fa3e964e44183a1f31157b7dc09e1db9b731512ada9982e134"
+  },
+  {
+    "archivo": "originales/inventario/icon_93.png",
+    "descripcion": "93: DAV_IDI_IGAICONB",
+    "origen": "assets/ui/inventory/icon_93.png",
+    "sha256": "8adbdfb10d90d8eb9f9cb41f57e40cba571e2b28ea83f5026b8637597df3b872"
+  },
+  {
+    "archivo": "originales/inventario/icon_99.png",
+    "descripcion": "99: DAV_IDI_ICLICONB",
+    "origen": "assets/ui/inventory/icon_99.png",
+    "sha256": "4d7cb2a5230efde8899ad6add47a56182ba5b452c8d55c501d89c5d40dbedec8"
+  },
+  {
+    "archivo": "originales/nubes/cloud_0.png",
+    "descripcion": "Nube original 0",
+    "origen": "assets/ui/inventory/cloud_0.png",
+    "sha256": "28d001a2bc5a2912d848318a0dbc24c1313a67ac3b7facb9be6325fe41f0da00"
+  },
+  {
+    "archivo": "originales/nubes/cloud_1.png",
+    "descripcion": "Nube original 1",
+    "origen": "assets/ui/inventory/cloud_1.png",
+    "sha256": "50dfc63991108af158c59c1e5b5a398d4fb4e33e30895ef44aac70ab3c4bc0fe"
+  },
+  {
+    "archivo": "originales/nubes/cloud_2.png",
+    "descripcion": "Nube original 2",
+    "origen": "assets/ui/inventory/cloud_2.png",
+    "sha256": "75288871309b24924b7789d4e485da26eb7e7ab287b8d832b91b718e2a30aba6"
+  },
+  {
+    "archivo": "originales/hud/sheep.png",
+    "descripcion": "Oveja HUD",
+    "origen": "assets/ui/lettuce_prompt/sheep.png",
+    "sha256": "df34dc5682430c7cd3f10d97bff7221d4c64e819f18410c742c69bb77406c666"
+  },
+  {
+    "archivo": "originales/hud/lettuce.png",
+    "descripcion": "Lechuga HUD",
+    "origen": "assets/ui/lettuce_prompt/lettuce.png",
+    "sha256": "f8950dcad5e7904a2f58bf7582ea7f0f7f4ae4f4331a4560b3e984318c452fad"
+  },
+  {
+    "archivo": "originales/hud/target_sam.png",
+    "descripcion": "Sam / hipnosis de flauta",
+    "origen": "assets/items/flute/target_sam.png",
+    "sha256": "9da018aa1bdda116b06ccdec395b916f1069e688d4ea0561a823837a1ca8a785"
+  },
+  {
+    "archivo": "originales/controles/interact_hand.png",
+    "descripcion": "Mano abierta azul original FONT_GAME glifo0x9F; usada para Interactuar",
+    "origen": "assets/ui/mobile/interact_hand.png",
+    "sha256": "cb765fbb0891ecddace3671a91422acf691422c30b6ffc214034c080774d594f"
+  }
+]

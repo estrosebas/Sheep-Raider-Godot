@@ -1,0 +1,61 @@
+{
+  "resource": 74,
+  "class_id": 41,
+  "model": 12,
+  "sam_resource": 42,
+  "attach_joint": 18,
+  "sam_radius": 3.0,
+  "noise_radius": 6.0,
+  "note_aim_radius": 20.0,
+  "wolf_speed": 2.0,
+  "sound_id": 37,
+  "sound_path": "res://assets/items/flute/flute_tune.wav",
+  "hypnosis": {
+    "message": 1153,
+    "refresh_seconds": 1.0,
+    "speed": 2.0,
+    "stop_distance": 2.0,
+    "stop_delay_seconds": 0.2,
+    "zone_export_id": 544,
+    "zones": [
+      {
+        "flags": 0,
+        "min": [
+          -1761,
+          -893,
+          1979
+        ],
+        "max": [
+          4631,
+          116,
+          5696
+        ]
+      }
+    ],
+    "start_animation": "hypnos1",
+    "idle_animation": "hypnos2",
+    "walk_animation": "walk2",
+    "entry_states": [
+      "lookafter"
+    ],
+    "excluded_state": "lookafter_timed"
+  },
+  "notes": {
+    "sheet_index": 8,
+    "dav_export_id": 209,
+    "frames": [
+      "res://assets/items/flute/notes/frame_0.png",
+      "res://assets/items/flute/notes/frame_1.png",
+      "res://assets/items/flute/notes/frame_2.png"
+    ],
+    "life_seconds": 4.0,
+    "interval_seconds": 0.66650390625,
+    "h_speed": 1.0,
+    "v_speed": 0.75,
+    "size_start": 0.06,
+    "size_end": 0.4,
+    "origin_forward": 0.6,
+    "origin_up": 1.1,
+    "origin_jitter": 0.1
+  }
+}

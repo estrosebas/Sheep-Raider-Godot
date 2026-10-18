@@ -1,0 +1,116 @@
+{
+  "buttons": [
+    {
+      "res": 39,
+      "class_id": 24,
+      "class_name": "SensibleButton",
+      "model_res": 22,
+      "pos": [
+        37.01,
+        0.39,
+        31.810000000000002
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ],
+      "props": {
+        "0x0": 478,
+        "0x4": 0,
+        "0x8": 0
+      },
+      "directory": "res://assets/levels/lvl_04/models/22",
+      "boxes": [
+        {
+          "flags": 0,
+          "min": [
+            -35,
+            -45,
+            -37
+          ],
+          "max": [
+            40,
+            0,
+            36
+          ]
+        }
+      ],
+      "targets": [
+        65
+      ]
+    }
+  ],
+  "lifts": [],
+  "gates": [],
+  "triggered_stones": [
+    {
+      "res": 65,
+      "class_id": 52,
+      "class_name": "TriggedStone",
+      "model_res": 16,
+      "pos": [
+        36.97,
+        4.79,
+        27.34
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ],
+      "props": {
+        "0x0": 548,
+        "0x4": 541,
+        "0x8": 1000
+      },
+      "directory": "res://assets/levels/lvl_04/models/16",
+      "boxes": [
+        {
+          "flags": 0,
+          "min": [
+            -75,
+            -180,
+            -75
+          ],
+          "max": [
+            75,
+            -30,
+            75
+          ]
+        }
+      ],
+      "crush_zones": [
+        {
+          "flags": 0,
+          "min": [
+            3597,
+            -359,
+            3097
+          ],
+          "max": [
+            3797,
+            -34,
+            3284
+          ]
+        }
+      ],
+      "camera": {
+        "focal": 675,
+        "rotation": [
+          170,
+          1712,
+          0
+        ],
+        "eye": [
+          4117,
+          -345,
+          3810
+        ]
+      },
+      "trigger_delay_ms": 1000,
+      "crush_fraction": 0.6875,
+      "source": "objects/triggedstone.cpp::PostLoadInit/Update/CrushVictims/HandleMessage"
+    }
+  ]
+}

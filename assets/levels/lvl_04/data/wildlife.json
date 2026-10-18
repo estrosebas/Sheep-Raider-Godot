@@ -1,0 +1,663 @@
+{
+  "bulls": [
+    {
+      "res": 60,
+      "class_id": 43,
+      "class_name": "bull",
+      "model_res": 17,
+      "pos": [
+        -1.44,
+        0.67,
+        3.5300000000000002
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ],
+      "props": {
+        "0x0": 545,
+        "0x4": 1,
+        "0x8": 546,
+        "0xc": 0,
+        "0x10": 0,
+        "0x14": 0,
+        "0x18": 0,
+        "0x1c": 0,
+        "0x20": 100
+      },
+      "directory": "res://assets/levels/lvl_04/models/17",
+      "boxes": [
+        {
+          "flags": 2,
+          "min": [
+            -60,
+            -120,
+            -42
+          ],
+          "max": [
+            59,
+            0,
+            77
+          ]
+        }
+      ],
+      "activation_boxes": [
+        {
+          "flags": 0,
+          "min": [
+            -1120,
+            -402,
+            -749
+          ],
+          "max": [
+            1557,
+            102,
+            1151
+          ]
+        }
+      ],
+      "movement_boxes": [
+        {
+          "flags": 0,
+          "min": [
+            -1476,
+            -670,
+            -1977
+          ],
+          "max": [
+            1573,
+            194,
+            1622
+          ]
+        }
+      ],
+      "no_return_boxes": [],
+      "asleep": true,
+      "wake_speed_pct": 100,
+      "charge_speed": 8.0,
+      "close_wake_distance": 2.0,
+      "hit_distance": 1.5,
+      "retarget_seconds": 2.0,
+      "hit_recovery_seconds": 10.0,
+      "source": "objects/bull.cpp::PostLoadInit/SetState/Update/HandleMessage",
+      "dust_frames": [
+        "res://assets/levels/lvl_04/effects/wildlife/dust/frame_0.png",
+        "res://assets/levels/lvl_04/effects/wildlife/dust/frame_1.png",
+        "res://assets/levels/lvl_04/effects/wildlife/dust/frame_2.png",
+        "res://assets/levels/lvl_04/effects/wildlife/dust/frame_3.png"
+      ]
+    }
+  ],
+  "leaf_zones": [
+    {
+      "res": 72,
+      "class_id": 54,
+      "class_name": "HeapOfLeaf",
+      "model_res": 9,
+      "pos": [
+        -5.79,
+        -0.3,
+        2.14
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ],
+      "props": {
+        "0x0": 565,
+        "0x4": 473,
+        "0x8": 533
+      },
+      "directory": "res://assets/levels/lvl_04/models/9",
+      "boxes": [
+        {
+          "flags": 2,
+          "min": [
+            -35,
+            -80,
+            -35
+          ],
+          "max": [
+            35,
+            0,
+            35
+          ]
+        }
+      ],
+      "polygon": [
+        [
+          17,
+          47,
+          -799
+        ],
+        [
+          -200,
+          62,
+          -846
+        ],
+        [
+          -395,
+          68,
+          -792
+        ],
+        [
+          -579,
+          54,
+          -814
+        ],
+        [
+          -802,
+          35,
+          -772
+        ],
+        [
+          -891,
+          11,
+          -585
+        ],
+        [
+          -812,
+          1,
+          -223
+        ],
+        [
+          -823,
+          0,
+          51
+        ],
+        [
+          -1083,
+          0,
+          41
+        ],
+        [
+          -898,
+          0,
+          1176
+        ],
+        [
+          -296,
+          0,
+          1512
+        ],
+        [
+          -28,
+          0,
+          1056
+        ],
+        [
+          55,
+          0,
+          776
+        ],
+        [
+          14,
+          0,
+          573
+        ],
+        [
+          -135,
+          0,
+          540
+        ],
+        [
+          -187,
+          0,
+          402
+        ],
+        [
+          -211,
+          0,
+          10
+        ],
+        [
+          -16,
+          15,
+          -213
+        ],
+        [
+          430,
+          0,
+          -224
+        ],
+        [
+          628,
+          0,
+          -5
+        ],
+        [
+          615,
+          0,
+          172
+        ],
+        [
+          797,
+          0,
+          196
+        ],
+        [
+          802,
+          0,
+          104
+        ],
+        [
+          808,
+          0,
+          -388
+        ],
+        [
+          595,
+          0,
+          -476
+        ],
+        [
+          398,
+          0,
+          -384
+        ],
+        [
+          194,
+          18,
+          -463
+        ],
+        [
+          -409,
+          25,
+          -420
+        ],
+        [
+          -483,
+          0,
+          -198
+        ],
+        [
+          -396,
+          0,
+          7
+        ],
+        [
+          -505,
+          0,
+          111
+        ],
+        [
+          -586,
+          0,
+          116
+        ],
+        [
+          -638,
+          0,
+          -205
+        ],
+        [
+          -534,
+          33,
+          -528
+        ],
+        [
+          -380,
+          37,
+          -601
+        ],
+        [
+          13,
+          47,
+          -590
+        ],
+        [
+          15,
+          55,
+          -753
+        ]
+      ],
+      "zone": [
+        {
+          "flags": 0,
+          "min": [
+            -1730,
+            -658,
+            -1066
+          ],
+          "max": [
+            2028,
+            167,
+            2039
+          ]
+        }
+      ],
+      "guardian": 60,
+      "radius": 19.89,
+      "height_tolerance": 0.6,
+      "source": "objects/heapofleaf.cpp::DetectMovers/PointInPolygon",
+      "leaf_frames": [
+        "res://assets/levels/lvl_04/effects/wildlife/leaves/frame_0.png",
+        "res://assets/levels/lvl_04/effects/wildlife/leaves/frame_1.png",
+        "res://assets/levels/lvl_04/effects/wildlife/leaves/frame_2.png",
+        "res://assets/levels/lvl_04/effects/wildlife/leaves/frame_3.png"
+      ]
+    },
+    {
+      "res": 73,
+      "class_id": 54,
+      "class_name": "HeapOfLeaf",
+      "model_res": 9,
+      "pos": [
+        11.34,
+        0.0,
+        5.68
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ],
+      "props": {
+        "0x0": 565,
+        "0x4": 473,
+        "0x8": 534
+      },
+      "directory": "res://assets/levels/lvl_04/models/9",
+      "boxes": [
+        {
+          "flags": 2,
+          "min": [
+            -35,
+            -80,
+            -35
+          ],
+          "max": [
+            35,
+            0,
+            35
+          ]
+        }
+      ],
+      "polygon": [
+        [
+          235,
+          28,
+          -825
+        ],
+        [
+          608,
+          -4,
+          -923
+        ],
+        [
+          888,
+          0,
+          -821
+        ],
+        [
+          1411,
+          0,
+          -812
+        ],
+        [
+          1721,
+          0,
+          -144
+        ],
+        [
+          1458,
+          0,
+          1296
+        ],
+        [
+          621,
+          0,
+          1738
+        ],
+        [
+          231,
+          0,
+          1509
+        ],
+        [
+          182,
+          0,
+          1118
+        ],
+        [
+          193,
+          0,
+          1014
+        ],
+        [
+          744,
+          0,
+          1010
+        ],
+        [
+          804,
+          0,
+          825
+        ],
+        [
+          160,
+          0,
+          797
+        ],
+        [
+          87,
+          0,
+          564
+        ],
+        [
+          362,
+          0,
+          269
+        ],
+        [
+          592,
+          0,
+          237
+        ],
+        [
+          801,
+          0,
+          390
+        ],
+        [
+          1002,
+          0,
+          341
+        ],
+        [
+          1011,
+          0,
+          -443
+        ],
+        [
+          934,
+          0,
+          -586
+        ],
+        [
+          596,
+          0,
+          -576
+        ],
+        [
+          405,
+          7,
+          -532
+        ],
+        [
+          144,
+          26,
+          -579
+        ],
+        [
+          212,
+          0,
+          -771
+        ]
+      ],
+      "zone": [
+        {
+          "flags": 0,
+          "min": [
+            -1730,
+            -658,
+            -1066
+          ],
+          "max": [
+            2028,
+            167,
+            2039
+          ]
+        }
+      ],
+      "guardian": 60,
+      "radius": 22.92,
+      "height_tolerance": 0.6,
+      "source": "objects/heapofleaf.cpp::DetectMovers/PointInPolygon",
+      "leaf_frames": [
+        "res://assets/levels/lvl_04/effects/wildlife/leaves/frame_0.png",
+        "res://assets/levels/lvl_04/effects/wildlife/leaves/frame_1.png",
+        "res://assets/levels/lvl_04/effects/wildlife/leaves/frame_2.png",
+        "res://assets/levels/lvl_04/effects/wildlife/leaves/frame_3.png"
+      ]
+    }
+  ],
+  "leaves": [
+    {
+      "res": 109,
+      "class_id": 191,
+      "class_name": "Leaf",
+      "model_res": 36,
+      "pos": [
+        0.1,
+        0.0,
+        -5.86
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ],
+      "props": {
+        "0x0": 900
+      },
+      "directory": "res://assets/levels/lvl_04/models/36",
+      "boxes": [],
+      "range": 9.0,
+      "respawn_min": 0.75,
+      "respawn_max": 2.25,
+      "source": "objects/leaf.cpp::PostLoadInit/Update"
+    }
+  ],
+  "sheets": {
+    "leaves": [
+      "res://assets/levels/lvl_04/effects/wildlife/leaves/frame_0.png",
+      "res://assets/levels/lvl_04/effects/wildlife/leaves/frame_1.png",
+      "res://assets/levels/lvl_04/effects/wildlife/leaves/frame_2.png",
+      "res://assets/levels/lvl_04/effects/wildlife/leaves/frame_3.png"
+    ],
+    "dust": [
+      "res://assets/levels/lvl_04/effects/wildlife/dust/frame_0.png",
+      "res://assets/levels/lvl_04/effects/wildlife/dust/frame_1.png",
+      "res://assets/levels/lvl_04/effects/wildlife/dust/frame_2.png",
+      "res://assets/levels/lvl_04/effects/wildlife/dust/frame_3.png"
+    ]
+  },
+  "sounds": {
+    "4": "res://assets/levels/lvl_04/audio/4.wav",
+    "35": "res://assets/levels/lvl_04/audio/35.wav",
+    "40": "res://assets/levels/lvl_04/audio/40.wav",
+    "72": "res://assets/levels/lvl_04/audio/72.wav",
+    "81": "res://assets/levels/lvl_04/audio/81.wav",
+    "87": "res://assets/levels/lvl_04/audio/87.wav",
+    "120": "res://assets/levels/lvl_04/audio/120.wav",
+    "196": "res://assets/levels/lvl_04/audio/196.wav",
+    "199": "res://assets/levels/lvl_04/audio/199.wav",
+    "202": "res://assets/levels/lvl_04/audio/202.wav",
+    "236": "res://assets/levels/lvl_04/audio/236.wav",
+    "237": "res://assets/levels/lvl_04/audio/237.wav",
+    "280": "res://assets/levels/lvl_04/audio/280.wav",
+    "73": "res://assets/levels/lvl_04/audio/73.wav",
+    "5": "res://assets/levels/lvl_04/audio/5.wav",
+    "14": "res://assets/levels/lvl_04/audio/14.wav",
+    "30": "res://assets/levels/lvl_04/audio/30.wav",
+    "33": "res://assets/levels/lvl_04/audio/33.wav",
+    "77": "res://assets/levels/lvl_04/audio/77.wav",
+    "109": "res://assets/levels/lvl_04/audio/109.wav",
+    "51": "res://assets/levels/lvl_04/audio/51.wav",
+    "195": "res://assets/levels/lvl_04/audio/195.wav",
+    "78": "res://assets/levels/lvl_04/audio/78.wav",
+    "82": "res://assets/levels/lvl_04/audio/82.wav",
+    "83": "res://assets/levels/lvl_04/audio/83.wav",
+    "29": "res://assets/levels/lvl_04/audio/29.wav",
+    "80": "res://assets/levels/lvl_04/audio/80.wav",
+    "52": "res://assets/levels/lvl_04/audio/52.wav",
+    "54": "res://assets/levels/lvl_04/audio/54.wav",
+    "62": "res://assets/levels/lvl_04/audio/62.wav",
+    "90": "res://assets/levels/lvl_04/audio/90.wav",
+    "96": "res://assets/levels/lvl_04/audio/96.wav",
+    "129": "res://assets/levels/lvl_04/audio/129.wav",
+    "134": "res://assets/levels/lvl_04/audio/134.wav",
+    "176": "res://assets/levels/lvl_04/audio/176.wav",
+    "186": "res://assets/levels/lvl_04/audio/186.wav",
+    "187": "res://assets/levels/lvl_04/audio/187.wav",
+    "251": "res://assets/levels/lvl_04/audio/251.wav",
+    "265": "res://assets/levels/lvl_04/audio/265.wav",
+    "266": "res://assets/levels/lvl_04/audio/266.wav",
+    "18": "res://assets/levels/lvl_04/audio/18.wav",
+    "107": "res://assets/levels/lvl_04/audio/107.wav",
+    "108": "res://assets/levels/lvl_04/audio/108.wav",
+    "116": "res://assets/levels/lvl_04/audio/116.wav",
+    "102": "res://assets/levels/lvl_04/audio/102.wav",
+    "311": "res://assets/levels/lvl_04/audio/311.wav",
+    "91": "res://assets/levels/lvl_04/audio/91.wav",
+    "330": "res://assets/levels/lvl_04/audio/330.wav",
+    "92": "res://assets/levels/lvl_04/audio/92.wav",
+    "61": "res://assets/levels/lvl_04/audio/61.wav",
+    "322": "res://assets/levels/lvl_04/audio/322.wav",
+    "323": "res://assets/levels/lvl_04/audio/323.wav",
+    "324": "res://assets/levels/lvl_04/audio/324.wav",
+    "37": "res://assets/levels/lvl_04/audio/37.wav",
+    "93": "res://assets/levels/lvl_04/audio/93.wav",
+    "66": "res://assets/levels/lvl_04/audio/66.wav",
+    "253": "res://assets/levels/lvl_04/audio/253.wav",
+    "252": "res://assets/levels/lvl_04/audio/252.wav",
+    "114": "res://assets/levels/lvl_04/audio/114.wav",
+    "179": "res://assets/levels/lvl_04/audio/179.wav",
+    "115": "res://assets/levels/lvl_04/audio/115.wav",
+    "247": "res://assets/levels/lvl_04/audio/247.wav",
+    "138": "res://assets/levels/lvl_04/audio/138.wav",
+    "136": "res://assets/levels/lvl_04/audio/136.wav",
+    "74": "res://assets/levels/lvl_04/audio/74.wav",
+    "274": "res://assets/levels/lvl_04/audio/274.wav",
+    "128": "res://assets/levels/lvl_04/audio/128.wav",
+    "53": "res://assets/levels/lvl_04/audio/53.wav",
+    "111": "res://assets/levels/lvl_04/audio/111.wav",
+    "112": "res://assets/levels/lvl_04/audio/112.wav",
+    "248": "res://assets/levels/lvl_04/audio/248.wav",
+    "250": "res://assets/levels/lvl_04/audio/250.wav",
+    "249": "res://assets/levels/lvl_04/audio/249.wav"
+  },
+  "leaf_sound_id": 129,
+  "charge_sound_id": 253,
+  "particle_params": {
+    "leaves": {
+      "life": 0.5,
+      "period": 0.199951171875,
+      "size_start": 0.4,
+      "size_end": 0.9,
+      "v_speed": -0.2,
+      "h_speed": 0.1
+    },
+    "dust": {
+      "life": 2,
+      "period": 0.125,
+      "size_start": 0.8,
+      "size_end": 1.8,
+      "v_speed": 0.6,
+      "h_speed": 0.5
+    }
+  }
+}

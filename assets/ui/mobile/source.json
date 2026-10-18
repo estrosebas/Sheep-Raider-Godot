@@ -1,0 +1,69 @@
+{
+  "source": "C:\\Users\\estro\\Downloads\\Sheep.Dog.and.Wolf\\Sheep.Dog.and.Wolf\\Sheep.Dog.and.Wolf\\Levels\\Lvl-00\\Lvl-00.DAV",
+  "native_usage": "src/engine/map.cpp: Map_InitObject icon pairs",
+  "icons": {
+    "hand": {
+      "resource": 37,
+      "symbol": "DAV_IDI_IGLUSEDA",
+      "bitmap": 71,
+      "page": 9,
+      "rect": [
+        188,
+        0,
+        48,
+        16
+      ],
+      "path": "res://assets/ui/mobile/hand.png"
+    },
+    "use_highlight": {
+      "resource": 38,
+      "symbol": "DAV_IDI_IGLUSEDB",
+      "bitmap": 72,
+      "page": 11,
+      "rect": [
+        128,
+        95,
+        48,
+        32
+      ],
+      "path": "res://assets/ui/mobile/use_highlight.png"
+    },
+    "arrow": {
+      "resource": 28,
+      "symbol": "DAV_IDI_IGLFLEC_",
+      "bitmap": 81,
+      "page": 9,
+      "rect": [
+        128,
+        136,
+        48,
+        24
+      ],
+      "path": "res://assets/ui/mobile/arrow.png"
+    },
+    "exit": {
+      "resource": 27,
+      "symbol": "DAV_IDI_IGLEXITB",
+      "bitmap": 76,
+      "page": 11,
+      "rect": [
+        176,
+        16,
+        48,
+        32
+      ],
+      "path": "res://assets/ui/mobile/exit.png"
+    }
+  },
+  "reused": {
+    "inventory": "res://assets/ui/inventory/cloud_0.png",
+    "equipped_item": "InventoryComponent.state.get_selected_object().icon"
+  },
+  "missing_dedicated_art": [
+    "jump",
+    "run",
+    "sneak",
+    "pause",
+    "language"
+  ]
+}

@@ -1,0 +1,137 @@
+[
+  {
+    "class_id": 2,
+    "original_name": "DYNAMITE",
+    "implemented": true
+  },
+  {
+    "class_id": 3,
+    "original_name": "SALAD",
+    "implemented": true
+  },
+  {
+    "class_id": 7,
+    "original_name": "FAN",
+    "implemented": true
+  },
+  {
+    "class_id": 10,
+    "original_name": "ROCKET",
+    "implemented": true
+  },
+  {
+    "class_id": 39,
+    "original_name": "PERFUME",
+    "implemented": true
+  },
+  {
+    "class_id": 41,
+    "original_name": "FLUTE",
+    "implemented": false
+  },
+  {
+    "class_id": 42,
+    "original_name": "ELASTIC",
+    "implemented": false
+  },
+  {
+    "class_id": 58,
+    "original_name": "HAIRDRYER",
+    "implemented": false
+  },
+  {
+    "class_id": 61,
+    "original_name": "MINEDETECTOR",
+    "implemented": false
+  },
+  {
+    "class_id": 62,
+    "original_name": "UMBRELLA",
+    "implemented": false
+  },
+  {
+    "class_id": 64,
+    "original_name": "DEFUSABLEMINE",
+    "implemented": false
+  },
+  {
+    "class_id": 66,
+    "original_name": "MAGNET",
+    "implemented": true
+  },
+  {
+    "class_id": 67,
+    "original_name": "FISHINGROD",
+    "implemented": false
+  },
+  {
+    "class_id": 68,
+    "original_name": "MAGNETROD",
+    "implemented": false
+  },
+  {
+    "class_id": 80,
+    "original_name": "SHEEPCOSTUME",
+    "implemented": true
+  },
+  {
+    "class_id": 85,
+    "original_name": "TIMEMACHINECHRONO",
+    "implemented": false
+  },
+  {
+    "class_id": 93,
+    "original_name": "SEED",
+    "implemented": false
+  },
+  {
+    "class_id": 99,
+    "original_name": "RABBITCOSTUME",
+    "implemented": false
+  },
+  {
+    "class_id": 100,
+    "original_name": "REMOTECONTROL",
+    "implemented": false
+  },
+  {
+    "class_id": 108,
+    "original_name": "HONEYPOT",
+    "implemented": false
+  },
+  {
+    "class_id": 121,
+    "original_name": "SALADROD",
+    "implemented": false
+  },
+  {
+    "class_id": 125,
+    "original_name": "GHOSTCOSTUME",
+    "implemented": true
+  },
+  {
+    "class_id": 129,
+    "original_name": "KEY",
+    "implemented": false
+  },
+  {
+    "class_id": 131,
+    "original_name": "HOOVER",
+    "implemented": false
+  },
+  {
+    "class_id": 132,
+    "original_name": "INFLATABLESHEEP",
+    "implemented": false
+  },
+  {
+    "class_id": 141,
+    "original_name": "GOLDENCOINS",
+    "implemented": false
+  },
+  {
+    "class_id": 144,
+    "original_name": "INSTANTHOOVER",
+    "implemented": false
+  }
+]

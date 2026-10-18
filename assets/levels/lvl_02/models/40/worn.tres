@@ -1,0 +1,64 @@
+[gd_resource type="ArrayMesh" format=4]
+
+[ext_resource type="Shader" path="res://shaders/retro_blend.gdshader" id="1_vskuw"]
+[ext_resource type="Texture2D" path="res://assets/levels/lvl_02/textures/page_9.png" id="2_6kb72"]
+[ext_resource type="Texture2D" path="res://assets/levels/lvl_02/textures/page_8.png" id="3_mxule"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_idhxb"]
+render_priority = 0
+shader = ExtResource("1_vskuw")
+shader_parameter/albedo_texture = ExtResource("2_6kb72")
+shader_parameter/albedo_texture_linear = ExtResource("2_6kb72")
+shader_parameter/use_linear_filter = null
+shader_parameter/vertex_color_scale = 1.9921875
+shader_parameter/original_tint_color = null
+shader_parameter/original_tint_amount = null
+shader_parameter/use_legacy_skin = null
+shader_parameter/legacy_joint_palette = null
+shader_parameter/tunnel_projection = null
+shader_parameter/tunnel_road_point = null
+shader_parameter/tunnel_wall_point = null
+shader_parameter/tunnel_farthest_view_z = null
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_if34i"]
+render_priority = 0
+shader = ExtResource("1_vskuw")
+shader_parameter/albedo_texture = ExtResource("3_mxule")
+shader_parameter/albedo_texture_linear = ExtResource("3_mxule")
+shader_parameter/use_linear_filter = null
+shader_parameter/vertex_color_scale = 1.9921875
+shader_parameter/original_tint_color = null
+shader_parameter/original_tint_amount = null
+shader_parameter/use_legacy_skin = null
+shader_parameter/legacy_joint_palette = null
+shader_parameter/tunnel_projection = null
+shader_parameter/tunnel_road_point = null
+shader_parameter/tunnel_wall_point = null
+shader_parameter/tunnel_farthest_view_z = null
+
+[resource]
+_surfaces = [{
+"aabb": AABB(-0.0862, 0.0188, -0.0688, 0.1724, 0.071200006, 0.1463),
+"attribute_data": PackedByteArray("f39//5qZET+xv7w+f39//+9yAT8IINU+f39//+9yAT+xv7w+f39//5qZET+xv7w+f39//5qZET8IINU+f39//+9yAT8IINU+f39//+9yAT/437o+f39//5qZET8IINU+f39//5qZET/437o+f39//+9yAT/437o+f39//+9yAT8IINU+f39//5qZET8IINU+"),
+"bone_aabbs": [AABB(0, 0, 0, -1, -1, -1), AABB(0, 0.0188, -0.05, 1e-05, 1.0000542e-05, 0.121209994), AABB(0.08, 0.09, -0.0688, 0.0062099993, 9.998679e-06, 0.1463), AABB(-0.0862, 0.09, -0.0688, 0.0062099993, 9.998679e-06, 0.14631)],
+"format": 34359741465,
+"material": SubResource("ShaderMaterial_idhxb"),
+"name": "mat_page_9",
+"primitive": 3,
+"skin_data": PackedByteArray("AgAAAAAAAAD//wAAAAAAAAEAAAAAAAAA//8AAAAAAAACAAAAAAAAAP//AAAAAAAAAgAAAAAAAAD//wAAAAAAAAEAAAAAAAAA//8AAAAAAAABAAAAAAAAAP//AAAAAAAAAwAAAAAAAAD//wAAAAAAAAEAAAAAAAAA//8AAAAAAAADAAAAAAAAAP//AAAAAAAAAwAAAAAAAAD//wAAAAAAAAEAAAAAAAAA//8AAAAAAAABAAAAAAAAAP//AAAAAAAA"),
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 12,
+"vertex_data": PackedByteArray("oImwPexRuD0E54y9AAAAAHUCmjxO0ZE9CtejPexRuD1SuJ49oImwPexRuD0E54y9AAAAAHUCmjzNzEy9AAAAAHUCmjxO0ZE9CtejvexRuD1SuJ49AAAAAHUCmjzNzEy9oImwvexRuD0E54y9CtejvexRuD1SuJ49AAAAAHUCmjxO0ZE9AAAAAHUCmjzNzEy9")
+}, {
+"aabb": AABB(-0.0862, 0.0188, -0.0688, 0.1724, 0.071200006, 0.1463),
+"attribute_data": PackedByteArray("f39//0aZbT8i4NA+f39//0NzXT8yIOs+f39//0aZbT8yIOs+f39//0aZbT8i4NA+f39//0NzXT8i4NA+f39//0NzXT8yIOs+f39//0aZbT8yIOs+f39//0NzXT8i4NA+f39//0aZbT8i4NA+f39//0aZbT8yIOs+f39//0NzXT8yIOs+f39//0NzXT8i4NA+"),
+"bone_aabbs": [AABB(0, 0, 0, -1, -1, -1), AABB(0, 0.0188, -0.05, 1e-05, 1.0000542e-05, 0.121209994), AABB(0.08, 0.09, -0.0688, 0.0062099993, 9.998679e-06, 0.1463), AABB(-0.0862, 0.09, -0.0688, 0.0062099993, 9.998679e-06, 0.14631)],
+"format": 34359741465,
+"material": SubResource("ShaderMaterial_if34i"),
+"name": "mat_page_8",
+"primitive": 3,
+"skin_data": PackedByteArray("AgAAAAAAAAD//wAAAAAAAAEAAAAAAAAA//8AAAAAAAABAAAAAAAAAP//AAAAAAAAAgAAAAAAAAD//wAAAAAAAAIAAAAAAAAA//8AAAAAAAABAAAAAAAAAP//AAAAAAAAAQAAAAAAAAD//wAAAAAAAAMAAAAAAAAA//8AAAAAAAADAAAAAAAAAP//AAAAAAAAAQAAAAAAAAD//wAAAAAAAAEAAAAAAAAA//8AAAAAAAADAAAAAAAAAP//AAAAAAAA"),
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 12,
+"vertex_data": PackedByteArray("oImwPexRuD0E54y9AAAAAHUCmjxO0ZE9AAAAAHUCmjzNzEy9oImwPexRuD0E54y9CtejPexRuD1SuJ49AAAAAHUCmjxO0ZE9AAAAAHUCmjzNzEy9CtejvexRuD1SuJ49oImwvexRuD0E54y9AAAAAHUCmjzNzEy9AAAAAHUCmjxO0ZE9CtejvexRuD1SuJ49")
+}]

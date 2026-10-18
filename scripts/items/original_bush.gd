@@ -1,0 +1,155 @@
+extends Node3D
+
+@export var volumetric = false
+@export var camera_facing = false
+# Port balance: native search is600 units; a free camera makes that too broad.
+@export var sheep_detection_radius = 2.5
+# Option 2 chosen after visual comparison. Other modes are archived lab tests.
+@export_enum("Asset material", "Depth cutout", "Backface cutout", "Alpha prepass") var render_variant = 2
+
+var visual: OriginalCinematicActor
+var disguise: OriginalCinematicActor
+var wearer: RalphController
+var home: Vector3
+var age = 0.0
+var eaten_time = 0.0
+var respawn_time = 0.0
+var rise_time = 0.0
+var rustle_time = 0.0
+var entering_from = Vector3.ZERO
+
+func _ready():
+	add_to_group("bushes")
+	add_to_group("world_interactables")
+	add_to_group("sheep_attractors")
+	add_to_group("fan_targets")
+	var world_path = "res://assets/items/bush_camera/worn.tscn" if camera_facing else ("res://assets/items/bush_custom/worn.tscn" if volumetric else "res://assets/items/bush_world/worn.tscn")
+	visual = load(world_path).instantiate()
+	add_child(visual)
+	if camera_facing: setup_camera_facing(visual)
+	if render_variant > 0: setup_layer_visibility(visual)
+	visual.idle("stand1")
+	call_deferred("remember_home")
+func remember_home():
+	var query = PhysicsRayQueryParameters3D.create(global_position+Vector3.UP*3,global_position-Vector3.UP*10,1)
+	var hit = get_world_3d().direct_space_state.intersect_ray(query)
+	if not hit.is_empty(): global_position.y = hit.position.y
+	home = global_position
+
+func can_interact(actor: RalphController) -> bool:
+	return wearer == null and respawn_time <= 0 and actor.can_use_item() and not actor.carried_sheep and actor.is_on_floor() and actor.global_position.distance_to(global_position) < 1.2
+func interact(actor: RalphController) -> bool:
+	if not can_interact(actor): return false
+	register_sounds(actor)
+	return actor.item_actions.begin([{"clip":"bush_enter","enter":func():
+		entering_from = actor.global_position
+		actor.item_actions.face(global_position)
+		visual.idle_clip = ""
+		visual.sample_animation("jump6",0),"step":func(time,duration):
+			visual.sample_animation("jump6",time)
+			actor.global_position = entering_from.lerp(global_position,clampf(time/duration,0,1)),"exit":func(): wear(actor)}])
+
+func wear(actor: RalphController):
+	wearer = actor; actor.active_bush = self; actor.item_costume = "bush"
+	actor.skeleton.get_node("MeshInstance3D").hide()
+	visual.hide()
+	var worn_path = "res://assets/items/bush_camera_disguise/worn.tscn" if camera_facing else ("res://assets/items/bush_custom_disguise/worn.tscn" if volumetric else "res://assets/items/bush_disguise/worn.tscn")
+	disguise = load(worn_path).instantiate()
+	actor.add_child(disguise)
+	if camera_facing: setup_camera_facing(disguise)
+	if render_variant > 0: setup_layer_visibility(disguise)
+	disguise.idle("head1")
+	rise_time = 0; eaten_time = 0; age = 0
+
+func setup_camera_facing(actor: OriginalCinematicActor):
+	# Only foliage turns visually. Ralph and the gameplay direction stay intact.
+	for material in actor.legacy_skin.materials:
+		var texture = material.get_shader_parameter("albedo_texture")
+		if texture != null and (texture.resource_path.ends_with("page_11.png") or texture.resource_path.ends_with("page_9.png")):
+			material.shader = preload("res://shaders/bush_camera_facing.gdshader")
+			material.set_shader_parameter("use_legacy_skin",true)
+	actor.legacy_skin.update_pose()
+
+func setup_layer_visibility(actor: OriginalCinematicActor):
+	var shaders = [null,preload("res://shaders/bush_depth_cutout.gdshader"),preload("res://shaders/bush_backface_cutout.gdshader"),preload("res://shaders/bush_alpha_prepass.gdshader")]
+	# LegacySkinRenderer has already duplicated these materials per instance.
+	# Only foliage changes; all variants use the unchanged animated vertices.
+	for material in actor.legacy_skin.materials:
+		var texture = material.get_shader_parameter("albedo_texture")
+		if texture != null and (texture.resource_path.ends_with("page_11.png") or texture.resource_path.ends_with("page_9.png")):
+			material.shader = shaders[render_variant]
+			material.set_shader_parameter("use_legacy_skin",true)
+	actor.legacy_skin.update_pose()
+
+func hidden_from_sam() -> bool:
+	return is_instance_valid(wearer) and wearer.is_on_floor() and Vector2(wearer.velocity.x,wearer.velocity.z).length() < .05
+
+func is_rising() -> bool:
+	return is_instance_valid(wearer) and rise_time < float(disguise.rig.animations.head1.duration)
+
+func leave(restore = true,animate = true):
+	if not is_instance_valid(wearer): return
+	var actor = wearer
+	register_sounds(actor)
+	actor.active_bush = null; actor.item_costume = ""
+	actor.skeleton.get_node("MeshInstance3D").show()
+	if disguise: disguise.queue_free(); disguise = null
+	wearer = null
+	global_position = actor.global_position if restore else home
+	age = 0; eaten_time = 0
+	visual.show(); visual.idle("out6")
+	if not restore: respawn_time = 7; visual.hide()
+	if animate:
+		# Keep the restored bush in sync with Ralph's native OUT6, not a
+		# permanently looping OUT6 on the separate scenery model.
+		visual.idle_clip = ""
+		actor.item_actions.begin([{"clip":"bush_exit","step":func(time,_duration): visual.sample_animation("out6",time),"exit":func(): visual.idle("stand1")}])
+
+func register_sounds(actor: RalphController):
+	# JUMP6/OUT6 carry native animation events 30 (leaves) and 33.
+	for id in [14,30,33]:
+		var path = "res://assets/levels/lvl_02/audio/%d.wav" % id
+		if ResourceLoader.exists(path): actor.run_data.sounds[str(id)] = {"path":path,"loop":false}
+
+func scent_position() -> Vector3: return wearer.global_position if is_instance_valid(wearer) else global_position
+func scent_strength() -> float:
+	if respawn_time > 0 or age < 3: return 0
+	if is_instance_valid(wearer) and not hidden_from_sam(): return 0
+	return sheep_detection_radius
+func eat(delta: float) -> bool:
+	if scent_strength() <= 0: return false
+	eaten_time += delta
+	if eaten_time >= 20:
+		if is_instance_valid(wearer): leave(false,false)
+		else: global_position = home; visual.hide(); respawn_time = 7
+		eaten_time = 0
+	return true
+func on_fan_blow(_direction: Vector3,_delta: float):
+	if wearer == null:
+		if rustle_time <= 0: visual.idle("out6")
+		rustle_time = float(visual.rig.animations.out6.duration)/6
+
+func _process(delta: float):
+	age += delta
+	if rustle_time > 0:
+		rustle_time = maxf(0,rustle_time-delta)
+		visual.idle_speed = 6
+		if rustle_time == 0: visual.idle_speed = 1; visual.idle("stand1")
+	if respawn_time > 0:
+		respawn_time = maxf(0,respawn_time-delta)
+		if respawn_time <= 4: visual.show()
+		if respawn_time == 0: visual.idle("stand1"); age = 0
+	if not is_instance_valid(wearer): return
+	rise_time += delta
+	disguise.rotation.y = wearer.skeleton.rotation.y
+	if rise_time < float(disguise.rig.animations.head1.duration): return
+	var clip = "stand1" if hidden_from_sam() else ("walk1" if wearer.current_state == wearer.WolfState.SNEAK else "walk2")
+	if not wearer.is_on_floor(): clip = "jump1" if wearer.velocity.y>0 else "fall1"
+	if disguise.idle_clip != clip:
+		disguise.idle(clip)
+		disguise.sample_animation(clip,0)
+
+func reset_to_home():
+	if is_instance_valid(wearer): leave(false,false)
+	global_position = home; age = 0; eaten_time = 0; respawn_time = 0
+	visual.show(); visual.idle("stand1")

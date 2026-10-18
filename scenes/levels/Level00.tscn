@@ -1,0 +1,89 @@
+[gd_scene load_steps=9 format=3 uid="uid://level_00_scene"]
+
+[ext_resource type="Script" path="res://scripts/levels/level_setup.gd" id="1_setup"]
+[ext_resource type="ArrayMesh" path="res://assets/levels/lvl_00/scenery.tres" id="2_scenery"]
+[ext_resource type="PackedScene" path="res://scenes/characters/Ralph.tscn" id="3_player"]
+[ext_resource type="ArrayMesh" path="res://assets/levels/lvl_00/level_objects.tres" id="4_objects"]
+[ext_resource type="ArrayMesh" path="res://assets/models/daffy.tres" id="5_daffy"]
+[ext_resource type="ArrayMesh" path="res://assets/models/sheep.tres" id="6_sheep"]
+[ext_resource type="AudioStream" path="res://assets/audio/music/jungle_v1.wav" id="7_music"]
+
+[sub_resource type="Environment" id="Environment_1"]
+background_mode = 1
+background_color = Color(0.52, 0.66, 0.82, 1)
+tonemap_mode = 0
+
+[node name="Level00" type="Node3D"]
+script = ExtResource("1_setup")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_1")
+
+[node name="Scenery" type="MeshInstance3D" parent="."]
+mesh = ExtResource("2_scenery")
+
+[node name="LevelObjects" type="MeshInstance3D" parent="."]
+mesh = ExtResource("4_objects")
+
+[node name="Collision" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Collision"]
+
+[node name="Player" parent="." instance=ExtResource("3_player")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -87.41, 0.5, 43.45)
+
+[node name="DaffyDuck" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49.56, 0.0, 43.92)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="DaffyDuck"]
+mesh = ExtResource("5_daffy")
+
+[node name="Sheep" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -99.42, 4.49, -60.86)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Sheep"]
+mesh = ExtResource("6_sheep")
+
+[node name="BGMPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_music")
+volume_db = -6.0
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="MarginContainer" type="MarginContainer" parent="HUD"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HUD/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="TitleLabel" type="Label" parent="HUD/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "LOONEY TUNES: SHEEP RAIDER - GODOT 4 NATIVE PORT"
+
+[node name="InfoLabel" type="Label" parent="HUD/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.9, 0.85, 0.6, 1)
+theme_override_font_sizes/font_size = 16
+text = "Nivel 0: Tutorial de Entrenamiento (Pato Lucas)"
+
+[node name="ControlsLabel" type="Label" parent="HUD/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.8, 0.8, 0.8, 0.8)
+theme_override_font_sizes/font_size = 14
+text = "WASD: Moverse | Shift repetido: Carrera | Ctrl: Sigilo | Espacio: Doble salto | Tab + A/D: Objetos | E: Recoger/Usar | H: Ocultar ayuda | Esc: Liberar ratón"
+
+[node name="CoordsLabel" type="Label" parent="HUD/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.6, 0.9, 0.7, 1)
+theme_override_font_sizes/font_size = 14
+text = "Posición: ..."

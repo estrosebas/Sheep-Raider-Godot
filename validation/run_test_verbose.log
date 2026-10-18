@@ -1,0 +1,72 @@
+WorkerThreadPool: 4 threads, 1 max low-priority.
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+TextServer: Added interface "Dummy"
+TextServer: Added interface "ICU / HarfBuzz / Graphite (Built-in)"
+Using "default" pen tablet driver...
+
+TextServer: Primary interface set to: "ICU / HarfBuzz / Graphite (Built-in)".
+CORE API HASH: 2004498165
+EDITOR API HASH: 1696660745
+Loading resource: res://tools/test_run_mechanics.gd remapped: res://tools/test_run_mechanics.gd
+Completed load for: 'res://tools/test_run_mechanics.gd' remapped 'res://tools/test_run_mechanics.gd' at thread -1
+SceneTreeFTI: traversal method DEFAULT
+Loaded system CA certificates
+Loading resource: res://scenes/characters/Ralph.tscn remapped: res://scenes/characters/Ralph.tscn
+Loading resource: res://scripts/player/ralph_controller.gd remapped: res://scripts/player/ralph_controller.gd
+Completed load for: 'res://scripts/player/ralph_controller.gd' remapped 'res://scripts/player/ralph_controller.gd' at thread -1
+Loading resource: res://assets/models/ralph_wolf.tres remapped: res://assets/models/ralph_wolf.tres
+Loading resource: res://shaders/retro_opaque.gdshader remapped: res://shaders/retro_opaque.gdshader
+Loading resource: res://shaders/legacy_color.gdshaderinc remapped: res://shaders/legacy_color.gdshaderinc
+Completed load for: 'res://shaders/legacy_color.gdshaderinc' remapped 'res://shaders/legacy_color.gdshaderinc' at thread -1
+Completed load for: 'res://shaders/retro_opaque.gdshader' remapped 'res://shaders/retro_opaque.gdshader' at thread -1
+Loading resource: res://assets/levels/lvl_00/textures/page_0.png remapped: res://assets/levels/lvl_00/textures/page_0.png
+Loading resource: res://.godot/imported/page_0.png-c66f7e6d9e2347afab0106404f2e171b.ctex remapped: res://.godot/imported/page_0.png-c66f7e6d9e2347afab0106404f2e171b.ctex
+Completed load for: 'res://assets/levels/lvl_00/textures/page_0.png' remapped 'res://assets/levels/lvl_00/textures/page_0.png' at thread -1
+Loading resource: res://shaders/retro_blend.gdshader remapped: res://shaders/retro_blend.gdshader
+Completed load for: 'res://shaders/retro_blend.gdshader' remapped 'res://shaders/retro_blend.gdshader' at thread -1
+Loading resource: res://assets/levels/lvl_00/textures/page_9.png remapped: res://assets/levels/lvl_00/textures/page_9.png
+Loading resource: res://.godot/imported/page_9.png-b2b16fa23cafabf5fdd2735b81157330.ctex remapped: res://.godot/imported/page_9.png-b2b16fa23cafabf5fdd2735b81157330.ctex
+Completed load for: 'res://assets/levels/lvl_00/textures/page_9.png' remapped 'res://assets/levels/lvl_00/textures/page_9.png' at thread -1
+Completed load for: 'res://assets/models/ralph_wolf.tres' remapped 'res://assets/models/ralph_wolf.tres' at thread -1
+Loading resource: res://assets/models/ralph_animations.tres remapped: res://assets/models/ralph_animations.tres
+Completed load for: 'res://assets/models/ralph_animations.tres' remapped 'res://assets/models/ralph_animations.tres' at thread -1
+Completed load for: 'res://scenes/characters/Ralph.tscn' remapped 'res://scenes/characters/Ralph.tscn' at thread -1
+Loading resource: res://assets/audio/sfx/land.wav remapped: res://assets/audio/sfx/land.wav
+Loading resource: res://.godot/imported/land.wav-c22c530768b56e334e99ecb1b0b0cb0a.sample remapped: res://.godot/imported/land.wav-c22c530768b56e334e99ecb1b0b0cb0a.sample
+Completed load for: 'res://assets/audio/sfx/land.wav' remapped 'res://assets/audio/sfx/land.wav' at thread -1
+Loading resource: res://assets/audio/sfx/run_start.wav remapped: res://assets/audio/sfx/run_start.wav
+Loading resource: res://.godot/imported/run_start.wav-73972cc99f57f7ba08461f5dbf0944f3.sample remapped: res://.godot/imported/run_start.wav-73972cc99f57f7ba08461f5dbf0944f3.sample
+Completed load for: 'res://assets/audio/sfx/run_start.wav' remapped 'res://assets/audio/sfx/run_start.wav' at thread -1
+Loading resource: res://assets/audio/sfx/sfx_18.wav remapped: res://assets/audio/sfx/sfx_18.wav
+Loading resource: res://.godot/imported/sfx_18.wav-7344a6c190fc48aa4d30ff2730d9c1c6.sample remapped: res://.godot/imported/sfx_18.wav-7344a6c190fc48aa4d30ff2730d9c1c6.sample
+Completed load for: 'res://assets/audio/sfx/sfx_18.wav' remapped 'res://assets/audio/sfx/sfx_18.wav' at thread -1
+Loading resource: res://assets/audio/sfx/sfx_19.wav remapped: res://assets/audio/sfx/sfx_19.wav
+Loading resource: res://.godot/imported/sfx_19.wav-6040f157baa40bc0d2b6afb1e7680c8c.sample remapped: res://.godot/imported/sfx_19.wav-6040f157baa40bc0d2b6afb1e7680c8c.sample
+Completed load for: 'res://assets/audio/sfx/sfx_19.wav' remapped 'res://assets/audio/sfx/sfx_19.wav' at thread -1
+Loading resource: res://assets/audio/sfx/sfx_20.wav remapped: res://assets/audio/sfx/sfx_20.wav
+Loading resource: res://.godot/imported/sfx_20.wav-5e66148621add4583ce165de2824fb01.sample remapped: res://.godot/imported/sfx_20.wav-5e66148621add4583ce165de2824fb01.sample
+Completed load for: 'res://assets/audio/sfx/sfx_20.wav' remapped 'res://assets/audio/sfx/sfx_20.wav' at thread -1
+Loading resource: res://assets/audio/sfx/run_loop.wav remapped: res://assets/audio/sfx/run_loop.wav
+Loading resource: res://.godot/imported/run_loop.wav-2c2fd8cec028385443301dbcca3cc0b0.sample remapped: res://.godot/imported/run_loop.wav-2c2fd8cec028385443301dbcca3cc0b0.sample
+Completed load for: 'res://assets/audio/sfx/run_loop.wav' remapped 'res://assets/audio/sfx/run_loop.wav' at thread -1
+Loading resource: res://assets/audio/sfx/sfx_03.wav remapped: res://assets/audio/sfx/sfx_03.wav
+Loading resource: res://.godot/imported/sfx_03.wav-60ecfe59e95f4307af306c894fb91f77.sample remapped: res://.godot/imported/sfx_03.wav-60ecfe59e95f4307af306c894fb91f77.sample
+Completed load for: 'res://assets/audio/sfx/sfx_03.wav' remapped 'res://assets/audio/sfx/sfx_03.wav' at thread -1
+Loading resource: res://assets/audio/sfx/sfx_12.wav remapped: res://assets/audio/sfx/sfx_12.wav
+Loading resource: res://.godot/imported/sfx_12.wav-57e2b7a5e0e76bd7574d27dd44fa9d43.sample remapped: res://.godot/imported/sfx_12.wav-57e2b7a5e0e76bd7574d27dd44fa9d43.sample
+Completed load for: 'res://assets/audio/sfx/sfx_12.wav' remapped 'res://assets/audio/sfx/sfx_12.wav' at thread -1
+Wall check: position=(0.0, 0.0, -6.399998) state=9 impacts=1 velocity=(0.0, 0.0, 0.0)
+Run mechanics: 0 failures; real wall impacts=1; recoveries=1
+XR: Clearing primary interface
+XR: Removed interface "Native mobile"
+XR: Removed interface "OpenXR"
+Leaked instance: AudioStreamPlaybackWAV:9223372079401797148 - Reference count: 1
+Leaked instance: AudioStreamWAV:9223372079351465502 - Reference count: 1
+Hint: Leaked instances typically happen when nodes are removed from the scene tree (with `remove_child()`) but not freed (with `free()` or `queue_free()`).
+Resource still in use: res://assets/audio/sfx/sfx_12.wav (AudioStreamWAV)
+Orphan StringName: Master (static: 0, total: 2)
+StringName: 1 unclaimed string names at exit.
+WARNING: 2 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2536)
+ERROR: 1 resources still in use at exit.
+   at: clear (core/io/resource.cpp:817)

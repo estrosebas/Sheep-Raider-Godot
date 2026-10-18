@@ -1,0 +1,21 @@
+{
+  "resource": 55,
+  "bitmap": 95,
+  "page": 12,
+  "rect": [
+    0,
+    0,
+    128,
+    32
+  ],
+  "source": "C:\\Users\\estro\\Downloads\\Sheep.Dog.and.Wolf\\Sheep.Dog.and.Wolf\\Sheep.Dog.and.Wolf\\Levels\\Lvl-00\\Lvl-00.DAV",
+  "duration": 0.5,
+  "origin": [
+    16,
+    16
+  ],
+  "text_origin": [
+    32,
+    24
+  ]
+}

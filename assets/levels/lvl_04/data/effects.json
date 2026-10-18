@@ -1,0 +1,30 @@
+{
+  "sheets": {
+    "water": [
+      "res://assets/levels/lvl_04/effects/water/frame_0.png",
+      "res://assets/levels/lvl_04/effects/water/frame_1.png",
+      "res://assets/levels/lvl_04/effects/water/frame_2.png"
+    ]
+  },
+  "water_anchors": [
+    [
+      -41.646,
+      -11.98,
+      -13.80925
+    ]
+  ],
+  "river_spray": true,
+  "source": {
+    "scroll_header": "WAR type 0x83",
+    "scroll_lists": [
+      296,
+      407,
+      0,
+      0
+    ],
+    "reverse_mask": 0,
+    "water_sprite": "DAV_IDI_IGLTIDE_",
+    "water_regions": "WAR_IDO_WATERBOX (54)",
+    "hazard": "Shark class 50; no Piranhas class 117 in this level"
+  }
+}

@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3]
+[ext_resource type="Script" path="res://scripts/items/perfume_item.gd" id="1"]
+[ext_resource type="ArrayMesh" path="res://assets/items/perfume/model.tres" id="2"]
+[node name="Perfume" type="Node3D"]
+script = ExtResource("1")
+class_id = 39
+[node name="Visual" type="MeshInstance3D" parent="."]
+mesh = ExtResource("2")
+position = Vector3(0, 0.000000, 0)

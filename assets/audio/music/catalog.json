@@ -1,0 +1,193 @@
+{
+  "source": "PC StreamPlayer::g_levelMusicClip / LoaderThread and StreamSound::ReadWave looping ResetFile",
+  "bounds": "Entire native PC files, no invented subtrack cuts. End is exclusive.",
+  "tracks": [
+    {
+      "id": "Jungle_v1",
+      "title": "Jungle_v1",
+      "path": "res://assets/audio/music/jungle_v1.wav",
+      "start_time": 0.0,
+      "end_time": 75.0898125,
+      "loop_start": 0.0,
+      "start_sample": 0,
+      "end_sample": 1201437,
+      "sample_rate": 16000,
+      "levels": [
+        0
+      ]
+    },
+    {
+      "id": "Trip_v1",
+      "title": "Trip_v1",
+      "path": "res://assets/audio/music/trip_v1.wav",
+      "start_time": 0.0,
+      "end_time": 106.658875,
+      "loop_start": 0.0,
+      "start_sample": 0,
+      "end_sample": 1706542,
+      "sample_rate": 16000,
+      "levels": [
+        1,
+        5
+      ]
+    },
+    {
+      "id": "JAMI Full",
+      "title": "JAMI Full",
+      "path": "res://assets/audio/music/jami_full.wav",
+      "start_time": 0.0,
+      "end_time": 65.5041875,
+      "loop_start": 0.0,
+      "start_sample": 0,
+      "end_sample": 1048067,
+      "sample_rate": 16000,
+      "levels": [
+        2
+      ]
+    },
+    {
+      "id": "Mix Jami_v2",
+      "title": "Mix Jami_v2",
+      "path": "res://assets/audio/music/mix_jami_v2.wav",
+      "start_time": 0.0,
+      "end_time": 79.1798125,
+      "loop_start": 0.0,
+      "start_sample": 0,
+      "end_sample": 1266877,
+      "sample_rate": 16000,
+      "levels": [
+        3
+      ]
+    },
+    {
+      "id": "JAZZ90_v3",
+      "title": "JAZZ90_v3",
+      "path": "res://assets/audio/music/jazz90_v3.wav",
+      "start_time": 0.0,
+      "end_time": 85.3165625,
+      "loop_start": 0.0,
+      "start_sample": 0,
+      "end_sample": 1365065,
+      "sample_rate": 16000,
+      "levels": [
+        4,
+        13
+      ]
+    },
+    {
+      "id": "Luney_v2",
+      "title": "Luney_v2",
+      "path": "res://assets/audio/music/luney_v2.wav",
+      "start_time": 0.0,
+      "end_time": 81.2075625,
+      "loop_start": 0.0,
+      "start_sample": 0,
+      "end_sample": 1299321,
+      "sample_rate": 16000,
+      "levels": [
+        6,
+        7
+      ]
+    },
+    {
+      "id": "Zilla_v2",
+      "title": "Zilla_v2",
+      "path": "res://assets/audio/music/zilla_v2.wav",
+      "start_time": 0.0,
+      "end_time": 88.17725,
+      "loop_start": 0.0,
+      "start_sample": 0,
+      "end_sample": 1410836,
+      "sample_rate": 16000,
+      "levels": [
+        8,
+        12
+      ]
+    },
+    {
+      "id": "JUNGLERHODES01_v2",
+      "title": "JUNGLERHODES01_v2",
+      "path": "res://assets/audio/music/junglerhodes01_v2.wav",
+      "start_time": 0.0,
+      "end_time": 79.031625,
+      "loop_start": 0.0,
+      "start_sample": 0,
+      "end_sample": 1264506,
+      "sample_rate": 16000,
+      "levels": [
+        9
+      ]
+    },
+    {
+      "id": "ROAD MARECAGE_v2",
+      "title": "ROAD MARECAGE_v2",
+      "path": "res://assets/audio/music/road_marecage_v2.wav",
+      "start_time": 0.0,
+      "end_time": 91.394375,
+      "loop_start": 0.0,
+      "start_sample": 0,
+      "end_sample": 1462310,
+      "sample_rate": 16000,
+      "levels": [
+        10,
+        11
+      ]
+    },
+    {
+      "id": "DNBASS_v2",
+      "title": "DNBASS_v2",
+      "path": "res://assets/audio/music/dnbass_v2.wav",
+      "start_time": 0.0,
+      "end_time": 79.9811875,
+      "loop_start": 0.0,
+      "start_sample": 0,
+      "end_sample": 1279699,
+      "sample_rate": 16000,
+      "levels": [
+        14
+      ]
+    },
+    {
+      "id": "NEWS1LAST_v2",
+      "title": "NEWS1LAST_v2",
+      "path": "res://assets/audio/music/news1last_v2.wav",
+      "start_time": 0.0,
+      "end_time": 76.77875,
+      "loop_start": 0.0,
+      "start_sample": 0,
+      "end_sample": 1228460,
+      "sample_rate": 16000,
+      "levels": [
+        15
+      ]
+    },
+    {
+      "id": "JUNGLETUTORIAL_v2",
+      "title": "JUNGLETUTORIAL_v2",
+      "path": "res://assets/audio/music/jungletutorial_v2.wav",
+      "start_time": 0.0,
+      "end_time": 85.3188125,
+      "loop_start": 0.0,
+      "start_sample": 0,
+      "end_sample": 1365101,
+      "sample_rate": 16000,
+      "levels": [
+        16
+      ]
+    },
+    {
+      "id": "FRONZYLAST_v3",
+      "title": "FRONZYLAST_v3",
+      "path": "res://assets/audio/music/fronzylast_v3.wav",
+      "start_time": 0.0,
+      "end_time": 76.764625,
+      "loop_start": 0.0,
+      "start_sample": 0,
+      "end_sample": 1228234,
+      "sample_rate": 16000,
+      "levels": [
+        17
+      ]
+    }
+  ]
+}

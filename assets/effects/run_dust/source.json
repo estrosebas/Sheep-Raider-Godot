@@ -1,0 +1,56 @@
+{
+  "resource": 34,
+  "source": "C:\\Users\\estro\\Downloads\\Sheep.Dog.and.Wolf\\Sheep.Dog.and.Wolf\\Sheep.Dog.and.Wolf\\Levels\\Lvl-00\\Lvl-00.DAV",
+  "frames": [
+    {
+      "bitmap": 91,
+      "page": 13,
+      "rect": [
+        76,
+        119,
+        32,
+        32
+      ],
+      "path": "res://assets/effects/run_dust/frame_0.png"
+    },
+    {
+      "bitmap": 92,
+      "page": 13,
+      "rect": [
+        44,
+        123,
+        32,
+        32
+      ],
+      "path": "res://assets/effects/run_dust/frame_1.png"
+    },
+    {
+      "bitmap": 93,
+      "page": 13,
+      "rect": [
+        12,
+        123,
+        32,
+        32
+      ],
+      "path": "res://assets/effects/run_dust/frame_2.png"
+    },
+    {
+      "bitmap": 94,
+      "page": 13,
+      "rect": [
+        80,
+        31,
+        32,
+        32
+      ],
+      "path": "res://assets/effects/run_dust/frame_3.png"
+    }
+  ],
+  "life_ticks": 2608,
+  "interval_ticks": 163,
+  "h_speed": 100,
+  "v_speed": -20,
+  "size_start": 40,
+  "size_end": 120
+}

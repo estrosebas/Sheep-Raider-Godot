@@ -1,0 +1,33 @@
+[gd_resource type="ArrayMesh" format=4]
+
+[ext_resource type="Shader" path="res://shaders/retro_opaque.gdshader" id="1_c0ue8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i1imn"]
+render_priority = 0
+shader = ExtResource("1_c0ue8")
+shader_parameter/use_linear_filter = null
+shader_parameter/vertex_color_scale = 1.0
+shader_parameter/original_tint_color = null
+shader_parameter/original_tint_amount = null
+shader_parameter/use_legacy_skin = null
+shader_parameter/legacy_joint_palette = null
+shader_parameter/tunnel_projection = null
+shader_parameter/tunnel_road_point = null
+shader_parameter/tunnel_wall_point = null
+shader_parameter/tunnel_farthest_view_z = null
+shader_parameter/is_textured = false
+
+[resource]
+_surfaces = [{
+"aabb": AABB(-1, 0, -0.0988, 1.9988, 1e-05, 0.1988),
+"attribute_data": PackedByteArray("/////wAAAAAAAAAA/////wAAAAAAAAAA/////wAAAAAAAAAA/////wAAAAAAAAAA/////wAAAAAAAAAA/////wAAAAAAAAAA/////wAAAAAAAAAA/////wAAAAAAAAAA/////wAAAAAAAAAA/////wAAAAAAAAAA/////wAAAAAAAAAA/////wAAAAAAAAAA/////wAAAAAAAAAA/////wAAAAAAAAAA/////wAAAAAAAAAA/////wAAAAAAAAAA/////wAAAAAAAAAA/////wAAAAAAAAAA"),
+"bone_aabbs": [AABB(0, 0, 0, -1, -1, -1), AABB(-1, 0, -0.0988, 0.5, 1e-05, 0.1988), AABB(-0.3, 0, -0.0988, 0.6, 1e-05, 0.1976), AABB(0.5, 0, -0.0988, 0.49879998, 1e-05, 0.19881001)],
+"format": 34359741465,
+"material": SubResource("ShaderMaterial_i1imn"),
+"name": "mat_page_-1",
+"primitive": 3,
+"skin_data": PackedByteArray("AwAAAAAAAAD//wAAAAAAAAMAAAAAAAAA//8AAAAAAAADAAAAAAAAAP//AAAAAAAAAwAAAAAAAAD//wAAAAAAAAMAAAAAAAAA//8AAAAAAAADAAAAAAAAAP//AAAAAAAAAgAAAAAAAAD//wAAAAAAAAIAAAAAAAAA//8AAAAAAAACAAAAAAAAAP//AAAAAAAAAgAAAAAAAAD//wAAAAAAAAIAAAAAAAAA//8AAAAAAAACAAAAAAAAAP//AAAAAAAAAQAAAAAAAAD//wAAAAAAAAEAAAAAAAAA//8AAAAAAAABAAAAAAAAAP//AAAAAAAAAQAAAAAAAAD//wAAAAAAAAEAAAAAAAAA//8AAAAAAAABAAAAAAAAAP//AAAAAAAA"),
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 18,
+"vertex_data": PackedByteArray("AAAAPwAAAIDNzMw9W7F/PwAAAICoV8q9AAAAPwAAAICoV8q9AAAAPwAAAIDNzMw9W7F/PwAAAIDNzMw9W7F/PwAAAICoV8q9mpmZvgAAAICoV8q9mpmZPgAAAICoV8o9mpmZPgAAAICoV8q9mpmZvgAAAICoV8q9mpmZvgAAAICoV8o9mpmZPgAAAICoV8o9AACAvwAAAICoV8q9AAAAvwAAAIDNzMw9AAAAvwAAAICoV8q9AACAvwAAAICoV8q9AACAvwAAAIDNzMw9AAAAvwAAAIDNzMw9")
+}]

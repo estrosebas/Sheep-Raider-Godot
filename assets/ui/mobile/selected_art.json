@@ -1,0 +1,29 @@
+{
+  "jump": {
+    "path": "res://assets/ui/mobile/jump.png",
+    "supplied_art": "remaster/iconos_controles/nuevos/jump.png",
+    "sha256": "e58f6653123037ee01d0ef014b354233b733fb400c01be627062058e4c19b5cf",
+    "size": [
+      500,
+      500
+    ]
+  },
+  "run": {
+    "path": "res://assets/ui/mobile/run.png",
+    "supplied_art": "remaster/iconos_controles/nuevos/runv1.png",
+    "sha256": "c7b1e933947883d5e64445fb9db9adfe2053a78c7a2bbc32afed765daf56787c",
+    "size": [
+      500,
+      500
+    ]
+  },
+  "sneak": {
+    "path": "res://assets/ui/mobile/sneak.png",
+    "supplied_art": "remaster/iconos_controles/nuevos/sneakv1.png",
+    "sha256": "4502de392b1eb56cd5d0b041b9bc41ac7835dca7ebcb3efd977403dfee69a269",
+    "size": [
+      500,
+      500
+    ]
+  }
+}

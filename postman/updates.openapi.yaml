@@ -1,0 +1,77 @@
+openapi: 3.0.3
+info:
+  title: Ralph Wolf content updates
+  version: 1.0.0
+  description: Static HTTPS distribution. Public downloads, signed metadata. No client credentials.
+servers:
+  - url: https://sheepraider.nooxtools.me/updates
+paths:
+  /stable/{platform}/manifest.json:
+    get:
+      operationId: getContentManifest
+      summary: Current signed manifest for one platform
+      parameters:
+        - $ref: '#/components/parameters/Platform'
+      responses:
+        '200':
+          description: Verify RSA PKCS1v15 SHA256 over exact decoded payload bytes before parsing or downloading.
+          headers:
+            Cache-Control:
+              schema: {type: string, example: no-cache}
+          content:
+            application/json:
+              schema: {$ref: '#/components/schemas/Envelope'}
+        '404': {description: No release for this channel/platform; client keeps installed content.}
+        '503': {description: Temporary unavailability; client may play offline.}
+  /releases/{release}/{platform}/content.zip:
+    get:
+      operationId: getContentPackage
+      summary: Immutable platform-specific Godot resource archive
+      parameters:
+        - $ref: '#/components/parameters/Platform'
+        - name: release
+          in: path
+          required: true
+          schema: {type: string, pattern: '^[A-Za-z0-9_.-]+$'}
+      responses:
+        '200':
+          description: Exact byte count and SHA256 must match signed manifest; no redirects.
+          content:
+            application/zip:
+              schema: {type: string, format: binary}
+        '404': {description: Package not published; client must not activate anything.}
+components:
+  parameters:
+    Platform:
+      name: platform
+      in: path
+      required: true
+      schema: {type: string, enum: [windows-x86_64, android-arm64]}
+  schemas:
+    Envelope:
+      type: object
+      required: [key_id, payload_base64, signature_base64]
+      properties:
+        key_id: {type: string, example: release-1}
+        payload_base64: {type: string, format: byte, description: UTF-8 JSON Payload encoded as base64.}
+        signature_base64: {type: string, format: byte}
+    Payload:
+      type: object
+      required: [schema_version, product_id, channel, platform, content_version, sequence, engine_version, bootstrap_abi, package]
+      properties:
+        schema_version: {type: integer, enum: [1]}
+        product_id: {type: string, enum: [ralph-wolf]}
+        channel: {type: string, enum: [stable]}
+        platform: {type: string, enum: [windows-x86_64, android-arm64]}
+        content_version: {type: string, minLength: 1, maxLength: 64}
+        sequence: {type: integer, minimum: 1, maximum: 2147483647, description: Monotonic content revision; never reuse or decrement.}
+        engine_version: {type: string, example: 4.7.2}
+        bootstrap_abi: {type: integer, enum: [1]}
+        released_at: {type: string, format: date-time}
+        package:
+          type: object
+          required: [path, bytes, sha256]
+          properties:
+            path: {type: string, pattern: '^releases/[A-Za-z0-9_./-]+\.zip$', description: Relative to the configured HTTPS base; reject traversal and redirects.}
+            bytes: {type: integer, minimum: 1, maximum: 8589934592}
+            sha256: {type: string, pattern: '^[a-f0-9]{64}$'}

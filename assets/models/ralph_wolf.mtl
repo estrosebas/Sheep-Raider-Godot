@@ -1,0 +1,12 @@
+# Material for ralph_wolf
+newmtl mat_untextured
+Kd 0.8 0.8 0.8
+
+newmtl mat_page_0
+Kd 1.0 1.0 1.0
+map_Kd ../levels/lvl_00/textures/page_0.png
+
+newmtl mat_page_9
+Kd 1.0 1.0 1.0
+map_Kd ../levels/lvl_00/textures/page_9.png
+

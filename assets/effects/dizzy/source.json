@@ -1,0 +1,23 @@
+{
+  "model": "AETOIL01",
+  "animation": "turn1",
+  "source": "C:\\Users\\estro\\Downloads\\Sheep.Dog.and.Wolf\\Sheep.Dog.and.Wolf\\Sheep.Dog.and.Wolf\\Levels\\Lvl-00\\Lvl-00.WAR",
+  "resource": 36,
+  "export_id": 2,
+  "joint": 0,
+  "offset_native": [
+    0,
+    -150,
+    0
+  ],
+  "offset_godot": [
+    0,
+    1.5,
+    0
+  ],
+  "directory": "res://assets/effects/dizzy",
+  "materials": {},
+  "loop_animations": [
+    "turn1"
+  ]
+}

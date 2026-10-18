@@ -1,0 +1,33 @@
+[gd_resource type="ArrayMesh" format=3]
+
+[ext_resource type="Shader" path="res://shaders/retro_opaque.gdshader" id="1_top6p"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2dj0f"]
+render_priority = 0
+shader = ExtResource("1_top6p")
+shader_parameter/use_linear_filter = null
+shader_parameter/vertex_color_scale = 1.0
+shader_parameter/original_tint_color = null
+shader_parameter/original_tint_amount = null
+shader_parameter/use_legacy_skin = null
+shader_parameter/legacy_joint_palette = null
+shader_parameter/tunnel_projection = null
+shader_parameter/tunnel_road_point = null
+shader_parameter/tunnel_wall_point = null
+shader_parameter/tunnel_farthest_view_z = null
+shader_parameter/is_textured = false
+
+[resource]
+_surfaces = [{
+"aabb": AABB(-0.26, 0, -0.23, 0.52, 1e-05, 0.46),
+"attribute_data": PackedByteArray(63, 22, 22, 255, 0, 0, 0, 0, 0, 0, 0, 0, 63, 22, 22, 255, 0, 0, 0, 0, 0, 0, 0, 0, 63, 22, 22, 255, 0, 0, 0, 0, 0, 0, 0, 0),
+"format": 34359742489,
+"index_count": 3,
+"index_data": PackedByteArray(0, 0, 2, 0, 1, 0),
+"material": SubResource("ShaderMaterial_2dj0f"),
+"name": "mat_page_-1",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 3,
+"vertex_data": PackedByteArray(184, 30, 133, 62, 0, 0, 0, 0, 31, 133, 107, 190, 184, 30, 133, 190, 0, 0, 0, 0, 31, 133, 107, 62, 184, 30, 133, 62, 0, 0, 0, 0, 31, 133, 107, 62)
+}]

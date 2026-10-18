@@ -1,0 +1,5 @@
+simulation: ralph-updates-local
+routing: path
+mocks:
+  - routeKey: updates
+    path: ../mocks/updates/config.yaml

@@ -1,0 +1,152 @@
+{
+  "source": "C:\\Users\\estro\\Downloads\\Sheep.Dog.and.Wolf\\Sheep.Dog.and.Wolf\\Sheep.Dog.and.Wolf\\Levels\\Lvl-00",
+  "pages": [
+    {
+      "page": 0,
+      "kind": "opaque",
+      "format": 5,
+      "matched": true
+    },
+    {
+      "page": 1,
+      "kind": "opaque",
+      "format": 5,
+      "matched": true
+    },
+    {
+      "page": 2,
+      "kind": "opaque",
+      "format": 5,
+      "matched": true
+    },
+    {
+      "page": 3,
+      "kind": "opaque",
+      "format": 5,
+      "matched": true
+    },
+    {
+      "page": 4,
+      "kind": "opaque",
+      "format": 5,
+      "matched": true
+    },
+    {
+      "page": 5,
+      "kind": "opaque",
+      "format": 5,
+      "matched": true
+    },
+    {
+      "page": 6,
+      "kind": "opaque",
+      "format": 5,
+      "matched": true
+    },
+    {
+      "page": 7,
+      "kind": "opaque",
+      "format": 5,
+      "matched": true
+    },
+    {
+      "page": 8,
+      "kind": "opaque",
+      "format": 5,
+      "matched": true
+    },
+    {
+      "page": 9,
+      "kind": "blend",
+      "format": 10,
+      "matched": true
+    },
+    {
+      "page": 10,
+      "kind": "blend",
+      "format": 10,
+      "matched": true
+    },
+    {
+      "page": 11,
+      "kind": "blend",
+      "format": 10,
+      "matched": true
+    },
+    {
+      "page": 12,
+      "kind": "blend",
+      "format": 10,
+      "matched": true
+    },
+    {
+      "page": 13,
+      "kind": "add",
+      "format": 18,
+      "matched": true
+    }
+  ],
+  "geometry": [
+    {
+      "page": -1,
+      "vertices": 26199,
+      "matched": true
+    },
+    {
+      "page": 5,
+      "vertices": 13746,
+      "matched": true
+    },
+    {
+      "page": 6,
+      "vertices": 7851,
+      "matched": true
+    },
+    {
+      "page": 8,
+      "vertices": 2586,
+      "matched": true
+    },
+    {
+      "page": 3,
+      "vertices": 2610,
+      "matched": true
+    },
+    {
+      "page": 0,
+      "vertices": 588,
+      "matched": true
+    },
+    {
+      "page": 4,
+      "vertices": 4443,
+      "matched": true
+    },
+    {
+      "page": 1,
+      "vertices": 408,
+      "matched": true
+    },
+    {
+      "page": 2,
+      "vertices": 930,
+      "matched": true
+    },
+    {
+      "page": 11,
+      "vertices": 552,
+      "matched": true
+    },
+    {
+      "page": 9,
+      "vertices": 696,
+      "matched": true
+    },
+    {
+      "page": 13,
+      "vertices": 219,
+      "matched": true
+    }
+  ],
+  "passed": true
+}

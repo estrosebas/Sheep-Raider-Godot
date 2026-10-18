@@ -1,0 +1,12 @@
+{
+  "source": "res://assets/ui/pause/font.png",
+  "native_resource": "DAV_IDI_IGLTYPO_ / ID36",
+  "glyph_code": 159,
+  "rect": [
+    240,
+    112,
+    15,
+    15
+  ],
+  "note": "Native cyan open-hand pictogram. Previous glyph0xC6 was a camera, not a hand."
+}

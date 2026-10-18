@@ -1,0 +1,41 @@
+# Godot editor cache and generated imports (source .import settings stay versioned).
+.godot/
+__pycache__/
+*.pyc
+
+# Local validation logs and temporary language preferences.
+validation/*.log
+validation/*.cfg
+# Signed update fixtures contain TEST private keys and generated packages.
+/validation/update-fixtures/
+/validation/workflow_scripts/
+/postman/.dependencies/
+
+# Local console capture (not a source asset).
+/debug00.log
+
+# Reproducible presentation exports and video tooling caches.
+videos/**/raw/
+videos/**/renders/
+videos/**/assets/*.mp4
+videos/**/assets/*.wav
+videos/**/node_modules/
+videos/**/.hyperframes/
+videos/**/.thumbnails/
+videos/**/.waveform-cache/
+
+# Local playable builds and distributable archives.
+/builds/
+/salida/
+/salida.zip
+
+# Local credentials and signing keys (only the updater public key is source).
+.env
+.env.*
+*.keystore
+*.jks
+*private*.pem
+
+# Browser verification artifacts.
+/.playwright-cli/
+/output/playwright/

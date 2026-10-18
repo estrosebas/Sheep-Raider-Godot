@@ -1,0 +1,51 @@
+[gd_resource type="AnimationLibrary" format=3]
+
+[sub_resource type="Animation" id="Animation_dc55k"]
+length = 1.6
+tracks/0/type = "rotation_3d"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Skeleton3D:joint_00")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.4, 1, 0, 0, 0, 1, 0.8, 1, 0, 0, 0, 1, 1.2, 1, 0, 0, 0, 1)
+tracks/1/type = "position_3d"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Skeleton3D:joint_00")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = PackedFloat32Array(0, 1, 0, 0, 0, 0.4, 1, 0, 0, 0, 0.8, 1, 0, 0, 0, 1.2, 1, 0, 0, 0)
+tracks/2/type = "scale_3d"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Skeleton3D:joint_00")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = PackedFloat32Array(0, 1, 1, 1, 1, 0.4, 1, 1, 1, 1, 0.8, 1, 1, 1, 1, 1.2, 1, 1, 1, 1)
+tracks/3/type = "rotation_3d"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Skeleton3D:joint_01")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = PackedFloat32Array(0, 1, 0, 0, 0, 1, 0.4, 1, 0, 0.70656425, 0, 0.70764893, 0.8, 1, 0, 0.9999988, 0, 0.0015339409, 1.2, 1, 0, -0.708732, 0, 0.7054779)
+tracks/4/type = "position_3d"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Skeleton3D:joint_01")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = PackedFloat32Array(0, 1, 0, 2, 1.2, 0.4, 1, 0, 2, 1.2, 0.8, 1, 0, 2, 1.2, 1.2, 1, 0, 2, 1.2)
+tracks/5/type = "scale_3d"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Skeleton3D:joint_01")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = PackedFloat32Array(0, 1, 1.9892578, 1.2998047, 1.9892578, 0.4, 1, 1.9892578, 1.2998047, 1.9892578, 0.8, 1, 1.9892578, 1.2998047, 1.9892578, 1.2, 1, 1.9892578, 1.2998047, 1.9892578)
+
+[resource]
+_data = {
+&"stand": SubResource("Animation_dc55k")
+}

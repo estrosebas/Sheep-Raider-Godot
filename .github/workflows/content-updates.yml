@@ -1,0 +1,116 @@
+name: Build and publish game content
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Content version, e.g. 1.0.1
+        required: true
+        type: string
+      sequence:
+        description: Increasing integer, never reuse
+        required: true
+        type: string
+      platform:
+        description: Platforms to package
+        type: choice
+        options: [both, windows-x86_64, android-arm64]
+        default: both
+      deploy:
+        description: Publish to VPS after building
+        type: boolean
+        default: false
+  push:
+    tags: ['content-*-v*']
+
+permissions:
+  contents: read
+concurrency:
+  group: content-release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    # Exact Godot/templates already installed on the user's PC.
+    # Provision a dedicated runner; no jobs triggered by untrusted PRs.
+    runs-on: [self-hosted, Windows, X64, ralphwolf]
+    timeout-minutes: 60
+    defaults:
+      run:
+        shell: powershell
+    env:
+      GODOT_PATH: ${{ vars.GODOT_CONSOLE_PATH }}
+      PRIVATE_KEY_PATH: ${{ vars.UPDATE_SIGNING_KEY_PATH }}
+      INPUT_VERSION: ${{ inputs.version }}
+      INPUT_SEQUENCE: ${{ inputs.sequence }}
+      INPUT_PLATFORM: ${{ inputs.platform }}
+      INPUT_DEPLOY: ${{ inputs.deploy }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - name: Validate release and toolchain
+        run: |
+          $ErrorActionPreference='Stop'
+          if ($env:GITHUB_REF_TYPE -eq 'tag') {
+            if ($env:GITHUB_REF_NAME -notmatch '^content-([0-9]+)-v([A-Za-z0-9._-]+)$') { throw 'Invalid release tag.' }
+            $env:INPUT_SEQUENCE=$Matches[1]; $env:INPUT_VERSION=$Matches[2]
+            $env:INPUT_PLATFORM='both'; $env:INPUT_DEPLOY='true'
+          }
+          if ($env:INPUT_VERSION -notmatch '^[A-Za-z0-9._-]{1,64}$' -or $env:INPUT_SEQUENCE -notmatch '^[1-9][0-9]{0,9}$') { throw 'Invalid version/sequence.' }
+          if (-not (Test-Path -LiteralPath $env:GODOT_PATH)) { throw 'Set GODOT_CONSOLE_PATH to the console executable on this runner.' }
+          if (-not $env:PRIVATE_KEY_PATH) { $env:PRIVATE_KEY_PATH=Join-Path $env:USERPROFILE '.ralphwolf/updates-private.pem' }
+          if (-not (Test-Path -LiteralPath $env:PRIVATE_KEY_PATH)) { throw 'Release signing key is missing on this runner.' }
+          $version=& $env:GODOT_PATH --version
+          if ($version -notlike '4.7.2*') { throw 'Bootstrap ABI1 requires Godot4.7.2.' }
+          python -c "import cryptography; print('Signing dependency available')"
+          if ($LASTEXITCODE -ne 0) { throw 'Install tools/requirements-updates.txt on the runner.' }
+          foreach ($key in @('INPUT_SEQUENCE','INPUT_VERSION','INPUT_PLATFORM','INPUT_DEPLOY','PRIVATE_KEY_PATH')) {
+            Add-Content -LiteralPath $env:GITHUB_ENV -Value "$key=$([Environment]::GetEnvironmentVariable($key))"
+          }
+      - name: Import resources
+        run: |
+          & $env:GODOT_PATH --headless --path . --editor --quit
+          if ($LASTEXITCODE -ne 0) { throw 'Godot import failed.' }
+      - name: Check gameplay after bootstrap changes
+        run: |
+          & $env:GODOT_PATH --headless --path . --script tools/test_sneak_idle.gd
+          if ($LASTEXITCODE -ne 0) { throw 'Gameplay smoke test failed.' }
+      - name: Build and sign platform packages
+        run: |
+          $targets=if ($env:INPUT_PLATFORM -eq 'both') { @('windows-x86_64','android-arm64') } else { @($env:INPUT_PLATFORM) }
+          $output=Join-Path $env:RUNNER_TEMP "ralph-release-$env:GITHUB_RUN_ID-$env:GITHUB_RUN_ATTEMPT"
+          foreach ($target in $targets) {
+            python tools/release_updates.py build --godot $env:GODOT_PATH --platform $target --version $env:INPUT_VERSION --sequence $env:INPUT_SEQUENCE --private-key $env:PRIVATE_KEY_PATH --output $output
+            if ($LASTEXITCODE -ne 0) { throw "Package failed: $target" }
+          }
+          Add-Content -LiteralPath $env:GITHUB_ENV -Value "UPDATES_OUTPUT=$output"
+      - uses: actions/upload-artifact@v7
+        with:
+          name: updates-${{ env.INPUT_SEQUENCE }}-${{ env.INPUT_VERSION }}
+          path: ${{ env.UPDATES_OUTPUT }}/
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 14
+      - name: Publish packages and manifest to VPS
+        if: env.INPUT_DEPLOY == 'true'
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.UPDATES_SSH_KEY }}
+          SSH_KNOWN_HOSTS: ${{ secrets.UPDATES_KNOWN_HOSTS }}
+          SSH_HOST: ${{ vars.UPDATES_SSH_HOST }}
+          REMOTE_DIRECTORY: ${{ vars.UPDATES_REMOTE_DIRECTORY }}
+        run: |
+          $ErrorActionPreference='Stop'
+          if (-not $env:SSH_PRIVATE_KEY -or -not $env:SSH_KNOWN_HOSTS -or -not $env:SSH_HOST -or -not $env:REMOTE_DIRECTORY) { throw 'Configure VPS variables and SSH secrets before deploying.' }
+          $key=Join-Path $env:RUNNER_TEMP "ralph-ssh-$env:GITHUB_RUN_ID"
+          $known=Join-Path $env:RUNNER_TEMP "ralph-known-hosts-$env:GITHUB_RUN_ID"
+          try {
+            [IO.File]::WriteAllText($key,$env:SSH_PRIVATE_KEY+[Environment]::NewLine,(New-Object Text.UTF8Encoding($false)))
+            [IO.File]::WriteAllText($known,$env:SSH_KNOWN_HOSTS+[Environment]::NewLine,(New-Object Text.UTF8Encoding($false)))
+            & icacls $key /inheritance:r /grant:r "$($env:USERDOMAIN)\$($env:USERNAME):(R)" | Out-Null
+            if ($LASTEXITCODE -ne 0) { throw 'Could not protect SSH key.' }
+            & tools/publish_updates.ps1 -HostName $env:SSH_HOST -RemoteUpdatesDirectory $env:REMOTE_DIRECTORY -LocalUpdatesDirectory $env:UPDATES_OUTPUT -IdentityFile $key -KnownHostsFile $known
+          } finally {
+            if (Test-Path -LiteralPath $key) { Remove-Item -LiteralPath $key -Force }
+            if (Test-Path -LiteralPath $known) { Remove-Item -LiteralPath $known -Force }
+          }

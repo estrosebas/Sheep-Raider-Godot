@@ -1,0 +1,11 @@
+version: 1
+interceptRequests: true
+id: 9de66d50-9f8e-469f-8f4e-92aa965dd6be
+name: ralph-updates
+slug: ralph-updates
+protocol: http
+port: 4937
+scenarios:
+  - name: default
+    path: ./default.js
+    default: true

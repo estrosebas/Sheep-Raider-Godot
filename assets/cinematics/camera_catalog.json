@@ -1,0 +1,222 @@
+{
+  "entries": {
+    "res://assets/levels/lvl_01": {
+      "director": "DaffyLessons",
+      "first": "lvl01_intro_camera",
+      "last": "lvl01_daffy_intro"
+    },
+    "res://assets/levels/lvl_03": {
+      "director": "LevelCinematics",
+      "first": "lvl03_intro_camera",
+      "last": "lvl03_intro_camera"
+    },
+    "res://assets/levels/lvl_04": {
+      "director": "LevelCinematics",
+      "first": "lvl04_intro_camera",
+      "last": "lvl04_intro_camera"
+    }
+  },
+  "sequences": {
+    "lvl00_anvil_intro": {
+      "source": "res://assets/cinematics/tutorial_intro/sequence.json",
+      "level": "lvl_00",
+      "cine_id": 1,
+      "kind": "intro_cinematic",
+      "trigger": "world_trigger",
+      "return_transition": "none",
+      "description": "Yunque, telón, Correcaminos y aparición de Lucas"
+    },
+    "lvl00_follow_camera": {
+      "source": "res://assets/cinematics/tutorial_intro/follow_sequence.json",
+      "level": "lvl_00",
+      "cine_id": 5,
+      "kind": "camera_animation",
+      "trigger": "tutorial",
+      "return_transition": "none",
+      "description": "Movimiento de cámara durante el tutorial de Lucas"
+    },
+    "lvl00_platform_demo": {
+      "source": "res://assets/cinematics/tutorial_intro/platform_sequence.json",
+      "level": "lvl_00",
+      "cine_id": 3,
+      "kind": "tutorial_cinematic",
+      "trigger": "tutorial",
+      "return_transition": "none",
+      "description": "Demostración de plataformas/salto"
+    },
+    "lvl01_intro_camera": {
+      "source": "res://assets/levels/lvl_01/cinematics/sequence_0.json",
+      "level": "lvl_01",
+      "cine_id": 0,
+      "kind": "camera_animation",
+      "trigger": "level_entry",
+      "return_transition": "none",
+      "next": "lvl01_daffy_intro",
+      "description": "Presentación de cámara del nivel 01"
+    },
+    "lvl01_daffy_intro": {
+      "source": "res://assets/levels/lvl_01/cinematics/sequence_4.json",
+      "level": "lvl_01",
+      "cine_id": 4,
+      "kind": "intro_cinematic",
+      "trigger": "level_entry",
+      "return_transition": "iris",
+      "description": "Lucas presenta a Sam; después abre el círculo y comienza el juego"
+    },
+    "lvl01_porky_without_sheep": {
+      "source": "res://assets/levels/lvl_01/cinematics/sequence_2.json",
+      "level": "lvl_01",
+      "cine_id": 2,
+      "kind": "tutorial_cinematic",
+      "trigger": "interaction",
+      "return_transition": "none",
+      "description": "Porky explica la lechuga sin oveja"
+    },
+    "lvl01_porky_with_sheep": {
+      "source": "res://assets/levels/lvl_01/cinematics/sequence_3.json",
+      "level": "lvl_01",
+      "cine_id": 3,
+      "kind": "tutorial_cinematic",
+      "trigger": "interaction",
+      "return_transition": "none",
+      "description": "Porky enseña a atraer la oveja con lechugas"
+    },
+    "lvl02_bush_demo": {
+      "source": "res://assets/levels/lvl_02/cinematics/sequence_1.json",
+      "level": "lvl_02",
+      "cine_id": 1,
+      "kind": "tutorial_cinematic",
+      "trigger": "after_rock",
+      "return_transition": "none",
+      "description": "Lucas aparece y demuestra el arbusto"
+    },
+    "lvl02_bush_rules": {
+      "source": "res://assets/levels/lvl_02/cinematics/sequence_2.json",
+      "level": "lvl_02",
+      "cine_id": 2,
+      "kind": "tutorial_cinematic",
+      "trigger": "interaction",
+      "return_transition": "none",
+      "description": "Reglas del ejercicio de sigilo con arbusto"
+    },
+    "lvl03_rock_cover_demo": {
+      "source": "res://assets/levels/lvl_03/cinematics/sequence_0.json",
+      "level": "lvl_03",
+      "cine_id": 0,
+      "kind": "tutorial_cinematic",
+      "trigger": "tutorial",
+      "return_transition": "none",
+      "description": "rock cover demo"
+    },
+    "lvl03_rock_second_camera": {
+      "source": "res://assets/levels/lvl_03/cinematics/sequence_1.json",
+      "level": "lvl_03",
+      "cine_id": 1,
+      "kind": "camera_animation",
+      "trigger": "world_trigger",
+      "return_transition": "none",
+      "description": "rock second camera"
+    },
+    "lvl03_intro_camera": {
+      "source": "res://assets/levels/lvl_03/cinematics/sequence_2.json",
+      "level": "lvl_03",
+      "cine_id": 2,
+      "kind": "intro_cinematic",
+      "trigger": "level_entry",
+      "return_transition": "iris",
+      "description": "intro camera"
+    },
+    "lvl03_rock_cover_rules": {
+      "source": "res://assets/levels/lvl_03/cinematics/sequence_3.json",
+      "level": "lvl_03",
+      "cine_id": 3,
+      "kind": "tutorial_cinematic",
+      "trigger": "tutorial",
+      "return_transition": "none",
+      "description": "rock cover rules"
+    },
+    "lvl03_rock_first_camera": {
+      "source": "res://assets/levels/lvl_03/cinematics/sequence_4.json",
+      "level": "lvl_03",
+      "cine_id": 4,
+      "kind": "camera_animation",
+      "trigger": "world_trigger",
+      "return_transition": "none",
+      "description": "rock first camera"
+    },
+    "lvl03_stone_camera": {
+      "source": "res://assets/levels/lvl_03/cinematics/sequence_5.json",
+      "level": "lvl_03",
+      "cine_id": 5,
+      "kind": "camera_animation",
+      "trigger": "world_trigger",
+      "return_transition": "none",
+      "description": "stone camera"
+    },
+    "lvl03_panorama_camera": {
+      "source": "res://assets/levels/lvl_03/cinematics/sequence_6.json",
+      "level": "lvl_03",
+      "cine_id": 6,
+      "kind": "camera_animation",
+      "trigger": "world_trigger",
+      "return_transition": "none",
+      "description": "panorama camera"
+    },
+    "lvl04_intro_camera": {
+      "source": "res://assets/levels/lvl_04/cinematics/sequence_1.json",
+      "level": "lvl_04",
+      "cine_id": 1,
+      "kind": "intro_cinematic",
+      "trigger": "level_entry",
+      "return_transition": "iris",
+      "description": "Recorrido de entrada del nivel 04"
+    },
+    "lvl04_flute_lesson": {
+      "source": "res://assets/levels/lvl_04/cinematics/sequence_2.json",
+      "level": "lvl_04",
+      "cine_id": 2,
+      "kind": "tutorial_cinematic",
+      "trigger": "tutorial",
+      "return_transition": "none",
+      "description": "Lucas, el elfo y la flauta mÃ¡gica"
+    }
+  },
+  "procedural_cameras": {
+    "mailbox_delivery": {
+      "kind": "interaction_camera",
+      "controller": "scripts/items/original_mailbox.gd",
+      "return_transition": "none",
+      "description": "Encuadre temporal de entrega; vuelve a la cámara anterior"
+    },
+    "telescope": {
+      "kind": "camera_focus",
+      "controller": "scripts/items/original_telescope.gd",
+      "return_transition": "none",
+      "description": "Visor interactivo; E devuelve el control"
+    },
+    "direct_void_fall": {
+      "kind": "death_camera",
+      "controller": "scripts/player/ralph_controller.gd",
+      "return_transition": "death_restart",
+      "description": "Plano fijo, cierre de iris, checkpoint y apertura"
+    },
+    "air_run_exhaustion": {
+      "kind": "death_camera",
+      "controller": "scripts/player/ralph_controller.gd",
+      "return_transition": "death_restart",
+      "description": "Reacción teatral de carrera aérea y respawn"
+    },
+    "piranha_attack": {
+      "kind": "death_camera",
+      "controller": "scripts/levels/original_level_environment.gd",
+      "return_transition": "death_restart",
+      "description": "Plano cercano de mordida y respawn"
+    },
+    "language_wheel": {
+      "kind": "menu_camera",
+      "controller": "scripts/localization/language_menu.gd",
+      "return_transition": "menu_iris",
+      "description": "Selección de idioma; conserva la escena y ubicación"
+    }
+  }
+}

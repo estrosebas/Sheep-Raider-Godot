@@ -1,0 +1,35 @@
+[gd_resource type="ArrayMesh" format=4]
+
+[ext_resource type="Shader" path="res://shaders/retro_blend.gdshader" id="1_reeau"]
+[ext_resource type="Texture2D" path="res://assets/levels/lvl_01/cinematics/model_32/textures/page_6.png" id="2_2le3g"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0ppqi"]
+render_priority = 0
+shader = ExtResource("1_reeau")
+shader_parameter/albedo_texture = ExtResource("2_2le3g")
+shader_parameter/albedo_texture_linear = ExtResource("2_2le3g")
+shader_parameter/use_linear_filter = null
+shader_parameter/vertex_color_scale = 1.9921875
+shader_parameter/original_tint_color = null
+shader_parameter/original_tint_amount = null
+shader_parameter/use_legacy_skin = null
+shader_parameter/legacy_joint_palette = null
+shader_parameter/tunnel_projection = null
+shader_parameter/tunnel_road_point = null
+shader_parameter/tunnel_wall_point = null
+shader_parameter/tunnel_farthest_view_z = null
+
+[resource]
+_surfaces = [{
+"aabb": AABB(-0.0862, 0.0188, -0.0688, 0.1724, 0.071200006, 0.1463),
+"attribute_data": PackedByteArray("f39//0aZdT9ZwPQ+f39//0NzZT+wjwY/f39//0NzZT9ZwPQ+f39//0aZdT9ZwPQ+f39//0aZdT+wjwY/f39//0NzZT+wjwY/f39//5qZYT+g4PI+f39//+9yUT+wjwY/f39//5qZYT+wjwY/f39//5qZYT+g4PI+f39//+9yUT+g4PI+f39//+9yUT+wjwY/f39//0NzZT+g4PI+f39//0aZdT+wjwY/f39//0aZdT+g4PI+f39//0NzZT+g4PI+f39//0NzZT+wjwY/f39//0aZdT+wjwY/f39//5qZYT+wjwY/f39//+9yUT+g4PI+f39//5qZYT+g4PI+f39//5qZYT+wjwY/f39//+9yUT+wjwY/f39//+9yUT+g4PI+"),
+"bone_aabbs": [AABB(0, 0, 0, -1, -1, -1), AABB(0, 0.0188, -0.05, 1e-05, 1.0000542e-05, 0.121209994), AABB(0.08, 0.09, -0.0688, 0.0062099993, 9.998679e-06, 0.1463), AABB(-0.0862, 0.09, -0.0688, 0.0062099993, 9.998679e-06, 0.14631)],
+"format": 34359741465,
+"material": SubResource("ShaderMaterial_0ppqi"),
+"name": "mat_page_6",
+"primitive": 3,
+"skin_data": PackedByteArray("AgAAAAAAAAD//wAAAAAAAAEAAAAAAAAA//8AAAAAAAACAAAAAAAAAP//AAAAAAAAAgAAAAAAAAD//wAAAAAAAAEAAAAAAAAA//8AAAAAAAABAAAAAAAAAP//AAAAAAAAAgAAAAAAAAD//wAAAAAAAAEAAAAAAAAA//8AAAAAAAABAAAAAAAAAP//AAAAAAAAAgAAAAAAAAD//wAAAAAAAAIAAAAAAAAA//8AAAAAAAABAAAAAAAAAP//AAAAAAAAAwAAAAAAAAD//wAAAAAAAAEAAAAAAAAA//8AAAAAAAADAAAAAAAAAP//AAAAAAAAAwAAAAAAAAD//wAAAAAAAAEAAAAAAAAA//8AAAAAAAABAAAAAAAAAP//AAAAAAAAAQAAAAAAAAD//wAAAAAAAAMAAAAAAAAA//8AAAAAAAADAAAAAAAAAP//AAAAAAAAAQAAAAAAAAD//wAAAAAAAAEAAAAAAAAA//8AAAAAAAADAAAAAAAAAP//AAAAAAAA"),
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 24,
+"vertex_data": PackedByteArray("oImwPexRuD0E54y9AAAAAHUCmjxO0ZE9CtejPexRuD1SuJ49oImwPexRuD0E54y9AAAAAHUCmjzNzEy9AAAAAHUCmjxO0ZE9oImwPexRuD0E54y9AAAAAHUCmjxO0ZE9AAAAAHUCmjzNzEy9oImwPexRuD0E54y9CtejPexRuD1SuJ49AAAAAHUCmjxO0ZE9CtejvexRuD1SuJ49AAAAAHUCmjzNzEy9oImwvexRuD0E54y9CtejvexRuD1SuJ49AAAAAHUCmjxO0ZE9AAAAAHUCmjzNzEy9AAAAAHUCmjzNzEy9CtejvexRuD1SuJ49oImwvexRuD0E54y9AAAAAHUCmjzNzEy9AAAAAHUCmjxO0ZE9CtejvexRuD1SuJ49")
+}]
