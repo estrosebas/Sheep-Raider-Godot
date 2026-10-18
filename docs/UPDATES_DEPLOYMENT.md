@@ -41,6 +41,21 @@ user://updates. Tras confirmar un arranque se conserva el activo y el anterior,
 y se eliminan las versiones más antiguas del caché del actualizador.
 Para recuperar/limpiar manualmente hay que cerrar el juego primero.
 
+## Primera ejecución real en GitHub
+
+[Ejecución 39131577198](https://github.com/estrosebas/Sheep-Raider-Godot/actions/runs/39131577198)
+terminó correctamente: checkout limpio, herramienta Godot, cuatro pruebas de
+firma, importación completa, prueba de arranque y generación de los dos paquetes.
+El artefacto se llama updates-1-1.0.1 (~294 MiB), con retención de 14 días.
+No se ejecutó la subida a la VPS: deploy=false.
+
+El runner se cerró al terminar el trabajo y queda registrado, pero offline hasta
+que se vuelva a ejecutar run.cmd. No hay servicio de inicio automático.
+
+La primera prueba detectó que Git convierte PEM a CRLF en Windows. El generador
+ya compara los parámetros de las claves en lugar de comparar sus bytes de texto;
+no se cambió ni regeneró la clave de publicación.
+
 ## Claves
 
 Ya se generó la clave de publicación local:
