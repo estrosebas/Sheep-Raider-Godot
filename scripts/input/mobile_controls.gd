@@ -43,7 +43,7 @@ func _process(_delta):
 		release_all(); last_scene = get_tree().current_scene
 	var next = input_context()
 	if next != context:
-		# Inventory is held open with a second finger: retain its Tab press.
+		# The inventory latch stays open while the stick changes to menu navigation.
 		release_movement()
 		for key in [KEY_SHIFT,KEY_CTRL,KEY_C,KEY_SPACE,KEY_R]:
 			if held_keys.has(key): held_keys.erase(key); send_key(key,false)
@@ -79,6 +79,7 @@ func update_layout():
 		"pause":{"at":Vector2(right-52*unit,top+50*unit),"key":KEY_ESCAPE,"label":"Ⅱ"},
 		"language":{"at":Vector2(right-155*unit,top+50*unit),"key":KEY_F5,"label":"IDIOMA"},
 		"inventory":{"at":Vector2(left+62*unit,top+50*unit),"key":KEY_TAB,"label":"OBJETOS"},
+		"help":{"at":Vector2(left+170*unit,top+50*unit),"key":KEY_H,"label":"?"},
 		"action":{"at":Vector2(right-75*unit,bottom-195*unit),"key":KEY_E,"label":"E"},
 	}
 	if context=="game":
@@ -92,6 +93,10 @@ func update_layout():
 	else:
 		buttons.action.label = "ACEPTAR"
 		buttons.pause.label = "VOLVER"
+	var player = get_tree().get_first_node_in_group("player")
+	if player and player.inventory.wheel_open and not get_tree().paused:
+		buttons["inventory_prev"] = {"at":Vector2(safe.get_center().x-240*unit,top+260*unit),"key":KEY_LEFT,"label":"←"}
+		buttons["inventory_next"] = {"at":Vector2(safe.get_center().x+240*unit,top+260*unit),"key":KEY_RIGHT,"label":"→"}
 
 func mapped_key(action: String,fallback: int) -> int:
 	for event in InputMap.action_get_events(action):
@@ -133,6 +138,13 @@ func touch_down(id: int,point: Vector2):
 	for name in buttons:
 		var button = buttons[name]
 		if point.distance_to(button.at)<=47*unit:
+			if name=="inventory":
+				var player = get_tree().get_first_node_in_group("player")
+				if player and not get_tree().paused:
+					if player.inventory.wheel_open: player.inventory.close_wheel()
+					else: player.inventory.open_wheel()
+				fingers[id] = {"kind":"toggle"}
+				return
 			if name=="sneak":
 				sneak_toggled = not sneak_toggled
 				sneak_latched_key = button.key
@@ -214,6 +226,8 @@ func release_movement():
 	move_vector = Vector2.ZERO
 
 func release_all():
+	var player = get_tree().get_first_node_in_group("player")
+	if player and player.inventory.wheel_open: player.inventory.close_wheel(true)
 	for key in held_keys.keys(): send_key(key,false)
 	held_keys.clear(); fingers.clear(); release_movement()
 	sneak_toggled = false; sneak_latched_key = 0
@@ -240,6 +254,9 @@ func draw_controls(target: Control):
 			target.draw_polyline(PackedVector2Array([at-direction*6*unit+wing,at+direction*6*unit,at-direction*6*unit-wing]),Color.WHITE,2*unit,true)
 	for name in buttons:
 		var button = buttons[name]; var pressed = sneak_toggled if name=="sneak" else held_keys.has(button.key)
+		if name=="inventory":
+			var player = get_tree().get_first_node_in_group("player")
+			pressed = player!=null and player.inventory.wheel_open
 		target.draw_circle(button.at,44*unit,Color(.2,.5,.7,.75) if pressed else Color(.03,.06,.1,.45))
 		target.draw_arc(button.at,44*unit,0,TAU,36,Color(1,1,1,.75),2*unit,true)
 		var icon = button_icon(name)
@@ -248,6 +265,11 @@ func draw_controls(target: Control):
 			var icon_size = extent*minf(65*unit/extent.x,65*unit/extent.y)
 			var tint = Color.WHITE
 			target.draw_texture_rect(icon,Rect2(button.at-icon_size/2,icon_size),false,tint)
+		elif name in ["inventory_prev","inventory_next"]:
+			var direction = -1 if name=="inventory_prev" else 1
+			target.draw_polyline(PackedVector2Array([button.at+Vector2(-direction*7,-15)*unit,button.at+Vector2(direction*9,0)*unit,button.at+Vector2(-direction*7,15)*unit]),Color.WHITE,4*unit,true)
+		elif name=="help":
+			target.draw_string(ThemeDB.fallback_font,button.at+Vector2(-11,12)*unit,"?",HORIZONTAL_ALIGNMENT_LEFT,-1,38*unit,Color.WHITE)
 		elif name=="pause":
 			if context=="menu":
 				var at: Vector2 = button.at

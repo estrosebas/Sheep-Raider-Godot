@@ -6,6 +6,7 @@ const MANIFEST = "res://assets/localization/manifest.json"
 static var locale = "es"
 static var config_path = "user://language.cfg"
 static var initialized = false
+static var language_selected = false
 static var manifest: Dictionary = {}
 static var banks: Dictionary = {}
 static var ui_strings: Dictionary = {}
@@ -15,12 +16,15 @@ static var loading_style = "classic"
 static func ensure() -> void:
 	if initialized: return
 	initialized = true
+	language_selected = false
 	manifest = JSON.parse_string(FileAccess.get_file_as_string(MANIFEST))
 	ui_strings = JSON.parse_string(FileAccess.get_file_as_string("res://assets/localization/ui.json"))
 	var settings = ConfigFile.new()
 	if settings.load(config_path) == OK:
-		var saved = str(settings.get_value("language","locale","es"))
-		if manifest.languages.has(saved): locale = saved
+		var saved = str(settings.get_value("language","locale",""))
+		if manifest.languages.has(saved):
+			locale = saved
+			language_selected = true
 		loading_enabled = bool(settings.get_value("loading","enabled",true))
 		loading_style = str(settings.get_value("loading","style","classic"))
 		if loading_style not in ["classic","modern"]: loading_style = "classic"
@@ -36,7 +40,9 @@ static func select(code: String, persist: bool = true) -> bool:
 		var settings = ConfigFile.new()
 		settings.load(config_path) # Preserve other options stored beside language.
 		settings.set_value("language","locale",locale)
-		return settings.save(config_path) == OK
+		var saved = settings.save(config_path) == OK
+		if saved: language_selected = true
+		return saved
 	return true
 
 static func save_loading(enabled: bool,style: String) -> bool:
@@ -45,7 +51,6 @@ static func save_loading(enabled: bool,style: String) -> bool:
 	var settings = ConfigFile.new(); settings.load(config_path)
 	settings.set_value("loading","enabled",loading_enabled)
 	settings.set_value("loading","style",loading_style)
-	settings.set_value("language","locale",locale)
 	return settings.save(config_path)==OK
 
 static func resolve(path: String) -> String:

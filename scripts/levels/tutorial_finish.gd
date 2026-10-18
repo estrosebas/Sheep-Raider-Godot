@@ -8,9 +8,6 @@ var goal: Dictionary
 var bounds: AABB
 var radius: float
 var completed = false
-var elapsed = 0.0
-var overlay: ColorRect
-var result: Label
 var completion: Node
 
 func _ready() -> void:
@@ -40,23 +37,6 @@ func _ready() -> void:
 	hi = GameSpace.original_point(Vector3(box["max"][0],box["min"][1],box["min"][2]))+origin
 	bounds = AABB(lo,hi-lo)
 	radius = floorf(float(box["max"][0])*90/128)*.01
-	var ui = CanvasLayer.new()
-	ui.layer = 100
-	add_child(ui)
-	overlay = ColorRect.new()
-	overlay.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	overlay.color = Color(0,0,0,0)
-	overlay.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	ui.add_child(overlay)
-	result = Label.new()
-	result.text = GameLocalization.ui("Nivel completado")+"\n"+GameLocalization.ui("Esc: guardar · Enter: plató")
-	result.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	result.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-	result.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	result.add_theme_font_size_override("font_size",32)
-	OriginalGameFont.apply(result)
-	result.hide()
-	ui.add_child(result)
 
 func qualifies(point: Vector3, require_box: bool) -> bool:
 	var p = goal["pos"]
@@ -71,18 +51,5 @@ func _physics_process(_delta: float) -> void:
 		get_parent().get_node("CameraTraining").card.hide()
 		completion = preload("res://scripts/levels/original_level_completion.gd").new()
 		get_parent().add_child(completion)
-		completion.finished.connect(func(_error): result.text = GameLocalization.ui("Nivel completado")+"\n"+completion.footer())
 		completion.begin("lvl_00",sheep)
 		level_completed.emit()
-
-func _process(delta: float) -> void:
-	if not completed or not completion.done: return
-	elapsed += delta
-	# Wolf::MSG_WOLF_WIN -> Fade_StartLevelExit(0x3000), three seconds.
-	overlay.color.a = clampf(elapsed/3,0,1)
-	result.visible = elapsed >= 3
-
-func _unhandled_input(event: InputEvent) -> void:
-	if completed and elapsed >= 3 and event.is_action_pressed("ui_accept"):
-		SaveFiles.remember_level_exit(get_parent())
-		get_tree().change_scene_to_file(SaveFiles.STUDIO_SCENE)

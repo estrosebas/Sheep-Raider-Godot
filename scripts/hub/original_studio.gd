@@ -157,6 +157,3 @@ func set_texture_profile(value: int):
 
 func _unhandled_input(event):
 	if event.is_action_pressed("item_lab") and not event.is_echo(): get_tree().change_scene_to_file("res://scenes/testing/ItemLab.tscn")
-	elif event is InputEventKey and event.pressed and not event.echo and event.physical_keycode==KEY_H:
-		help_visible = not help_visible; $HUD.visible = help_visible
-		player.inventory.wheel.set_help_visible(help_visible)

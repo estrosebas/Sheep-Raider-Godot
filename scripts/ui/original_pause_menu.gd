@@ -248,10 +248,9 @@ func activate(action: String) -> void:
 	elif action == "fullscreen":
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN else DisplayServer.WINDOW_MODE_FULLSCREEN)
 	elif action == "controls":
-		level.help_visible = true
-		level.get_node("HUD").show()
-		level.get_node("Player").inventory.wheel.set_help_visible(true)
 		close_menu()
+		var help = get_tree().get_first_node_in_group("first_run_help")
+		if help: help.open_help()
 	else: show_page(action)
 	canvas.queue_redraw()
 

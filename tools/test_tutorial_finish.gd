@@ -12,6 +12,7 @@ func run_tests() -> void:
 	SaveFiles.directory = "user://tutorial_finish_test_%d"%Time.get_ticks_usec()
 	var level = load("res://scenes/levels/Level00.tscn").instantiate()
 	root.add_child(level)
+	current_scene = level
 	await process_frame
 	level.get_node("TutorialIntro").set_process(false)
 	level.get_node("CameraTraining").enabled = false
@@ -104,7 +105,9 @@ func run_tests() -> void:
 	await frames(100)
 	player.camera_pivot.rotation.y = 0
 	Input.action_press("move_right")
-	await frames(450)
+	for i in range(450):
+		await physics_frame
+		if finish.completed: break
 	Input.action_release("move_right")
 	print("Walked Sheep into Goal: ",player.global_position)
 	check(finish.completed and player.cinematic_controls_locked,"Ralph and Sheep together trigger original Goal 122 and victory lock")
@@ -112,13 +115,13 @@ func run_tests() -> void:
 		if not player.item_actions.busy: break
 		await physics_frame
 	check(finish.completion.done and not sheep.carried_by,"Victory puts sheep down before saving and fading")
-	finish._process(3.1)
-	check(finish.result.visible and finish.overlay.color.a == 1,"Original three-second exit fade reaches completion screen")
-	for node in level.find_children("*","AudioStreamPlayer",true,false)+level.find_children("*","AudioStreamPlayer3D",true,false):
+	await create_timer(2.5,true).timeout
+	check(current_scene and current_scene.scene_file_path==SaveFiles.STUDIO_SCENE,"Victory returns to studio without a completion prompt")
+	for node in current_scene.find_children("*","AudioStreamPlayer",true,false)+current_scene.find_children("*","AudioStreamPlayer3D",true,false):
 		node.stop()
 		node.stream = null
 	await create_timer(.3).timeout
-	level.queue_free()
+	current_scene.queue_free()
 	await process_frame
 	print("Flight bounds/back attachment/final Sheep/Goal: ",failures," failures")
 	quit(1 if failures else 0)

@@ -21,6 +21,11 @@ var next_scene = SaveFiles.STUDIO_SCENE
 
 func _ready():
 	GameLocalization.ensure()
+	if not modal and GameLocalization.language_selected:
+		set_process(false)
+		set_process_input(false)
+		get_node("/root/LanguageMenu").call_deferred("enter_saved_startup",next_scene)
+		return
 	var source = JSON.parse_string(FileAccess.get_file_as_string("res://assets/localization/wheel/source.json"))
 	order = source.order
 	selected = maxi(0,order.find(GameLocalization.locale))

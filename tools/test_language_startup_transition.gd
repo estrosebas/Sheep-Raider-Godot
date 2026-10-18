@@ -4,8 +4,10 @@ func _init(): call_deferred("run")
 func check(value,message):
 	if not value: failures += 1; printerr(message)
 func run():
-	GameLocalization.config_path = "res://validation/startup_language_test.cfg"
+	GameLocalization.config_path = "user://startup_language_test_%d.cfg" % Time.get_ticks_usec()
+	GameLocalization.initialized = false
 	GameLocalization.select("es",false)
+	get_first_node_in_group("optional_statistics").choice = "declined"
 	SaveFiles.startup_offered = true
 	SaveFiles.directory = "user://studio_startup_test_%d"%Time.get_ticks_usec()
 	SaveFiles.studio_initialized = false; SaveFiles.resume_checkpoint = {}; OriginalProgress.restore({})
@@ -28,5 +30,6 @@ func run():
 	current_scene.process_mode = Node.PROCESS_MODE_DISABLED
 	current_scene.queue_free()
 	await process_frame
+	DirAccess.remove_absolute(GameLocalization.config_path)
 	print("Language startup entry / exit fade: ",failures," failures")
 	quit(1 if failures else 0)

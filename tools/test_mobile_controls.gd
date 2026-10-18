@@ -55,14 +55,29 @@ func run():
 	lab.player.cinematic_controls_locked=false
 	touch(0,center,false)
 	check(not Input.is_action_pressed("move_right"),"Joystick release clears movement")
-	# Tab is held by one finger; a second finger turns the inventory wheel.
+	# Inventory stays open after releasing the switch; a later tap closes it.
+	lab.player.inventory.state.add({"id":"touch_lettuce","class_id":3,"label":"Lechuga"})
+	lab.player.inventory.state.add({"id":"touch_dynamite","class_id":2,"label":"Dinamita"})
 	touch(3,controls.buttons.inventory.at,true); await create_timer(.04).timeout
+	touch(3,controls.buttons.inventory.at,false); await create_timer(.04).timeout
 	check(lab.player.inventory.wheel_open and controls.context=="menu","Inventory opens and changes touch context")
+	controls.update_layout()
+	check(controls.buttons.has("inventory_prev") and controls.buttons.has("inventory_next"),"Open clouds show dedicated touch arrows")
+	var before_arrow = lab.player.inventory.state.selected_class
+	touch(14,controls.buttons.inventory_next.at,true)
+	await create_timer(.04).timeout
+	check(Input.is_action_pressed("move_right"),"Inventory arrow sends selection navigation")
+	check(lab.player.inventory.state.selected_class!=before_arrow,"Touch arrow actually changes the selected cloud")
+	touch(14,controls.buttons.inventory_next.at,false)
 	controls.update_layout(); center=controls.joystick_center()
 	touch(4,center,true); drag(4,center+Vector2(80,0)*controls.unit,Vector2(80,0)*controls.unit)
 	check(Input.is_action_pressed("move_right"),"Inventory receives left/right navigation")
-	touch(4,center,false); touch(3,controls.buttons.inventory.at,false); await create_timer(.04).timeout
-	check(not lab.player.inventory.wheel_open,"Releasing inventory finger equips/closes")
+	touch(4,center,false)
+	check(lab.player.inventory.wheel_open,"Finger release keeps inventory open")
+	touch(3,controls.buttons.inventory.at,true); touch(3,controls.buttons.inventory.at,false); await create_timer(.04).timeout
+	check(not lab.player.inventory.wheel_open,"Second inventory tap equips/closes")
+	controls.update_layout()
+	check(not controls.buttons.has("inventory_prev"),"Closed clouds hide touch arrows")
 	# Exercise the original pause menu, including key-only row navigation.
 	var pause = OriginalPauseMenu.new(); lab.add_child(pause); await create_timer(.04).timeout
 	controls.update_layout(); touch(5,controls.buttons.pause.at,true); touch(5,controls.buttons.pause.at,false); await create_timer(.04).timeout

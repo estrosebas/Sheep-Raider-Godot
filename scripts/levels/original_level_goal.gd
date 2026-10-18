@@ -7,9 +7,6 @@ var player: RalphController
 var bounds: AABB
 var radius = 0.0
 var completed = false
-var elapsed = 0.0
-var overlay: ColorRect
-var result: Label
 var completion: Node
 func _ready():
 	player = get_parent().get_node("Player")
@@ -20,22 +17,7 @@ func _ready():
 	var hi = GameSpace.original_point(Vector3(box.max[0],box.min[1],box.min[2]))+global_position
 	bounds = AABB(lo,hi-lo)
 	radius = definition.radius
-	var ui = CanvasLayer.new()
-	ui.layer = 100
-	add_child(ui)
-	overlay = ColorRect.new()
-	ui.add_child(overlay)
-	overlay.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	overlay.color = Color(0,0,0,0)
-	overlay.mouse_filter = Control.MOUSE_FILTER_IGNORE
-	result = Label.new()
-	ui.add_child(result)
-	result.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-	result.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	result.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
-	result.add_theme_font_size_override("font_size",32)
-	OriginalGameFont.apply(result)
-	result.hide()
+
 func qualifies(point: Vector3, require_box: bool) -> bool:
 	return point.y >= bounds.position.y and point.y <= bounds.end.y and Vector2(point.x-global_position.x,point.z-global_position.z).length_squared() <= radius*radius and (not require_box or bounds.has_point(point))
 func _physics_process(_delta):
@@ -52,16 +34,5 @@ func complete(sheep: OriginalSheep):
 	completed = true
 	completion = preload("res://scripts/levels/original_level_completion.gd").new()
 	get_parent().add_child(completion)
-	completion.finished.connect(func(_error):
-		result.text = GameLocalization.ui("Nivel completado")+"\n"+GameLocalization.ui("Ovejas extraídas: %d/%d")%[OriginalProgress.extracted_sheep_count(),OriginalProgress.TOTAL_SHEEP]+"\n"+completion.footer())
 	completion.begin(level_id,sheep)
 	level_completed.emit(level_id)
-func _process(delta):
-	if not completed or not completion.done: return
-	elapsed += delta
-	overlay.color.a = clampf(elapsed/3,0,1)
-	result.visible = elapsed >= 3
-func _unhandled_input(event):
-	if completed and elapsed >= 3 and event.is_action_pressed("ui_accept"):
-		SaveFiles.remember_level_exit(get_parent())
-		get_tree().change_scene_to_file(SaveFiles.STUDIO_SCENE)

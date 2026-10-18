@@ -14,10 +14,27 @@ func _ready():
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	var statistics = load("res://scripts/ui/optional_statistics.gd").new()
 	add_child(statistics)
+	var help = load("res://scripts/ui/first_run_help.gd").new()
+	add_child(help)
+
+func enter_saved_startup(path: String):
+	await change_scene(path)
+	# The stable updater's original wheel handshake is skipped on this route.
+	# Confirm only after the actual studio has loaded successfully.
+	if get_tree().current_scene and get_tree().current_scene.scene_file_path==path:
+		get_node("/root/ContentUpdates").confirm_boot()
+		var statistics = get_tree().get_first_node_in_group("optional_statistics")
+		if statistics: statistics.open_if_needed()
 
 func _input(event):
 	var statistics = get_tree().get_first_node_in_group("optional_statistics")
 	if statistics and is_instance_valid(statistics.dialog): return
+	if event is InputEventKey and event.pressed and not event.echo and event.physical_keycode==KEY_H:
+		var help = get_tree().get_first_node_in_group("first_run_help")
+		if help:
+			help.toggle()
+			get_viewport().set_input_as_handled()
+			return
 	var loading = get_node_or_null("/root/LevelLoading")
 	if loading and not loading.target.is_empty(): return
 	if not event is InputEventKey or not event.pressed or event.echo: return

@@ -143,13 +143,6 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and not event.echo and event.keycode == KEY_F6:
 		set_texture_profile(1 - texture_profile)
 
-func _input(event: InputEvent) -> void:
-	if event is InputEventKey and event.pressed and not event.echo and event.physical_keycode == KEY_H:
-		help_visible = not help_visible
-		$HUD.visible = help_visible
-		player.inventory.wheel.set_help_visible(help_visible)
-		get_viewport().set_input_as_handled()
-
 func load_entities() -> void:
 	var path = "res://assets/levels/lvl_00/data/entities.json"
 	if FileAccess.file_exists(path):

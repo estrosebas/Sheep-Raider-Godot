@@ -27,7 +27,11 @@ func _finish():
 	save_error = SaveFiles.save_level_completion(get_parent())
 	done = true; running = false
 	finished.emit(save_error)
+	if save_error!=OK: push_warning("Level autosave failed: %d" % save_error)
+	call_deferred("return_to_studio")
 
-func footer() -> String:
-	if save_error==OK: return GameLocalization.ui("Partida guardada automáticamente")+"\n"+GameLocalization.ui("Enter: plató")
-	return GameLocalization.ui("No se pudo guardar automáticamente (%d)")%save_error+"\n"+GameLocalization.ui("Esc: guardar · Enter: plató")
+func return_to_studio():
+	SaveFiles.remember_level_exit(get_parent())
+	var transitions = get_node_or_null("/root/LanguageMenu")
+	if transitions: transitions.change_scene(SaveFiles.STUDIO_SCENE)
+	else: get_tree().change_scene_to_file(SaveFiles.STUDIO_SCENE)
