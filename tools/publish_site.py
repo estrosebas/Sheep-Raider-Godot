@@ -20,6 +20,7 @@ def main():
     parser.add_argument('--host',required=True,help='deployment-user@server')
     parser.add_argument('--identity',type=Path,required=True)
     parser.add_argument('--known-hosts',type=Path,required=True)
+    parser.add_argument('--resume-stage',help='Verify and activate a fully uploaded staging basename after a lost control connection')
     args=parser.parse_args()
     user,host=args.host.split('@',1)
     manifest=json.loads((args.bundle/'bundle.json').read_text())
@@ -31,6 +32,7 @@ def main():
             if hashlib.file_digest(stream,'sha256').hexdigest()!=entry['sha256']:raise ValueError('Local file changed: '+relative)
     client=paramiko.SSHClient();client.load_host_keys(str(args.known_hosts));client.set_missing_host_key_policy(paramiko.RejectPolicy())
     client.connect(host,username=user,key_filename=str(args.identity),allow_agent=False,look_for_keys=False,timeout=30)
+    client.get_transport().set_keepalive(15)
     def command(script):
         _,out,err=client.exec_command('set -eu; '+script,timeout=120)
         result=out.read().decode();errors=err.read().decode()
@@ -38,6 +40,9 @@ def main():
         return result
     q=shlex.quote
     stage=SITE+'/deployments/'+manifest['version']+'-'+uuid.uuid4().hex[:12]
+    if args.resume_stage:
+        if not re.fullmatch(re.escape(manifest['version'])+'-[a-f0-9]{12}',args.resume_stage):raise ValueError('Invalid staging basename')
+        stage=SITE+'/deployments/'+args.resume_stage
     if not re.fullmatch('[A-Za-z0-9_.-]+',manifest['version']) or '..' in manifest['version']:raise ValueError('Invalid version')
     directories={str(PurePosixPath(stage)/PurePosixPath(x['path']).parent) for x in manifest['files']}
     command('mkdir -p '+' '.join(q(x) for x in sorted(directories)))
@@ -47,6 +52,7 @@ def main():
         # for the large PCK/APK/ZIP files; small website files use SFTP directly.
         if entry['bytes']>1048576 and shutil.which('scp'):
             result=subprocess.run(['scp','-B','-q','-o','BatchMode=yes','-o','StrictHostKeyChecking=yes',
+                '-o','ServerAliveInterval=15','-o','ServerAliveCountMax=4',
                 '-o','UserKnownHostsFile='+str(args.known_hosts.resolve()),'-i',str(args.identity.resolve()),
                 str((args.bundle/entry['path']).resolve()),args.host+':'+stage+'/'+entry['path']],
                 capture_output=True,text=True,timeout=1800)
@@ -55,7 +61,8 @@ def main():
         sftp=paramiko.SFTPClient.from_transport(client.get_transport(),window_size=16*1048576,max_packet_size=1048576)
         try:sftp.put(str(args.bundle/entry['path']),stage+'/'+entry['path'])
         finally:sftp.close()
-    with ThreadPoolExecutor(max_workers=3) as pool:list(pool.map(upload,manifest['files']))
+    if not args.resume_stage:
+        with ThreadPoolExecutor(max_workers=3) as pool:list(pool.map(upload,manifest['files']))
     result=command('sha256sum '+' '.join(q(stage+'/'+x['path']) for x in manifest['files']))
     hashes={row.split(None,1)[1].strip():row.split(None,1)[0] for row in result.splitlines()}
     if any(hashes.get(stage+'/'+x['path'])!=x['sha256'] for x in manifest['files']):raise ValueError('Remote checksum mismatch; current site unchanged')

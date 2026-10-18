@@ -49,6 +49,7 @@ class StatisticsTests(unittest.TestCase):
         self.assertEqual(self.post(self.event(),origin='https://evil.example'),403)
         with self.assertRaises(HTTPError) as error:urlopen(self.url+'/api/stats/report')
         self.assertEqual(error.exception.code,404)
+        error.exception.close()
     def test_no_personal_data_columns(self):
         self.post(self.event())
         with stats.connect(self.database) as db:

@@ -15,6 +15,8 @@ ni se inicia esa descarga: se puede volver a pulsar el enlace.
 ## Qué significan los números
 
 - `session`: una apertura consentida, con plataforma `web`, `android` o `windows`.
+  La versión identifica la versión base instalada; los parches de contenido no
+  cambian el número del ejecutable o APK.
 - `download`: solicitud consentida desde un botón de la web, con plataforma y
   versión del instalador; no confirma que termine la transferencia.
 - No son personas únicas. Repetir una descarga o abrir de nuevo el juego puede
