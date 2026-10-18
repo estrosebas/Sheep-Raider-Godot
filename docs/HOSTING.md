@@ -2,6 +2,16 @@
 
 Dominio: https://sheepraider.nooxtools.me/
 
+Estado verificado: portada y jugable publicados; el navegador llegó a la rueda
+de idiomas y después al escenario. Instaladores actuales: 1.0.2, Windows x64 y
+Android arm64. Las dos APK 1.0.1/1.0.2 tienen la misma identidad de firma.
+
+[GitHub Actions 39143675884](https://github.com/estrosebas/Sheep-Raider-Godot/actions/runs/39143675884)
+completó un despliegue real de la portada a la VPS (mode=website, deploy=true),
+incluidos los secrets SSH temporales, hashes remotos y activación de enlaces.
+El runner terminó el trabajo y se cerró. Las exportaciones completas y la
+publicación de los instaladores se ejecutaron y verificaron desde el PC.
+
 | Ruta | Servicio |
 |---|---|
 | / | Portada del proyecto, controles y enlaces de descarga |
@@ -29,6 +39,8 @@ Los instaladores versionados existentes no se sobrescriben si sus bytes difieren
 La web anterior se respaldó antes de cambiar nada:
 /var/backups/ralphwolf/20261018T153911Z/public_html.tar.
 Las versiones web previas se conservan en deployments/ para poder restaurarlas.
+El código está clonado fuera del document root en
+/home/noox/web/sheepraider.nooxtools.me/source. No se sirve el repositorio Git.
 
 El usuario ralphdeploy tiene acceso de escritura a este proyecto y no tiene sudo.
 Se verificó que no puede escribir en el document root de otro dominio.
