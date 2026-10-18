@@ -10,7 +10,7 @@ on:
       mode:
         description: Website only preserves the installed game and download files
         type: choice
-        options: [website, all, native]
+        options: [website, web, all, native]
         default: website
       deploy:
         description: Publish to sheepraider.nooxtools.me
@@ -52,6 +52,7 @@ jobs:
           $output=Join-Path $env:RUNNER_TEMP "ralph-site-$env:GITHUB_RUN_ID-$env:GITHUB_RUN_ATTEMPT"
           $arguments=@('tools/build_distribution.py','--godot',$env:GODOT_PATH,'--version',$env:RELEASE_VERSION,'--output',$output)
           if ($env:RELEASE_MODE -eq 'website') { $arguments+='--site-only' }
+          elseif ($env:RELEASE_MODE -eq 'web') { $arguments+='--web-only' }
           else {
             $arguments+=@('--android-signing',$env:ANDROID_SIGNING_CONFIG)
             if ($env:RELEASE_MODE -eq 'native') { $arguments+='--native-only' }

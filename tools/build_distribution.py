@@ -31,8 +31,9 @@ def main():
     parser.add_argument('--android-signing',type=Path,default=Path.home()/'.ralphwolf/android-signing.json')
     parser.add_argument('--site-only',action='store_true',help='Publish the landing page without rebuilding installers or the game')
     parser.add_argument('--native-only',action='store_true',help='Update native installers only, preserving the web export and landing')
+    parser.add_argument('--web-only',action='store_true',help='Publish website and web game without changing native installers')
     args=parser.parse_args()
-    if args.site_only and args.native_only:raise ValueError('Choose only one partial distribution mode')
+    if sum([args.site_only,args.native_only,args.web_only])>1:raise ValueError('Choose only one partial distribution mode')
     if not re.fullmatch(r'[A-Za-z0-9_-]+(?:\.[A-Za-z0-9_-]+)*',args.version): raise ValueError('Invalid version')
     if args.output.exists(): raise FileExistsError('Choose a fresh output directory; existing builds are preserved')
     args.output.mkdir(parents=True)
@@ -54,11 +55,13 @@ def main():
     if args.site_only:
         bundle(args.output,args.version,[site]);print('Website bundle ready',flush=True);return
     project_version=re.search(r'^config/version="([^"]+)"',(ROOT/'project.godot').read_text(encoding='utf-8'),re.M).group(1)
-    if project_version!=args.version:raise ValueError('Installer version must match project.godot; update its version before exporting a new installer')
-    signing=json.loads(args.android_signing.read_text())
-    env={**os.environ,'GODOT_ANDROID_KEYSTORE_RELEASE_PATH':signing['keystore'],
+    if not args.web_only and project_version!=args.version:raise ValueError('Installer version must match project.godot; update its version before exporting a new installer')
+    env=dict(os.environ)
+    if not args.web_only:
+        signing=json.loads(args.android_signing.read_text())
+        env.update({'GODOT_ANDROID_KEYSTORE_RELEASE_PATH':signing['keystore'],
          'GODOT_ANDROID_KEYSTORE_RELEASE_USER':signing['alias'],
-         'GODOT_ANDROID_KEYSTORE_RELEASE_PASSWORD':signing['password']}
+         'GODOT_ANDROID_KEYSTORE_RELEASE_PASSWORD':signing['password']})
     web=args.output/'play'
     if not args.native_only:
         web.mkdir()
@@ -68,6 +71,8 @@ def main():
             source=web/name
             with source.open('rb') as src, source.with_suffix(source.suffix+'.gz').open('wb') as target:
                 with gzip.GzipFile(filename='',mode='wb',compresslevel=6,fileobj=target,mtime=0) as compressed:shutil.copyfileobj(src,compressed)
+    if args.web_only:
+        bundle(args.output,args.version,[site,web]);print('Web distribution ready',flush=True);return
     windows=args.output/'windows';windows.mkdir()
     print('Exporting Windows...',flush=True)
     godot(['--export-release','Windows Desktop',str((windows/'RalphWolf.exe').resolve())],'windows-export')

@@ -160,10 +160,16 @@ func show_page(next: String) -> void:
 		"options":
 			rows.assign(["Música: activar/desactivar","Pantalla completa","Texturas: original/visor",GameLocalization.ui("Pantallas de carga: %s")%GameLocalization.ui("Sí" if GameLocalization.loading_enabled else "No"),GameLocalization.ui("Estilo de carga: %s")%GameLocalization.ui("Clásico" if GameLocalization.loading_style=="classic" else "Moderno"),"Controles (H)","Volver"])
 			actions.assign(["music","fullscreen","textures","loading_enabled","loading_style","controls","root"])
+			var statistics = get_tree().get_first_node_in_group("optional_statistics")
+			if statistics:
+				rows.insert(rows.size()-1,str(statistics.words()[4]))
+				actions.insert(actions.size()-1,"privacy")
 	for i in range(rows.size()): rows[i] = GameLocalization.ui(rows[i])
 	canvas.queue_redraw()
 
 func _input(event: InputEvent) -> void:
+	var statistics = get_tree().get_first_node_in_group("optional_statistics")
+	if statistics and is_instance_valid(statistics.dialog): return
 	# Let the shared touch surface translate fingers before consuming menu input.
 	if event is InputEventScreenTouch or event is InputEventScreenDrag: return
 	var bonuses = level.get_node_or_null("Bonuses")
@@ -229,6 +235,9 @@ func activate(action: String) -> void:
 			close_menu(); get_tree().change_scene_to_file(SaveFiles.STUDIO_SCENE)
 	elif action == "laboratory":
 		close_menu(); get_tree().change_scene_to_file("res://scenes/testing/ItemLab.tscn")
+	elif action == "privacy":
+		var statistics = get_tree().get_first_node_in_group("optional_statistics")
+		if statistics: statistics.open_preferences()
 	elif action == "resume": close_menu()
 	elif action == "music":
 		level.get_node("BGMPlayer").stream_paused = not level.get_node("BGMPlayer").stream_paused

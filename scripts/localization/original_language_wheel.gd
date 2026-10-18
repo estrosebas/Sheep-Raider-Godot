@@ -77,7 +77,9 @@ func _ready():
 	update_caption()
 	if not modal:
 		var transitions = get_tree().root.get_node_or_null("LanguageMenu")
-		if transitions: transitions.reveal_startup()
+		if transitions: await transitions.reveal_startup()
+		var statistics = get_tree().get_first_node_in_group("optional_statistics")
+		if statistics: statistics.open_if_needed()
 
 func update_caption():
 	caption.text = str(GameLocalization.manifest.languages[order[selected]].name)+"\n← / →    Enter / E"

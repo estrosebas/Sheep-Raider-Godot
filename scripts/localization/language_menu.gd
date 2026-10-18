@@ -10,9 +10,14 @@ var opened_locale = ""
 var input_states: Array[Dictionary] = []
 var mouse_mode = Input.MOUSE_MODE_VISIBLE
 
-func _ready(): process_mode = Node.PROCESS_MODE_ALWAYS
+func _ready():
+	process_mode = Node.PROCESS_MODE_ALWAYS
+	var statistics = load("res://scripts/ui/optional_statistics.gd").new()
+	add_child(statistics)
 
 func _input(event):
+	var statistics = get_tree().get_first_node_in_group("optional_statistics")
+	if statistics and is_instance_valid(statistics.dialog): return
 	var loading = get_node_or_null("/root/LevelLoading")
 	if loading and not loading.target.is_empty(): return
 	if not event is InputEventKey or not event.pressed or event.echo: return

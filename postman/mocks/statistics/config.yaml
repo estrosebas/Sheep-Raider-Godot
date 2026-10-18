@@ -1,0 +1,10 @@
+version: 1
+interceptRequests: true
+name: ralph-statistics
+slug: ralph-statistics
+protocol: http
+port: 4940
+scenarios:
+  - name: default
+    path: ./default.js
+    default: true

@@ -1,0 +1,5 @@
+simulation: ralph-statistics-local
+routing: path
+mocks:
+  - routeKey: api
+    path: ../mocks/statistics/config.yaml

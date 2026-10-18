@@ -1,0 +1,45 @@
+openapi: 3.0.3
+info:
+  title: Ralph Wolf optional aggregate statistics
+  version: 1.0.0
+  description: First-party opt-in session and download-request counters. No unique-user claim. Clients must obtain consent before POST. Counters contain UTC day, event kind, platform and version. Random per-event tokens expire after two days and only deduplicate retries. No public report endpoint; owner reads aggregates over SSH. No retry guarantee or proof of completed downloads. No third-party analytics.
+servers:
+  - url: https://sheepraider.nooxtools.me
+  - url: http://127.0.0.1:4939
+paths:
+  /api/stats/health:
+    get:
+      operationId: statisticsHealth
+      responses:
+        '200':
+          description: Service available; does not increment counters.
+  /api/stats/events:
+    post:
+      operationId: countConsentedEvent
+      description: Requires explicit client-side policy-v1 consent. Browser Origin must match the public domain. Native clients omit Origin. This is a public counter, not an authenticated anti-fraud or billing system. Statistics exclude IPs and device IDs. No cookies. Duplicate event tokens within two days count once. Never send event after rejecting consent.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              additionalProperties: false
+              required: [kind, platform, version, event, consent]
+              properties:
+                kind: {type: string, enum: [session, download]}
+                platform: {type: string, enum: [web, windows, android]}
+                version: {type: string, pattern: '^[A-Za-z0-9_.-]{1,40}$'}
+                event: {type: string, pattern: '^[a-f0-9]{32}$'}
+                consent: {type: string, enum: [v1]}
+            example: {kind: session, platform: android, version: '1.0.3', event: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa, consent: v1}
+      responses:
+        '202':
+          description: Count accepted, including duplicate retry. No identifier returned.
+        '400':
+          description: Invalid JSON, schema, unsupported consent or a web download event. Maximum body 1024 bytes (Nginx may return 413).
+        '403':
+          description: Foreign browser Origin.
+        '413':
+          description: Request body exceeds Nginx limit.
+        '503':
+          description: Temporarily unavailable; gameplay and downloads must continue.

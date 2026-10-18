@@ -1,0 +1,21 @@
+[Unit]
+Description=Ralph Wolf optional aggregate statistics
+After=network.target
+
+[Service]
+User=ralphstats
+Group=ralphstats
+ExecStart=/usr/bin/python3 /opt/ralphwolf-stats/statistics_service.py
+Restart=on-failure
+StateDirectory=ralphwolf-stats
+StateDirectoryMode=0750
+UMask=0027
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+PrivateDevices=true
+RestrictAddressFamilies=AF_INET AF_UNIX
+
+[Install]
+WantedBy=multi-user.target
