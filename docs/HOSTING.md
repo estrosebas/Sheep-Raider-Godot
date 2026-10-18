@@ -2,9 +2,11 @@
 
 Dominio: https://sheepraider.nooxtools.me/
 
-Estado verificado: portada y jugable publicados; el navegador llegó a la rueda
-de idiomas y después al escenario. Instaladores actuales: 1.0.2, Windows x64 y
-Android arm64. Las dos APK 1.0.1/1.0.2 tienen la misma identidad de firma.
+Distribución 1.0.4: Windows x64, Android arm64 y web. La rueda de idiomas
+aparece sólo cuando no existe un idioma guardado; después se entra directamente
+al escenario. Ayuda inicial compartida, inventario táctil con interruptor y
+flechas, y retorno directo al escenario al completar un nivel. Se conserva
+la identidad de firma de las APK anteriores.
 
 [GitHub Actions 39143675884](https://github.com/estrosebas/Sheep-Raider-Godot/actions/runs/39143675884)
 completó un despliegue real de la portada a la VPS (mode=website, deploy=true),
@@ -55,11 +57,11 @@ Variables y secrets de SSH ya están configurados en el repositorio:
 - UPDATES_REMOTE_DIRECTORY: directorio updates del dominio.
 - UPDATES_SSH_KEY y UPDATES_KNOWN_HOSTS: secrets cifrados, sin acceso root.
 
-La base pública 1.0.2 contiene bundled_sequence=1. El manifiesto inicial es 1;
-por tanto esa instalación no vuelve a descargar el contenido que ya trae.
-La siguiente actualización de contenido debe usar una secuencia mayor, por
-ejemplo 2 y versión 1.0.2. Las instalaciones nuevas nunca montan un parche
-guardado más antiguo que su contenido base.
+La base 1.0.4 contiene bundled_sequence=3, igual que su paquete de contenido
+1.0.4 para instalaciones anteriores. Las instalaciones nuevas no descargan
+el mismo contenido ni montan un parche guardado más antiguo que su base.
+La siguiente publicación de contenido debe usar una secuencia mayor que 3
+y una versión nueva; las publicaciones son inmutables.
 
 ## Publicar la portada o una nueva distribución
 
@@ -67,6 +69,7 @@ Workflow **Publish website, web game and installers**:
 
 - mode=website: cambia únicamente la portada y sus assets; conserva jugable,
   instaladores y latest.json. No necesita reexportar Godot.
+- mode=web: exporta portada y jugable web; conserva los instaladores.
 - mode=all: exporta web, Windows y Android y crea una nueva distribución.
   La versión debe coincidir con project.godot; al cambiar la APK hay que
   incrementar también version/name y version/code de Android en export_presets.cfg.
@@ -82,7 +85,7 @@ Dependencias adicionales: python -m pip install -r tools/requirements-deploy.txt
 
 Comandos locales equivalentes:
 
-    python tools/build_distribution.py --godot RUTA_GODOT --version 1.0.2 --output builds/NUEVA_CARPETA
+    python tools/build_distribution.py --godot RUTA_GODOT --version 1.0.4 --output builds/NUEVA_CARPETA
     python tools/publish_site.py --bundle builds/NUEVA_CARPETA --host ralphdeploy@64.181.219.10 --identity RUTA_CLAVE_SSH --known-hosts RUTA_KNOWN_HOSTS
 
 Añadir --site-only al primer comando para actualizar solo la portada.
