@@ -33,8 +33,19 @@ def main():
         env=os.environ.copy();env['RALPH_UPDATE_FIXTURES']=str(fixtures/'http')
         flags=subprocess.CREATE_NO_WINDOW if os.name=='nt' else 0
         simulation=subprocess.Popen(command,cwd=ROOT,stdout=log,stderr=subprocess.STDOUT,env=env,creationflags=flags)
-    cases=[('good','download'),('good','mounted'),('good','rollback'),('good','download'),('good','confirmed'),('good','current')]
+    cases=[('good','download'),('good','mounted'),('good','rollback'),('good','download'),('good','confirmed'),('good','current'),('good','bundled')]
     cases += [(name,'download') for name in ['bad-signature','bad-hash','incompatible','wrong-platform','traversal','html-error','missing','timeout','unreachable']]
+    # Each suite owns a fresh cache; repeated runs cannot reuse an earlier install.
+    run_id=uuid.uuid4().hex[:10]
+    configs={}
+    for name,mode in cases:
+        key=(name,'bundled' if mode=='bundled' else 'normal')
+        if key in configs:continue
+        config=json.loads((fixtures/(name+'.json')).read_text())
+        config['bundled_sequence']=1 if mode=='bundled' else 0
+        config['storage']='user://validation_updates_suite_'+run_id+'_'+name
+        path=fixtures/('suite_'+run_id+'_'+name+'_'+key[1]+'.json')
+        path.write_text(json.dumps(config));configs[key]=path
     try:
         for _ in range(1200):
             if simulation and simulation.poll() is not None:raise RuntimeError(log_path.read_text(encoding='utf-8'))
@@ -43,7 +54,7 @@ def main():
         else:raise TimeoutError('Postman simulation did not start')
         for name,mode in cases:
             result=subprocess.run([args.godot,'--headless','--path',str(ROOT),'--script','tools/test_remote_updates.gd','--',
-                    '--updates-test-config='+str(fixtures/(name+'.json')),'--probe='+mode],cwd=ROOT,capture_output=True,text=True,timeout=45)
+                    '--updates-test-config='+str(configs[(name,'bundled' if mode=='bundled' else 'normal')]),'--probe='+mode],cwd=ROOT,capture_output=True,text=True,timeout=45)
             report=result.stdout+result.stderr
             (ROOT/f'validation/update-suite-{name}-{mode}.log').write_text(report,encoding='utf-8')
             if result.returncode!=0 or 'SCRIPT ERROR' in report or '0 failures' not in report:raise AssertionError(report)

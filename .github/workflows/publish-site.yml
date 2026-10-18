@@ -1,0 +1,81 @@
+name: Publish website, web game and installers
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: Installer version must match project.godot
+        type: string
+        default: '1.0.2'
+        required: true
+      mode:
+        description: Website only preserves the installed game and download files
+        type: choice
+        options: [website, all, native]
+        default: website
+      deploy:
+        description: Publish to sheepraider.nooxtools.me
+        type: boolean
+        default: false
+permissions:
+  contents: read
+concurrency:
+  group: ralph-site-release
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: [self-hosted, Windows, X64, ralphwolf]
+    timeout-minutes: 60
+    defaults:
+      run:
+        shell: powershell
+    env:
+      GODOT_PATH: ${{ vars.GODOT_CONSOLE_PATH }}
+      ANDROID_SIGNING_CONFIG: ${{ vars.ANDROID_SIGNING_CONFIG_PATH }}
+      RELEASE_VERSION: ${{ inputs.version }}
+      RELEASE_MODE: ${{ inputs.mode }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - name: Validate toolchain
+        run: |
+          if ($env:RELEASE_VERSION -notmatch '^[A-Za-z0-9_-]+(\.[A-Za-z0-9_-]+)*$') { throw 'Invalid version.' }
+          python -c "import paramiko, cryptography"
+          if ($LASTEXITCODE -ne 0) { throw 'Install tools/requirements-deploy.txt on this runner.' }
+      - name: Import game assets
+        if: inputs.mode != 'website'
+        run: |
+          & $env:GODOT_PATH --headless --path . --editor --quit
+          if ($LASTEXITCODE -ne 0) { throw 'Godot import failed.' }
+      - name: Build distribution
+        run: |
+          $output=Join-Path $env:RUNNER_TEMP "ralph-site-$env:GITHUB_RUN_ID-$env:GITHUB_RUN_ATTEMPT"
+          $arguments=@('tools/build_distribution.py','--godot',$env:GODOT_PATH,'--version',$env:RELEASE_VERSION,'--output',$output)
+          if ($env:RELEASE_MODE -eq 'website') { $arguments+='--site-only' }
+          else {
+            $arguments+=@('--android-signing',$env:ANDROID_SIGNING_CONFIG)
+            if ($env:RELEASE_MODE -eq 'native') { $arguments+='--native-only' }
+          }
+          python @arguments
+          if ($LASTEXITCODE -ne 0) { throw 'Distribution build failed.' }
+          Add-Content -LiteralPath $env:GITHUB_ENV -Value "SITE_OUTPUT=$output"
+      - uses: actions/upload-artifact@v7
+        with:
+          name: site-${{ inputs.version }}-${{ inputs.mode }}
+          path: |
+            ${{ env.SITE_OUTPUT }}/site/
+            ${{ env.SITE_OUTPUT }}/play/
+            ${{ env.SITE_OUTPUT }}/downloads/
+            ${{ env.SITE_OUTPUT }}/bundle.json
+          if-no-files-found: error
+          compression-level: 0
+          retention-days: 7
+      - name: Publish verified distribution
+        if: inputs.deploy
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.UPDATES_SSH_KEY }}
+          SSH_KNOWN_HOSTS: ${{ secrets.UPDATES_KNOWN_HOSTS }}
+          SSH_HOST: ${{ vars.UPDATES_SSH_HOST }}
+        run: |
+          python tools/publish_site_from_env.py --bundle $env:SITE_OUTPUT
+          if ($LASTEXITCODE -ne 0) { throw 'Website deployment failed.' }

@@ -42,6 +42,6 @@ for name in ['good','bad-signature','bad-hash','incompatible','wrong-platform','
     base='http://127.0.0.1:4937/updates/'
     if name=='unreachable':base='http://127.0.0.1:4938/updates/'
     elif name!='good':base+=name+'/'
-    fixture=dict(base_url=base,storage='user://validation_updates_'+name,public_key=str(public),platform_override='windows-x86_64',manifest_timeout=1 if name=='timeout' else 20,download_timeout=30)
+    fixture=dict(base_url=base,storage='user://validation_updates_'+name,public_key=str(public),platform_override='windows-x86_64',bundled_sequence=0,manifest_timeout=1 if name=='timeout' else 20,download_timeout=30)
     (directory/(name+'.json')).write_text(json.dumps(fixture))
 print('Fixture HTTP files and configs ready:',directory)

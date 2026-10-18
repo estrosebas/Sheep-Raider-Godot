@@ -124,6 +124,9 @@ func _mount_installed():
 	var envelope = read_json(storage.path_join("active.json"))
 	var trial = read_json(storage.path_join("trial.json"))
 	var payload = validate_envelope(envelope) if not envelope.is_empty() else {}
+	# A newer installer already contains these resources. Never mount an older
+	# cached patch over it or download the installer's own baseline again.
+	if not payload.is_empty() and int(payload.sequence)<=int(config.get("bundled_sequence",0)): return
 	if not trial.is_empty() and int(trial.get("sequence",0))!=int(payload.get("sequence",0)):
 		# A failed pointer write must not treat the previous version as a trial.
 		DirAccess.remove_absolute(storage.path_join("trial.json")); trial={}
@@ -134,10 +137,11 @@ func _mount_installed():
 		DirAccess.remove_absolute(storage.path_join("trial.json"))
 		trial={}
 		recovery_message="rollback"
+	if not payload.is_empty() and int(payload.sequence)<=int(config.get("bundled_sequence",0)): return
 	if payload.is_empty() or not verify_package(package_file(payload),payload):
 		var previous = read_json(storage.path_join("previous.json"))
 		var older = validate_envelope(previous) if not previous.is_empty() else {}
-		if older.is_empty() or not verify_package(package_file(older),older): return
+		if older.is_empty() or int(older.sequence)<=int(config.get("bundled_sequence",0)) or not verify_package(package_file(older),older): return
 		envelope=previous; payload=older; recovery_message="rollback"
 		atomic_json(storage.path_join("active.json"),envelope)
 	if not trial.is_empty() and recovery_message.is_empty():
@@ -159,7 +163,7 @@ func confirm_boot():
 			if match_name and int(match_name.get_string(1)) not in keep:
 				DirAccess.remove_absolute(storage.path_join(file))
 
-func current_sequence() -> int: return int(active.get("sequence",0))
+func current_sequence() -> int: return maxi(int(config.get("bundled_sequence",0)),int(active.get("sequence",0)))
 
 func _new_request(timeout: float) -> HTTPRequest:
 	var request = HTTPRequest.new(); request.timeout=timeout; request.max_redirects=0; request.accept_gzip=false

@@ -4,10 +4,11 @@
   "channel": "stable",
   "product_id": "ralph-wolf",
   "bootstrap_abi": 1,
+  "bundled_sequence": 1,
   "public_key": "res://config/updates_public.pem",
   "key_id": "release-1",
   "storage": "user://updates",
-  "manifest_timeout": 6,
+  "manifest_timeout": 20,
   "download_timeout": 900,
   "max_package_bytes": 8589934592,
   "game_scene": "res://scenes/startup/LanguageWheel.tscn"

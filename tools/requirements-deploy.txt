@@ -1,0 +1,2 @@
+paramiko>=3.5
+cryptography>=37.0.4

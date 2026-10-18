@@ -1,5 +1,10 @@
 # Ralph Wolf - Looney Tunes: Sheep Raider (Native Godot 4 Port)
 
+**Prueba pública:** [web principal](https://sheepraider.nooxtools.me/) ·
+[jugar en el navegador](https://sheepraider.nooxtools.me/play/) ·
+[Windows y Android](https://sheepraider.nooxtools.me/#descargas).
+Publicación, claves y auto-update: [docs/HOSTING.md](docs/HOSTING.md).
+
 Proyecto remasterizado y port nativo en **Godot 4.7.2** del clásico videojuego de PS1/PC **"Sheep, Dog 'n' Wolf"** (conocido en América como *Looney Tunes: Sheep Raider*), desarrollado originalmente por Infogrames en 2001.
 
 ---

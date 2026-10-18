@@ -24,7 +24,9 @@ func run():
 	var result=await client.check_update()
 	print("Check result: ",result)
 	var fixture=str(client.config.base_url)
-	if mode=="current":
+	if mode=="bundled":
+		check(result.state=="current" and not client.mounted and client.current_sequence()==1,"New installer skips its baseline download and older cached patch")
+	elif mode=="current":
 		check(result.state=="current" and client.offered.is_empty(),"Confirmed installed content is not downloaded again")
 	elif fixture.contains("bad-signature"):
 		check(result.state=="unavailable" and result.error=="signature","Invalid signature rejected before download")

@@ -6,7 +6,9 @@
 El workflow ya está publicado en main y se registró el runner Windows
 ralphwolf-estro-pc, instalado fuera del proyecto en
 C:\Users\estro\.ralphwolf\actions-runner. Se configuraron las variables de Godot
-y de ubicación de la clave de firma. El acceso al VPS sigue pendiente.
+y de ubicación de la clave de firma. El VPS ya está configurado con un usuario
+de despliegue y secrets SSH; ver [HOSTING.md](HOSTING.md) para el estado actual
+de la portada, /play, instaladores y publicación de contenido.
 
 La publicación inicial es una instantánea limpia del proyecto. El historial
 anterior, que contiene un ZIP de build de 165 MiB, se conserva en la rama local
@@ -147,9 +149,9 @@ cache larga/inmutable. HTTPS válido; no redirecciones para estos endpoints.
 No hace falta tocar la web Godot que vive en la raíz del dominio.
 No poner claves privadas ni archivos del repositorio en public_html.
 
-La consulta real del endpoint Windows respondió404 durante la implementación:
-todavía no hay publicación en ese dominio. GitHub y el runner ya están
-configurados; faltan las variables de destino VPS y sus dos secrets SSH.
+El endpoint Windows respondió404 antes de la primera publicación. Ahora los
+manifiestos de Windows y Android responden200, con firma válida y Cache-Control
+no-store. Variables y secrets SSH están configurados; ver HOSTING.md.
 
 ## Encender el runner para una publicación
 
@@ -186,11 +188,12 @@ no repetir descarga, firma/hash incorrectos, ABI incompatible, plataforma/rutas
 inválidas, HTTP503 HTML,404, timeout y servidor inaccesible.
 El cold-start se comprueba en Windows; Android requiere prueba en teléfono real.
 
-Verificación local realizada: 15/15 casos HTTP con Postman y Godot; paquete real
+Verificación local realizada: 16/16 casos HTTP con Postman y Godot; paquete real
 exportado con scripts compilados y recursos importados, montaje y limpieza de
 caché: 0 fallos. Controles móviles y botón táctil Jugar del actualizador: 0 fallos.
 Los paquetes de contenido 1.0.1, secuencia 1, están en builds/updates para Windows
 y Android arm64 (~151 MiB cada uno). No son EXE/APK: son los ZIP de actualización.
 builds/updates-initial-validation conserva la primera exportación de prueba y no
-se debe publicar. No se han reexportado los binarios base ni probado una descarga
-en un teléfono real. La subida SSH al VPS sigue pendiente de activar.
+se debe publicar. Los binarios base ya se reexportaron y publicaron, con firma
+Android propia. La subida SSH y la consulta HTTPS real se verificaron.
+Queda pendiente probar la APK en un teléfono real.
