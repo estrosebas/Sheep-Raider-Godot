@@ -32,4 +32,32 @@ La distribución reutiliza `build_distribution.py`, `release_updates.py`,
 SHA256 antes de activar los enlaces y manifiestos públicos. Las versiones
 anteriores se conservan para recuperación. Las claves permanecen fuera de Git.
 
-Estado de publicación: pendiente de compilación y verificación pública.
+## Publicación realizada —22octubre2026
+
+Commit de juego `57aa797`, subido a `origin/main`. Se compilaron la web,
+Windows x64 y Android arm64. APK versionCode5, certificado SHA256 idéntico
+al de1.0.4; apksigner verificó la firma. El ZIP de Windows pasó su CRC.
+
+Distribución local: `builds/distribution/1.0.5`. Instaladores publicados:
+
+- Windows: `/downloads/windows/1.0.5/RalphWolf-Windows.zip`,183139755bytes.
+- Android: `/downloads/android/1.0.5/RalphWolf.apk`,175728033bytes.
+- Web: `https://sheepraider.nooxtools.me/play/`.
+
+Ambos paquetes de actualización están en `updates/releases/00000004-1.0.5/`,
+con manifiestos activos secuencia4. Se verificaron firmas RSA públicas,
+respuestasHTTP200 de instaladores, versión y metadatos mediante Postman.
+Los hashes de todos los archivos se comprobaron en el servidor antes de
+activar enlaces. Despliegue web retenido para rollback:
+`/home/noox/web/sheepraider.nooxtools.me/deployments/1.0.5-6da9dbc293da`.
+
+Los dos ZIP firmados cargaron realmente los scripts compilados, el nivel05,
+las animaciones, el audio y el controlador de lianas:0fallos por plataforma
+de paquete. La prueba del paquete Android se ejecuta en el motor Windows;
+no sustituye una prueba en teléfono físico. La web pública arrancó en Chrome,
+renderizó la rueda de idiomas y mostró el consentimiento de estadísticas,
+sin errores de consola.
+
+Evidencia local: `validation/release105_*.log` y
+`output/playwright/release105-public.png`. Las partidas reales no se usaron
+para las pruebas. No se modificó el servicio de estadísticas ni sus datos.
