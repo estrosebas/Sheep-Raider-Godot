@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://hmvk051cqdpq"]
+
+[ext_resource type="Script" uid="uid://rymgpia8faib" path="res://scripts/levels/imported_level.gd" id="1"]
+[ext_resource type="PackedScene" path="res://scenes/characters/Ralph.tscn" id="2"]
+[ext_resource type="Shape3D" path="res://assets/levels/lvl_05/collision.tres" id="3"]
+[ext_resource type="ArrayMesh" path="res://assets/levels/lvl_05/scenery.tres" id="4"]
+
+[sub_resource type="Environment" id="environment"]
+background_mode = 1
+background_color = Color(0.1882353, 0.15686275, 0.2509804, 1)
+
+[node name="Level05" type="Node3D" unique_id=2100109983]
+script = ExtResource("1")
+asset_directory = "res://assets/levels/lvl_05"
+foundation_mode = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=2134810294]
+environment = SubResource("environment")
+
+[node name="Scenery" type="MeshInstance3D" parent="." unique_id=1727175579]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.010168552, -0.02879262, -0.06203842)
+mesh = ExtResource("4")
+
+[node name="Collision" type="StaticBody3D" parent="." unique_id=276865867]
+collision_layer = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Collision" unique_id=2140256949]
+shape = ExtResource("3")
+
+[node name="Player" parent="." unique_id=1634833028 instance=ExtResource("2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.78, 0, 4.6)
+
+[node name="BGMPlayer" type="AudioStreamPlayer" parent="." unique_id=1155567312]
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=759187393]
+
+[node name="Label" type="Label" parent="HUD" unique_id=1435229170]
+offset_left = 24.0
+offset_top = 24.0
+text = "NIVEL 05 · F8: Laboratorio · H: Ayuda · Escape: Pausa"

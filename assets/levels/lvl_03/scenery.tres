@@ -1,33 +1,33 @@
-[gd_resource type="ArrayMesh" format=4]
+[gd_resource type="ArrayMesh" format=4 uid="uid://0ogt5b1xljeq"]
 
-[ext_resource type="Shader" path="res://shaders/retro_opaque.gdshader" id="1_s7iks"]
-[ext_resource type="Texture2D" path="res://assets/levels/lvl_03/textures/page_3.png" id="2_xokof"]
-[ext_resource type="Texture2D" path="res://assets/levels/lvl_03/textures/page_6.png" id="3_f1dcg"]
-[ext_resource type="Texture2D" path="res://assets/levels/lvl_03/textures/page_5.png" id="4_81l23"]
-[ext_resource type="Texture2D" path="res://assets/levels/lvl_03/textures/page_4.png" id="5_t44yd"]
-[ext_resource type="Texture2D" path="res://assets/levels/lvl_03/textures/page_0.png" id="6_rrysn"]
-[ext_resource type="Shader" path="res://shaders/retro_blend.gdshader" id="7_cowqs"]
-[ext_resource type="Texture2D" path="res://assets/levels/lvl_03/textures/page_8.png" id="8_cb1i8"]
-[ext_resource type="Texture2D" path="res://assets/levels/lvl_03/textures/page_2.png" id="9_4adf4"]
-[ext_resource type="Texture2D" path="res://assets/levels/lvl_03/textures/page_7.png" id="10_6gkwg"]
-[ext_resource type="Texture2D" path="res://assets/levels/lvl_03/textures/page_9.png" id="11_ulgc4"]
-[ext_resource type="Shader" path="res://shaders/retro_add.gdshader" id="12_d6076"]
-[ext_resource type="Texture2D" path="res://assets/levels/lvl_03/textures/page_12.png" id="13_ir0s1"]
-[ext_resource type="Texture2D" path="res://assets/levels/lvl_03/textures/page_11.png" id="14_6ep10"]
+[ext_resource type="Shader" uid="uid://c4luqywqbpyjg" path="res://shaders/retro_opaque.gdshader" id="1_s7iks"]
+[ext_resource type="Texture2D" uid="uid://balpmttj2s8wf" path="res://assets/levels/lvl_03/textures/page_3.png" id="2_xokof"]
+[ext_resource type="Texture2D" uid="uid://d1xo11hxub3p5" path="res://assets/levels/lvl_03/textures/page_6.png" id="3_f1dcg"]
+[ext_resource type="Texture2D" uid="uid://gslne0famlrd" path="res://assets/levels/lvl_03/textures/page_5.png" id="4_81l23"]
+[ext_resource type="Texture2D" uid="uid://cww4pea1qqs7n" path="res://assets/levels/lvl_03/textures/page_4.png" id="5_t44yd"]
+[ext_resource type="Texture2D" uid="uid://bw66fxr36yrjx" path="res://assets/levels/lvl_03/textures/page_0.png" id="6_rrysn"]
+[ext_resource type="Shader" uid="uid://q4ka286snnvu" path="res://shaders/retro_blend.gdshader" id="7_cowqs"]
+[ext_resource type="Texture2D" uid="uid://cwg5g24wirkna" path="res://assets/levels/lvl_03/textures/page_8.png" id="8_cb1i8"]
+[ext_resource type="Texture2D" uid="uid://bb3qucmpv2xeh" path="res://assets/levels/lvl_03/textures/page_2.png" id="9_4adf4"]
+[ext_resource type="Texture2D" uid="uid://bpdes2yfkostl" path="res://assets/levels/lvl_03/textures/page_7.png" id="10_6gkwg"]
+[ext_resource type="Texture2D" uid="uid://6kjjdipir3jo" path="res://assets/levels/lvl_03/textures/page_9.png" id="11_ulgc4"]
+[ext_resource type="Shader" uid="uid://clygtxgrm4osq" path="res://shaders/retro_add.gdshader" id="12_d6076"]
+[ext_resource type="Texture2D" uid="uid://y7nw8r67fbh" path="res://assets/levels/lvl_03/textures/page_12.png" id="13_ir0s1"]
+[ext_resource type="Texture2D" uid="uid://bwgsv201b1pce" path="res://assets/levels/lvl_03/textures/page_11.png" id="14_6ep10"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_60n5a"]
 render_priority = 0
 shader = ExtResource("1_s7iks")
-shader_parameter/use_linear_filter = null
+shader_parameter/use_linear_filter = false
 shader_parameter/vertex_color_scale = 1.0
-shader_parameter/original_tint_color = null
-shader_parameter/original_tint_amount = null
-shader_parameter/use_legacy_skin = null
-shader_parameter/legacy_joint_palette = null
-shader_parameter/tunnel_projection = null
-shader_parameter/tunnel_road_point = null
-shader_parameter/tunnel_wall_point = null
-shader_parameter/tunnel_farthest_view_z = null
+shader_parameter/original_tint_color = Vector3(0, 0, 0)
+shader_parameter/original_tint_amount = 0.0
+shader_parameter/use_legacy_skin = false
+shader_parameter/legacy_joint_palette = PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/tunnel_projection = false
+shader_parameter/tunnel_road_point = Vector3(0, 0, 0)
+shader_parameter/tunnel_wall_point = Vector3(0, 0, 0)
+shader_parameter/tunnel_farthest_view_z = -1.0
 shader_parameter/is_textured = false
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fkyx8"]
@@ -35,16 +35,16 @@ render_priority = 0
 shader = ExtResource("1_s7iks")
 shader_parameter/albedo_texture = ExtResource("2_xokof")
 shader_parameter/albedo_texture_linear = ExtResource("2_xokof")
-shader_parameter/use_linear_filter = null
+shader_parameter/use_linear_filter = false
 shader_parameter/vertex_color_scale = 1.9921875
-shader_parameter/original_tint_color = null
-shader_parameter/original_tint_amount = null
-shader_parameter/use_legacy_skin = null
-shader_parameter/legacy_joint_palette = null
-shader_parameter/tunnel_projection = null
-shader_parameter/tunnel_road_point = null
-shader_parameter/tunnel_wall_point = null
-shader_parameter/tunnel_farthest_view_z = null
+shader_parameter/original_tint_color = Vector3(0, 0, 0)
+shader_parameter/original_tint_amount = 0.0
+shader_parameter/use_legacy_skin = false
+shader_parameter/legacy_joint_palette = PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/tunnel_projection = false
+shader_parameter/tunnel_road_point = Vector3(0, 0, 0)
+shader_parameter/tunnel_wall_point = Vector3(0, 0, 0)
+shader_parameter/tunnel_farthest_view_z = -1.0
 shader_parameter/is_textured = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_b5wvy"]
@@ -52,16 +52,16 @@ render_priority = 0
 shader = ExtResource("1_s7iks")
 shader_parameter/albedo_texture = ExtResource("3_f1dcg")
 shader_parameter/albedo_texture_linear = ExtResource("3_f1dcg")
-shader_parameter/use_linear_filter = null
+shader_parameter/use_linear_filter = false
 shader_parameter/vertex_color_scale = 1.9921875
-shader_parameter/original_tint_color = null
-shader_parameter/original_tint_amount = null
-shader_parameter/use_legacy_skin = null
-shader_parameter/legacy_joint_palette = null
-shader_parameter/tunnel_projection = null
-shader_parameter/tunnel_road_point = null
-shader_parameter/tunnel_wall_point = null
-shader_parameter/tunnel_farthest_view_z = null
+shader_parameter/original_tint_color = Vector3(0, 0, 0)
+shader_parameter/original_tint_amount = 0.0
+shader_parameter/use_legacy_skin = false
+shader_parameter/legacy_joint_palette = PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/tunnel_projection = false
+shader_parameter/tunnel_road_point = Vector3(0, 0, 0)
+shader_parameter/tunnel_wall_point = Vector3(0, 0, 0)
+shader_parameter/tunnel_farthest_view_z = -1.0
 shader_parameter/is_textured = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7quhq"]
@@ -69,16 +69,16 @@ render_priority = 0
 shader = ExtResource("1_s7iks")
 shader_parameter/albedo_texture = ExtResource("4_81l23")
 shader_parameter/albedo_texture_linear = ExtResource("4_81l23")
-shader_parameter/use_linear_filter = null
+shader_parameter/use_linear_filter = false
 shader_parameter/vertex_color_scale = 1.9921875
-shader_parameter/original_tint_color = null
-shader_parameter/original_tint_amount = null
-shader_parameter/use_legacy_skin = null
-shader_parameter/legacy_joint_palette = null
-shader_parameter/tunnel_projection = null
-shader_parameter/tunnel_road_point = null
-shader_parameter/tunnel_wall_point = null
-shader_parameter/tunnel_farthest_view_z = null
+shader_parameter/original_tint_color = Vector3(0, 0, 0)
+shader_parameter/original_tint_amount = 0.0
+shader_parameter/use_legacy_skin = false
+shader_parameter/legacy_joint_palette = PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/tunnel_projection = false
+shader_parameter/tunnel_road_point = Vector3(0, 0, 0)
+shader_parameter/tunnel_wall_point = Vector3(0, 0, 0)
+shader_parameter/tunnel_farthest_view_z = -1.0
 shader_parameter/is_textured = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qliqt"]
@@ -86,16 +86,16 @@ render_priority = 0
 shader = ExtResource("1_s7iks")
 shader_parameter/albedo_texture = ExtResource("5_t44yd")
 shader_parameter/albedo_texture_linear = ExtResource("5_t44yd")
-shader_parameter/use_linear_filter = null
+shader_parameter/use_linear_filter = false
 shader_parameter/vertex_color_scale = 1.9921875
-shader_parameter/original_tint_color = null
-shader_parameter/original_tint_amount = null
-shader_parameter/use_legacy_skin = null
-shader_parameter/legacy_joint_palette = null
-shader_parameter/tunnel_projection = null
-shader_parameter/tunnel_road_point = null
-shader_parameter/tunnel_wall_point = null
-shader_parameter/tunnel_farthest_view_z = null
+shader_parameter/original_tint_color = Vector3(0, 0, 0)
+shader_parameter/original_tint_amount = 0.0
+shader_parameter/use_legacy_skin = false
+shader_parameter/legacy_joint_palette = PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/tunnel_projection = false
+shader_parameter/tunnel_road_point = Vector3(0, 0, 0)
+shader_parameter/tunnel_wall_point = Vector3(0, 0, 0)
+shader_parameter/tunnel_farthest_view_z = -1.0
 shader_parameter/is_textured = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5p8ti"]
@@ -103,16 +103,16 @@ render_priority = 0
 shader = ExtResource("1_s7iks")
 shader_parameter/albedo_texture = ExtResource("6_rrysn")
 shader_parameter/albedo_texture_linear = ExtResource("6_rrysn")
-shader_parameter/use_linear_filter = null
+shader_parameter/use_linear_filter = false
 shader_parameter/vertex_color_scale = 1.9921875
-shader_parameter/original_tint_color = null
-shader_parameter/original_tint_amount = null
-shader_parameter/use_legacy_skin = null
-shader_parameter/legacy_joint_palette = null
-shader_parameter/tunnel_projection = null
-shader_parameter/tunnel_road_point = null
-shader_parameter/tunnel_wall_point = null
-shader_parameter/tunnel_farthest_view_z = null
+shader_parameter/original_tint_color = Vector3(0, 0, 0)
+shader_parameter/original_tint_amount = 0.0
+shader_parameter/use_legacy_skin = false
+shader_parameter/legacy_joint_palette = PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/tunnel_projection = false
+shader_parameter/tunnel_road_point = Vector3(0, 0, 0)
+shader_parameter/tunnel_wall_point = Vector3(0, 0, 0)
+shader_parameter/tunnel_farthest_view_z = -1.0
 shader_parameter/is_textured = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_twny0"]
@@ -120,32 +120,32 @@ render_priority = 0
 shader = ExtResource("7_cowqs")
 shader_parameter/albedo_texture = ExtResource("8_cb1i8")
 shader_parameter/albedo_texture_linear = ExtResource("8_cb1i8")
-shader_parameter/use_linear_filter = null
+shader_parameter/use_linear_filter = false
 shader_parameter/vertex_color_scale = 1.9921875
-shader_parameter/original_tint_color = null
-shader_parameter/original_tint_amount = null
-shader_parameter/use_legacy_skin = null
-shader_parameter/legacy_joint_palette = null
-shader_parameter/tunnel_projection = null
-shader_parameter/tunnel_road_point = null
-shader_parameter/tunnel_wall_point = null
-shader_parameter/tunnel_farthest_view_z = null
+shader_parameter/original_tint_color = Vector3(0, 0, 0)
+shader_parameter/original_tint_amount = 0.0
+shader_parameter/use_legacy_skin = false
+shader_parameter/legacy_joint_palette = PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/tunnel_projection = false
+shader_parameter/tunnel_road_point = Vector3(0, 0, 0)
+shader_parameter/tunnel_wall_point = Vector3(0, 0, 0)
+shader_parameter/tunnel_farthest_view_z = -1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vx6xq"]
 render_priority = 0
 shader = ExtResource("1_s7iks")
 shader_parameter/albedo_texture = ExtResource("9_4adf4")
 shader_parameter/albedo_texture_linear = ExtResource("9_4adf4")
-shader_parameter/use_linear_filter = null
+shader_parameter/use_linear_filter = false
 shader_parameter/vertex_color_scale = 1.9921875
-shader_parameter/original_tint_color = null
-shader_parameter/original_tint_amount = null
-shader_parameter/use_legacy_skin = null
-shader_parameter/legacy_joint_palette = null
-shader_parameter/tunnel_projection = null
-shader_parameter/tunnel_road_point = null
-shader_parameter/tunnel_wall_point = null
-shader_parameter/tunnel_farthest_view_z = null
+shader_parameter/original_tint_color = Vector3(0, 0, 0)
+shader_parameter/original_tint_amount = 0.0
+shader_parameter/use_legacy_skin = false
+shader_parameter/legacy_joint_palette = PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/tunnel_projection = false
+shader_parameter/tunnel_road_point = Vector3(0, 0, 0)
+shader_parameter/tunnel_wall_point = Vector3(0, 0, 0)
+shader_parameter/tunnel_farthest_view_z = -1.0
 shader_parameter/is_textured = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_75ewl"]
@@ -153,16 +153,16 @@ render_priority = 0
 shader = ExtResource("1_s7iks")
 shader_parameter/albedo_texture = ExtResource("10_6gkwg")
 shader_parameter/albedo_texture_linear = ExtResource("10_6gkwg")
-shader_parameter/use_linear_filter = null
+shader_parameter/use_linear_filter = false
 shader_parameter/vertex_color_scale = 1.9921875
-shader_parameter/original_tint_color = null
-shader_parameter/original_tint_amount = null
-shader_parameter/use_legacy_skin = null
-shader_parameter/legacy_joint_palette = null
-shader_parameter/tunnel_projection = null
-shader_parameter/tunnel_road_point = null
-shader_parameter/tunnel_wall_point = null
-shader_parameter/tunnel_farthest_view_z = null
+shader_parameter/original_tint_color = Vector3(0, 0, 0)
+shader_parameter/original_tint_amount = 0.0
+shader_parameter/use_legacy_skin = false
+shader_parameter/legacy_joint_palette = PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/tunnel_projection = false
+shader_parameter/tunnel_road_point = Vector3(0, 0, 0)
+shader_parameter/tunnel_wall_point = Vector3(0, 0, 0)
+shader_parameter/tunnel_farthest_view_z = -1.0
 shader_parameter/is_textured = true
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2hi74"]
@@ -170,48 +170,48 @@ render_priority = 0
 shader = ExtResource("7_cowqs")
 shader_parameter/albedo_texture = ExtResource("11_ulgc4")
 shader_parameter/albedo_texture_linear = ExtResource("11_ulgc4")
-shader_parameter/use_linear_filter = null
+shader_parameter/use_linear_filter = false
 shader_parameter/vertex_color_scale = 1.9921875
-shader_parameter/original_tint_color = null
-shader_parameter/original_tint_amount = null
-shader_parameter/use_legacy_skin = null
-shader_parameter/legacy_joint_palette = null
-shader_parameter/tunnel_projection = null
-shader_parameter/tunnel_road_point = null
-shader_parameter/tunnel_wall_point = null
-shader_parameter/tunnel_farthest_view_z = null
+shader_parameter/original_tint_color = Vector3(0, 0, 0)
+shader_parameter/original_tint_amount = 0.0
+shader_parameter/use_legacy_skin = false
+shader_parameter/legacy_joint_palette = PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/tunnel_projection = false
+shader_parameter/tunnel_road_point = Vector3(0, 0, 0)
+shader_parameter/tunnel_wall_point = Vector3(0, 0, 0)
+shader_parameter/tunnel_farthest_view_z = -1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_s5vnl"]
 render_priority = 0
 shader = ExtResource("12_d6076")
 shader_parameter/albedo_texture = ExtResource("13_ir0s1")
 shader_parameter/albedo_texture_linear = ExtResource("13_ir0s1")
-shader_parameter/use_linear_filter = null
+shader_parameter/use_linear_filter = false
 shader_parameter/vertex_color_scale = 1.9921875
-shader_parameter/original_tint_color = null
-shader_parameter/original_tint_amount = null
-shader_parameter/use_legacy_skin = null
-shader_parameter/legacy_joint_palette = null
-shader_parameter/tunnel_projection = null
-shader_parameter/tunnel_road_point = null
-shader_parameter/tunnel_wall_point = null
-shader_parameter/tunnel_farthest_view_z = null
+shader_parameter/original_tint_color = Vector3(0, 0, 0)
+shader_parameter/original_tint_amount = 0.0
+shader_parameter/use_legacy_skin = false
+shader_parameter/legacy_joint_palette = PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/tunnel_projection = false
+shader_parameter/tunnel_road_point = Vector3(0, 0, 0)
+shader_parameter/tunnel_wall_point = Vector3(0, 0, 0)
+shader_parameter/tunnel_farthest_view_z = -1.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fjmk6"]
 render_priority = 0
 shader = ExtResource("7_cowqs")
 shader_parameter/albedo_texture = ExtResource("14_6ep10")
 shader_parameter/albedo_texture_linear = ExtResource("14_6ep10")
-shader_parameter/use_linear_filter = null
+shader_parameter/use_linear_filter = false
 shader_parameter/vertex_color_scale = 1.9921875
-shader_parameter/original_tint_color = null
-shader_parameter/original_tint_amount = null
-shader_parameter/use_legacy_skin = null
-shader_parameter/legacy_joint_palette = null
-shader_parameter/tunnel_projection = null
-shader_parameter/tunnel_road_point = null
-shader_parameter/tunnel_wall_point = null
-shader_parameter/tunnel_farthest_view_z = null
+shader_parameter/original_tint_color = Vector3(0, 0, 0)
+shader_parameter/original_tint_amount = 0.0
+shader_parameter/use_legacy_skin = false
+shader_parameter/legacy_joint_palette = PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+shader_parameter/tunnel_projection = false
+shader_parameter/tunnel_road_point = Vector3(0, 0, 0)
+shader_parameter/tunnel_wall_point = Vector3(0, 0, 0)
+shader_parameter/tunnel_farthest_view_z = -1.0
 
 [resource]
 _surfaces = [{

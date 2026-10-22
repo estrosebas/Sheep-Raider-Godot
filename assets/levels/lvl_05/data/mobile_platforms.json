@@ -1,0 +1,55 @@
+{
+  "platforms": [
+    {
+      "res": 52,
+      "class_id": 118,
+      "class_name": "RCarpetMobile",
+      "model_res": 31,
+      "pos": [
+        -10.19,
+        5.63,
+        34.980000000000004
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ],
+      "props": {
+        "0x0": 100,
+        "0x4": 559
+      },
+      "directory": "res://assets/levels/lvl_05/models/31",
+      "boxes": [
+        {
+          "flags": 0,
+          "min": [
+            -69,
+            -22,
+            -98
+          ],
+          "max": [
+            68,
+            0,
+            100
+          ]
+        }
+      ],
+      "trajectory": [
+        [
+          -1023,
+          -576,
+          3496
+        ],
+        [
+          -1023,
+          -576,
+          4470
+        ]
+      ],
+      "speed_ratio": 1.0,
+      "switch_speed": 4.0,
+      "source": "rcarpetmobile.cpp::PostLoadInit/HandleMessage/Move"
+    }
+  ]
+}

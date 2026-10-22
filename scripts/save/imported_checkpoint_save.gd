@@ -21,8 +21,9 @@ func capture_checkpoint():
 	var items: Array = []
 	for item in player.inventory.state.items.values():
 		if item.get("kept",false): items.append(item.duplicate(true))
-	var world = {"items":[],"sheep":[],"mailboxes":[],"rocks":[],"pushables":[],"weighted_platforms":[],"gates":[],"rafts":[]}
+	var world = {"items":[],"sheep":[],"mailboxes":[],"rocks":[],"pushables":[],"weighted_platforms":[],"gates":[],"rafts":[],"mobile_platforms":[]}
 	for child in level.get_children():
+		if child.is_in_group("mobile_platforms"): world.mobile_platforms.append({"resource":int(child.get_meta("original_resource")),"distance":child.distance})
 		if child is OriginalRaft: world.rafts.append({"resource":int(child.get_meta("original_resource")),"position":SaveFiles.vector(child.global_position)})
 		if child.is_in_group("falling_gates"): world.gates.append({"resource":int(child.get_meta("original_resource")),"opened":child.opened,"latched":child.latched})
 		if child is GameItem:
@@ -74,6 +75,9 @@ func restore_checkpoint(record: Dictionary) -> bool:
 	player.cinematic_controls_locked = false
 	player.respawn_at_checkpoint()
 	for child in level.get_children():
+		if child.is_in_group("mobile_platforms"):
+			for platform in record.world.get("mobile_platforms",[]):
+				if int(platform.resource)==int(child.get_meta("original_resource")): child.set_distance(float(platform.distance))
 		if child is OriginalRaft:
 			for raft in record.world.get("rafts",[]):
 				if int(raft.resource)==int(child.get_meta("original_resource")):

@@ -1,0 +1,40 @@
+{
+  "sheets": {
+    "water": [
+      "res://assets/levels/lvl_05/effects/water/frame_0.png",
+      "res://assets/levels/lvl_05/effects/water/frame_1.png",
+      "res://assets/levels/lvl_05/effects/water/frame_2.png"
+    ]
+  },
+  "water_anchors": [
+    [
+      37.59441176470588,
+      -18.01,
+      -33.411274509803924
+    ],
+    [
+      -47.39000000000001,
+      -19.25,
+      20.7
+    ],
+    [
+      36.97266666666667,
+      -18.0,
+      -23.42
+    ]
+  ],
+  "river_spray": true,
+  "source": {
+    "scroll_header": "WAR type 0x83",
+    "scroll_lists": [
+      393,
+      407,
+      401,
+      402
+    ],
+    "reverse_mask": 0,
+    "water_sprite": "DAV_IDI_IGLTIDE_",
+    "water_regions": "WAR_IDO_WATERBOX (54)",
+    "hazard": "Native class 50/117 entities select their shared water hazard controller"
+  }
+}

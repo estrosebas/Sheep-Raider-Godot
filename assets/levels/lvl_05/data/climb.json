@@ -1,0 +1,29 @@
+{
+  "source": "Wolf::PostLoadInit / ClimbStep / CLIMB_ZONE / ClampDeltaToBox",
+  "source_level": "Lvl-05",
+  "resource": 582,
+  "zones": [
+    {
+      "index": 0,
+      "flags": 536870912,
+      "min": [
+        -400,
+        -686,
+        2125
+      ],
+      "max": [
+        399,
+        413,
+        2325
+      ],
+      "heading": 0,
+      "clamp_top": false,
+      "walkable": false
+    }
+  ],
+  "speed": 1.0,
+  "acceleration": 10.0,
+  "deceleration": 10.0,
+  "wall_push_seconds": 1.0,
+  "idle_sound_id": 40
+}

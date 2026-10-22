@@ -125,5 +125,17 @@ func step(sheep: OriginalSheep, delta: float) -> void:
 				tired = not tired
 				select_clip(actor,"sheep_carry_tired" if tired else "sheep_carry_idle")
 	actor.was_on_floor = on_ground
+	# Wolf::Move applies registered MSG_MODIFY_MOVE riders in carry mode too.
+	# Keep the untethered velocity for the next tick, as ordinary walking does.
+	var base_velocity = actor.velocity
+	var elastic_adjusted = false
+	for elastic in actor.get_tree().get_nodes_in_group("elastic_controllers"):
+		if elastic.get_world_3d()==actor.get_world_3d(): elastic_adjusted = elastic.modify_move(actor,delta) or elastic_adjusted
+	if is_instance_valid(actor.elastic_motion_owner): return
 	actor.move_and_slide()
+	if elastic_adjusted:
+		actor.velocity = base_velocity
+		for index in range(actor.get_slide_collision_count()):
+			var normal = actor.get_slide_collision(index).get_normal()
+			if actor.velocity.dot(normal)<0: actor.velocity = actor.velocity.slide(normal)
 	actor.check_void_below()

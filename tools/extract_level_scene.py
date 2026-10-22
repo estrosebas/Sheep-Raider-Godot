@@ -103,5 +103,8 @@ def main():
         'spawn':next(e for e in entities if e['class_id']==0),'collision_triangles':len(triangles),
         'scenery_vertices':sum(len(g['verts']) for g in banks['scenery'].values()),'sky_vertices':sum(len(g['verts']) for g in banks['sky'].values())}
     save(out/'data/manifest.json',manifest)
+    if not verify:
+        from extract_level_background import extract
+        extract(folder)
     print(folder.name,'entities',len(entities),'models',len(models),'triangles',len(triangles),'pages',len(materials),'verified=',verify)
 if __name__=='__main__':main()

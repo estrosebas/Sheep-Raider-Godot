@@ -1,0 +1,18 @@
+{
+  "40": {
+    "path": "res://assets/audio/sfx/climb_40.wav",
+    "loop": true
+  },
+  "14": {
+    "path": "res://assets/audio/sfx/climb_14.wav",
+    "loop": false
+  },
+  "129": {
+    "path": "res://assets/audio/sfx/climb_129.wav",
+    "loop": false
+  },
+  "77": {
+    "path": "res://assets/audio/sfx/climb_77.wav",
+    "loop": false
+  }
+}

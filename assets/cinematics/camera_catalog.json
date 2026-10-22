@@ -14,6 +14,11 @@
       "director": "LevelCinematics",
       "first": "lvl04_intro_camera",
       "last": "lvl04_intro_camera"
+    },
+    "res://assets/levels/lvl_05": {
+      "director": "LevelCinematics",
+      "first": "lvl05_intro_camera",
+      "last": "lvl05_intro_camera"
     }
   },
   "sequences": {
@@ -179,6 +184,15 @@
       "trigger": "tutorial",
       "return_transition": "none",
       "description": "Lucas, el elfo y la flauta mÃ¡gica"
+    },
+    "lvl05_intro_camera": {
+      "source": "res://assets/levels/lvl_05/cinematics/sequence_0.json",
+      "level": "lvl_05",
+      "cine_id": 0,
+      "kind": "intro_cinematic",
+      "trigger": "level_entry",
+      "return_transition": "iris",
+      "description": "Recorrido nativo de entrada del nivel 05"
     }
   },
   "procedural_cameras": {

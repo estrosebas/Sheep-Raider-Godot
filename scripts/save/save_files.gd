@@ -129,6 +129,10 @@ static func valid_imported_record(record: Dictionary) -> bool:
 		if not rock is Dictionary or not rock.has("resource") or not rock.get("broken") is bool: return false
 	if not record.world.get("pushables",[]) is Array: return false
 	if not record.world.get("gates",[]) is Array: return false
+	if not record.world.get("mobile_platforms",[]) is Array: return false
+	for platform in record.world.get("mobile_platforms",[]):
+		if not platform is Dictionary or not platform.has("resource") or (not platform.get("distance") is int and not platform.get("distance") is float): return false
+		if not is_finite(float(platform.distance)) or float(platform.distance)<0: return false
 	for gate in record.world.get("gates",[]):
 		if not gate is Dictionary or not gate.has("resource") or not gate.get("opened") is bool or not gate.get("latched") is bool: return false
 	if not record.world.get("weighted_platforms",[]) is Array: return false

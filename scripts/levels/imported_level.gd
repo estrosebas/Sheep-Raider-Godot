@@ -13,6 +13,19 @@ var help_visible = false
 func _ready() -> void:
 	manifest = JSON.parse_string(FileAccess.get_file_as_string(asset_directory+"/data/manifest.json"))
 	entities = JSON.parse_string(FileAccess.get_file_as_string(asset_directory+"/data/entities.json"))
+	preload("res://scripts/levels/original_climb_zone.gd").install(self,asset_directory+"/data/climb.json")
+	# Load_DAVnWAR clears to the WAR header's per-level RGB, behind the sky
+	# and transparent water. Keep resources local when opening/reloading levels.
+	if FileAccess.file_exists(asset_directory+"/data/background.json"):
+		var backdrop: Dictionary = JSON.parse_string(FileAccess.get_file_as_string(asset_directory+"/data/background.json"))
+		# Legacy materials retain source RGB. Their river gradients terminate
+		# at header RGB; the PC half-color would expose a dark seam here.
+		var rgb: Array = backdrop.get("render_clear_rgb",backdrop.pc_clear_rgb)
+		var world_environment = get_node_or_null("WorldEnvironment") as WorldEnvironment
+		if world_environment and world_environment.environment:
+			world_environment.environment = world_environment.environment.duplicate()
+			world_environment.environment.background_mode = Environment.BG_COLOR
+			world_environment.environment.background_color = Color8(int(rgb[0]),int(rgb[1]),int(rgb[2]))
 	# Persist terrain in the scene so the editor can display it without running
 	# the gameplay importer. Other imported scenes can still create it on load.
 	var scenery = get_node_or_null("Scenery") as MeshInstance3D

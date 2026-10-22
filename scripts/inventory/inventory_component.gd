@@ -137,6 +137,7 @@ func register_use_handler(kind: int, handler: Callable) -> void:
 	use_handlers[kind] = handler
 
 func use_selected() -> bool:
+	if actor is RalphController and actor.climb_motion.active(): return false
 	if actor is RalphController and is_instance_valid(actor.carried_sheep): return false
 	var item = state.get_selected_object()
 	if item.is_empty() or wheel_open or not actor.can_use_item():
@@ -171,6 +172,7 @@ func interact_or_use() -> void:
 func interaction_target() -> Node3D:
 	if not actor.can_use_item():
 		return null
+	if actor.climb_motion.climbing(): return actor.climb_motion.zone
 	var nearest: Node3D = null
 	var best = 2.5
 	for pickup in get_tree().get_nodes_in_group("inventory_pickups"):

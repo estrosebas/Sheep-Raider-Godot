@@ -1,0 +1,267 @@
+{
+  "items": [
+    {
+      "res": 86,
+      "class_id": 42,
+      "class_name": "elastic",
+      "model_res": 4,
+      "pos": [
+        1.43,
+        7.96,
+        -9.56
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ],
+      "props": {
+        "0x0": 3200,
+        "0x4": 1200,
+        "0x8": 0,
+        "0xc": 1000,
+        "0x10": 1000
+      },
+      "max_length": 10.0,
+      "distance": 32.0,
+      "height": 12.0,
+      "speed": 10.0
+    }
+  ],
+  "trees": [
+    {
+      "res": 62,
+      "class_id": 45,
+      "class_name": "ElasticTree",
+      "model_res": 33,
+      "pos": [
+        7.21,
+        0.0,
+        -2.47
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ],
+      "props": {
+        "0x0": 0,
+        "0x4": 576
+      },
+      "directory": "res://assets/levels/lvl_05/models/33",
+      "pull_up_point": [
+        723,
+        -1008,
+        -138
+      ],
+      "pull_up_box": {
+        "min": [
+          723,
+          -1008,
+          -138
+        ],
+        "max": [
+          733,
+          -998,
+          -128
+        ]
+      },
+      "restriction": 0
+    },
+    {
+      "res": 63,
+      "class_id": 45,
+      "class_name": "ElasticTree",
+      "model_res": 32,
+      "pos": [
+        -10.88,
+        6.03,
+        33.07
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ],
+      "props": {
+        "0x0": 0,
+        "0x4": 578
+      },
+      "directory": "res://assets/levels/lvl_05/models/32",
+      "pull_up_point": [
+        -1086,
+        -1612,
+        3341
+      ],
+      "pull_up_box": {
+        "min": [
+          -1086,
+          -1612,
+          3341
+        ],
+        "max": [
+          -1076,
+          -1602,
+          3351
+        ]
+      },
+      "restriction": 0
+    },
+    {
+      "res": 64,
+      "class_id": 45,
+      "class_name": "ElasticTree",
+      "model_res": 33,
+      "pos": [
+        -10.89,
+        6.03,
+        46.7
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ],
+      "props": {
+        "0x0": 0,
+        "0x4": 579
+      },
+      "directory": "res://assets/levels/lvl_05/models/33",
+      "pull_up_point": [
+        -1088,
+        -1612,
+        4637
+      ],
+      "pull_up_box": {
+        "min": [
+          -1088,
+          -1612,
+          4637
+        ],
+        "max": [
+          -1078,
+          -1602,
+          4647
+        ]
+      },
+      "restriction": 0
+    },
+    {
+      "res": 65,
+      "class_id": 45,
+      "class_name": "ElasticTree",
+      "model_res": 33,
+      "pos": [
+        32.99,
+        0.0,
+        -6.84
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ],
+      "props": {
+        "0x0": 0,
+        "0x4": 574
+      },
+      "directory": "res://assets/levels/lvl_05/models/33",
+      "pull_up_point": [
+        3294,
+        -1008,
+        -692
+      ],
+      "pull_up_box": {
+        "min": [
+          3294,
+          -1008,
+          -692
+        ],
+        "max": [
+          3304,
+          -998,
+          -682
+        ]
+      },
+      "restriction": 0
+    },
+    {
+      "res": 67,
+      "class_id": 45,
+      "class_name": "ElasticTree",
+      "model_res": 32,
+      "pos": [
+        17.06,
+        0.0,
+        -2.32
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ],
+      "props": {
+        "0x0": 0,
+        "0x4": 575
+      },
+      "directory": "res://assets/levels/lvl_05/models/32",
+      "pull_up_point": [
+        1708,
+        -1008,
+        -169
+      ],
+      "pull_up_box": {
+        "min": [
+          1708,
+          -1008,
+          -169
+        ],
+        "max": [
+          1718,
+          -998,
+          -159
+        ]
+      },
+      "restriction": 0
+    },
+    {
+      "res": 71,
+      "class_id": 45,
+      "class_name": "ElasticTree",
+      "model_res": 32,
+      "pos": [
+        32.25,
+        4.0,
+        28.94
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ],
+      "props": {
+        "0x0": 0,
+        "0x4": 577
+      },
+      "directory": "res://assets/levels/lvl_05/models/32",
+      "pull_up_point": [
+        3153,
+        -1411,
+        2894
+      ],
+      "pull_up_box": {
+        "min": [
+          3153,
+          -1411,
+          2894
+        ],
+        "max": [
+          3163,
+          -1401,
+          2904
+        ]
+      },
+      "restriction": 0
+    }
+  ]
+}

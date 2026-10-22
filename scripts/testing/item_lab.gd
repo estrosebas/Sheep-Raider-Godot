@@ -8,7 +8,7 @@ const SheepReceiver = preload("res://scripts/items/original_sheep.gd")
 func _ready() -> void:
 	$HUD.hide()
 	player.inventory.allow_world_placement = true
-	for i in range(5):
+	for i in range(6):
 		var door = LabLevelDoor.new()
 		var identity = "%02d" % i
 		door.name = "LevelDoor_"+identity

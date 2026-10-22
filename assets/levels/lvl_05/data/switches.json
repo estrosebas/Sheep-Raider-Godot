@@ -1,0 +1,445 @@
+{
+  "buttons": [
+    {
+      "res": 48,
+      "class_id": 24,
+      "class_name": "SensibleButton",
+      "model_res": 13,
+      "pos": [
+        -58.550000000000004,
+        8.0,
+        10.01
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ],
+      "props": {
+        "0x0": 491,
+        "0x4": 493,
+        "0x8": 1
+      },
+      "directory": "res://assets/levels/lvl_05/models/13",
+      "boxes": [
+        {
+          "flags": 0,
+          "min": [
+            -35,
+            -45,
+            -37
+          ],
+          "max": [
+            40,
+            0,
+            36
+          ]
+        }
+      ],
+      "targets": [
+        66,
+        68
+      ]
+    },
+    {
+      "res": 50,
+      "class_id": 24,
+      "class_name": "SensibleButton",
+      "model_res": 13,
+      "pos": [
+        -9.5,
+        -2.0,
+        38.95
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ],
+      "props": {
+        "0x0": 477,
+        "0x4": 0,
+        "0x8": 0
+      },
+      "directory": "res://assets/levels/lvl_05/models/13",
+      "boxes": [
+        {
+          "flags": 0,
+          "min": [
+            -35,
+            -45,
+            -37
+          ],
+          "max": [
+            40,
+            0,
+            36
+          ]
+        }
+      ],
+      "targets": [
+        52
+      ]
+    },
+    {
+      "res": 51,
+      "class_id": 24,
+      "class_name": "SensibleButton",
+      "model_res": 13,
+      "pos": [
+        13.84,
+        6.0,
+        39.04
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ],
+      "props": {
+        "0x0": 471,
+        "0x4": 0,
+        "0x8": 0
+      },
+      "directory": "res://assets/levels/lvl_05/models/13",
+      "boxes": [
+        {
+          "flags": 0,
+          "min": [
+            -35,
+            -45,
+            -37
+          ],
+          "max": [
+            40,
+            0,
+            36
+          ]
+        }
+      ],
+      "targets": [
+        46
+      ]
+    },
+    {
+      "res": 53,
+      "class_id": 24,
+      "class_name": "SensibleButton",
+      "model_res": 13,
+      "pos": [
+        -42.01,
+        8.0,
+        -16.01
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ],
+      "props": {
+        "0x0": 494,
+        "0x4": 495,
+        "0x8": 1
+      },
+      "directory": "res://assets/levels/lvl_05/models/13",
+      "boxes": [
+        {
+          "flags": 0,
+          "min": [
+            -35,
+            -45,
+            -37
+          ],
+          "max": [
+            40,
+            0,
+            36
+          ]
+        }
+      ],
+      "targets": [
+        69,
+        70
+      ]
+    },
+    {
+      "res": 54,
+      "class_id": 24,
+      "class_name": "SensibleButton",
+      "model_res": 13,
+      "pos": [
+        -23.990000000000002,
+        8.0,
+        -15.99
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ],
+      "props": {
+        "0x0": 497,
+        "0x4": 498,
+        "0x8": 1
+      },
+      "directory": "res://assets/levels/lvl_05/models/13",
+      "boxes": [
+        {
+          "flags": 0,
+          "min": [
+            -35,
+            -45,
+            -37
+          ],
+          "max": [
+            40,
+            0,
+            36
+          ]
+        }
+      ],
+      "targets": [
+        72,
+        73
+      ]
+    }
+  ],
+  "lifts": [],
+  "gates": [
+    {
+      "res": 66,
+      "class_id": 26,
+      "class_name": "FallingGate",
+      "model_res": 17,
+      "pos": [
+        -54.95,
+        -1.0,
+        10.16
+      ],
+      "rot": [
+        0,
+        2047,
+        0
+      ],
+      "props": {
+        "0x0": 1,
+        "0x4": 1,
+        "0x8": 569,
+        "0xc": 0,
+        "0x10": 11
+      },
+      "directory": "res://assets/levels/lvl_05/gate_models/0",
+      "boxes": [
+        {
+          "flags": 0,
+          "min": [
+            -193,
+            -363,
+            -61
+          ],
+          "max": [
+            189,
+            -15,
+            46
+          ]
+        }
+      ]
+    },
+    {
+      "res": 68,
+      "class_id": 26,
+      "class_name": "FallingGate",
+      "model_res": 17,
+      "pos": [
+        -51.07,
+        -1.0,
+        10.19
+      ],
+      "rot": [
+        0,
+        2049,
+        0
+      ],
+      "props": {
+        "0x0": 1,
+        "0x4": 1,
+        "0x8": 569,
+        "0xc": 0,
+        "0x10": 11
+      },
+      "directory": "res://assets/levels/lvl_05/gate_models/0",
+      "boxes": [
+        {
+          "flags": 0,
+          "min": [
+            -193,
+            -363,
+            -61
+          ],
+          "max": [
+            189,
+            -15,
+            46
+          ]
+        }
+      ]
+    },
+    {
+      "res": 69,
+      "class_id": 26,
+      "class_name": "FallingGate",
+      "model_res": 17,
+      "pos": [
+        -43.0,
+        -1.0,
+        -9.08
+      ],
+      "rot": [
+        0,
+        1023,
+        0
+      ],
+      "props": {
+        "0x0": 0,
+        "0x4": 1,
+        "0x8": 570,
+        "0xc": 0,
+        "0x10": 15
+      },
+      "directory": "res://assets/levels/lvl_05/gate_models/4",
+      "boxes": [
+        {
+          "flags": 0,
+          "min": [
+            -55,
+            -363,
+            -199
+          ],
+          "max": [
+            51,
+            -15,
+            184
+          ]
+        }
+      ]
+    },
+    {
+      "res": 70,
+      "class_id": 26,
+      "class_name": "FallingGate",
+      "model_res": 17,
+      "pos": [
+        -42.96,
+        -1.0,
+        -12.93
+      ],
+      "rot": [
+        0,
+        1023,
+        0
+      ],
+      "props": {
+        "0x0": 0,
+        "0x4": 1,
+        "0x8": 570,
+        "0xc": 0,
+        "0x10": 15
+      },
+      "directory": "res://assets/levels/lvl_05/gate_models/4",
+      "boxes": [
+        {
+          "flags": 0,
+          "min": [
+            -55,
+            -363,
+            -199
+          ],
+          "max": [
+            51,
+            -15,
+            184
+          ]
+        }
+      ]
+    },
+    {
+      "res": 72,
+      "class_id": 26,
+      "class_name": "FallingGate",
+      "model_res": 17,
+      "pos": [
+        -25.26,
+        -1.0,
+        -7.11
+      ],
+      "rot": [
+        0,
+        1023,
+        0
+      ],
+      "props": {
+        "0x0": 0,
+        "0x4": 1,
+        "0x8": 571,
+        "0xc": 0,
+        "0x10": 15
+      },
+      "directory": "res://assets/levels/lvl_05/gate_models/4",
+      "boxes": [
+        {
+          "flags": 0,
+          "min": [
+            -55,
+            -363,
+            -199
+          ],
+          "max": [
+            51,
+            -15,
+            184
+          ]
+        }
+      ]
+    },
+    {
+      "res": 73,
+      "class_id": 26,
+      "class_name": "FallingGate",
+      "model_res": 17,
+      "pos": [
+        -25.21,
+        -1.0,
+        -10.950000000000001
+      ],
+      "rot": [
+        0,
+        1023,
+        0
+      ],
+      "props": {
+        "0x0": 0,
+        "0x4": 1,
+        "0x8": 571,
+        "0xc": 0,
+        "0x10": 15
+      },
+      "directory": "res://assets/levels/lvl_05/gate_models/4",
+      "boxes": [
+        {
+          "flags": 0,
+          "min": [
+            -55,
+            -363,
+            -199
+          ],
+          "max": [
+            51,
+            -15,
+            184
+          ]
+        }
+      ]
+    }
+  ],
+  "triggered_stones": []
+}

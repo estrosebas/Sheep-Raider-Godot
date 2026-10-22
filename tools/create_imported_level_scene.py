@@ -5,6 +5,10 @@ root=Path(__file__).resolve().parents[1]
 slug=sys.argv[1];identity=slug.removeprefix('lvl_');base=f'res://assets/levels/{slug}'
 manifest=json.loads((root/'assets/levels'/slug/'data/manifest.json').read_text(encoding='utf8'))
 x,y,z=manifest['spawn']['pos']
+background_path=root/'assets/levels'/slug/'data/background.json'
+background_data=json.loads(background_path.read_text(encoding='utf8')) if background_path.exists() else {}
+background=background_data.get('render_clear_rgb',background_data.get('pc_clear_rgb'))
+background_color=','.join(str(channel/255.0) for channel in background) if background else '0.52,0.66,0.82'
 scene=f'''[gd_scene load_steps=6 format=3]
 [ext_resource type="Script" path="res://scripts/levels/imported_level.gd" id="1"]
 [ext_resource type="PackedScene" path="res://scenes/characters/Ralph.tscn" id="2"]
@@ -12,7 +16,7 @@ scene=f'''[gd_scene load_steps=6 format=3]
 [ext_resource type="ArrayMesh" path="{base}/scenery.tres" id="4"]
 [sub_resource type="Environment" id="environment"]
 background_mode = 1
-background_color = Color(0.52,0.66,0.82,1)
+background_color = Color({background_color},1)
 tonemap_mode = 0
 [node name="Level{identity}" type="Node3D"]
 script = ExtResource("1")

@@ -72,7 +72,8 @@ enum WolfState {
 	COVER_ENTER,
 	COVER_HIDDEN,
 	FLUTE_IDLE,
-	FLUTE_WALK
+	FLUTE_WALK,
+	CLIMB
 }
 
 var current_state: WolfState = WolfState.IDLE
@@ -201,6 +202,9 @@ func _ready() -> void:
 		run_data.animations.merge(JSON.parse_string(FileAccess.get_file_as_string("res://assets/models/ralph_shark_data.json")),true)
 	if loop_audio_player:
 		loop_audio_player.finished.connect(_on_run_sound_finished)
+	if FileAccess.file_exists("res://assets/models/ralph_climb_data.json"):
+		run_data.animations.merge(JSON.parse_string(FileAccess.get_file_as_string("res://assets/models/ralph_climb_data.json")),true)
+		run_data.sounds.merge(JSON.parse_string(FileAccess.get_file_as_string("res://assets/models/ralph_climb_audio.json")),true)
 	if animation_player and animation_player.has_animation("idle"):
 		animation_player.play("idle")
 
@@ -247,6 +251,7 @@ var elastic_motion_owner: Node3D
 var elastic_pull_controller: Node3D
 var water_motion = preload("res://scripts/player/original_water_motion.gd").new()
 var rock_cover = preload("res://scripts/player/original_rock_cover.gd").new()
+var climb_motion = preload("res://scripts/player/original_climb_motion.gd").new()
 
 func _process(delta: float) -> void:
 	if is_instance_valid(elastic_pull_controller) or is_instance_valid(elastic_motion_owner):
@@ -286,6 +291,7 @@ func _physics_process(delta: float) -> void:
 		return
 	if cinematic_controls_locked:
 		return
+	if climb_motion.step(self,delta): return
 	if is_instance_valid(elastic_pull_controller):
 		elastic_pull_controller.step_pull(self,delta); return
 	if water_motion.step(self,delta): return
@@ -716,6 +722,7 @@ func on_rock_crush(rock: CollisionObject3D) -> bool:
 	return true
 
 func respawn_at_checkpoint() -> void:
+	climb_motion.clear(self)
 	seesaw_launching = false
 	water_motion.reset(self)
 	if is_instance_valid(crushing_rock):
@@ -751,6 +758,7 @@ func respawn_at_checkpoint() -> void:
 	respawned.emit()
 
 func interrupt_actions() -> void:
+	climb_motion.clear(self)
 	if is_instance_valid(elastic_motion_owner): elastic_motion_owner.cancel_motion()
 	if is_instance_valid(elastic_pull_controller): elastic_pull_controller.cancel_motion()
 	if seesaw_launching:
@@ -794,6 +802,8 @@ func interrupt_actions() -> void:
 func set_state(new_state: WolfState) -> void:
 	if current_state == new_state:
 		return
+	if new_state!=WolfState.CLIMB and climb_motion.climbing(): climb_motion.clear(self)
+	if new_state in [WolfState.PIT_FALL,WolfState.BLAST_DEATH,WolfState.SAM_DEATH]: climb_motion.clear(self)
 	if new_state not in [WolfState.COVER_ENTER,WolfState.COVER_HIDDEN]: rock_cover.clear(self)
 	if dizzy_effect: dizzy_effect.stop()
 	if new_state == WolfState.PIT_FALL:
@@ -942,6 +952,7 @@ func handle_audio(delta: float, is_moving: bool, on_ground: bool) -> void:
 			sneak_step_count += 1
 
 func can_use_inventory() -> bool:
+	if climb_motion.active(): return false
 	if is_instance_valid(elastic_motion_owner) or is_instance_valid(elastic_pull_controller): return false
 	if is_instance_valid(push_target) or is_instance_valid(active_bush): return false
 	if launch_controls_locked or cinematic_controls_locked or tutorial_movement_locked or restart_fade_remaining > 0:
@@ -955,6 +966,7 @@ func hidden_from_observer(observer: Vector3) -> bool:
 	return rock_cover.hidden_from(self,observer)
 
 func can_use_item() -> bool:
+	if climb_motion.climbing(): return not cinematic_controls_locked and not launch_controls_locked and restart_fade_remaining<=0
 	if is_instance_valid(elastic_pull_controller): return not cinematic_controls_locked and restart_fade_remaining<=0
 	return can_use_inventory() or is_instance_valid(active_rocket)
 

@@ -1,0 +1,88 @@
+{
+  "catapults": [
+    {
+      "res": 46,
+      "class_id": 56,
+      "class_name": "Catapult",
+      "model_res": 12,
+      "pos": [
+        9.700000000000001,
+        6.0,
+        39.04
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ],
+      "props": {
+        "0x0": 580,
+        "0x4": 86,
+        "0x8": 144,
+        "0xc": 145,
+        "0x10": 90,
+        "0x14": 500,
+        "0x18": 572,
+        "0x1c": 0,
+        "0x20": 4294967161,
+        "0x24": 560
+      },
+      "directory": "res://assets/levels/lvl_05/models/12",
+      "boxes": [
+        {
+          "flags": 0,
+          "min": [
+            -229,
+            -87,
+            -172
+          ],
+          "max": [
+            232,
+            0,
+            160
+          ]
+        }
+      ],
+      "activation": [
+        {
+          "flags": 0,
+          "min": [
+            1073,
+            -700,
+            3704
+          ],
+          "max": [
+            1223,
+            -600,
+            3804
+          ]
+        }
+      ],
+      "trajectory": [
+        [
+          1169,
+          -784,
+          3903
+        ],
+        [
+          -714,
+          -1197,
+          3903
+        ],
+        [
+          -2473,
+          226,
+          3903
+        ]
+      ],
+      "max_throw_offset": 5.0,
+      "arm_lengths": [
+        0.86,
+        1.44,
+        1.45
+      ],
+      "source": "catapult.cpp::PostLoadInit/Launch/Control",
+      "status": "Imported model, animations, collision and native configuration; operating controller pending"
+    }
+  ]
+}

@@ -1,0 +1,93 @@
+[gd_resource type="ArrayMesh" format=4]
+
+[ext_resource type="Shader" path="res://shaders/retro_opaque.gdshader" id="1_rc7l6"]
+[ext_resource type="Texture2D" path="res://assets/levels/lvl_05/textures/page_0.png" id="2_bvmi3"]
+[ext_resource type="Shader" path="res://shaders/retro_blend.gdshader" id="3_q5gh6"]
+[ext_resource type="Texture2D" path="res://assets/levels/lvl_05/textures/page_7.png" id="4_6ktbu"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_lxatq"]
+render_priority = 0
+shader = ExtResource("1_rc7l6")
+shader_parameter/use_linear_filter = null
+shader_parameter/vertex_color_scale = 1.0
+shader_parameter/original_tint_color = null
+shader_parameter/original_tint_amount = null
+shader_parameter/use_legacy_skin = null
+shader_parameter/legacy_joint_palette = null
+shader_parameter/tunnel_projection = null
+shader_parameter/tunnel_road_point = null
+shader_parameter/tunnel_wall_point = null
+shader_parameter/tunnel_farthest_view_z = null
+shader_parameter/is_textured = false
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d67im"]
+render_priority = 0
+shader = ExtResource("1_rc7l6")
+shader_parameter/albedo_texture = ExtResource("2_bvmi3")
+shader_parameter/albedo_texture_linear = ExtResource("2_bvmi3")
+shader_parameter/use_linear_filter = null
+shader_parameter/vertex_color_scale = 1.9921875
+shader_parameter/original_tint_color = null
+shader_parameter/original_tint_amount = null
+shader_parameter/use_legacy_skin = null
+shader_parameter/legacy_joint_palette = null
+shader_parameter/tunnel_projection = null
+shader_parameter/tunnel_road_point = null
+shader_parameter/tunnel_wall_point = null
+shader_parameter/tunnel_farthest_view_z = null
+shader_parameter/is_textured = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6kbpm"]
+render_priority = 0
+shader = ExtResource("3_q5gh6")
+shader_parameter/albedo_texture = ExtResource("4_6ktbu")
+shader_parameter/albedo_texture_linear = ExtResource("4_6ktbu")
+shader_parameter/use_linear_filter = null
+shader_parameter/vertex_color_scale = 1.9921875
+shader_parameter/original_tint_color = null
+shader_parameter/original_tint_amount = null
+shader_parameter/use_legacy_skin = null
+shader_parameter/legacy_joint_palette = null
+shader_parameter/tunnel_projection = null
+shader_parameter/tunnel_road_point = null
+shader_parameter/tunnel_wall_point = null
+shader_parameter/tunnel_farthest_view_z = null
+
+[resource]
+_surfaces = [{
+"aabb": AABB(-0.42, 0.0062, -0.2038, 0.86249995, 1.01, 0.4326),
+"attribute_data": PackedByteArray("JWC8/wAAAAAAAAAAJWC8/wAAAAAAAAAAJWC8/wAAAAAAAAAAJWC8/wAAAAAAAAAAJWC8/wAAAAAAAAAAJWC8/wAAAAAAAAAAJWC8/wAAAAAAAAAAJWC8/wAAAAAAAAAAJWC8/wAAAAAAAAAAJWC8/wAAAAAAAAAAJWC8/wAAAAAAAAAAJWC8/wAAAAAAAAAAJWC8/wAAAAAAAAAAJWC8/wAAAAAAAAAAJWC8/wAAAAAAAAAAJWC8/wAAAAAAAAAAJWC8/wAAAAAAAAAAJWC8/wAAAAAAAAAAJWC8/wAAAAAAAAAAJWC8/wAAAAAAAAAAJWC8/wAAAAAAAAAAJWC8/wAAAAAAAAAAJWC8/wAAAAAAAAAAJWC8/wAAAAAAAAAAJWC8/wAAAAAAAAAAJWC8/wAAAAAAAAAAJWC8/wAAAAAAAAAAJWC8/wAAAAAAAAAAJWC8/wAAAAAAAAAAJWC8/wAAAAAAAAAAJWC8/wAAAAAAAAAAJWC8/wAAAAAAAAAAJWC8/wAAAAAAAAAAJWC8/wAAAAAAAAAAJWC8/wAAAAAAAAAAJWC8/wAAAAAAAAAAJWC8/wAAAAAAAAAAJWC8/wAAAAAAAAAAJWC8/wAAAAAAAAAAJWC8/wAAAAAAAAAAJWC8/wAAAAAAAAAAJWC8/wAAAAAAAAAAJWC8/wAAAAAAAAAAJWC8/wAAAAAAAAAAJWC8/wAAAAAAAAAAJWC8/wAAAAAAAAAAJWC8/wAAAAAAAAAAJWC8/wAAAAAAAAAAJWC8/wAAAAAAAAAAJWC8/wAAAAAAAAAAJWC8/wAAAAAAAAAA"),
+"bone_aabbs": [AABB(0, 0, 0, -1, -1, -1), AABB(-0.42, 0.0062, -0.2038, 0.86249995, 0.1713, 0.4326), AABB(-0.42, 0.5212, -0.2038, 0.028809994, 0.49500996, 0.43129998), AABB(0.405, 0.5012, -0.2038, 0.037510008, 0.4913, 0.43129998)],
+"format": 34359741465,
+"material": SubResource("ShaderMaterial_lxatq"),
+"name": "mat_page_-1",
+"primitive": 3,
+"skin_data": PackedByteArray("AwAAAAAAAAD//wAAAAAAAAMAAAAAAAAA//8AAAAAAAACAAAAAAAAAP//AAAAAAAAAgAAAAAAAAD//wAAAAAAAAIAAAAAAAAA//8AAAAAAAADAAAAAAAAAP//AAAAAAAAAQAAAAAAAAD//wAAAAAAAAMAAAAAAAAA//8AAAAAAAABAAAAAAAAAP//AAAAAAAAAwAAAAAAAAD//wAAAAAAAAEAAAAAAAAA//8AAAAAAAACAAAAAAAAAP//AAAAAAAAAQAAAAAAAAD//wAAAAAAAAIAAAAAAAAA//8AAAAAAAABAAAAAAAAAP//AAAAAAAAAgAAAAAAAAD//wAAAAAAAAMAAAAAAAAA//8AAAAAAAACAAAAAAAAAP//AAAAAAAAAwAAAAAAAAD//wAAAAAAAAIAAAAAAAAA//8AAAAAAAABAAAAAAAAAP//AAAAAAAAAgAAAAAAAAD//wAAAAAAAAIAAAAAAAAA//8AAAAAAAADAAAAAAAAAP//AAAAAAAAAwAAAAAAAAD//wAAAAAAAAIAAAAAAAAA//8AAAAAAAADAAAAAAAAAP//AAAAAAAAAQAAAAAAAAD//wAAAAAAAAEAAAAAAAAA//8AAAAAAAABAAAAAAAAAP//AAAAAAAAAQAAAAAAAAD//wAAAAAAAAEAAAAAAAAA//8AAAAAAAABAAAAAAAAAP//AAAAAAAAAQAAAAAAAAD//wAAAAAAAAEAAAAAAAAA//8AAAAAAAABAAAAAAAAAP//AAAAAAAAAQAAAAAAAAD//wAAAAAAAAEAAAAAAAAA//8AAAAAAAABAAAAAAAAAP//AAAAAAAAAQAAAAAAAAD//wAAAAAAAAEAAAAAAAAA//8AAAAAAAABAAAAAAAAAP//AAAAAAAAAQAAAAAAAAD//wAAAAAAAAEAAAAAAAAA//8AAAAAAAABAAAAAAAAAP//AAAAAAAAAQAAAAAAAAD//wAAAAAAAAEAAAAAAAAA//8AAAAAAAABAAAAAAAAAP//AAAAAAAAAQAAAAAAAAD//wAAAAAAAAEAAAAAAAAA//8AAAAAAAABAAAAAAAAAP//AAAAAAAA"),
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 51,
+"vertex_data": PackedByteArray("XI/iPsP1eD9cjwI+XI/iPnsUfj9cj8K9XkvIvtcSgj9cjwI+PQrXvuxReD9cj8K9XkvIvtcSgj9cjwI+XI/iPnsUfj9cj8K9PQrXvk9AEz7ysFC+KVzPPqVOAD/ysFC+XI/iPo/CNT7ysFC+KVzPPqVOAD/ysFC+PQrXvk9AEz7ysFC+J6DJvl1tBT/ysFC+XI/iPuF6FD6MSmo+PQrXvl1tBT8pXA8+PQrXvk9AEz75oGc+PQrXvl1tBT8pXA8+XI/iPlK4Tj/D9Wg+PQrXvlK4Tj/D9Wg+XI/iPlK4Tj/D9Wg+PQrXvl1tBT8pXA8+XI/iPuF6FD6MSmo+XkvIvtcSgj9cjwI+PQrXvlK4Tj/D9Wg+XI/iPlK4Tj/D9Wg+XI/iPsP1eD9cjwI+XkvIvtcSgj9cjwI+XI/iPlK4Tj/D9Wg+E/LBPujZLD64HkW+exSOPtejMD5cjwK+VHSkPl8pyzu4HkW+exSOPtejMD5cjwK+E/LBPujZLD64HkW+VHSkPl8pyzu4HkW+CtdjvnE9Cj5cjwK+2V+2vryWED64HkW+uB6lvl8pyzu4HkW+2V+2vryWED64HkW+CtdjvnE9Cj5cjwK+uB6lvl8pyzu4HkW+pHB9vryWED5cjwI+2V+2vryWED5xPUo+uB6lvl8pyztxPUo+2V+2vryWED5xPUo+pHB9vryWED5cjwI+uB6lvl8pyztxPUo+VHSkPl8pyztxPUo+E/LBPnS1FT5xPUo+J6CJPnS1FT5cjwI+E/LBPnS1FT5xPUo+VHSkPl8pyztxPUo+J6CJPnS1FT5cjwI+")
+}, {
+"aabb": AABB(-0.4625, 0.1438, -0.255, 0.905, 0.8723999, 0.4838),
+"attribute_data": PackedByteArray("gICA/5f/wD7APjo+gICA/8Rf8z4u/wE+gICA/8Rf8z7APjo+gICA/8Rf8z4u/wE+gICA/5f/wD7APjo+gICA/5f/wD4u/wE+gICA/7CPHj/cgI89gICA/8x/ED+WPvQ9gICA/8x/ED/cgI89gICA/+Y/FD8kl/86gICA/xrAGz8kl/86gICA/8x/ED9UAIw8gICA/8x/ED/cgI89gICA/7CPHj9UAIw8gICA/7CPHj/cgI89gICA/8x/ED+WPvQ9gICA/7CPHj+rPpc9gICA/7CPHj+WPvQ9gICA/7CPHj+rPpc9gICA/8x/ED+WPvQ9gICA/8x/ED/PvYc9gICA/+Y/FD8kl/86gICA/xrAGz8kl/86gICA/8x/ED9UAIw8gICA/8x/ED9UAIw8gICA/7CPHj9UAIw8gICA/8x/ED/PvYc9gICA/1Bw8T7APjo+gICA/1Bw8T4u/wE+gICA/6YP/T4u/wE+gICA/7CPHj9UAIw8gICA/8x/ED/cgI89gICA/8x/ED9UAIw8gICA/6YP/T7APjo+gICA/1Bw8T7APjo+gICA/6YP/T4u/wE+gICA/7CPHj+rPpc9gICA/8x/ED/PvYc9gICA/7CPHj9UAIw8gICA/xrAGz8kl/86gICA/7CPHj9UAIw8gICA/8x/ED9UAIw8gICA/xrAGz8kl/86gICA/7CPHj9UAIw8gICA/8x/ED9UAIw8"),
+"bone_aabbs": [AABB(0, 0, 0, -1, -1, -1), AABB(-0.42, 0.1438, -0.2038, 0.86250997, 0.03369999, 0.43260998), AABB(-0.4625, 0.5212, -0.2038, 0.0713, 0.49499995, 0.43129998), AABB(0.405, 0.5012, -0.255, 0.037510008, 0.4913, 0.48250002)],
+"format": 34359741465,
+"material": SubResource("ShaderMaterial_d67im"),
+"name": "mat_page_0",
+"primitive": 3,
+"skin_data": PackedByteArray("AgAAAAAAAAD//wAAAAAAAAMAAAAAAAAA//8AAAAAAAADAAAAAAAAAP//AAAAAAAAAwAAAAAAAAD//wAAAAAAAAIAAAAAAAAA//8AAAAAAAACAAAAAAAAAP//AAAAAAAAAQAAAAAAAAD//wAAAAAAAAEAAAAAAAAA//8AAAAAAAADAAAAAAAAAP//AAAAAAAAAwAAAAAAAAD//wAAAAAAAAMAAAAAAAAA//8AAAAAAAADAAAAAAAAAP//AAAAAAAAAwAAAAAAAAD//wAAAAAAAAMAAAAAAAAA//8AAAAAAAABAAAAAAAAAP//AAAAAAAAAQAAAAAAAAD//wAAAAAAAAIAAAAAAAAA//8AAAAAAAABAAAAAAAAAP//AAAAAAAAAgAAAAAAAAD//wAAAAAAAAEAAAAAAAAA//8AAAAAAAACAAAAAAAAAP//AAAAAAAAAgAAAAAAAAD//wAAAAAAAAIAAAAAAAAA//8AAAAAAAACAAAAAAAAAP//AAAAAAAAAgAAAAAAAAD//wAAAAAAAAIAAAAAAAAA//8AAAAAAAACAAAAAAAAAP//AAAAAAAAAgAAAAAAAAD//wAAAAAAAAMAAAAAAAAA//8AAAAAAAADAAAAAAAAAP//AAAAAAAAAwAAAAAAAAD//wAAAAAAAAMAAAAAAAAA//8AAAAAAAADAAAAAAAAAP//AAAAAAAAAgAAAAAAAAD//wAAAAAAAAIAAAAAAAAA//8AAAAAAAADAAAAAAAAAP//AAAAAAAAAgAAAAAAAAD//wAAAAAAAAIAAAAAAAAA//8AAAAAAAACAAAAAAAAAP//AAAAAAAAAgAAAAAAAAD//wAAAAAAAAIAAAAAAAAA//8AAAAAAAACAAAAAAAAAP//AAAAAAAAAwAAAAAAAAD//wAAAAAAAAMAAAAAAAAA//8AAAAAAAADAAAAAAAAAP//AAAAAAAA"),
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 45,
+"vertex_data": PackedByteArray("J6DJvl1tBT/ysFC+XI/iPjMzQz9cj4K+KVzPPqVOAD/ysFC+XI/iPjMzQz9cj4K+J6DJvl1tBT/ysFC+zczsvlK4Tj/ysFC+XI/iPuF6FD6MSmo+XI/iPo/CNT7ysFC+KVzPPqVOAD/ysFC+XI/iPnsUfj9cj8K9XI/iPsP1eD9cjwI+XI/iPjMzQz9cj4K+KVzPPqVOAD/ysFC+XI/iPlK4Tj/D9Wg+XI/iPuF6FD6MSmo+PQrXvk9AEz75oGc+J6DJvl1tBT/ysFC+PQrXvk9AEz7ysFC+J6DJvl1tBT/ysFC+PQrXvk9AEz75oGc+PQrXvl1tBT8pXA8+XkvIvtcSgj9cjwI+PQrXvuxReD9cj8K9PQrXvlK4Tj/D9Wg+PQrXvlK4Tj/D9Wg+zczsvlK4Tj/ysFC+PQrXvl1tBT8pXA8+PQrXvuxReD9cj8K9XI/iPnsUfj9cj8K9XI/iPjMzQz9cj4K+XI/iPlK4Tj/D9Wg+KVzPPqVOAD/ysFC+XI/iPjMzQz9cj4K+zczsvlK4Tj/ysFC+PQrXvuxReD9cj8K9XI/iPjMzQz9cj4K+J6DJvl1tBT/ysFC+PQrXvl1tBT8pXA8+zczsvlK4Tj/ysFC+PQrXvuxReD9cj8K9zczsvlK4Tj/ysFC+PQrXvlK4Tj/D9Wg+XI/iPsP1eD9cjwI+XI/iPlK4Tj/D9Wg+XI/iPjMzQz9cj4K+")
+}, {
+"aabb": AABB(-0.4188, 0.03, -0.235, 0.9588, 1e-05, 0.6262),
+"attribute_data": PackedByteArray("AAAA/5f/oD4SoB4/AAAA/5f/oD4SoB4/AAAA/5f/oD4SoB4/AAAA/5f/oD4SoB4/AAAA/5f/oD4SoB4/AAAA/5f/oD4SoB4/"),
+"bone_aabbs": [AABB(0, 0, 0, -1, -1, -1), AABB(-0.4188, 0.03, -0.235, 0.9588001, 1.0000542e-05, 0.6262)],
+"format": 34359741465,
+"material": SubResource("ShaderMaterial_6kbpm"),
+"name": "mat_page_7",
+"primitive": 3,
+"skin_data": PackedByteArray("AQAAAAAAAAD//wAAAAAAAAEAAAAAAAAA//8AAAAAAAABAAAAAAAAAP//AAAAAAAAAQAAAAAAAAD//wAAAAAAAAEAAAAAAAAA//8AAAAAAAABAAAAAAAAAP//AAAAAAAA"),
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 6,
+"vertex_data": PackedByteArray("hevRvo/C9TzXo3C+cT0KP4/C9TxeS8g+CfkAP4/C9TzUK2W+cT0KP4/C9TxeS8g+hevRvo/C9TzXo3C+9GzWvo/C9Ty4HsU+")
+}]

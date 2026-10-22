@@ -1,8 +1,8 @@
 extends CharacterBody3D
 class_name OriginalRaft
 # Raft53 owns its translated solid box, fan inertia, water current and cargo.
-# Godot carries physics-active characters during move_and_slide. Other cargo
-# receives native CarryObjects displacement, or follows its MovingSupport.
+# Ralph uses Godot's moving floor. Sheep receive native Translate + SET_ANCHOR,
+# even while their AI is stationary or a cinematic temporarily stops it.
 var definition: Dictionary = {}
 var visual: OriginalCinematicActor
 var deck: AABB
@@ -128,10 +128,13 @@ func _physics_process(delta: float):
 	var displacement = global_position-before
 	for actor in riders:
 		if actor is PhysicsBody3D: remove_collision_exception_with(actor)
+		if actor is OriginalSheep:
+			actor.set_moving_anchor(self,float(definition.get("anchor_radius",.5)))
+			actor.global_position += displacement
+			continue
 		# Cargo with MovingSupport follows local coordinates later at priority150.
 		if actor.has_node("MovingSupport") and actor.get_node("MovingSupport").support==self: continue
 		if not actor is CharacterBody3D or not actor.is_physics_processing(): actor.global_position += displacement
-		if actor is OriginalSheep: actor.set_moving_anchor(self,float(definition.get("anchor_radius",.5)))
 	wake.emitting = fan_speed>.01 and displacement.length_squared()>.000001
 	var heading = atan2(fan_direction.x,-fan_direction.z)+randf_range(-PI/2,PI/2)
 	var corner = posmod(int(floor(fposmod(heading,TAU)/(PI/2))),4)

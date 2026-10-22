@@ -2,7 +2,10 @@
 
 Dominio: https://sheepraider.nooxtools.me/
 
-Distribución 1.0.4: Windows x64, Android arm64 y web. La rueda de idiomas
+Distribución 1.0.5: Windows x64, Android arm64 y web; niveles00–05.
+El nivel05 incluye balsas con transporte de ovejas, plataformas móviles,
+acceso al reloj mediante el elástico y salida por lianas con animaciones
+y sonidos originales. La rueda de idiomas
 aparece sólo cuando no existe un idioma guardado; después se entra directamente
 al escenario. Ayuda inicial compartida, inventario táctil con interruptor y
 flechas, y retorno directo al escenario al completar un nivel. Se conserva
@@ -57,10 +60,10 @@ Variables y secrets de SSH ya están configurados en el repositorio:
 - UPDATES_REMOTE_DIRECTORY: directorio updates del dominio.
 - UPDATES_SSH_KEY y UPDATES_KNOWN_HOSTS: secrets cifrados, sin acceso root.
 
-La base 1.0.4 contiene bundled_sequence=3, igual que su paquete de contenido
-1.0.4 para instalaciones anteriores. Las instalaciones nuevas no descargan
+La base 1.0.5 contiene bundled_sequence=4, igual que su paquete de contenido
+1.0.5 para instalaciones anteriores. Las instalaciones nuevas no descargan
 el mismo contenido ni montan un parche guardado más antiguo que su base.
-La siguiente publicación de contenido debe usar una secuencia mayor que 3
+La siguiente publicación de contenido debe usar una secuencia mayor que 4
 y una versión nueva; las publicaciones son inmutables.
 
 ## Publicar la portada o una nueva distribución
@@ -85,7 +88,7 @@ Dependencias adicionales: python -m pip install -r tools/requirements-deploy.txt
 
 Comandos locales equivalentes:
 
-    python tools/build_distribution.py --godot RUTA_GODOT --version 1.0.4 --output builds/NUEVA_CARPETA
+    python tools/build_distribution.py --godot RUTA_GODOT --version 1.0.5 --output builds/NUEVA_CARPETA
     python tools/publish_site.py --bundle builds/NUEVA_CARPETA --host ralphdeploy@64.181.219.10 --identity RUTA_CLAVE_SSH --known-hosts RUTA_KNOWN_HOSTS
 
 Añadir --site-only al primer comando para actualizar solo la portada.

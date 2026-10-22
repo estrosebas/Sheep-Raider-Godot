@@ -20,13 +20,15 @@ func _init() -> void:
 	if FileAccess.file_exists("res://assets/models/ralph_shark_data.json"):
 		data.animations.merge(JSON.parse_string(FileAccess.get_file_as_string("res://assets/models/ralph_shark_data.json")),true)
 	var library: AnimationLibrary = load("res://assets/models/ralph_animations.tres")
+	if FileAccess.file_exists("res://assets/models/ralph_climb_data.json"):
+		data.animations.merge(JSON.parse_string(FileAccess.get_file_as_string("res://assets/models/ralph_climb_data.json")),true)
 	data.animations.merge(JSON.parse_string(FileAccess.get_file_as_string("res://assets/models/ralph_sneak_data.json")),true)
 	for name in data["animations"]:
 		var source = data["animations"][name]
 		var animation = Animation.new()
 		animation.length = source["duration"]
 		var is_idle = name == "idle" or name.begins_with("idle_stand") or name in ["held_item_idle","rocket_idle","sneak_idle"]
-		var is_native_fall = name == "fall" or name.begins_with("swim") or name.begins_with("elastic_")
+		var is_native_fall = name == "fall" or name.begins_with("swim") or name.begins_with("elastic_") or name.begins_with("climb_")
 		var is_interaction = name.begins_with("push_") or name.begins_with("fan_blow_") or name.begins_with("bush_") or name.begins_with("cover_") or name.begins_with("flute_") or name in ["shark_death","bull_death","crush_death","held_item_fidget"]
 		animation.loop_mode = Animation.LOOP_LINEAR if is_idle or is_native_fall or name in ["cover_hidden","push_loop","fan_blow_idle","fan_blow_turn","run", "run_recover", "rocket_ride", "sheep_carry_idle", "sheep_carry_tired", "sheep_carry_walk", "sheep_carry_sneak", "sheep_carry_fall","held_item_idle"] else Animation.LOOP_NONE
 		if name in ["flute_idle","flute_walk"]: animation.loop_mode = Animation.LOOP_LINEAR

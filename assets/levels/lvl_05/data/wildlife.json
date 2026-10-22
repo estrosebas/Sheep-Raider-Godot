@@ -1,0 +1,1106 @@
+{
+  "bulls": [
+    {
+      "res": 60,
+      "class_id": 43,
+      "class_name": "bull",
+      "model_res": 30,
+      "pos": [
+        8.45,
+        3.97,
+        27.78
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ],
+      "props": {
+        "0x0": 581,
+        "0x4": 1,
+        "0x8": 581,
+        "0xc": 584,
+        "0x10": 0,
+        "0x14": 0,
+        "0x18": 0,
+        "0x1c": 0,
+        "0x20": 300
+      },
+      "directory": "res://assets/levels/lvl_05/models/30",
+      "boxes": [
+        {
+          "flags": 2,
+          "min": [
+            -60,
+            -120,
+            -42
+          ],
+          "max": [
+            59,
+            0,
+            77
+          ]
+        }
+      ],
+      "activation_boxes": [
+        {
+          "flags": 0,
+          "min": [
+            1686,
+            -1552,
+            2038
+          ],
+          "max": [
+            3286,
+            447,
+            3101
+          ]
+        },
+        {
+          "flags": 0,
+          "min": [
+            593,
+            -980,
+            2045
+          ],
+          "max": [
+            1693,
+            -241,
+            2995
+          ]
+        },
+        {
+          "flags": 0,
+          "min": [
+            794,
+            -1714,
+            1600
+          ],
+          "max": [
+            2914,
+            285,
+            2160
+          ]
+        },
+        {
+          "flags": 0,
+          "min": [
+            2862,
+            -1593,
+            1838
+          ],
+          "max": [
+            3212,
+            406,
+            2013
+          ]
+        },
+        {
+          "flags": 0,
+          "min": [
+            1787,
+            -1552,
+            3096
+          ],
+          "max": [
+            3287,
+            447,
+            3215
+          ]
+        },
+        {
+          "flags": 0,
+          "min": [
+            1913,
+            -1552,
+            3214
+          ],
+          "max": [
+            3288,
+            447,
+            3333
+          ]
+        },
+        {
+          "flags": 0,
+          "min": [
+            2010,
+            -1552,
+            3331
+          ],
+          "max": [
+            3290,
+            447,
+            3481
+          ]
+        },
+        {
+          "flags": 0,
+          "min": [
+            1863,
+            -1552,
+            3214
+          ],
+          "max": [
+            1913,
+            447,
+            3264
+          ]
+        },
+        {
+          "flags": 0,
+          "min": [
+            1969,
+            -1552,
+            3320
+          ],
+          "max": [
+            2019,
+            447,
+            3370
+          ]
+        },
+        {
+          "flags": 0,
+          "min": [
+            1743,
+            -1552,
+            3096
+          ],
+          "max": [
+            1793,
+            447,
+            3146
+          ]
+        },
+        {
+          "flags": 0,
+          "min": [
+            795,
+            -1714,
+            1530
+          ],
+          "max": [
+            1795,
+            285,
+            2090
+          ]
+        }
+      ],
+      "movement_boxes": [
+        {
+          "flags": 0,
+          "min": [
+            1686,
+            -1552,
+            2038
+          ],
+          "max": [
+            3286,
+            447,
+            3101
+          ]
+        },
+        {
+          "flags": 0,
+          "min": [
+            593,
+            -980,
+            2045
+          ],
+          "max": [
+            1693,
+            -241,
+            2995
+          ]
+        },
+        {
+          "flags": 0,
+          "min": [
+            794,
+            -1714,
+            1600
+          ],
+          "max": [
+            2914,
+            285,
+            2160
+          ]
+        },
+        {
+          "flags": 0,
+          "min": [
+            2862,
+            -1593,
+            1838
+          ],
+          "max": [
+            3212,
+            406,
+            2013
+          ]
+        },
+        {
+          "flags": 0,
+          "min": [
+            1787,
+            -1552,
+            3096
+          ],
+          "max": [
+            3287,
+            447,
+            3215
+          ]
+        },
+        {
+          "flags": 0,
+          "min": [
+            1913,
+            -1552,
+            3214
+          ],
+          "max": [
+            3288,
+            447,
+            3333
+          ]
+        },
+        {
+          "flags": 0,
+          "min": [
+            2010,
+            -1552,
+            3331
+          ],
+          "max": [
+            3290,
+            447,
+            3481
+          ]
+        },
+        {
+          "flags": 0,
+          "min": [
+            1863,
+            -1552,
+            3214
+          ],
+          "max": [
+            1913,
+            447,
+            3264
+          ]
+        },
+        {
+          "flags": 0,
+          "min": [
+            1969,
+            -1552,
+            3320
+          ],
+          "max": [
+            2019,
+            447,
+            3370
+          ]
+        },
+        {
+          "flags": 0,
+          "min": [
+            1743,
+            -1552,
+            3096
+          ],
+          "max": [
+            1793,
+            447,
+            3146
+          ]
+        },
+        {
+          "flags": 0,
+          "min": [
+            795,
+            -1714,
+            1530
+          ],
+          "max": [
+            1795,
+            285,
+            2090
+          ]
+        }
+      ],
+      "no_return_boxes": [
+        {
+          "flags": 0,
+          "min": [
+            3208,
+            -791,
+            2217
+          ],
+          "max": [
+            4289,
+            2208,
+            3717
+          ]
+        }
+      ],
+      "asleep": true,
+      "wake_speed_pct": 300,
+      "charge_speed": 8.0,
+      "close_wake_distance": 2.0,
+      "hit_distance": 1.5,
+      "retarget_seconds": 2.0,
+      "hit_recovery_seconds": 10.0,
+      "source": "objects/bull.cpp::PostLoadInit/SetState/Update/HandleMessage",
+      "dust_frames": [
+        "res://assets/levels/lvl_05/effects/wildlife/dust/frame_0.png",
+        "res://assets/levels/lvl_05/effects/wildlife/dust/frame_1.png",
+        "res://assets/levels/lvl_05/effects/wildlife/dust/frame_2.png",
+        "res://assets/levels/lvl_05/effects/wildlife/dust/frame_3.png"
+      ]
+    }
+  ],
+  "leaf_zones": [
+    {
+      "res": 75,
+      "class_id": 54,
+      "class_name": "HeapOfLeaf",
+      "model_res": 13,
+      "pos": [
+        20.96,
+        4.0,
+        47.08
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ],
+      "props": {
+        "0x0": 583,
+        "0x4": 485,
+        "0x8": 554
+      },
+      "directory": "res://assets/levels/lvl_05/models/13",
+      "boxes": [
+        {
+          "flags": 0,
+          "min": [
+            -35,
+            -45,
+            -37
+          ],
+          "max": [
+            40,
+            0,
+            36
+          ]
+        }
+      ],
+      "polygon": [
+        [
+          2246,
+          -400,
+          2621
+        ],
+        [
+          2224,
+          -400,
+          2357
+        ],
+        [
+          1987,
+          -400,
+          2312
+        ],
+        [
+          1760,
+          -400,
+          2412
+        ],
+        [
+          1560,
+          -400,
+          2598
+        ],
+        [
+          1600,
+          -400,
+          2799
+        ],
+        [
+          1800,
+          -400,
+          2799
+        ],
+        [
+          2051,
+          -400,
+          2727
+        ]
+      ],
+      "zone": [
+        {
+          "flags": 0,
+          "min": [
+            750,
+            -800,
+            1700
+          ],
+          "max": [
+            3250,
+            -300,
+            3500
+          ]
+        }
+      ],
+      "guardian": 60,
+      "radius": 26.46,
+      "height_tolerance": 0.6,
+      "source": "objects/heapofleaf.cpp::DetectMovers/PointInPolygon",
+      "leaf_frames": [
+        "res://assets/levels/lvl_05/effects/wildlife/leaves/frame_0.png",
+        "res://assets/levels/lvl_05/effects/wildlife/leaves/frame_1.png",
+        "res://assets/levels/lvl_05/effects/wildlife/leaves/frame_2.png",
+        "res://assets/levels/lvl_05/effects/wildlife/leaves/frame_3.png"
+      ]
+    },
+    {
+      "res": 76,
+      "class_id": 54,
+      "class_name": "HeapOfLeaf",
+      "model_res": 13,
+      "pos": [
+        22.95,
+        4.0,
+        47.08
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ],
+      "props": {
+        "0x0": 583,
+        "0x4": 485,
+        "0x8": 555
+      },
+      "directory": "res://assets/levels/lvl_05/models/13",
+      "boxes": [
+        {
+          "flags": 0,
+          "min": [
+            -35,
+            -45,
+            -37
+          ],
+          "max": [
+            40,
+            0,
+            36
+          ]
+        }
+      ],
+      "polygon": [
+        [
+          1604,
+          -400,
+          2107
+        ],
+        [
+          1805,
+          -400,
+          2002
+        ],
+        [
+          2023,
+          -400,
+          2082
+        ],
+        [
+          2398,
+          -400,
+          2002
+        ],
+        [
+          2631,
+          -400,
+          2069
+        ],
+        [
+          2782,
+          -400,
+          2053
+        ],
+        [
+          2999,
+          -400,
+          2203
+        ],
+        [
+          3198,
+          -400,
+          2197
+        ],
+        [
+          3198,
+          -400,
+          2002
+        ],
+        [
+          2999,
+          -400,
+          1746
+        ],
+        [
+          2798,
+          -400,
+          1716
+        ],
+        [
+          2599,
+          -400,
+          1771
+        ],
+        [
+          2414,
+          -400,
+          1723
+        ],
+        [
+          2199,
+          -400,
+          1762
+        ],
+        [
+          2007,
+          -400,
+          1748
+        ],
+        [
+          1798,
+          -400,
+          1714
+        ],
+        [
+          1590,
+          -400,
+          1755
+        ],
+        [
+          1421,
+          -400,
+          1698
+        ],
+        [
+          1398,
+          -400,
+          2002
+        ]
+      ],
+      "zone": [
+        {
+          "flags": 0,
+          "min": [
+            750,
+            -800,
+            1700
+          ],
+          "max": [
+            3250,
+            -300,
+            3500
+          ]
+        }
+      ],
+      "guardian": 60,
+      "radius": 38.839999999999996,
+      "height_tolerance": 0.6,
+      "source": "objects/heapofleaf.cpp::DetectMovers/PointInPolygon",
+      "leaf_frames": [
+        "res://assets/levels/lvl_05/effects/wildlife/leaves/frame_0.png",
+        "res://assets/levels/lvl_05/effects/wildlife/leaves/frame_1.png",
+        "res://assets/levels/lvl_05/effects/wildlife/leaves/frame_2.png",
+        "res://assets/levels/lvl_05/effects/wildlife/leaves/frame_3.png"
+      ]
+    },
+    {
+      "res": 77,
+      "class_id": 54,
+      "class_name": "HeapOfLeaf",
+      "model_res": 13,
+      "pos": [
+        25.03,
+        4.0,
+        47.08
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ],
+      "props": {
+        "0x0": 583,
+        "0x4": 485,
+        "0x8": 556
+      },
+      "directory": "res://assets/levels/lvl_05/models/13",
+      "boxes": [
+        {
+          "flags": 0,
+          "min": [
+            -35,
+            -45,
+            -37
+          ],
+          "max": [
+            40,
+            0,
+            36
+          ]
+        }
+      ],
+      "polygon": [
+        [
+          1197,
+          -400,
+          2600
+        ],
+        [
+          1197,
+          -400,
+          2400
+        ],
+        [
+          1036,
+          -400,
+          2298
+        ],
+        [
+          801,
+          -400,
+          2400
+        ],
+        [
+          598,
+          -400,
+          2597
+        ],
+        [
+          798,
+          -400,
+          2600
+        ],
+        [
+          955,
+          -400,
+          2681
+        ]
+      ],
+      "zone": [
+        {
+          "flags": 0,
+          "min": [
+            750,
+            -800,
+            1700
+          ],
+          "max": [
+            3250,
+            -300,
+            3500
+          ]
+        }
+      ],
+      "guardian": 60,
+      "radius": 40.16,
+      "height_tolerance": 0.6,
+      "source": "objects/heapofleaf.cpp::DetectMovers/PointInPolygon",
+      "leaf_frames": [
+        "res://assets/levels/lvl_05/effects/wildlife/leaves/frame_0.png",
+        "res://assets/levels/lvl_05/effects/wildlife/leaves/frame_1.png",
+        "res://assets/levels/lvl_05/effects/wildlife/leaves/frame_2.png",
+        "res://assets/levels/lvl_05/effects/wildlife/leaves/frame_3.png"
+      ]
+    },
+    {
+      "res": 79,
+      "class_id": 54,
+      "class_name": "HeapOfLeaf",
+      "model_res": 13,
+      "pos": [
+        27.11,
+        4.0,
+        47.160000000000004
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ],
+      "props": {
+        "0x0": 583,
+        "0x4": 485,
+        "0x8": 557
+      },
+      "directory": "res://assets/levels/lvl_05/models/13",
+      "boxes": [
+        {
+          "flags": 0,
+          "min": [
+            -35,
+            -45,
+            -37
+          ],
+          "max": [
+            40,
+            0,
+            36
+          ]
+        }
+      ],
+      "polygon": [
+        [
+          3198,
+          -400,
+          2799
+        ],
+        [
+          3198,
+          -400,
+          2600
+        ],
+        [
+          3018,
+          -400,
+          2537
+        ],
+        [
+          2759,
+          -400,
+          2478
+        ],
+        [
+          2600,
+          -400,
+          2600
+        ],
+        [
+          2360,
+          -400,
+          2787
+        ],
+        [
+          2409,
+          -400,
+          2963
+        ],
+        [
+          2609,
+          -400,
+          2973
+        ],
+        [
+          2800,
+          -400,
+          2800
+        ],
+        [
+          3011,
+          -400,
+          2880
+        ]
+      ],
+      "zone": [
+        {
+          "flags": 0,
+          "min": [
+            750,
+            -800,
+            1700
+          ],
+          "max": [
+            3250,
+            -300,
+            3500
+          ]
+        }
+      ],
+      "guardian": 60,
+      "radius": 26.030000000000005,
+      "height_tolerance": 0.6,
+      "source": "objects/heapofleaf.cpp::DetectMovers/PointInPolygon",
+      "leaf_frames": [
+        "res://assets/levels/lvl_05/effects/wildlife/leaves/frame_0.png",
+        "res://assets/levels/lvl_05/effects/wildlife/leaves/frame_1.png",
+        "res://assets/levels/lvl_05/effects/wildlife/leaves/frame_2.png",
+        "res://assets/levels/lvl_05/effects/wildlife/leaves/frame_3.png"
+      ]
+    },
+    {
+      "res": 84,
+      "class_id": 54,
+      "class_name": "HeapOfLeaf",
+      "model_res": 13,
+      "pos": [
+        29.11,
+        4.0,
+        47.160000000000004
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ],
+      "props": {
+        "0x0": 583,
+        "0x4": 485,
+        "0x8": 558
+      },
+      "directory": "res://assets/levels/lvl_05/models/13",
+      "boxes": [
+        {
+          "flags": 0,
+          "min": [
+            -35,
+            -45,
+            -37
+          ],
+          "max": [
+            40,
+            0,
+            36
+          ]
+        }
+      ],
+      "polygon": [
+        [
+          3394,
+          -400,
+          3204
+        ],
+        [
+          3316,
+          -400,
+          3002
+        ],
+        [
+          3002,
+          -400,
+          3199
+        ],
+        [
+          2811,
+          -400,
+          3082
+        ],
+        [
+          2598,
+          -400,
+          3154
+        ],
+        [
+          2121,
+          -400,
+          3080
+        ],
+        [
+          2000,
+          -400,
+          3396
+        ],
+        [
+          2195,
+          -400,
+          3484
+        ],
+        [
+          2397,
+          -400,
+          3401
+        ],
+        [
+          2598,
+          -400,
+          3506
+        ],
+        [
+          2794,
+          -400,
+          3401
+        ],
+        [
+          3002,
+          -400,
+          3513
+        ],
+        [
+          3249,
+          -400,
+          3417
+        ]
+      ],
+      "zone": [
+        {
+          "flags": 0,
+          "min": [
+            750,
+            -800,
+            1700
+          ],
+          "max": [
+            3250,
+            -300,
+            3500
+          ]
+        }
+      ],
+      "guardian": 60,
+      "radius": 24.26,
+      "height_tolerance": 0.6,
+      "source": "objects/heapofleaf.cpp::DetectMovers/PointInPolygon",
+      "leaf_frames": [
+        "res://assets/levels/lvl_05/effects/wildlife/leaves/frame_0.png",
+        "res://assets/levels/lvl_05/effects/wildlife/leaves/frame_1.png",
+        "res://assets/levels/lvl_05/effects/wildlife/leaves/frame_2.png",
+        "res://assets/levels/lvl_05/effects/wildlife/leaves/frame_3.png"
+      ]
+    }
+  ],
+  "leaves": [
+    {
+      "res": 119,
+      "class_id": 191,
+      "class_name": "Leaf",
+      "model_res": 41,
+      "pos": [
+        19.25,
+        4.2,
+        22.76
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ],
+      "props": {
+        "0x0": 300
+      },
+      "directory": "res://assets/levels/lvl_05/models/41",
+      "boxes": [],
+      "range": 3.0,
+      "respawn_min": 0.75,
+      "respawn_max": 2.25,
+      "source": "objects/leaf.cpp::PostLoadInit/Update"
+    }
+  ],
+  "sheets": {
+    "leaves": [
+      "res://assets/levels/lvl_05/effects/wildlife/leaves/frame_0.png",
+      "res://assets/levels/lvl_05/effects/wildlife/leaves/frame_1.png",
+      "res://assets/levels/lvl_05/effects/wildlife/leaves/frame_2.png",
+      "res://assets/levels/lvl_05/effects/wildlife/leaves/frame_3.png"
+    ],
+    "dust": [
+      "res://assets/levels/lvl_05/effects/wildlife/dust/frame_0.png",
+      "res://assets/levels/lvl_05/effects/wildlife/dust/frame_1.png",
+      "res://assets/levels/lvl_05/effects/wildlife/dust/frame_2.png",
+      "res://assets/levels/lvl_05/effects/wildlife/dust/frame_3.png"
+    ]
+  },
+  "sounds": {
+    "4": "res://assets/levels/lvl_05/audio/4.wav",
+    "35": "res://assets/levels/lvl_05/audio/35.wav",
+    "40": "res://assets/levels/lvl_05/audio/40.wav",
+    "72": "res://assets/levels/lvl_05/audio/72.wav",
+    "81": "res://assets/levels/lvl_05/audio/81.wav",
+    "87": "res://assets/levels/lvl_05/audio/87.wav",
+    "120": "res://assets/levels/lvl_05/audio/120.wav",
+    "196": "res://assets/levels/lvl_05/audio/196.wav",
+    "199": "res://assets/levels/lvl_05/audio/199.wav",
+    "202": "res://assets/levels/lvl_05/audio/202.wav",
+    "236": "res://assets/levels/lvl_05/audio/236.wav",
+    "237": "res://assets/levels/lvl_05/audio/237.wav",
+    "280": "res://assets/levels/lvl_05/audio/280.wav",
+    "73": "res://assets/levels/lvl_05/audio/73.wav",
+    "5": "res://assets/levels/lvl_05/audio/5.wav",
+    "14": "res://assets/levels/lvl_05/audio/14.wav",
+    "109": "res://assets/levels/lvl_05/audio/109.wav",
+    "129": "res://assets/levels/lvl_05/audio/129.wav",
+    "77": "res://assets/levels/lvl_05/audio/77.wav",
+    "51": "res://assets/levels/lvl_05/audio/51.wav",
+    "78": "res://assets/levels/lvl_05/audio/78.wav",
+    "82": "res://assets/levels/lvl_05/audio/82.wav",
+    "83": "res://assets/levels/lvl_05/audio/83.wav",
+    "29": "res://assets/levels/lvl_05/audio/29.wav",
+    "80": "res://assets/levels/lvl_05/audio/80.wav",
+    "52": "res://assets/levels/lvl_05/audio/52.wav",
+    "54": "res://assets/levels/lvl_05/audio/54.wav",
+    "62": "res://assets/levels/lvl_05/audio/62.wav",
+    "90": "res://assets/levels/lvl_05/audio/90.wav",
+    "97": "res://assets/levels/lvl_05/audio/97.wav",
+    "134": "res://assets/levels/lvl_05/audio/134.wav",
+    "186": "res://assets/levels/lvl_05/audio/186.wav",
+    "187": "res://assets/levels/lvl_05/audio/187.wav",
+    "251": "res://assets/levels/lvl_05/audio/251.wav",
+    "266": "res://assets/levels/lvl_05/audio/266.wav",
+    "116": "res://assets/levels/lvl_05/audio/116.wav",
+    "18": "res://assets/levels/lvl_05/audio/18.wav",
+    "235": "res://assets/levels/lvl_05/audio/235.wav",
+    "284": "res://assets/levels/lvl_05/audio/284.wav",
+    "102": "res://assets/levels/lvl_05/audio/102.wav",
+    "107": "res://assets/levels/lvl_05/audio/107.wav",
+    "108": "res://assets/levels/lvl_05/audio/108.wav",
+    "128": "res://assets/levels/lvl_05/audio/128.wav",
+    "53": "res://assets/levels/lvl_05/audio/53.wav",
+    "118": "res://assets/levels/lvl_05/audio/118.wav",
+    "263": "res://assets/levels/lvl_05/audio/263.wav",
+    "61": "res://assets/levels/lvl_05/audio/61.wav",
+    "322": "res://assets/levels/lvl_05/audio/322.wav",
+    "323": "res://assets/levels/lvl_05/audio/323.wav",
+    "324": "res://assets/levels/lvl_05/audio/324.wav",
+    "94": "res://assets/levels/lvl_05/audio/94.wav",
+    "57": "res://assets/levels/lvl_05/audio/57.wav",
+    "55": "res://assets/levels/lvl_05/audio/55.wav",
+    "311": "res://assets/levels/lvl_05/audio/311.wav",
+    "91": "res://assets/levels/lvl_05/audio/91.wav",
+    "330": "res://assets/levels/lvl_05/audio/330.wav",
+    "246": "res://assets/levels/lvl_05/audio/246.wav",
+    "92": "res://assets/levels/lvl_05/audio/92.wav",
+    "247": "res://assets/levels/lvl_05/audio/247.wav",
+    "93": "res://assets/levels/lvl_05/audio/93.wav",
+    "138": "res://assets/levels/lvl_05/audio/138.wav",
+    "193": "res://assets/levels/lvl_05/audio/193.wav",
+    "253": "res://assets/levels/lvl_05/audio/253.wav",
+    "252": "res://assets/levels/lvl_05/audio/252.wav",
+    "114": "res://assets/levels/lvl_05/audio/114.wav",
+    "179": "res://assets/levels/lvl_05/audio/179.wav",
+    "115": "res://assets/levels/lvl_05/audio/115.wav",
+    "248": "res://assets/levels/lvl_05/audio/248.wav",
+    "250": "res://assets/levels/lvl_05/audio/250.wav",
+    "249": "res://assets/levels/lvl_05/audio/249.wav"
+  },
+  "leaf_sound_id": 129,
+  "charge_sound_id": 253,
+  "particle_params": {
+    "leaves": {
+      "life": 0.5,
+      "period": 0.199951171875,
+      "size_start": 0.4,
+      "size_end": 0.9,
+      "v_speed": -0.2,
+      "h_speed": 0.1
+    },
+    "dust": {
+      "life": 2,
+      "period": 0.125,
+      "size_start": 0.8,
+      "size_end": 1.8,
+      "v_speed": 0.6,
+      "h_speed": 0.5
+    }
+  }
+}

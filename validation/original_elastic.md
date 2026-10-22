@@ -182,3 +182,28 @@ suelo real después del retorno, sin aceptar la bandera is_on_floor que
 puede quedar antigua mientras la curva posee el movimiento.
 Medición de esa colocación/retorno: **3,12s**, quedan **2,27s** de mecha.
 Captura del panel: `validation/elastic_tuning_menu.png`.
+# Corrección compartida: oveja y reaparición (22/10/2026)
+
+`Wolf::Move` (`src/game/wolf_move.cpp`) aplica los modificadores registrados
+también al usar el banco de movimiento de cargar oveja. El port de
+`OriginalSheepCarry` omitía esa fase antes de `move_and_slide`: la liga se
+dibujaba, pero no limitaba el movimiento ni activaba el regreso. Ahora aplica
+el mismo modificador y conserva la velocidad base con resolución de normales.
+
+`elastic.cpp`, `MSG_MODIFY_MOVE`, `ELASTIC_ST_TIED_ONE`:
+al terminar la interacción, si Ralph está más de 300 unidades nativas bajo el
+anclaje, `StartPullUp(..., 0x266)` inicia el regreso. Recoger una oveja arriba
+no dispara un regreso incondicional. El mismo retorno conserva la oveja en
+brazos y usa su animación de caída de carga.
+
+En la reaparición normal, el elástico de un extremo vuelve al inventario
+oculto, sin crear una recogida en el suelo: reset/store/add, equivalente a
+`Wolf::StoreActiveItemInInventory`. Se conservan identificador, icono y estado
+kept. Una liga entre dos árboles permanece colocada. Restaurar un checkpoint
+usa exclusivamente los anclajes guardados, sin añadir simultáneamente el
+objeto al inventario.
+
+`test_elastic_carry_and_respawn.gd`: recogida real de oveja bajo una plataforma,
+retorno con carga, suelo superior, muerte Sam, inventario sin duplicados,
+modelo listo para reequipar, liga entre dos árboles y carga real de checkpoint
+del05: **0 fallos**. Regresión `test_original_elastic.gd`: **0 fallos**.

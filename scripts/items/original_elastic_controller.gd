@@ -39,6 +39,7 @@ var spring_strength = 1.0
 var interacting = false
 var measurement: Dictionary = {}
 var last_measurement: Dictionary = {}
+var inventory_record: Dictionary = {}
 
 func _ready():
 	max_length = float(definition.get("max_length",max_length))
@@ -105,6 +106,8 @@ func tie_first(tree: Node3D,actor: RalphController):
 	item.holder = null; item.available = false; item.deployed = true
 	item.global_transform = Transform3D.IDENTITY
 	item.show(); item.original_visual.hide()
+	inventory_record = actor.inventory.state.items.get(item.item_id,{
+		"id":item.item_id,"class_id":42,"label":item.item_label,"icon":item.icon_path,"kept":item.kept}).duplicate(true)
 	actor.inventory.state.remove(item.item_id)
 	handle = actor.global_position
 
@@ -259,6 +262,7 @@ func start_retract(actor: RalphController):
 		"landing":safe_return_landing(actor,end)}
 	actor.elastic_motion_owner = self
 	actor.set_state(actor.WolfState.FALL)
+	if is_instance_valid(actor.carried_sheep): actor.play_anim("sheep_carry_fall")
 	play_snap()
 
 func safe_return_landing(actor: RalphController,end: Vector3) -> Vector3:
@@ -312,13 +316,33 @@ func find_launch_target(point: Vector3) -> Node3D:
 		if absf(d.y)<=1.28 and distance<=.64 and distance<score: best = candidate; score = distance
 	return best
 
+func projection_for(target: Node3D) -> Dictionary:
+	var result = {"distance":projection_distance,"height":projection_height}
+	if not is_instance_valid(tree_a) or not is_instance_valid(tree_b): return result
+	var a = int(tree_a.get_meta("original_resource",-1))
+	var b = int(tree_b.get_meta("original_resource",-1))
+	# Optional port balance belongs to an authored pair, not every elastic in
+	# the level. Keep native projection for other trees and slingshot cargo.
+	for profile in definition.get("launch_profiles",[]):
+		var anchors: Array = profile.get("anchors",[])
+		if anchors.size()!=2: continue
+		# JSON resource IDs are floats; Array.has compares numeric types strictly.
+		var first = int(anchors[0]); var second = int(anchors[1])
+		if not ((first==a and second==b) or (first==b and second==a)): continue
+		if profile.get("wolf_only",false) and target!=wolf: continue
+		result.distance = float(profile.get("distance",result.distance))
+		result.height = float(profile.get("height",result.height))
+		break
+	return result
+
 func start_launch(target: Node3D,amount: Vector3,ratio: float):
 	if ratio<=0 or amount.is_zero_approx(): return
 	pending_shot.clear()
 	finish_launch()
 	var direction = -amount.normalized(); direction.y = 0
+	var projection = projection_for(target)
 	flight = {"target":target,"start":target.global_position,"direction":direction,"travelled":0.0,"charge":ratio,
-		"distance":projection_distance*ratio,"height":projection_height*ratio,
+		"distance":projection.distance*ratio,"height":projection.height*ratio,
 		"physics":target.is_physics_processing()}
 	if target is PhysicsBody3D and target!=wolf:
 		flight["ignore_wolf"] = not target.get_collision_exceptions().has(wolf)
@@ -326,6 +350,7 @@ func start_launch(target: Node3D,amount: Vector3,ratio: float):
 	engaged = false; hold_time = 0
 	if target is RalphController:
 		target.elastic_motion_owner = self; target.set_state(target.WolfState.FALL)
+		if is_instance_valid(target.carried_sheep): target.play_anim("sheep_carry_fall")
 	else:
 		target.set_physics_process(false)
 		if target is OriginalSheep: target.clear_seesaw_launch(); target.visual.idle("stand1")
@@ -474,14 +499,29 @@ func reset_item():
 
 func on_respawn():
 	cancel_motion()
-	if mode=="one": item.restore()
+	# Wolf::StoreActiveItemInInventory resets/stores the active object, then
+	# Inventory_Add. Checkpoint loading instead reconstructs its saved anchors.
+	var save = wolf.get_parent().get_node_or_null("CheckpointSave")
+	if save and save.restoring: return
+	if mode=="one":
+		reset_item()
+		item.available = false
+		item.owning_inventory = wolf.inventory
+		item.original_visual.show()
+		item.store()
+		var record = inventory_record.duplicate(true)
+		if record.is_empty(): record = {"id":item.item_id,"class_id":42,"label":item.item_label,"icon":item.icon_path,"kept":item.kept}
+		wolf.inventory.pickup_nodes[item.item_id] = item
+		if not wolf.inventory.state.items.has(item.item_id): wolf.inventory.state.add(record)
 
 func capture_state() -> Dictionary:
 	return {"a":int(tree_a.get_meta("original_resource",-1)) if is_instance_valid(tree_a) else -1,
-		"b":int(tree_b.get_meta("original_resource",-1)) if is_instance_valid(tree_b) else -1}
+		"b":int(tree_b.get_meta("original_resource",-1)) if is_instance_valid(tree_b) else -1,
+		"kept":bool(inventory_record.get("kept",item.kept))}
 
 func restore_saved_state(record: Dictionary):
 	reset_item()
+	inventory_record = {"id":item.item_id,"class_id":42,"label":item.item_label,"icon":item.icon_path,"kept":bool(record.get("kept",item.kept))}
 	for tree in get_tree().get_nodes_in_group("elastic_trees"):
 		if tree.get_world_3d()!=get_world_3d(): continue
 		if int(tree.get_meta("original_resource",-1))==int(record.get("a",-2)): tree_a = tree

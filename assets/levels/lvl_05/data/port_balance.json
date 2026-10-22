@@ -1,0 +1,14 @@
+{
+  "elastic": {
+    "full_charge_threshold": 0.98,
+    "minimum_launch_charge": 1.0,
+    "automatic_launch_hold": 1.0,
+    "launch_profiles": [
+      {
+        "anchors": [62, 67],
+        "wolf_only": true,
+        "distance": 40.0
+      }
+    ]
+  }
+}

@@ -11,10 +11,12 @@ func setup(level: ImportedLevel) -> void:
 	var wildlife = JSON.parse_string(FileAccess.get_file_as_string(base+"/data/wildlife.json")) if FileAccess.file_exists(base+"/data/wildlife.json") else {}
 	var sharks = JSON.parse_string(FileAccess.get_file_as_string(base+"/data/sharks.json")) if FileAccess.file_exists(base+"/data/sharks.json") else {}
 	var rafts = JSON.parse_string(FileAccess.get_file_as_string(base+"/data/rafts.json")) if FileAccess.file_exists(base+"/data/rafts.json") else {}
+	var mobile = JSON.parse_string(FileAccess.get_file_as_string(base+"/data/mobile_platforms.json")) if FileAccess.file_exists(base+"/data/mobile_platforms.json") else {}
 	var excluded = ["Mailbox","Salad","SignPostSimple","Rock","Bush","seesaw"] if not interactions.is_empty() else ["Mailbox","Salad","SignPostSimple"]
 	if not switches.is_empty(): excluded.append_array(["SensibleButton","Wooden Lift","WoodenPlatForm","FallingGate"])
 	excluded.append_array(["Rocks","box","HiddenRocks","TimeKeeper","Flute","TriggedStone","bull","HeapOfLeaf","Leaf","Shark"])
 	if not rafts.is_empty(): excluded.append("Raft")
+	if not mobile.is_empty(): excluded.append("RCarpetMobile")
 	OriginalSolidBuilder.build(level,base+"/data/solid_boxes.json",excluded)
 	var delivered = {}
 	var elastic = JSON.parse_string(FileAccess.get_file_as_string(base+"/data/elastic.json")) if FileAccess.file_exists(base+"/data/elastic.json") else {}
@@ -25,6 +27,10 @@ func setup(level: ImportedLevel) -> void:
 		if definition == null: continue
 		var actor: Node3D
 		match kind:
+			118:
+				actor = preload("res://scripts/levels/original_mobile_platform.gd").new()
+				for platform in mobile.get("platforms",[]):
+					if int(platform.res)==int(entity.res): actor.definition = platform
 			53:
 				if rafts.is_empty():
 					actor = load(definition.directory+"/worn.tscn").instantiate()

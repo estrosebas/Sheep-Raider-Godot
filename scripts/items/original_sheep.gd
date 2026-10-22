@@ -28,6 +28,8 @@ var last_floor_y = 0.0
 var seesaw_support: OriginalSeesaw
 var moving_anchor: Node3D
 var moving_anchor_radius = .5
+var anchor_floor_layers = -1
+var anchor_on_leave = -1
 var seesaw_arc: Dictionary = {}
 var launch_board: OriginalSeesaw
 var goal_putdown_target: Variant = null
@@ -44,6 +46,8 @@ func _ready() -> void:
 	add_to_group("world_interactables")
 	add_to_group("blast_targets")
 	process_priority = 110
+	# Raft transport (priority50) precedes sheep AI and floor resolution.
+	process_physics_priority = 100
 	visual = load(visual_scene).instantiate()
 	add_child(visual)
 	visual.idle(idle_animation)
@@ -119,6 +123,7 @@ func interact(actor: RalphController) -> bool:
 			{"clip":"sheep_drop_end"}])
 	return actor.item_actions.begin([
 		{"clip":"sheep_lift","enter":func(): actor.item_actions.face(global_position),"exit":func():
+			clear_moving_anchor()
 			carry_heading = rotation.y-actor.skeleton.rotation.y
 			carried_by = actor
 			actor.carried_sheep = self
@@ -151,10 +156,26 @@ func drop() -> void:
 
 func set_moving_anchor(support: Node3D,radius: float):
 	# Sheep::MSG_SET_ANCHOR; preserve the level's respawn/home position.
+	if not support is OriginalRaft and anchor_floor_layers>=0: clear_moving_anchor()
+	if support is OriginalRaft:
+		# Raft applies Translate explicitly; suppress Godot's second platform
+		# displacement, including inherited velocity on stepping off the deck.
+		if anchor_floor_layers<0:
+			anchor_floor_layers = platform_floor_layers
+			anchor_on_leave = platform_on_leave
+		platform_floor_layers = 0
+		platform_on_leave = CharacterBody3D.PLATFORM_ON_LEAVE_DO_NOTHING
 	moving_anchor = support; moving_anchor_radius = radius
 
-func reset_to_home() -> void:
+func clear_moving_anchor():
 	moving_anchor = null
+	if anchor_floor_layers>=0:
+		platform_floor_layers = anchor_floor_layers
+		platform_on_leave = anchor_on_leave
+		anchor_floor_layers = -1; anchor_on_leave = -1
+
+func reset_to_home() -> void:
+	clear_moving_anchor()
 	clear_seesaw_launch()
 	seesaw_support = null
 	scent_reaction.reset(self)
@@ -181,6 +202,7 @@ func _physics_process(delta: float) -> void:
 		_step_death(delta)
 		return
 	if not seesaw_arc.is_empty():
+		clear_moving_anchor()
 		step_seesaw_launch(delta)
 		return
 	if is_instance_valid(seesaw_support):
@@ -190,6 +212,7 @@ func _physics_process(delta: float) -> void:
 			rest_on_seesaw(seesaw_support)
 	if not carried_by and _check_fatal_drop(): return
 	if is_instance_valid(carried_by): return
+	if is_instance_valid(moving_anchor) and not moving_anchor.is_rider(self): clear_moving_anchor()
 	if not flock:
 		var perfume: PerfumeItem
 		var nearest = INF
@@ -285,7 +308,7 @@ func _physics_process(delta: float) -> void:
 				flock.release_idle_variant(self)
 				begin_random_idle(false)
 	var on_moving_anchor = is_instance_valid(moving_anchor) and moving_anchor.is_rider(self)
-	if not on_moving_anchor: moving_anchor = null
+	if not on_moving_anchor: clear_moving_anchor()
 	if on_moving_anchor and not is_instance_valid(flock_target) and call_time<=0:
 		var anchor_difference = moving_anchor.global_position-global_position; anchor_difference.y = 0
 		if anchor_difference.length()>moving_anchor_radius:
@@ -360,6 +383,7 @@ func _check_fatal_drop() -> bool:
 
 func lose(cause: String) -> void:
 	if dead: return
+	clear_moving_anchor()
 	clear_seesaw_launch()
 	seesaw_support = null
 	if is_instance_valid(carried_by):
@@ -465,6 +489,7 @@ func rest_on_seesaw(board: OriginalSeesaw):
 
 func launch_from_seesaw(board: OriginalSeesaw,points: Array,rock_impact: bool):
 	if dead or carried_by or not seesaw_arc.is_empty(): return
+	clear_moving_anchor()
 	seesaw_support = null
 	scent_reaction.reset(self)
 	if flock: flock.release_idle_variant(self)

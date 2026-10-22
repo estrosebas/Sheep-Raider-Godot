@@ -22,8 +22,8 @@ def extract(decomp, folder):
     import war_meshes
 
     slug = folder.name.lower().replace('-', '_')
-    if slug != 'lvl_04':
-        raise ValueError('This supplement is scoped to lvl_04; existing levels stay unchanged.')
+    if slug not in ('lvl_04', 'lvl_05'):
+        raise ValueError('Validated native environment layouts: lvl_04 and lvl_05.')
     out = ROOT / 'assets/levels' / slug
     war = next(folder.glob('*.[wW][aA][rR]')).read_bytes()
     dav_path = next(folder.glob('*.[dD][aA][vV]'))
@@ -100,7 +100,7 @@ def extract(decomp, folder):
                           'source': {'scroll_header': 'WAR type 0x83', 'scroll_lists': list(identities),
                                      'reverse_mask': reverse, 'water_sprite': 'DAV_IDI_IGLTIDE_',
                                      'water_regions': 'WAR_IDO_WATERBOX (54)',
-                                     'hazard': 'Shark class 50; no Piranhas class 117 in this level'}})
+                                     'hazard': 'Native class 50/117 entities select their shared water hazard controller'}})
     # The existing switch controller already dispatches to each native target
     # resource. Supplement it with the cliff boulder's box/camera/TIMER record.
     pointer = next(value & 0xffffff for value in table if value >> 24 == 0x82)
