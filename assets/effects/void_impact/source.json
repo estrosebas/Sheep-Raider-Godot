@@ -1,0 +1,11 @@
+{
+  "model": "AEXPLOS2",
+  "animation": "boom",
+  "resource": 20,
+  "source": "C:\\Users\\estro\\Downloads\\Sheep.Dog.and.Wolf\\Sheep.Dog.and.Wolf\\Sheep.Dog.and.Wolf\\Levels\\Lvl-00\\Lvl-00.WAR",
+  "state": "WOLF_ST_DIE_FELL",
+  "directory": "res://assets/effects/void_impact",
+  "materials": {
+    "13": "add"
+  }
+}

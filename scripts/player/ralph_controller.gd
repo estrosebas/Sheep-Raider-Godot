@@ -104,6 +104,8 @@ var item_actions: OriginalItemActions
 var sneak_audio_player: AudioStreamPlayer3D
 var active_rocket: Node
 var carried_sheep: OriginalSheep
+var carried_object: Node3D
+var catapult_motion_owner: Node3D
 var item_pull_velocity = Vector3.ZERO
 var item_costume = ""
 var costume_item: Node
@@ -126,9 +128,12 @@ var ground_distance = INF
 var restart_fade: OriginalRestartFade
 var restart_fade_remaining = 0.0
 @export_range(0.6,5.0,0.1) var direct_fall_impact_time = 2.0
+@export_range(0,25,1) var direct_fall_camera_tilt = 12.0
+@export_range(0.2,1.5,0.05) var direct_fall_camera_tilt_time = .8
 var pit_is_air_run = false
 var direct_fall_impact_played = false
 var void_impact_audio: AudioStreamPlayer
+var void_impact: OriginalCinematicActor
 var floor_probe_warmup = 2
 var jump_void_grace = 0.0
 var coyote_remaining = 0.0
@@ -155,6 +160,11 @@ func _ready() -> void:
 	run_dust = Dust.new()
 	run_dust.name = "RunDust"
 	add_child(run_dust)
+	void_impact = preload("res://assets/effects/void_impact/worn.tscn").instantiate()
+	void_impact.name = "VoidImpact"
+	add_child(void_impact)
+	void_impact.top_level = true
+	void_impact.hide()
 	safe_position = global_position
 	last_ground_y = global_position.y
 	inventory = InventoryComponent.new()
@@ -177,6 +187,10 @@ func _ready() -> void:
 	add_child(sneak_audio_player)
 	capture_mouse(true)
 	run_data = JSON.parse_string(FileAccess.get_file_as_string("res://assets/models/ralph_run_data.json"))
+	run_data.animations.merge(JSON.parse_string(FileAccess.get_file_as_string("res://assets/models/ralph_catapult_data.json")),true)
+	var sam_attacks = JSON.parse_string(FileAccess.get_file_as_string("res://assets/models/ralph_sam_attacks.json"))
+	run_data.animations.merge(sam_attacks.animations,true)
+	run_data.sounds.merge(sam_attacks.sounds,true)
 	run_data.animations.merge(JSON.parse_string(FileAccess.get_file_as_string("res://assets/models/ralph_sneak_data.json")),true)
 	if FileAccess.file_exists("res://assets/models/ralph_water_data.json"):
 		run_data.animations.merge(JSON.parse_string(FileAccess.get_file_as_string("res://assets/models/ralph_water_data.json")),true)
@@ -256,7 +270,7 @@ var climb_motion = preload("res://scripts/player/original_climb_motion.gd").new(
 func _process(delta: float) -> void:
 	if is_instance_valid(elastic_pull_controller) or is_instance_valid(elastic_motion_owner):
 		apply_legacy_reaction_pose(); return
-	if current_state == WolfState.IDLE and not cinematic_controls_locked and not is_instance_valid(push_target) and not is_instance_valid(carried_sheep) and not is_instance_valid(active_rocket):
+	if current_state == WolfState.IDLE and not cinematic_controls_locked and not is_instance_valid(push_target) and not is_instance_valid(carried_sheep) and not is_instance_valid(carried_object) and not is_instance_valid(active_rocket):
 		var fan_active = inventory.equipped_node is FanItem and inventory.equipped_node.active
 		if fan_active:
 			apply_legacy_reaction_pose()
@@ -278,7 +292,7 @@ func apply_legacy_reaction_pose() -> void:
 func _physics_process(delta: float) -> void:
 	if not is_inside_tree():
 		return
-	if seesaw_launching or is_instance_valid(elastic_motion_owner): return
+	if seesaw_launching or is_instance_valid(elastic_motion_owner) or is_instance_valid(catapult_motion_owner): return
 	# One shared floor probe is evaluated even during jump, flight and carry.
 	ground_distance = ground_drop()
 	floor_probe_warmup = maxi(0,floor_probe_warmup-1)
@@ -329,6 +343,9 @@ func _physics_process(delta: float) -> void:
 		return
 	if is_instance_valid(carried_sheep):
 		carried_sheep.move_carrier(delta)
+		return
+	if is_instance_valid(carried_object):
+		carried_object.move_carrier(delta)
 		return
 
 	var previous_time = state_time
@@ -642,16 +659,26 @@ func step_pit_fall(delta: float) -> void:
 		velocity.y = -minf(TERMINAL_VELOCITY,FALL_GRAVITY*state_time)
 		move_and_slide()
 	run_dust.update_dust(delta,false,global_position,item_facing(),0,run_speed)
-	if current_state != WolfState.PIT_FALL or pit_is_air_run:
+	if current_state == WolfState.PIT_FALL and not pit_is_air_run:
+		# Keep the camera's world position anchored at the rim. Only pitch it
+		# gently down; tracking Ralph's position would chase him off the map.
+		var progress = smoothstep(0.0,direct_fall_camera_tilt_time,state_time)
+		camera.quaternion = pit_camera_start.slerp(pit_camera_target,progress)
+	else:
 		camera.quaternion = pit_camera_start.slerp(pit_camera_target,clampf(state_time/0.4,0,1))
 	var clip = sam_death_clip() if current_state == WolfState.SAM_DEATH else ("blast_death" if current_state == WolfState.BLAST_DEATH else pit_animation())
 	var duration = animation_player.get_animation(clip).length+AirRules.RESTART_DELAY
+	if current_state == WolfState.SAM_DEATH and clip in ["sam_death","sam_hit"]:
+		# Wolf::Die adds 0x2000 ticks after both Sam finishes.
+		duration = animation_player.get_animation(clip).length+2.0
 	if current_state == WolfState.PIT_FALL and not pit_is_air_run:
 		# Original uses a five-second upper bound; the port shortens the direct fall.
 		duration = direct_fall_impact_time+OriginalRestartFade.DURATION
 		if state_time >= direct_fall_impact_time and not direct_fall_impact_played:
 			direct_fall_impact_played = true
 			play_void_impact()
+		if direct_fall_impact_played:
+			void_impact.sample_animation("boom",state_time-direct_fall_impact_time)
 	restart_fade.set_amount(clampf(state_time-(duration-1.0),0,1))
 	if state_time >= duration:
 		pit_respawn_count += 1
@@ -722,6 +749,9 @@ func on_rock_crush(rock: CollisionObject3D) -> bool:
 	return true
 
 func respawn_at_checkpoint() -> void:
+	if is_instance_valid(catapult_motion_owner): catapult_motion_owner.reset_controller()
+	if is_instance_valid(carried_object): carried_object.return_home()
+	void_impact.hide()
 	climb_motion.clear(self)
 	seesaw_launching = false
 	water_motion.reset(self)
@@ -794,6 +824,7 @@ func interrupt_actions() -> void:
 	for sound in animation_sfx_players:
 		sound.stop()
 	run_dust.clear()
+	void_impact.hide()
 	set_state(WolfState.IDLE)
 	play_anim("idle")
 	animation_player.advance(0)
@@ -809,7 +840,9 @@ func set_state(new_state: WolfState) -> void:
 	if new_state == WolfState.PIT_FALL:
 		pit_is_air_run = current_state == WolfState.RUN_AIR
 		direct_fall_impact_played = false
+		void_impact.hide()
 	if new_state in [WolfState.PIT_FALL,WolfState.BLAST_DEATH,WolfState.SAM_DEATH]:
+		if is_instance_valid(carried_object): carried_object.return_home()
 		if inventory.equipped_node is FluteItem: inventory.equipped_node.deactivate()
 		if seesaw_launching:
 			seesaw_launching = false
@@ -879,7 +912,12 @@ func set_state(new_state: WolfState) -> void:
 			camera.top_level = true
 			camera.global_transform = held
 			if new_state == WolfState.PIT_FALL and not pit_is_air_run:
-				# Hold the exact view at the trigger while DEAD1 falls below it.
+				pit_camera_start = camera.quaternion
+				# A local pitch preserves heading. Limit steep views so an already
+				# downward-facing camera never flips past vertical.
+				var pitch = asin(clampf((-camera.global_basis.z).y,-1,1))
+				var tilt = minf(deg_to_rad(direct_fall_camera_tilt),maxf(0,pitch+deg_to_rad(80)))
+				pit_camera_target = pit_camera_start*Quaternion(Vector3.RIGHT,-tilt)
 				play_animation_sfx("res://assets/audio/sfx/original_void_fall.wav")
 				return
 			pit_camera_start = camera.quaternion
@@ -1103,9 +1141,9 @@ func advance_animation_sound_cues(previous_time: float, time: float) -> void:
 			if cue_time > previous_time and cue_time <= time:
 				var sound = run_data["sounds"].get(str(int(cue["sound_id"])))
 				if sound:
-					play_animation_sfx(sound["path"])
+					play_animation_sfx(sound["path"],current_state==WolfState.SAM_DEATH)
 
-func play_animation_sfx(path: String) -> void:
+func play_animation_sfx(path: String,native_falloff: bool = false) -> void:
 	# Animation cues can overlap, but the same sample cannot retrigger itself.
 	var available: AudioStreamPlayer3D = null
 	for player in animation_sfx_players:
@@ -1114,15 +1152,16 @@ func play_animation_sfx(path: String) -> void:
 		if not player.playing:
 			available = player
 	if available == null:
-		available = AudioStreamPlayer3D.new()
-		available.volume_db = -2.0
-		available.max_distance = 30.0
+		available = preload("res://scripts/audio/original_character_audio.gd").new()
 		add_child(available)
 		animation_sfx_players.append(available)
+	available.configure_native(native_falloff,-2.0)
 	available.stream = load(path)
 	available.play()
 
 func play_void_impact() -> void:
+	# Native state 0x0e replaces Ralph with AEXPLOS2 / BOOM, not run dust.
+	void_impact.hide()
 	# The direct fall travels beyond positional-audio range while its camera
 	# stays above the map. This offscreen impact belongs to the restart view.
 	if not is_instance_valid(void_impact_audio):
@@ -1131,6 +1170,23 @@ func play_void_impact() -> void:
 		add_child(void_impact_audio)
 		void_impact_audio.stream = load("res://assets/audio/sfx/original_void_impact.wav")
 	void_impact_audio.play()
+	# The impact artwork is placed near the camera for a bottomless pit.
+	# Test the real view first so this presentation cannot draw over a wall.
+	var viewport_size = get_viewport().get_visible_rect().size
+	var point = camera.unproject_position(global_position)
+	if camera.is_position_behind(global_position): point.x = viewport_size.x*.5
+	point.x = clampf(point.x,viewport_size.x*.25,viewport_size.x*.75)
+	point.y = viewport_size.y*.78
+	# Do not cast down the low-screen effect ray all the way to fallen Ralph:
+	# it almost always meets distant terrain after the camera tilts downward.
+	# Only nearby walls in front of the held camera should suppress BOOM.
+	var query = PhysicsRayQueryParameters3D.create(camera.global_position,camera.global_position-camera.global_basis.z*6.0,3)
+	query.exclude = [get_rid()]
+	var obstruction = get_world_3d().direct_space_state.intersect_ray(query)
+	if not obstruction.is_empty() and obstruction.normal.y<.65: return
+	void_impact.global_transform = Transform3D(Basis(camera.global_basis.x,camera.global_basis.z,-camera.global_basis.y).scaled(Vector3.ONE*.045),camera.project_position(point,2.0))
+	void_impact.sample_animation("boom",0)
+	void_impact.show()
 
 func pit_animation() -> String:
 	return "pit_fall" if pit_is_air_run else "fall_death"

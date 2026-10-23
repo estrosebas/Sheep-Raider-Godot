@@ -10,6 +10,7 @@ static var pending: Dictionary = {}
 static var startup_offered = false
 static var studio_initialized = false
 static var resume_checkpoint: Dictionary = {}
+static var studio_arrivals: Array[String] = []
 
 static func slot_path(slot: int) -> String:
 	if slot == AUTO_SLOT: return directory+"/autosave.json"
@@ -157,6 +158,12 @@ static func valid_studio_record(record: Dictionary) -> bool:
 	if not point is Dictionary or not valid_vector(point.get("position")) or not valid_vector(point.get("camera")): return false
 	if not point.get("facing") is float and not point.get("facing") is int: return false
 	if not OriginalProgress.valid(record.get("progress")): return false
+	var arrivals = record.get("studio_arrivals",[])
+	if not arrivals is Array or arrivals.size()>OriginalProgress.TOTAL_SHEEP: return false
+	var unique = {}
+	for identity in arrivals:
+		if not identity is String or not OriginalProgress.valid_level(identity) or int(identity.trim_prefix("lvl_"))>=OriginalProgress.TOTAL_SHEEP or not record.progress.get("completed_levels",{}).get(identity,false) or unique.has(identity): return false
+		unique[identity] = true
 	var resume = record.get("resume_checkpoint",{})
 	return resume is Dictionary and (resume.is_empty() or (resume.get("level") != "studio" and valid(resume)))
 
@@ -180,6 +187,20 @@ static func latest_slot() -> Dictionary:
 	return latest
 
 static func save_level_completion(level: Node) -> Error:
+	# Compare before replacing the autosave: the completion flag is already
+	# set in memory, and write_slot clears completion_unsaved after persisting.
+	var previous = latest_slot()
+	var before: Dictionary = previous.get("progress",{}).get("completed_levels",{})
+	var previous_count = 0
+	for i in range(OriginalProgress.TOTAL_SHEEP):
+		if before.get("lvl_%02d"%i,false): previous_count += 1
+	studio_arrivals.clear()
+	for identity in previous.get("studio_arrivals",[]):
+		if OriginalProgress.is_completed(identity): studio_arrivals.append(identity)
+	if OriginalProgress.extracted_sheep_count()>previous_count:
+		for i in range(OriginalProgress.TOTAL_SHEEP):
+			var identity = "lvl_%02d"%i
+			if OriginalProgress.is_completed(identity) and not before.get(identity,false) and not studio_arrivals.has(identity): studio_arrivals.append(identity)
 	var checkpoint = level.get_node_or_null("CheckpointSave")
 	var resume: Dictionary = {}
 	if checkpoint:
@@ -192,7 +213,17 @@ static func save_level_completion(level: Node) -> Error:
 	var spawn = JSON.parse_string(FileAccess.get_file_as_string("res://assets/levels/scene/data/manifest.json")).spawn
 	var point = GameSpace.from_export(Vector3(spawn.pos[0],spawn.pos[1],spawn.pos[2]))
 	var record = {"version":VERSION,"level":"studio","checkpoint":{"index":-1,"position":vector(point),"facing":0.0,"camera":[0,0,0]},"progress":OriginalProgress.snapshot(),"resume_checkpoint":resume}
+	record["studio_arrivals"] = studio_arrivals.duplicate()
 	return write_slot(AUTO_SLOT,record)
+
+static func acknowledge_studio_arrival(identity: String):
+	studio_arrivals.erase(identity)
+	var record = read_slot(AUTO_SLOT)
+	if record.is_empty() or not record.get("studio_arrivals",[]).has(identity): return
+	record.studio_arrivals.erase(identity)
+	# Preserve all manual slots and the already-earned level completion.
+	var error = write_slot(AUTO_SLOT,record)
+	if error!=OK: push_warning("Could not acknowledge studio sheep arrival: %d"%error)
 
 static func initialize_studio() -> Dictionary:
 	# Restore disk progress only at startup, never overwrite fresh unsaved wins
@@ -203,6 +234,8 @@ static func initialize_studio() -> Dictionary:
 	elif not studio_initialized and resume_checkpoint.is_empty() and not OriginalProgress.completion_unsaved and not OriginalProgress.timekeeper_unsaved: record = latest_slot()
 	if not record.is_empty() or (not studio_initialized and resume_checkpoint.is_empty() and not OriginalProgress.completion_unsaved and not OriginalProgress.timekeeper_unsaved):
 		OriginalProgress.restore(record.get("progress",{}))
+		studio_arrivals.clear()
+		for identity in record.get("studio_arrivals",[]): studio_arrivals.append(identity)
 		resume_checkpoint = {}
 		if not record.is_empty(): remember_checkpoint(record)
 	studio_initialized = true; startup_offered = true

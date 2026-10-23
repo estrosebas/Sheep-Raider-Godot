@@ -116,11 +116,13 @@ def main():
     audit = read('data/import_audit.json')
     audit.update(intro_cine_id=0, tutorial_cine_ids=[],
                  cinematic_descriptors={'0': {'name': 'intro_camera', 'description': 'Recorrido nativo de entrada del nivel 05'}},
-                 implemented_exclusive_classes=[118], pending_exclusive_classes=[56,65,159,162],
+                 implemented_exclusive_classes=[118,56,65], pending_exclusive_classes=[159,162],
                  notes=['No Daffy entity or voiced tutorial exists in the Lv05 WAR.',
                         'Gate closedAtStart is 1 unless a Train exists; property0 alone does not select it.',
-                        'Catapult and carryable SmallRock need operating controllers; ambient Firefly/Fish need motion.'])
+                        'Catapult and SmallRock use shared operating controllers; ambient Firefly/Fish need motion.'])
     save('data/import_audit.json', audit)
+    from extract_catapult_mechanics import main as extract_catapult_controller
+    extract_catapult_controller()
     print('Lv05: native intro0, alternate gate models, mobile platform and catapult configuration')
 
 

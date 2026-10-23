@@ -34,11 +34,31 @@ func _physics_process(_delta: float) -> void:
 			outside_sheep = actor
 			break
 	reservations.clear()
+	# A stale lastFoodPos must not reacquire food around the previous location
+	# after a carry, teleport or displacement. Preserve active walking chains.
+	for actor in sheep:
+		if actor.carried_by:
+			if is_instance_valid(actor.flock_target) or is_instance_valid(actor.attraction_target) or actor.last_food_position != null or actor.call_time>0 or not actor.scent_reaction.phase.is_empty():
+				actor.forget_attraction()
+			continue
+		var target = actor.flock_target
+		if is_instance_valid(target) and target.has_method("scent_strength"):
+			var offset: Vector3 = target.scent_position()-actor.global_position
+			var radius = ItemRules.LETTUCE_RADIUS if target is LettuceItem else target.scent_strength()
+			if target is LettuceItem and actor.last_food_position != null and actor.flock_phase == "approach": radius += .9
+			var detectable = target.can_smell_from(actor.global_position) if target is PerfumeItem else absf(offset.y)<=1.5 and Vector2(offset.x,offset.z).length()<=radius
+			# Consumed food may immediately hand off to a nearby lettuce.
+			# Only physical loss of range invalidates that chain's origin.
+			if not detectable: actor.forget_attraction()
+		if actor.last_food_position != null and not is_instance_valid(actor.flock_target):
+			var offset: Vector3 = actor.global_position-actor.last_food_position
+			if absf(offset.y)>1.5 or Vector2(offset.x,offset.z).length()>1.0:
+				actor.last_food_position = null
 	# SHSF_KEEPS_RESERVATION: keep an approach/eat target until consumed.
 	# Reassigning every frame can restart SMEL1 forever when two sheep compete.
 	for actor in sheep:
 		var target = actor.flock_target
-		if actor.carried_by or actor.dead or actor.sleepy or not actor.seesaw_arc.is_empty() or restricted(actor): continue
+		if actor.carried_by or actor.dead or actor.sleepy or is_instance_valid(actor.catapult_motion_owner) or not actor.seesaw_arc.is_empty() or restricted(actor): continue
 		if is_instance_valid(target) and target.has_method("scent_strength") and target.scent_strength() > 0 and not reservations.has(target):
 			if target is OriginalPressureButton and actor.button_think_due: continue # Reconsider food before keeping the button.
 			var difference: Vector3 = target.scent_position()-actor.global_position
@@ -46,14 +66,15 @@ func _physics_process(_delta: float) -> void:
 				if target.can_smell_from(actor.global_position): reservations[target] = actor
 				continue
 			# A chain target can be 6m from lastFoodPos plus the .9m eating offset.
-			var radius = target.scent_strength() if target.is_in_group("bushes") else (6.0 if target is OriginalPressureButton else 6.9)
+			var radius = target.scent_strength()
+			if target is LettuceItem and actor.last_food_position != null and actor.flock_phase == "approach": radius += .9
 			if absf(difference.y) <= 1.5 and Vector2(difference.x,difference.z).length() <= radius:
 				reservations[target] = actor
 	var candidates: Array[Dictionary] = []
 	for attractor in get_tree().get_nodes_in_group("sheep_attractors"):
 		if reservations.has(attractor) or not attractor.has_method("scent_strength") or attractor.scent_strength() <= 0: continue
 		for actor in sheep:
-			if actor.carried_by or actor.dead or actor.sleepy or not actor.seesaw_arc.is_empty() or restricted(actor) or reservations.values().has(actor): continue
+			if actor.carried_by or actor.dead or actor.sleepy or is_instance_valid(actor.catapult_motion_owner) or not actor.seesaw_arc.is_empty() or restricted(actor) or reservations.values().has(actor): continue
 			if attractor is OriginalPressureButton and not actor.button_think_due: continue
 			if attractor is OriginalPressureButton and actor.flock_target is OriginalPressureButton and attractor != actor.flock_target: continue
 			var p: Vector3 = attractor.scent_position()
@@ -84,6 +105,11 @@ func attraction(actor: OriginalSheep) -> Node3D:
 			best = distance
 			nearest = attractor
 	return nearest
+
+func release_attraction(actor: OriginalSheep) -> void:
+	for target in reservations.keys():
+		if reservations[target] == actor: reservations.erase(target)
+	release_idle_variant(actor)
 
 func claim_idle_variant(actor: OriginalSheep) -> bool:
 	# Port presentation rule: one ambient STAND4/BAH at once per flock.

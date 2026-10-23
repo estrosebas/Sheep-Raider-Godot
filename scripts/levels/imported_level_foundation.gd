@@ -4,7 +4,11 @@ extends RefCounted
 # added separately, rather than copying the level-01 lessons and identities.
 func setup(level: ImportedLevel) -> void:
 	var base = level.asset_directory
+	preload("res://scripts/levels/original_player_boundaries.gd").install(level)
+	var mines = JSON.parse_string(FileAccess.get_file_as_string(base+"/data/mines.json")) if FileAccess.file_exists(base+"/data/mines.json") else {}
 	var runtime = JSON.parse_string(FileAccess.get_file_as_string(base+"/data/runtime.json"))
+	var telescopes = JSON.parse_string(FileAccess.get_file_as_string(base+"/data/telescopes.json")) if FileAccess.file_exists(base+"/data/telescopes.json") else []
+	var previews = JSON.parse_string(FileAccess.get_file_as_string(base+"/data/preview_actors.json")) if FileAccess.file_exists(base+"/data/preview_actors.json") else {}
 	var balance = JSON.parse_string(FileAccess.get_file_as_string(base+"/data/port_balance.json")) if FileAccess.file_exists(base+"/data/port_balance.json") else {}
 	var interactions = JSON.parse_string(FileAccess.get_file_as_string(base+"/data/interactions.json")) if FileAccess.file_exists(base+"/data/interactions.json") else {}
 	var switches = JSON.parse_string(FileAccess.get_file_as_string(base+"/data/switches.json")) if FileAccess.file_exists(base+"/data/switches.json") else {}
@@ -12,11 +16,14 @@ func setup(level: ImportedLevel) -> void:
 	var sharks = JSON.parse_string(FileAccess.get_file_as_string(base+"/data/sharks.json")) if FileAccess.file_exists(base+"/data/sharks.json") else {}
 	var rafts = JSON.parse_string(FileAccess.get_file_as_string(base+"/data/rafts.json")) if FileAccess.file_exists(base+"/data/rafts.json") else {}
 	var mobile = JSON.parse_string(FileAccess.get_file_as_string(base+"/data/mobile_platforms.json")) if FileAccess.file_exists(base+"/data/mobile_platforms.json") else {}
+	var catapults = JSON.parse_string(FileAccess.get_file_as_string(base+"/data/catapults.json")) if FileAccess.file_exists(base+"/data/catapults.json") else {}
 	var excluded = ["Mailbox","Salad","SignPostSimple","Rock","Bush","seesaw"] if not interactions.is_empty() else ["Mailbox","Salad","SignPostSimple"]
 	if not switches.is_empty(): excluded.append_array(["SensibleButton","Wooden Lift","WoodenPlatForm","FallingGate"])
 	excluded.append_array(["Rocks","box","HiddenRocks","TimeKeeper","Flute","TriggedStone","bull","HeapOfLeaf","Leaf","Shark"])
 	if not rafts.is_empty(): excluded.append("Raft")
+	if not mines.is_empty(): excluded.append("DefusableMine")
 	if not mobile.is_empty(): excluded.append("RCarpetMobile")
+	if catapults.has("rules"): excluded.append_array(["Catapult","SmallRock"])
 	OriginalSolidBuilder.build(level,base+"/data/solid_boxes.json",excluded)
 	var delivered = {}
 	var elastic = JSON.parse_string(FileAccess.get_file_as_string(base+"/data/elastic.json")) if FileAccess.file_exists(base+"/data/elastic.json") else {}
@@ -27,6 +34,42 @@ func setup(level: ImportedLevel) -> void:
 		if definition == null: continue
 		var actor: Node3D
 		match kind:
+			64:
+				if mines.is_empty(): actor = load(definition.directory+"/worn.tscn").instantiate()
+				else:
+					actor = preload("res://scripts/items/original_defusable_mine.gd").new()
+					for mine in mines.mines:
+						if int(mine.res)==int(entity.res): actor.mine_definition = mine
+					actor.mine_assets = mines; actor.sounds = runtime.sounds
+					actor.item_id = "%s:%d"%[level.manifest.level,int(entity.res)]; actor.source_level = level.manifest.level
+			28:
+				if telescopes.is_empty(): actor = load(definition.directory+"/worn.tscn").instantiate()
+				else:
+					actor = OriginalTelescope.new()
+					for record in telescopes:
+						if int(record.res)==int(entity.res): actor.definition = record
+			58:
+				actor = preload("res://scripts/items/imported_preview_item.gd").new()
+				actor.class_id = kind; actor.item_id = "%s:%d"%[level.manifest.level,int(entity.res)]
+				actor.source_level = level.manifest.level; actor.native_text_list = 59
+				actor.original_scene = definition.directory+"/worn.tscn"
+				delivered[int(entity.res)] = actor
+			56:
+				if not catapults.has("rules"):
+					actor = load(definition.directory+"/worn.tscn").instantiate()
+				else:
+					actor = preload("res://scripts/levels/original_catapult.gd").new()
+					for catapult in catapults.catapults:
+						if int(catapult.res)==int(entity.res): actor.definition = catapult
+					actor.sounds = runtime.sounds
+			65:
+				if not catapults.has("rules"):
+					actor = load(definition.directory+"/worn.tscn").instantiate()
+				else:
+					actor = preload("res://scripts/items/original_small_rock.gd").new()
+					for rock in catapults.small_rocks:
+						if int(rock.res)==int(entity.res): actor.definition = rock
+					actor.sounds = runtime.sounds
 			118:
 				actor = preload("res://scripts/levels/original_mobile_platform.gd").new()
 				for platform in mobile.get("platforms",[]):
@@ -169,6 +212,10 @@ func setup(level: ImportedLevel) -> void:
 			# (e.g. the bull's attack) in an alphabetically extracted animation bank.
 			var idle = "sleep1" if kind==43 and actor.rig.animations.has("sleep1") else str(definition.idle)
 			actor.idle(idle)
+			if previews.has(str(int(entity.res))):
+				var preview = previews[str(int(entity.res))]
+				actor.sample_animation(preview.clip,0)
+				if preview.get("frozen",false): actor.idle_clip = ""; actor.set_process(false)
 	for definition in runtime.mailboxes:
 		var mailbox = OriginalMailbox.new()
 		mailbox.name = "Mailbox_%d"%int(definition.res)
@@ -187,6 +234,10 @@ func setup(level: ImportedLevel) -> void:
 		var region = balance.clock_collision_region
 		preload("res://scripts/levels/original_visual_collision.gd").setup(level,
 			AABB(Vector3(region.min[0],region.min[1],region.min[2]),Vector3(region.size[0],region.size[1],region.size[2])),false)
+	if balance.has("clock_floor_seams"):
+		var region = balance.clock_collision_region
+		preload("res://scripts/levels/original_visual_collision.gd").soften_floor_seams(level,
+			AABB(Vector3(region.min[0],region.min[1],region.min[2]),Vector3(region.size[0],region.size[1],region.size[2])),balance.clock_floor_seams)
 	level.player.position = GameSpace.from_export(Vector3(spawn.pos[0],spawn.pos[1],spawn.pos[2]))
 	level.player.skeleton.rotation.y = -float(spawn.rot[1])*TAU/4096
 	level.player.camera_pivot.rotation.y = level.player.skeleton.rotation.y+PI
@@ -226,6 +277,11 @@ func setup(level: ImportedLevel) -> void:
 	var save = ImportedCheckpointSave.new()
 	save.name = "CheckpointSave"
 	level.add_child(save)
+	if FileAccess.file_exists(base+"/data/sam_flute_encounter.json"):
+		var encounter = preload("res://scripts/levels/original_sam_flute_encounter.gd").new()
+		encounter.name = "SamFluteEncounter"
+		encounter.definition = JSON.parse_string(FileAccess.get_file_as_string(base+"/data/sam_flute_encounter.json"))
+		level.add_child(encounter)
 	for definition in JSON.parse_string(FileAccess.get_file_as_string(base+"/data/goals.json")):
 		var goal = OriginalLevelGoal.new()
 		goal.name = "Goal_%d"%int(definition.res)

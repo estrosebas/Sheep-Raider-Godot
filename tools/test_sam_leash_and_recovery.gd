@@ -37,7 +37,7 @@ func run():
 	for point in sam.path: check(sam.contains(point,sam.rules.authorized,false),"Return path stays in native authorized area")
 	sam.reset_guard()
 	player.global_position = sam.global_position+Vector3(.5,0,0)
-	sam._catch_player()
+	sam._catch_player(0)
 	sam.state_elapsed = sam.visual.rig.animations.punch7.duration
 	sam._physics_process(.016)
 	check(sam.clip == "win" and sam.catch_punched,"Punch transitions into original CATCHDONE/WIN")
@@ -45,6 +45,21 @@ func run():
 	sam._process(.96)
 	check(sam.audio.playing and sam.audio.stream.resource_path.ends_with("/77.wav"),"Original WIN cue77 plays after the punch")
 	check(sam.visual.animation_player.current_animation == "win","Recovery animation evaluates real original WIN")
+	player.respawn_at_checkpoint()
+	player.restart_fade_remaining = 0
+	player.global_position = sam.global_position+Vector3(.5,0,0)
+	sam._catch_player(99)
+	check(not sam.catch_is_grab and sam.clip == "punch3","Other half of native choice uses Sam HIT/PUNCH3")
+	check(player.current_state == player.WolfState.SAM_DEATH and player.animation_player.current_animation == "sam_hit","HIT starts Ralph PUNCH3 immediately")
+	check(not player.cinematic_controls_locked,"HIT advances its own death timer and sound cues")
+	sam.state_elapsed = sam.visual.rig.animations.punch3.duration
+	sam._physics_process(.016)
+	check(sam.clip == "win_after_hit" and player.sam_death_clip() == "sam_hit","HIT recovers without switching Ralph to the GRAB finish")
+	check(player.run_data.animations.sam_hit.original_name == "punch3","Native Ralph PUNCH3 recovered")
+	player.respawn_at_checkpoint()
+	player.global_position = sam.global_position+Vector3(.5,.8,0)
+	sam._catch_player(0)
+	check(not sam.catch_is_grab,"Higher airborne Ralph is HIT even when random choice favors GRAB")
 	for node in level.find_children("*","AudioStreamPlayer",true,false)+level.find_children("*","AudioStreamPlayer3D",true,false): node.stop(); node.stream = null
 	level.process_mode = Node.PROCESS_MODE_DISABLED
 	level.queue_free()

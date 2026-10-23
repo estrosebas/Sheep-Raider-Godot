@@ -1,0 +1,177 @@
+{
+  "catapults": [
+    {
+      "res": 37,
+      "class_id": 56,
+      "class_name": "Catapult",
+      "model_res": 20,
+      "pos": [
+        48.54,
+        0.2,
+        6.140000000000001
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ],
+      "props": {
+        "0x0": 555,
+        "0x4": 86,
+        "0x8": 144,
+        "0xc": 145,
+        "0x10": 90,
+        "0x14": 2000,
+        "0x18": 535,
+        "0x1c": 400,
+        "0x20": 4294967161,
+        "0x24": 532
+      },
+      "directory": "res://assets/levels/lvl_06/models/20",
+      "boxes": [
+        {
+          "flags": 0,
+          "min": [
+            -229,
+            -87,
+            -172
+          ],
+          "max": [
+            232,
+            0,
+            160
+          ]
+        }
+      ],
+      "activation": [
+        {
+          "flags": 0,
+          "min": [
+            4961,
+            -106,
+            370
+          ],
+          "max": [
+            5108,
+            61,
+            469
+          ]
+        }
+      ],
+      "trajectory": [
+        [
+          5043,
+          -282,
+          591
+        ],
+        [
+          2016,
+          -1094,
+          591
+        ],
+        [
+          1268,
+          1480,
+          591
+        ]
+      ],
+      "max_throw_offset": 20.0,
+      "arm_lengths": [
+        0.86,
+        1.44,
+        1.45
+      ],
+      "model_boxes": [
+        {
+          "flags": 0,
+          "min": [
+            -229,
+            -87,
+            -172
+          ],
+          "max": [
+            232,
+            0,
+            160
+          ]
+        },
+        {
+          "flags": 1,
+          "min": [
+            147,
+            -243,
+            -98
+          ],
+          "max": [
+            297,
+            -216,
+            101
+          ]
+        }
+      ],
+      "camera": {
+        "focal": 578,
+        "rotation": [
+          159,
+          3329,
+          0
+        ],
+        "eye": [
+          3327,
+          -714,
+          211
+        ]
+      },
+      "status": "Shared operating controller; native power, bucket, arc, camera and HUD"
+    }
+  ],
+  "small_rocks": [
+    {
+      "res": 58,
+      "class_id": 65,
+      "class_name": "SmallRock",
+      "model_res": 24,
+      "pos": [
+        51.11,
+        2.06,
+        8.63
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ],
+      "props": {
+        "0x0": 3452816845,
+        "0x4": 1,
+        "0x8": 0
+      },
+      "directory": "res://assets/levels/lvl_06/models/24",
+      "boxes": [
+        {
+          "flags": 2,
+          "min": [
+            -40,
+            -90,
+            -40
+          ],
+          "max": [
+            40,
+            0,
+            40
+          ]
+        }
+      ]
+    }
+  ],
+  "rules": {
+    "power_min": 0,
+    "power_max": 1024,
+    "power_step": 6,
+    "original_update_hz": 60,
+    "camera_hold_seconds": 2,
+    "return_seconds": 1.024,
+    "fire_sound": 263,
+    "power_sound": 118
+  }
+}

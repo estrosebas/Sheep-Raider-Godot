@@ -2,9 +2,9 @@
 [ext_resource type="Script" path="res://scripts/testing/item_lab.gd" id="1"]
 [ext_resource type="PackedScene" path="res://scenes/characters/Ralph.tscn" id="2"]
 [sub_resource type="BoxShape3D" id="floor_shape"]
-size = Vector3(80, 1, 80)
+size = Vector3(140, 1, 140)
 [sub_resource type="BoxMesh" id="floor_mesh"]
-size = Vector3(80, 1, 80)
+size = Vector3(140, 1, 140)
 [sub_resource type="StandardMaterial3D" id="floor_material"]
 shading_mode = 0
 albedo_color = Color(0.25, 0.36, 0.22, 1)

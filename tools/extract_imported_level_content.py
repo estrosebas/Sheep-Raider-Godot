@@ -3,6 +3,7 @@ import json, re, struct, sys
 from pathlib import Path
 from extract_shared_items import read_rig, page_image
 from extract_run_assets import decode
+from extract_switch_cameras import extract as extract_switch_cameras
 
 ROOT = Path(__file__).resolve().parents[1]
 STRIDES = [0,8,8,4,2,2,4,2,2]
@@ -45,6 +46,7 @@ def main():
                 'lifts':[{**e,'directory':manifest['models'][str(e['model_res'])]['directory'],'boxes':model_boxes(e['model_res'])} for e in es if e['class_id']==36],
                 'gates':[{**e,'directory':manifest['models'][str(e['model_res'])]['directory'],'boxes':model_boxes(e['model_res'])} for e in es if e['class_id']==26]}
     save(out/'data/switches.json',switches)
+    extract_switch_cameras(folder)
     seesaws = [{**e,'rot_deg':[v*360/4096 for v in e['rot']],'directory':manifest['models'][str(e['model_res'])]['directory'],'boxes':model_boxes(e['model_res']),
                 'trajectories':[trajectory(e['props'][k]) for k in ['0x2c','0x30']],
                 'launch_cameras':[camera(e['props'][k]) for k in ['0x0','0xc']],

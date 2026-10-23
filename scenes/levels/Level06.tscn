@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3]
+[ext_resource type="Script" path="res://scripts/levels/imported_level.gd" id="1"]
+[ext_resource type="PackedScene" path="res://scenes/characters/Ralph.tscn" id="2"]
+[ext_resource type="Shape3D" path="res://assets/levels/lvl_06/collision.tres" id="3"]
+[ext_resource type="ArrayMesh" path="res://assets/levels/lvl_06/scenery.tres" id="4"]
+[sub_resource type="Environment" id="environment"]
+background_mode = 1
+background_color = Color(0.1568627450980392,0.2196078431372549,0.40784313725490196,1)
+tonemap_mode = 0
+[node name="Level06" type="Node3D"]
+script = ExtResource("1")
+asset_directory = "res://assets/levels/lvl_06"
+foundation_mode = true
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("environment")
+[node name="Scenery" type="MeshInstance3D" parent="."]
+mesh = ExtResource("4")
+[node name="Collision" type="StaticBody3D" parent="."]
+collision_layer = 3
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Collision"]
+shape = ExtResource("3")
+[node name="Player" parent="." instance=ExtResource("2")]
+position = Vector3(-11.71,1.62,9.51)
+[node name="BGMPlayer" type="AudioStreamPlayer" parent="."]
+[node name="HUD" type="CanvasLayer" parent="."]
+[node name="Label" type="Label" parent="HUD"]
+offset_left = 24.0
+offset_top = 24.0
+text = "NIVEL 06 · F8: Laboratorio · H: Ayuda · Escape: Pausa"

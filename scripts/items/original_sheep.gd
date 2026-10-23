@@ -3,6 +3,7 @@ class_name OriginalSheep
 
 var definition: Dictionary
 var carried_by: RalphController
+var catapult_motion_owner: Node3D
 var visual: OriginalCinematicActor
 var hint: Label3D
 var respawn_position: Variant = null
@@ -98,6 +99,7 @@ func snap_to_ground() -> void:
 		home = global_position
 
 func can_interact(actor: RalphController) -> bool:
+	if actor.carried_object: return false
 	if dead or not seesaw_arc.is_empty(): return false
 	if not actor.can_use_item(): return false
 	if carried_by == actor: return actor.is_on_floor()
@@ -123,6 +125,7 @@ func interact(actor: RalphController) -> bool:
 			{"clip":"sheep_drop_end"}])
 	return actor.item_actions.begin([
 		{"clip":"sheep_lift","enter":func(): actor.item_actions.face(global_position),"exit":func():
+			forget_attraction()
 			clear_moving_anchor()
 			carry_heading = rotation.y-actor.skeleton.rotation.y
 			carried_by = actor
@@ -143,6 +146,7 @@ func move_carrier(delta: float) -> void:
 
 func drop() -> void:
 	if not is_instance_valid(carried_by): return
+	forget_attraction()
 	var actor = carried_by
 	actor.carried_sheep = null
 	carried_by = null
@@ -153,6 +157,27 @@ func drop() -> void:
 	visual.idle("stand1")
 	remove_collision_exception_with(actor)
 	get_node("CollisionShape3D").set_deferred("disabled",false)
+
+func forget_attraction() -> void:
+	# Entering native CARRIED releases SHSF_KEEPS_RESERVATION. A dropped
+	# sheep searches from its new position, never from the old food location.
+	if flock: flock.release_attraction(self)
+	scent_reaction.reset(self)
+	flock_target = null
+	attraction_target = null
+	last_food_position = null
+	call_actor = null
+	call_time = 0
+	flock_phase = "idle"
+	flock_timer = 0
+	button_think_due = false
+	button_think_timer = 1.0
+	velocity.x = 0
+	velocity.z = 0
+	if sheep_audio: sheep_audio.stop()
+	if visual:
+		visual.idle_speed = 1.0
+		visual.idle(idle_animation)
 
 func set_moving_anchor(support: Node3D,radius: float):
 	# Sheep::MSG_SET_ANCHOR; preserve the level's respawn/home position.
@@ -175,6 +200,7 @@ func clear_moving_anchor():
 		anchor_floor_layers = -1; anchor_on_leave = -1
 
 func reset_to_home() -> void:
+	forget_attraction()
 	clear_moving_anchor()
 	clear_seesaw_launch()
 	seesaw_support = null
@@ -198,6 +224,7 @@ func goal_position() -> Vector3:
 	return carried_by.global_position if is_instance_valid(carried_by) else global_position
 
 func _physics_process(delta: float) -> void:
+	if is_instance_valid(catapult_motion_owner): return
 	if dead:
 		_step_death(delta)
 		return

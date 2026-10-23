@@ -1,0 +1,36 @@
+{
+  "source": "C:\\Users\\estro\\Downloads\\Sheep.Dog.and.Wolf\\Sheep.Dog.and.Wolf\\Sheep.Dog.and.Wolf\\Levels\\Lvl-05\\Lvl-05.DAV",
+  "gauge_origin": [
+    8,
+    16
+  ],
+  "pointer_x": [
+    24,
+    108
+  ],
+  "pointer_y": 39,
+  "assets": {
+    "gauge": {
+      "resource": 71,
+      "bitmap": 97,
+      "page": 9,
+      "rect": [
+        96,
+        128,
+        128,
+        32
+      ]
+    },
+    "frame": {
+      "resource": 55,
+      "bitmap": 39,
+      "page": 9,
+      "rect": [
+        0,
+        0,
+        128,
+        32
+      ]
+    }
+  }
+}

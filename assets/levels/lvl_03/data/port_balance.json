@@ -1,12 +1,34 @@
 {
   "clock_collision_region": {
-    "min": [2.5, 5.0, -50.0],
-    "size": [5.0, 9.0, 8.0]
+    "min": [
+      2.5,
+      5.0,
+      -50.0
+    ],
+    "size": [
+      5.0,
+      9.0,
+      8.0
+    ]
   },
   "elastic": {
     "two_anchor_max_length": 9.5,
     "full_charge_threshold": 0.98,
     "minimum_launch_charge": 1.0,
     "automatic_launch_hold": 1.0
-  }
+  },
+  "clock_floor_seams": [
+    {
+      "z": -48.3,
+      "min_y": 5.95,
+      "max_y": 6.05,
+      "approach": 1.2
+    },
+    {
+      "z": -46.28,
+      "min_y": 6.15,
+      "max_y": 6.35,
+      "approach": 1.2
+    }
+  ]
 }

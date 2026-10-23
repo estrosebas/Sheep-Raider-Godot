@@ -1,0 +1,12 @@
+extends "res://tools/build_shared_items.gd"
+func _init() -> void:
+	for pair in [[1,2],[2,4],[3,16],[4,7],[5,19]]:
+		var base = "res://assets/levels/lvl_%02d"%pair[0]
+		var directory = base+"/models/%d"%pair[1]
+		var definition = JSON.parse_string(FileAccess.get_file_as_string(base+"/data/manifest.json"))
+		if FileAccess.file_exists(directory+"/definition.json"):
+			definition = JSON.parse_string(FileAccess.get_file_as_string(directory+"/definition.json"))
+		build_costume(directory,definition)
+		var scene = FileAccess.open(directory+"/worn.tscn",FileAccess.WRITE)
+		scene.store_string('[gd_scene load_steps=2 format=3]\n[ext_resource type="Script" path="res://scripts/cinematics/original_actor.gd" id="1"]\n[node name="OriginalActor" type="Node3D"]\nscript = ExtResource("1")\nasset_directory = "%s"\n'%directory)
+	quit()

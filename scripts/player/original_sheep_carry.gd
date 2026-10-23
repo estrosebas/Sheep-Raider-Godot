@@ -23,7 +23,7 @@ func select_clip(actor: RalphController, name: String) -> void:
 	if name == "sheep_carry_idle": idle_loops = randi_range(3,5)
 	elif name == "sheep_carry_tired": idle_loops = randi_range(1,2)
 
-func step(sheep: OriginalSheep, delta: float) -> void:
+func step(sheep: Node3D, delta: float) -> void:
 	var actor = sheep.carried_by
 	var on_ground = actor.is_on_floor()
 	var input = Vector2.ZERO if actor.launch_controls_locked else Input.get_vector("move_left","move_right","move_forward","move_backward")
@@ -107,7 +107,7 @@ func step(sheep: OriginalSheep, delta: float) -> void:
 	was_moving = moving
 	# Sheep::MSG_CARRY_ANIM: 0/2/3 -> STAND8; 1/4 -> RUN2.
 	var sheep_clip = "run2" if phase in [Phase.GROUND,Phase.LAND] and moving else "stand8"
-	if sheep.visual.idle_clip != sheep_clip: sheep.visual.idle(sheep_clip)
+	if sheep is OriginalSheep and sheep.visual.idle_clip != sheep_clip: sheep.visual.idle(sheep_clip)
 	var previous = clip_time
 	clip_time += delta
 	for cue in actor.run_data["animations"][clip]["sound_cues"]:

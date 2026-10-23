@@ -2,6 +2,9 @@ extends SceneTree
 
 func _init() -> void:
 	var data: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://assets/models/ralph_run_data.json"))
+	data.animations.merge(JSON.parse_string(FileAccess.get_file_as_string("res://assets/models/ralph_catapult_data.json")),true)
+	if FileAccess.file_exists("res://assets/models/ralph_sam_attacks.json"):
+		data.animations.merge(JSON.parse_string(FileAccess.get_file_as_string("res://assets/models/ralph_sam_attacks.json")).animations,true)
 	if FileAccess.file_exists("res://assets/models/ralph_water_data.json"):
 		data.animations.merge(JSON.parse_string(FileAccess.get_file_as_string("res://assets/models/ralph_water_data.json")),true)
 	if FileAccess.file_exists("res://assets/models/ralph_interaction_data.json"):
@@ -29,10 +32,12 @@ func _init() -> void:
 		animation.length = source["duration"]
 		var is_idle = name == "idle" or name.begins_with("idle_stand") or name in ["held_item_idle","rocket_idle","sneak_idle"]
 		var is_native_fall = name == "fall" or name.begins_with("swim") or name.begins_with("elastic_") or name.begins_with("climb_")
+		var is_sam_attack = name in ["sam_hit","sam_caught","sam_death","catapult_turn"]
 		var is_interaction = name.begins_with("push_") or name.begins_with("fan_blow_") or name.begins_with("bush_") or name.begins_with("cover_") or name.begins_with("flute_") or name in ["shark_death","bull_death","crush_death","held_item_fidget"]
 		animation.loop_mode = Animation.LOOP_LINEAR if is_idle or is_native_fall or name in ["cover_hidden","push_loop","fan_blow_idle","fan_blow_turn","run", "run_recover", "rocket_ride", "sheep_carry_idle", "sheep_carry_tired", "sheep_carry_walk", "sheep_carry_sneak", "sheep_carry_fall","held_item_idle"] else Animation.LOOP_NONE
 		if name in ["flute_idle","flute_walk"]: animation.loop_mode = Animation.LOOP_LINEAR
 		if name=="sneak_idle": animation.loop_mode = Animation.LOOP_LINEAR
+		if name=="catapult_turn": animation.loop_mode = Animation.LOOP_LINEAR
 		for joint in range(model["joints"].size()):
 			var offset = model["joints"][joint]["offset"]
 			var rest = Vector3(offset[0], offset[1], offset[2])
@@ -52,7 +57,7 @@ func _init() -> void:
 				# Mat44::SetRotYXZ operates on row vectors. For the exported Y
 				# reflection, its clockwise keys become Godot Rz * Rx * Ry.
 				# decode() already negated Y/Z: undo its extra Z sign here.
-				var rotation = Basis.from_euler(Vector3(r[0], r[1], -r[2]), EULER_ORDER_ZXY).get_rotation_quaternion() if is_interaction or is_idle or is_native_fall or name.begins_with("sheep_") or name in ["fall_death","pickup_start","pickup_end","item_take_out","item_stow","throw_place","throw_end","held_item_idle"] else Basis.from_euler(Vector3(r[0], r[1], r[2]), EULER_ORDER_YXZ).get_rotation_quaternion()
+				var rotation = Basis.from_euler(Vector3(r[0], r[1], -r[2]), EULER_ORDER_ZXY).get_rotation_quaternion() if is_sam_attack or is_interaction or is_idle or is_native_fall or name.begins_with("sheep_") or name in ["fall_death","pickup_start","pickup_end","item_take_out","item_stow","throw_place","throw_end","held_item_idle"] else Basis.from_euler(Vector3(r[0], r[1], r[2]), EULER_ORDER_YXZ).get_rotation_quaternion()
 				var position = rest + Vector3(p[0], p[1], p[2])
 				var scale = Vector3(s[0], s[1], s[2])
 				# RUNF2 uses scale to collapse thighs/shins and stretch rotating feet.

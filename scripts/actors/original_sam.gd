@@ -1,7 +1,12 @@
 extends OriginalGroundedActor
 class_name OriginalSam
 
-enum State { GUARD, CHASE, RETURN_HOME, CATCH, STUNNED, INVESTIGATE, HYPNOTIZED }
+enum State { GUARD, CHASE, RETURN_HOME, CATCH, STUNNED, INVESTIGATE, HYPNOTIZED, PATROL }
+signal flute_cinematic_requested
+var patrol_points: Array[Vector3] = []
+var patrol_index = 0
+var patrol_speed = 2.0
+var flute_encounter_pending = false
 enum KnockoutPhase { FALL, LYING, GET_UP }
 signal alert_changed(level: int)
 var rules: Dictionary
@@ -20,10 +25,12 @@ var state_elapsed = 0.0
 var investigate_point: Vector3
 var indicator: OriginalSamIndicator
 var audio: AudioStreamPlayer3D
+var sound_players: Array[AudioStreamPlayer3D] = []
 var sounds: Dictionary
 var clip = "start"
 var clip_time = -0.001
 var catch_punched = false
+var catch_is_grab = true
 var forced_alert = false
 var burnt = false
 var route_target = Vector3.INF
@@ -53,9 +60,10 @@ func _ready() -> void:
 	sounds = JSON.parse_string(FileAccess.get_file_as_string(audio_path))
 	_build_graph()
 	floor_snap_length = .4
-	audio = AudioStreamPlayer3D.new()
-	audio.max_distance = 40
+	audio = preload("res://scripts/audio/original_character_audio.gd").new()
 	add_child(audio)
+	audio.configure_native(true)
+	sound_players.append(audio)
 	indicator = OriginalSamIndicator.new()
 	indicator.guard = self
 	add_child(indicator)
@@ -247,8 +255,19 @@ func reset_guard() -> void:
 	catch_punched = false
 	forced_alert = false
 	_set_burnt(false)
-	if audio: audio.stop()
+	for voice in sound_players: voice.stop()
 	_enter(State.GUARD,"head2")
+	if not patrol_points.is_empty(): _enter(State.PATROL,"walk1")
+
+func configure_patrol(points: Array[Vector3],speed: float):
+	patrol_points = points; patrol_speed = speed; patrol_index = 0
+	var nearest = INF
+	for i in range(points.size()):
+		var distance = global_position.distance_squared_to(points[i])
+		if distance<nearest: nearest = distance; patrol_index = i
+	flute_timer = -1; initialized = true
+	rules.mode = (int(rules.mode)&~0x3ff)|1
+	_enter(State.PATROL,"walk1")
 
 func on_blast(_origin: Vector3) -> void:
 	# Dynamite sends MSG_KILL/KILL_GENERIC (0): Sam is blackened, not KO.
@@ -303,6 +322,10 @@ func on_loud_noise(origin: Vector3, radius: float, source_class: int = -1) -> vo
 	_enter(State.INVESTIGATE,"walk2")
 
 func on_flute(origin: Vector3,zones: Array,configuration: Dictionary = {}) -> void:
+	if (int(rules.mode)&0x400)!=0:
+		if patrol_points.is_empty() and state==State.GUARD and initialized and not flute_encounter_pending:
+			flute_encounter_pending = true; flute_cinematic_requested.emit()
+		return
 	if not visual.rig.animations.has("hypnos1"): return
 	# MSG_SAM_INVESTIGATE stores its sender and refreshes1000ms. The
 	# native LOOKAFTER state consumes it; a chase/catch is never interrupted.
@@ -368,6 +391,16 @@ func _physics_process(delta: float) -> void:
 		elif can_detect_player(): _enter(State.CHASE,"start")
 	elif state == State.HYPNOTIZED:
 		step_hypnosis(delta)
+	elif state == State.PATROL:
+		var target = patrol_points[patrol_index]
+		var direction = Vector3(target.x-global_position.x,0,target.z-global_position.z)
+		if direction.length()<.5:
+			patrol_index = (patrol_index+1)%patrol_points.size()
+		else:
+			rotation.y = lerp_angle(rotation.y,atan2(direction.x,direction.z),minf(1,8*delta))
+			var motion = direction.normalized()*minf(patrol_speed,direction.length()/delta)
+			velocity.x = motion.x; velocity.z = motion.z
+		if diff.length()<5.0 and can_detect_player(): _enter(State.CHASE,"start")
 	elif state in [State.CHASE,State.RETURN_HOME,State.INVESTIGATE]:
 		var target = player.global_position if state == State.CHASE else (home if state == State.RETURN_HOME else investigate_point)
 		var boundary_stop = false
@@ -382,13 +415,14 @@ func _physics_process(delta: float) -> void:
 				target = home
 				boundary_stop = true
 		var distance = Vector2(target.x-global_position.x,target.z-global_position.z).length()
-		if state == State.CHASE and distance < 1.0 and absf(diff.y) < 1.0:
+		if state == State.CHASE and distance < 1.0 and diff.y > -1.0 and diff.y < 1.5:
 			_catch_player()
 		elif state != State.CHASE and distance < .5:
 			if state == State.RETURN_HOME:
 				forced_alert = false
 				rotation.y = home_yaw
 				_enter(State.GUARD,"head2")
+				if not patrol_points.is_empty(): _enter(State.PATROL,"walk1")
 			elif state_elapsed > 5: _enter(State.RETURN_HOME,"run2")
 		elif boundary_stop: pass
 		else:
@@ -426,10 +460,11 @@ func _physics_process(delta: float) -> void:
 		if not catch_punched and state_elapsed >= float(visual.rig["animations"][clip]["duration"]):
 			catch_punched = true
 			# SAM_STT_CATCHDONE -> SAM_ANIM_CATCHDONE / WIN, cue77 at .94s.
-			clip = "win"
+			clip = "win" if catch_is_grab else "win_after_hit"
 			clip_time = -.001
-			player.cinematic_controls_locked = false
-			player.set_state(player.WolfState.SAM_DEATH)
+			if catch_is_grab:
+				player.cinematic_controls_locked = false
+				player.set_state(player.WolfState.SAM_DEATH)
 	velocity.y = 0 if is_on_floor() else maxf(-20,velocity.y-29*delta)
 	var requested_motion = Vector2(velocity.x,velocity.z).length_squared() > .01
 	move_and_slide()
@@ -444,8 +479,14 @@ func _physics_process(delta: float) -> void:
 			if not path.is_empty(): blocked_nodes[graph.get_closest_point(path[0])] = 2.0
 			force_nodes = true
 
-func _catch_player() -> void:
+func _catch_player(roll: int = -1) -> void:
+	# Sam::TryCatchWolf: native Y points down. Close-height catches have
+	# a 50% grab chance; otherwise use HIT within -150..100 native units.
+	var height = player.global_position.y-global_position.y
+	if height <= -1.0 or height >= 1.5: return
+	catch_is_grab = height > -.5 and height < .3 and (randi_range(0,99) if roll < 0 else roll) < 50
 	player.interrupt_actions()
+	if is_instance_valid(player.carried_object): player.carried_object.return_home()
 	if is_instance_valid(player.carried_sheep): player.carried_sheep.reset_to_home()
 	player.cinematic_controls_locked = true
 	player.velocity = Vector3.ZERO
@@ -456,8 +497,15 @@ func _catch_player() -> void:
 	rotation.y = wrapf(player.skeleton.rotation.y+PI,-PI,PI)
 	player.global_position = global_position
 	add_collision_exception_with(player)
-	player.play_anim("sam_caught")
-	_enter(State.CATCH,"punch7")
+	if catch_is_grab:
+		player.play_anim("sam_caught")
+	else:
+		# CAUGHT_HIT starts PUNCH3 immediately; it must not be followed by
+		# DIEPNCH2, which belongs only to the end of the grab sequence.
+		player.cinematic_controls_locked = false
+		player.death_animation_override = "sam_hit"
+		player.set_state(player.WolfState.SAM_DEATH)
+	_enter(State.CATCH,"punch7" if catch_is_grab else "punch3")
 	catch_punched = false
 
 func _process(delta: float) -> void:
@@ -477,14 +525,26 @@ func _process(delta: float) -> void:
 		if looping:
 			time += floor(maxf(0,previous)/duration)*duration
 			if time <= previous: time += duration
-		if time <= clip_time and sounds.has(str(int(cue["sound_id"]))):
-			audio.stream = load(sounds[str(int(cue["sound_id"]))])
-			audio.play()
-	if state == State.CATCH and not catch_punched:
+		if time > previous and time <= clip_time: play_original_sound(int(cue["sound_id"]))
+	if state == State.CATCH and not catch_punched and catch_is_grab:
 		for cue in player.run_data["animations"]["sam_caught"]["sound_cues"]:
 			if float(cue["time"]) > previous and float(cue["time"]) <= clip_time:
 				var sound = player.run_data["sounds"].get(str(int(cue["sound_id"])))
-				if sound: player.play_animation_sfx(sound["path"])
+				if sound: player.play_animation_sfx(sound["path"],true)
+
+func play_original_sound(identity: int):
+	if not sounds.has(str(identity)): return
+	var path: String = sounds[str(identity)]
+	var available: AudioStreamPlayer3D
+	for voice in sound_players:
+		if voice.playing and voice.stream.resource_path==path: return
+		if not voice.playing: available = voice
+	if not available:
+		available = preload("res://scripts/audio/original_character_audio.gd").new()
+		add_child(available); sound_players.append(available)
+	available.configure_native(true)
+	available.stream = load(path); available.play()
+	audio = available
 
 func outside_chase_leash(point: Vector3) -> bool:
 	return chase_leash_distance > 0 and Vector2(point.x-home.x,point.z-home.z).length() > chase_leash_distance

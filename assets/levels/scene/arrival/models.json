@@ -1,0 +1,15 @@
+[
+  {
+    "directory": "res://assets/levels/scene/arrival/model_0",
+    "materials": {
+      "0": "opaque",
+      "7": "blend"
+    }
+  },
+  {
+    "directory": "res://assets/levels/scene/arrival/model_4",
+    "materials": {
+      "0": "opaque"
+    }
+  }
+]

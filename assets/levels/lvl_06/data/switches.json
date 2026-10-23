@@ -1,0 +1,47 @@
+{
+  "buttons": [
+    {
+      "res": 39,
+      "class_id": 24,
+      "class_name": "SensibleButton",
+      "model_res": 23,
+      "pos": [
+        52.61,
+        0.23,
+        5.93
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ],
+      "props": {
+        "0x0": 457,
+        "0x4": 0,
+        "0x8": 0
+      },
+      "directory": "res://assets/levels/lvl_06/models/23",
+      "boxes": [
+        {
+          "flags": 0,
+          "min": [
+            -35,
+            -45,
+            -37
+          ],
+          "max": [
+            40,
+            0,
+            36
+          ]
+        }
+      ],
+      "targets": [
+        37
+      ]
+    }
+  ],
+  "lifts": [],
+  "gates": [],
+  "triggered_stones": []
+}

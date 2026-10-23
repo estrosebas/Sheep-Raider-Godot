@@ -58,6 +58,7 @@ func _ready() -> void:
 
 func can_interact(actor: Node3D) -> bool:
 	if opened or not actor.can_use_item() or not actor.is_on_floor(): return false
+	if not has_pending_delivery(actor): return false
 	# ScanInteractables: solid model box gap <=60, vertical overlap, +/-1024 angle.
 	var p = to_local(actor.global_position)
 	var direction = global_position-actor.global_position
@@ -71,6 +72,11 @@ func can_interact(actor: Node3D) -> bool:
 		if gap <= 0.6 and p.y <= hi.y and p.y+1.7 >= lo.y: return true
 	return false
 
+func has_pending_delivery(actor: RalphController) -> bool:
+	# Identity, not class: a box can legitimately supply several lettuces.
+	# Never spawn another container for the exact object already in inventory.
+	return items.is_empty() or items.any(func(item): return not actor.inventory.state.items.has(item.item_id))
+
 func interact(actor: Node3D) -> bool:
 	if not can_interact(actor): return false
 	return actor.item_actions.begin([
@@ -79,6 +85,7 @@ func interact(actor: Node3D) -> bool:
 		{"clip":"idle","duration":maxf(0,float(definition["props"]["0x34"])*0.001-0.31),"exit":_release_camera}],_release_camera)
 
 func _deliver(actor: RalphController) -> void:
+	if opened or not has_pending_delivery(actor): return
 	opened = true
 	visual.idle_clip = ""
 	animation_time = 0
@@ -93,6 +100,7 @@ func _deliver(actor: RalphController) -> void:
 		delivery_camera.fov = rad_to_deg(2*atan(384.0/float(record["focal"])))
 		delivery_camera.current = true
 	for index in range(items.size()):
+		if actor.inventory.state.items.has(items[index].item_id): continue
 		var box = OriginalDeliveryBox.new()
 		box.item = items[index]
 		var placed: Array = definition.get("placed_boxes",[])

@@ -13,6 +13,7 @@ var help_visible = false
 func _ready() -> void:
 	manifest = JSON.parse_string(FileAccess.get_file_as_string(asset_directory+"/data/manifest.json"))
 	entities = JSON.parse_string(FileAccess.get_file_as_string(asset_directory+"/data/entities.json"))
+	preload("res://scripts/actors/original_butterfly.gd").install(self,asset_directory+"/data/butterflies.json")
 	preload("res://scripts/levels/original_climb_zone.gd").install(self,asset_directory+"/data/climb.json")
 	# Load_DAVnWAR clears to the WAR header's per-level RGB, behind the sky
 	# and transparent water. Keep resources local when opening/reloading levels.
@@ -50,6 +51,7 @@ func _ready() -> void:
 		var definition = manifest["models"].get(str(int(entity["model_res"])))
 		var kind = int(entity["class_id"])
 		# Goal::PostLoadInit hides its trigger model; it was a floating white blob.
+		if kind == 161 and FileAccess.file_exists(asset_directory+"/data/butterflies.json"): continue
 		if definition == null or kind in LOGIC_CLASSES or kind in [0,4,23,160]: continue # Logical managers have no world rendering; Bird starts hidden.
 		var actor: Node3D
 		match kind:

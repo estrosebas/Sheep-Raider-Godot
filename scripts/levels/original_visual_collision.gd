@@ -53,3 +53,21 @@ static func setup(level: ImportedLevel, region: AABB, create_camera: bool = true
 	camera_body.add_child(camera_shape)
 	level.add_child(camera_body)
 	level.player.camera_pivot.collision_mask = 3
+
+static func soften_floor_seams(level: ImportedLevel,region: AABB,entries: Array):
+	# Connect each low floor edge to its existing upper edge with a slope.
+	# Move coincident vertices together: overlaying a ramp leaves the upper
+	# floor's front edge inside Ralph's capsule and can still block walking.
+	var collider = level.get_node("Collision/CollisionShape3D")
+	var faces: PackedVector3Array = collider.shape.get_faces()
+	for i in range(0,faces.size(),3):
+		if not region.has_point((faces[i]+faces[i+1]+faces[i+2])/3): continue
+		for j in range(i,i+3):
+			var point = faces[j]
+			for seam in entries:
+				if absf(point.z-float(seam.z))<.12 and point.y>=float(seam.min_y) and point.y<=float(seam.max_y):
+					point.z -= float(seam.approach)
+					break
+			faces[j] = point
+	var shape = collider.shape.duplicate()
+	shape.set_faces(faces); collider.shape = shape

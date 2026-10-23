@@ -8,6 +8,7 @@ var enabled = true
 var occupants: Array = []
 var sound: AudioStreamPlayer3D
 var sound_path = ""
+var switch_camera: Node
 
 func _ready():
 	visual = load(definition.directory+"/worn.tscn").instantiate(); add_child(visual)
@@ -18,6 +19,12 @@ func _ready():
 	if ResourceLoader.exists(sound_path): sound.stream = load(sound_path)
 	add_to_group("sheep_attractors")
 	add_to_group("pressure_buttons")
+	if definition.get("camera") is Dictionary:
+		switch_camera = preload("res://scripts/cinematics/original_switch_camera.gd").new()
+		switch_camera.name = "OriginalSwitchCamera"
+		switch_camera.button = self
+		switch_camera.definition = definition.camera
+		add_child(switch_camera)
 	call_deferred("ground_button")
 
 func ground_button():
@@ -40,7 +47,7 @@ func _physics_process(_delta: float):
 		query.transform.origin = global_position+(lo+hi)/2
 		for hit in get_world_3d().direct_space_state.intersect_shape(query,64):
 			var body = hit.collider
-			if body is RalphController or body is OriginalSheep or (body is CharacterBody3D and body.get_meta("original_class","") == "Rock"):
+			if body is RalphController or body is OriginalSheep or (body is CharacterBody3D and body.get_meta("original_class","") in ["Rock","SmallRock"]):
 				if body is OriginalSheep and (body.carried_by or body.dead): continue
 				occupants.append(body)
 				if occupants.size() == 4: break
@@ -49,6 +56,7 @@ func _physics_process(_delta: float):
 		pressed = next
 		visual.sample_animation("on" if pressed else "off",.01)
 		if sound.stream: sound.play()
+	if switch_camera: switch_camera.update_view()
 	for resource in definition.targets:
 		for target in get_parent().get_children():
 			if int(target.get_meta("original_resource",-1)) == int(resource) and target.has_method("set_switch"):

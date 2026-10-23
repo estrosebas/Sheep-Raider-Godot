@@ -13,9 +13,13 @@ var world_doors: Dictionary = {}
 var returned_sheep: Dictionary = {}
 var observed_progress: Dictionary = {}
 var observed_unsaved = false
+var arrival_queue: Array[String] = []
+var arrival_movie: OriginalLevelSequence
 
 func _ready():
 	var restored = SaveFiles.initialize_studio()
+	for identity in SaveFiles.studio_arrivals:
+		if OriginalProgress.is_completed(identity) and not arrival_queue.has(identity): arrival_queue.append(identity)
 	player = $Player
 	entities = JSON.parse_string(FileAccess.get_file_as_string(BASE+"/data/entities.json"))
 	source = JSON.parse_string(FileAccess.get_file_as_string(BASE+"/data/studio.json"))
@@ -92,6 +96,38 @@ func _ready():
 			player.skeleton.rotation.y = restored.checkpoint.facing
 			player.camera_pivot.rotation = SaveFiles.to_vector(restored.checkpoint.camera)
 	set_texture_profile(0)
+	var arrivals = Node3D.new(); arrivals.name = "SheepReturn"; add_child(arrivals)
+	arrival_movie = OriginalLevelSequence.new()
+	arrival_movie.name = "NativeArrival"
+	arrival_movie.sequence_path = BASE+"/arrival/sequence.json"
+	arrival_movie.camera_kind = "intro_cinematic"; arrival_movie.return_transition = "none"
+	arrival_movie.apply_empty_visibility_defaults = true
+	arrivals.add_child(arrival_movie); arrival_movie.bind_player(player)
+	arrival_movie.finished.connect(finish_sheep_arrival)
+
+func finish_sheep_arrival(_skipped: bool):
+	if arrival_queue.is_empty(): return
+	var identity = arrival_queue.pop_front()
+	SaveFiles.acknowledge_studio_arrival(identity)
+	refresh_progress()
+
+func pen_layout() -> Array[Vector3]:
+	# Deterministic best-candidate spacing: a loose flock rather than rows.
+	# Fixed slots keep existing sheep in place across localization/refreshes.
+	var random = RandomNumberGenerator.new(); random.seed = 41017
+	var pen = source.sheep_collection_box
+	var lo = GameSpace.original_point(Vector3(pen.min[0],pen.max[1],pen.max[2]))
+	var hi = GameSpace.original_point(Vector3(pen.max[0],pen.min[1],pen.min[2]))
+	var positions: Array[Vector3] = []
+	for index in range(OriginalProgress.TOTAL_SHEEP):
+		var chosen = Vector3.ZERO; var best = -1.0
+		for candidate in range(180):
+			var point = Vector3(random.randf_range(lo.x+.65,hi.x-.65),0,random.randf_range(lo.z+.65,hi.z-.65))
+			var clearance = INF
+			for other in positions: clearance = minf(clearance,point.distance_squared_to(other))
+			if clearance>best: best = clearance; chosen = point
+		positions.append(chosen)
+	return positions
 
 func add_level_door(identity: String,entry: Dictionary):
 	var door = LabLevelDoor.new()
@@ -108,8 +144,8 @@ func refresh_progress():
 	observed_progress = OriginalProgress.completed_levels.duplicate()
 	observed_unsaved = OriginalProgress.completion_unsaved or OriginalProgress.timekeeper_unsaved
 	panel.idle_clip = ""
-	panel.sample_animation(source.counter_animation_ids[str(OriginalProgress.remaining_sheep_count())],0)
-	var index = 0
+	panel.sample_animation(source.counter_animation_ids[str(OriginalProgress.remaining_sheep_count()+arrival_queue.size())],0)
+	var positions = pen_layout()
 	for number in range(OriginalProgress.TOTAL_SHEEP):
 		var identity = "lvl_%02d"%number
 		if not OriginalProgress.is_completed(identity):
@@ -119,15 +155,16 @@ func refresh_progress():
 			var sheep = load(BASE+"/models/4/worn.tscn").instantiate() as OriginalCinematicActor
 			sheep.name = "ReturnedSheep_%02d"%number; sheep.set_meta("source_level",identity)
 			add_child(sheep); returned_sheep[identity] = sheep
-			sheep.idle("stand3"); sheep.idle_speed = randf_range(.75,1.25)
-			sheep.idle_time = randf()*float(sheep.rig.animations.stand3.duration)
+			var random = RandomNumberGenerator.new(); random.seed = 7100+number
+			var idle = ["stand1","stand2","stand3","stand4"][random.randi_range(0,3)]
+			sheep.idle(idle); sheep.idle_speed = random.randf_range(.85,1.1)
+			sheep.idle_time = random.randf()*float(sheep.rig.animations[idle].duration)
+			sheep.rotation.y = random.randf_range(-PI,PI)
 		var sheep: OriginalCinematicActor = returned_sheep[identity]
 		# Keep the recovered flock inside the native counter's collection pen,
 		# leaving Ralph's arrival spot and Lucas unobstructed.
-		var pen = source.sheep_collection_box
-		sheep.position = Vector3(float(pen.min[0])*.01+.8+(index%4)*1.4,0,-float(pen.max[2])*.01+.6+int(index/4)*1.0)
-		sheep.rotation.y = -1308*TAU/4096
-		index += 1
+		sheep.position = positions[number]
+		sheep.visible = not arrival_queue.has(identity)
 	for key in world_doors:
 		var opened = OriginalProgress.is_completed(source.world_door_levels[key])
 		world_doors[key].visible = not opened
@@ -146,6 +183,8 @@ func reload_localization():
 
 func _process(delta):
 	if observed_progress != OriginalProgress.completed_levels or observed_unsaved != (OriginalProgress.completion_unsaved or OriginalProgress.timekeeper_unsaved): refresh_progress()
+	if is_instance_valid(arrival_movie) and not arrival_queue.is_empty() and not arrival_movie.playing:
+		arrival_movie.start_sequence(true)
 
 func set_texture_profile(value: int):
 	texture_profile = clampi(value,0,1)

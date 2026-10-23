@@ -8,7 +8,7 @@ const SheepReceiver = preload("res://scripts/items/original_sheep.gd")
 func _ready() -> void:
 	$HUD.hide()
 	player.inventory.allow_world_placement = true
-	for i in range(6):
+	for i in range(7):
 		var door = LabLevelDoor.new()
 		var identity = "%02d" % i
 		door.name = "LevelDoor_"+identity
@@ -74,6 +74,7 @@ func _ready() -> void:
 	# BullLeafHeap reference above. Archived experiments explain each approach.
 	setup_rock_cover()
 	setup_elastic_area()
+	setup_catapult_area()
 	var studio = LabLevelDoor.new()
 	studio.name = "StudioDoor"; studio.level_label = GameLocalization.ui("Plató")
 	studio.level_scene = SaveFiles.STUDIO_SCENE; studio.position = Vector3(20,0,-4); studio.rotation.y = PI/2
@@ -84,6 +85,33 @@ func _ready() -> void:
 	ghost.set_script(load("res://scripts/testing/ghost_item_fixture.gd"))
 	ghost.position = Vector3(0.0, 0.0, -6.0)
 	add_child(ghost)
+
+func setup_catapult_area():
+	var data = JSON.parse_string(FileAccess.get_file_as_string("res://assets/levels/lvl_05/data/catapults.json"))
+	var catapult = preload("res://scripts/levels/original_catapult.gd").new()
+	catapult.name = "Catapult"
+	catapult.definition = data.catapults[0].duplicate(true)
+	# Native geometry/power: only the lab landing height changes to its floor.
+	catapult.definition.trajectory[2][1] = -600
+	catapult.position = Vector3(-8,0,48)
+	catapult.sounds = JSON.parse_string(FileAccess.get_file_as_string("res://assets/levels/lvl_05/data/ai_audio.json"))
+	add_child(catapult)
+	var switches = JSON.parse_string(FileAccess.get_file_as_string("res://assets/levels/lvl_05/data/switches.json"))
+	var button = OriginalPressureButton.new(); button.name = "CatapultButton"
+	button.definition = switches.buttons.filter(func(b): return int(b.res)==51)[0].duplicate(true)
+	button.position = catapult.position+Vector3(4.14,0,0)
+	button.sound_path = "res://assets/levels/lvl_05/audio/54.wav"; add_child(button)
+	# The original rock sits on higher terrain. Reproduce a small loading
+	# ledge in the otherwise flat lab so carry-mode's1.3m jump reaches the cup.
+	elastic_step(catapult.position+Vector3(3,.4,-2.5),Vector3(4,.8,2))
+	var rock = preload("res://scripts/items/original_small_rock.gd").new()
+	rock.name = "CatapultRock"; rock.definition = data.small_rocks[0].duplicate(true)
+	rock.sounds = catapult.sounds
+	rock.position = catapult.position+Vector3(4,0,-3); add_child(rock)
+	var sheep = SheepReceiver.new(); sheep.name = "CatapultSheep"
+	sheep.position = catapult.position+Vector3(-1,0,-3); sheep.visual_scene = "res://assets/levels/lvl_02/models/6/worn.tscn"; add_child(sheep)
+	player.respawned.connect(sheep.reset_to_home)
+	add_child(LabFloorLabel.create("CATAPULTA\nE: REGULAR / SALIR\nIZQUIERDA Y DERECHA: POTENCIA\nPISA EL BOTON PARA DISPARAR",catapult.position+Vector3(0,.035,5),27))
 
 func setup_lettuce_area() -> void:
 	add_child(LabFloorLabel.create("LECHUGAS Y OVEJA\nE: COGER / R: COLOCAR",Vector3(20,.035,-8),36))

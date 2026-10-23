@@ -1,0 +1,10 @@
+{
+  "description": "Raise the actual snow ridge collision vertices. Preserve the southern entrance between the two native tips (x=-10..-7, z=-37); the old drawn contour incorrectly closed it.",
+  "terrain_vertex_lifts": [{
+    "name": "CorralSnowRidge",
+    "min": [-16.2, 1.75, -38.2],
+    "max": [3.5, 6.0, -22.5],
+    "raise_by": 60.0
+  }],
+  "walls": []
+}

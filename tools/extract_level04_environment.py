@@ -22,8 +22,8 @@ def extract(decomp, folder):
     import war_meshes
 
     slug = folder.name.lower().replace('-', '_')
-    if slug not in ('lvl_04', 'lvl_05'):
-        raise ValueError('Validated native environment layouts: lvl_04 and lvl_05.')
+    if slug not in ('lvl_04', 'lvl_05', 'lvl_06'):
+        raise ValueError('Validated native environment layouts: lvl_04, lvl_05 and lvl_06.')
     out = ROOT / 'assets/levels' / slug
     war = next(folder.glob('*.[wW][aA][rR]')).read_bytes()
     dav_path = next(folder.glob('*.[dD][aA][vV]'))

@@ -1,0 +1,10 @@
+{
+  "directory": "res://assets/levels/lvl_01/butterflies/185",
+  "materials": {
+    "6": "blend"
+  },
+  "model_export_id": 185,
+  "loop_animations": [
+    "fly"
+  ]
+}

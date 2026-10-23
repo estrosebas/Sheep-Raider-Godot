@@ -1,0 +1,33 @@
+[gd_resource type="ArrayMesh" format=4]
+
+[ext_resource type="Shader" path="res://shaders/retro_opaque.gdshader" id="1_kqu76"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5bs1i"]
+render_priority = 0
+shader = ExtResource("1_kqu76")
+shader_parameter/use_linear_filter = null
+shader_parameter/vertex_color_scale = 1.0
+shader_parameter/original_tint_color = null
+shader_parameter/original_tint_amount = null
+shader_parameter/use_legacy_skin = null
+shader_parameter/legacy_joint_palette = null
+shader_parameter/tunnel_projection = null
+shader_parameter/tunnel_road_point = null
+shader_parameter/tunnel_wall_point = null
+shader_parameter/tunnel_farthest_view_z = null
+shader_parameter/is_textured = false
+
+[resource]
+_surfaces = [{
+"aabb": AABB(-0.33, 0.04, -0.56, 0.66, 0.78999996, 1.28),
+"attribute_data": PackedByteArray("zsz//wAAAAAAAAAA/////wAAAAAAAAAAAAAA/wAAAAAAAAAA/////wAAAAAAAAAA/////wAAAAAAAAAAzsz//wAAAAAAAAAAAAAA/wAAAAAAAAAA/////wAAAAAAAAAA/////wAAAAAAAAAAAAAA/wAAAAAAAAAA/////wAAAAAAAAAAzsz//wAAAAAAAAAAAAAA/wAAAAAAAAAA/////wAAAAAAAAAA/////wAAAAAAAAAA/////wAAAAAAAAAA/////wAAAAAAAAAA/////wAAAAAAAAAAzsz//wAAAAAAAAAA/////wAAAAAAAAAAzsz//wAAAAAAAAAAzsz//wAAAAAAAAAA/////wAAAAAAAAAA/////wAAAAAAAAAA/////wAAAAAAAAAAzsz//wAAAAAAAAAAzsz//wAAAAAAAAAA/////wAAAAAAAAAA/////wAAAAAAAAAAzsz//wAAAAAAAAAA/////wAAAAAAAAAA/////wAAAAAAAAAA/////wAAAAAAAAAA/////wAAAAAAAAAA/////wAAAAAAAAAA/////wAAAAAAAAAA/////wAAAAAAAAAA/////wAAAAAAAAAA/////wAAAAAAAAAA/////wAAAAAAAAAA/////wAAAAAAAAAA/////wAAAAAAAAAA"),
+"format": 34359742489,
+"index_count": 42,
+"index_data": PackedByteArray("AAACAAEAAwAFAAQABgAIAAcACQALAAoADAAOAA0ADwARABAAEgAUABMAFQAXABYAGAAaABkAGwAdABwAHgAgAB8AIQAjACIAJAAmACUAJwApACgA"),
+"material": SubResource("ShaderMaterial_5bs1i"),
+"name": "mat_page_-1",
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 42,
+"vertex_data": PackedByteArray("AAAAAArXIz0fhWs+w/WovhSuxz4fhes+AAAAAMP1qD7sUTg/CtejPvYo3D4pXA+/CtejvvYo3D4pXA+/AAAAAArXIz0zM7O+AAAAAMP1qD7sUTg/w/WovhSuxz4fhes+AAAAAI/CNT9cjwI/AAAAAMP1qD7sUTg/w/WoPhSuxz4fhes+AAAAAArXIz0fhWs+AAAAAMP1qD7sUTg/AAAAAI/CNT9cjwI/w/WoPhSuxz4fhes+CtejvvYo3D4pXA+/CtejPvYo3D4pXA+/AAAAAOF6VD+amZm+AAAAAArXIz0zM7O+w/WovhSuxz4fhes+AAAAAArXIz0fhWs+AAAAAArXIz0zM7O+CtejvvYo3D4pXA+/w/WovhSuxz4fhes+w/WoPhSuxz4fhes+AAAAAArXIz0zM7O+AAAAAArXIz0fhWs+w/WoPhSuxz4fhes+CtejPvYo3D4pXA+/AAAAAArXIz0zM7O+AAAAAI/CNT9cjwI/CtejvvYo3D4pXA+/AAAAAOF6VD+amZm+AAAAAI/CNT9cjwI/w/WovhSuxz4fhes+CtejvvYo3D4pXA+/AAAAAI/CNT9cjwI/CtejPvYo3D4pXA+/w/WoPhSuxz4fhes+AAAAAI/CNT9cjwI/AAAAAOF6VD+amZm+CtejPvYo3D4pXA+/")
+}]

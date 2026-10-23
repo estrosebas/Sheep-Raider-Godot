@@ -19,6 +19,11 @@
       "director": "LevelCinematics",
       "first": "lvl05_intro_camera",
       "last": "lvl05_intro_camera"
+    },
+    "res://assets/levels/lvl_06": {
+      "director": "LevelCinematics",
+      "first": "lvl06_intro_camera",
+      "last": "lvl06_intro_camera"
     }
   },
   "sequences": {
@@ -193,6 +198,41 @@
       "trigger": "level_entry",
       "return_transition": "iris",
       "description": "Recorrido nativo de entrada del nivel 05"
+    },
+    "studio_sheep_arrival": {
+      "source": "res://assets/levels/scene/arrival/sequence.json",
+      "level": "scene",
+      "cine_id": 0,
+      "kind": "intro_cinematic",
+      "return_transition": "none",
+      "description": "Regreso de una oveja nueva al corral del plato (SceneSheepPanel CIN0)"
+    },
+    "lvl06_intro_camera": {
+      "source": "res://assets/levels/lvl_06/cinematics/sequence_0.json",
+      "level": "lvl_06",
+      "cine_id": 0,
+      "kind": "intro_cinematic",
+      "trigger": "level_entry",
+      "return_transition": "iris",
+      "description": "Entrada original al nivel06"
+    },
+    "lvl06_military_lesson": {
+      "source": "res://assets/levels/lvl_06/cinematics/sequence_1.json",
+      "level": "lvl_06",
+      "cine_id": 1,
+      "kind": "tutorial_cinematic",
+      "trigger": "tutorial",
+      "return_transition": "none",
+      "description": "Lucas explica las minas tras descongelarlo"
+    },
+    "lvl06_mine_demo": {
+      "source": "res://assets/levels/lvl_06/cinematics/sequence_2.json",
+      "level": "lvl_06",
+      "cine_id": 2,
+      "kind": "camera_animation",
+      "trigger": "world_trigger",
+      "return_transition": "none",
+      "description": "Demostracion original de las minas"
     }
   },
   "procedural_cameras": {

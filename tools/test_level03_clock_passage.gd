@@ -5,6 +5,10 @@ func check(ok: bool,message: String):
 	if not ok: failures += 1; printerr(message)
 func frames(n: int):
 	for i in range(n): await physics_frame
+func touches_region(a: Vector3,b: Vector3,c: Vector3,region: AABB) -> bool:
+	# A modified edge can move a triangle's centroid across the region border;
+	# compare only whole triangles completely outside the local correction.
+	return AABB(a,Vector3.ZERO).expand(b).expand(c).grow(.001).intersects(region)
 func run():
 	SaveFiles.startup_offered = true; SaveFiles.pending = {}; SaveFiles.directory = "user://clock_passage03_%d"%Time.get_ticks_usec()
 	OriginalProgress.restore({})
@@ -30,9 +34,9 @@ func run():
 	var region = AABB(Vector3(2.5,5,-50),Vector3(5,9,8))
 	var outside_source: Array = []; var outside_patched: Array = []
 	for i in range(0,source.size(),3):
-		if not region.has_point((source[i]+source[i+1]+source[i+2])/3): outside_source.append([source[i],source[i+1],source[i+2]])
+		if not touches_region(source[i],source[i+1],source[i+2],region): outside_source.append([source[i],source[i+1],source[i+2]])
 	for i in range(0,patched.size(),3):
-		if not region.has_point((patched[i]+patched[i+1]+patched[i+2])/3): outside_patched.append([patched[i],patched[i+1],patched[i+2]])
+		if not touches_region(patched[i],patched[i+1],patched[i+2],region): outside_patched.append([patched[i],patched[i+1],patched[i+2]])
 	check(outside_source==outside_patched,"Collision outside the local passage remains byte-for-byte native")
 	# Collect clock through its actual grounded interaction, then leave the alcove.
 	actor.global_position = clock.global_position+Vector3(-.85,.04,-.4); actor.velocity = Vector3.DOWN
@@ -47,8 +51,7 @@ func run():
 		if actor.position.x<5.65: break
 	Input.action_release("move_left"); actor.velocity.x = 0
 	Input.action_press("move_backward")
-	# Jump over the visible raised lip; no invisible lateral face may block us.
-	Input.action_press("jump"); await frames(2); Input.action_release("jump")
+	# Walking must clear both small floor lips; jumping hid this regression.
 	var touched_wall = false
 	for i in range(105):
 		await physics_frame

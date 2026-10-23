@@ -1,6 +1,7 @@
 extends CharacterBody3D
 # Reusable bull43 adapter from objects/bull.cpp. Geometry/pivots are untouched.
-enum State { ASLEEP, WAKING, IDLE, CHARGE, SKID, HIT, RETURN_HOME, STUNNED }
+enum State { ASLEEP, WAKING, IDLE, CHARGE, SKID, HIT, RETURN_HOME, STUNNED, ESCAPE }
+var escaped = false
 var definition: Dictionary
 var sounds: Dictionary = {}
 var visual: OriginalCinematicActor
@@ -69,6 +70,16 @@ func _set_state(next: State,animation: String):
 	if next == State.CHARGE:
 		charge_target = player.global_position
 		if charge_sound.stream and not charge_sound.playing: charge_sound.play()
+	if next == State.ESCAPE:
+		# bull::SetState: quarter horizontal charge, quadruple its 250 cm/s
+		# downward component. ESCAPE translates directly without collision.
+		velocity = Vector3(velocity.x/4,-10,velocity.z/4)
+		dust.emitting = false
+		if sounds.has("202"):
+			var loop: AudioStreamWAV = load(sounds["202"]).duplicate()
+			loop.loop_mode = AudioStreamWAV.LOOP_FORWARD
+			loop.loop_end = roundi(loop.get_length()*loop.mix_rate)
+			charge_sound.stream = loop; charge_sound.play()
 	visual.sample_animation(clip,0)
 
 func wake_from_noise():
@@ -88,8 +99,27 @@ func player_dead() -> bool:
 func moving_zone_contains(point: Vector3) -> bool:
 	return OriginalSam.contains(point,definition.movement_boxes)
 
+func can_follow_over_edge() -> bool:
+	# Native noReturnBox + MSG_WOLF_IS_USING_SPECIAL_OBJECT. Merely holding
+	# an elastic in the inventory does not qualify: Ralph must be tethered.
+	if not OriginalSam.contains(player.global_position,definition.get("no_return_boxes",[])): return false
+	for elastic in get_tree().get_nodes_in_group("elastic_controllers"):
+		if elastic.protects_from_void(player): return true
+	return false
+
+func step_escape(delta: float):
+	if OriginalSam.contains(global_position,definition.get("no_return_boxes",[])):
+		global_position += velocity*delta
+	else:
+		# Native RemoveFromWorld; Reset deliberately does not resurrect it.
+		escaped = true; hide(); collision_layer = 0; collision_mask = 0
+		charge_sound.stop(); sound.stop(); dust.clear()
+		set_physics_process(false); set_process(false)
+
 func _physics_process(delta: float):
 	if not grounded or not is_instance_valid(player): return
+	if state == State.ESCAPE:
+		step_escape(delta); return
 	if player.cinematic_controls_locked:
 		velocity = Vector3.ZERO; dust.emitting = false
 		return
@@ -104,7 +134,8 @@ func _physics_process(delta: float):
 		State.IDLE:
 			if not player_dead() and moving_zone_contains(player.global_position): _set_state(State.CHARGE,"run2")
 		State.CHARGE:
-			if player_dead() or not moving_zone_contains(player.global_position):
+			var runoff = can_follow_over_edge()
+			if player_dead() or (not moving_zone_contains(player.global_position) and not runoff):
 				_set_state(State.RETURN_HOME,"run2")
 			elif global_position.distance_to(player.global_position)<=float(definition.hit_distance):
 				rotation.y = atan2(player.global_position.x-global_position.x,player.global_position.z-global_position.z)
@@ -118,6 +149,10 @@ func _physics_process(delta: float):
 					toward = charge_target-global_position; toward.y = 0
 				motion = toward.normalized()*float(definition.charge_speed)
 				if not moving_zone_contains(global_position+motion*delta):
+					if runoff:
+						velocity = Vector3(motion.x,-2.5,motion.z)
+						_set_state(State.ESCAPE,"fall")
+						return
 					motion = Vector3.ZERO; _set_state(State.RETURN_HOME,"run2")
 		State.SKID:
 			if clip_time>=float(visual.rig.animations[clip].duration): _set_state(State.CHARGE,"run2")
@@ -142,11 +177,11 @@ func _physics_process(delta: float):
 	else: stalled_time = 0
 
 func _process(delta: float):
-	if not grounded or player.cinematic_controls_locked: return
+	if not grounded or escaped or (player.cinematic_controls_locked and state != State.ESCAPE): return
 	var previous = clip_time
 	clip_time += delta*clip_speed
 	var duration = float(visual.rig.animations[clip].duration)
-	var looping = state in [State.ASLEEP,State.IDLE,State.CHARGE,State.RETURN_HOME] or (state==State.HIT and clip=="stand2")
+	var looping = state in [State.ASLEEP,State.IDLE,State.CHARGE,State.RETURN_HOME,State.ESCAPE] or (state==State.HIT and clip=="stand2")
 	visual.sample_animation(clip,clip_time,looping)
 	for cue in visual.rig.animations[clip].get("sound_cues",[]):
 		var time = float(cue.time)
@@ -155,16 +190,17 @@ func _process(delta: float):
 			sound.stream = load(sounds[str(int(cue.sound_id))]); sound.play()
 
 func query_moved() -> bool:
-	return state in [State.CHARGE,State.SKID,State.RETURN_HOME]
+	return state in [State.CHARGE,State.SKID,State.RETURN_HOME,State.ESCAPE] and not escaped
 
 func on_blast(_origin: Vector3):
+	if state == State.ESCAPE: return
 	OriginalBurntTint.apply(visual.legacy_skin,true)
 	# bull::Update has no BULL_ST_STUNNED recovery case: STRIKE2 finishes
 	# and holds its final pose until Reset. Do not add a guessed wake timer.
 	_set_state(State.STUNNED,"strike2")
 
 func reset_to_home():
-	if not grounded: return
+	if not grounded or state == State.ESCAPE: return
 	global_position = home; rotation.y = home_yaw; velocity = Vector3.ZERO
 	OriginalBurntTint.apply(visual.legacy_skin,false)
 	dust.clear(); sound.stop()

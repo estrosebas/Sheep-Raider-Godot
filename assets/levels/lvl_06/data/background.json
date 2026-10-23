@@ -1,0 +1,21 @@
+{
+  "source": "Lvl-06.WAR",
+  "header_offset": 8,
+  "header_rgb": [
+    40,
+    56,
+    104
+  ],
+  "render_clear_rgb": [
+    40,
+    56,
+    104
+  ],
+  "render_color_encoding": "source_rgb_matching_legacy_materials",
+  "pc_clear_rgb": [
+    20,
+    28,
+    52
+  ],
+  "native_function": "engine/list.cpp::Load_DAVnWAR -> PolyBatcher::SetClearColor; Frustrum::SetFogColor"
+}

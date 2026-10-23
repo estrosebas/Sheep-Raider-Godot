@@ -1,0 +1,66 @@
+{
+  "level": "lvl_06",
+  "entities": 67,
+  "sequences": [
+    {
+      "cine_id": 0,
+      "duration": 16.624,
+      "voice_id": 0,
+      "actors": 2
+    },
+    {
+      "cine_id": 1,
+      "duration": 53.296,
+      "voice_id": 38,
+      "actors": 2
+    },
+    {
+      "cine_id": 2,
+      "duration": 12.864,
+      "voice_id": 0,
+      "actors": 7
+    }
+  ],
+  "cinematic_symbols": {
+    "0": "INTRO",
+    "1": "DAFFY_MILITARY",
+    "2": "MINE_DEMO"
+  },
+  "intro_cine_id": 0,
+  "tutorial_cine_ids": [
+    1
+  ],
+  "pending_exclusive_classes": [
+    57,
+    58,
+    60,
+    64,
+    74
+  ],
+  "cinematic_descriptors": {
+    "0": {
+      "name": "intro_camera",
+      "description": "Entrada original al nivel06"
+    },
+    "1": {
+      "name": "military_lesson",
+      "description": "Lucas explica las minas tras descongelarlo"
+    },
+    "2": {
+      "name": "mine_demo",
+      "description": "Demostracion original de las minas"
+    }
+  },
+  "implemented_exclusive_classes": [
+    15,
+    16,
+    24,
+    28,
+    35,
+    38,
+    41,
+    56,
+    65,
+    78
+  ]
+}

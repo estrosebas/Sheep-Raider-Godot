@@ -82,7 +82,97 @@
         1.45
       ],
       "source": "catapult.cpp::PostLoadInit/Launch/Control",
-      "status": "Imported model, animations, collision and native configuration; operating controller pending"
+      "status": "Shared operating controller; native power, bucket, arc, camera and HUD",
+      "model_boxes": [
+        {
+          "flags": 0,
+          "min": [
+            -229,
+            -87,
+            -172
+          ],
+          "max": [
+            232,
+            0,
+            160
+          ]
+        },
+        {
+          "flags": 1,
+          "min": [
+            147,
+            -243,
+            -98
+          ],
+          "max": [
+            297,
+            -216,
+            101
+          ]
+        }
+      ],
+      "camera": {
+        "focal": 1236,
+        "rotation": [
+          428,
+          1047,
+          9
+        ],
+        "eye": [
+          -322,
+          -1825,
+          3915
+        ]
+      }
     }
-  ]
+  ],
+  "small_rocks": [
+    {
+      "res": 74,
+      "class_id": 65,
+      "class_name": "SmallRock",
+      "model_res": 27,
+      "pos": [
+        10.96,
+        8.01,
+        44.050000000000004
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ],
+      "props": {
+        "0x0": 0,
+        "0x4": 1,
+        "0x8": 0
+      },
+      "directory": "res://assets/levels/lvl_05/models/27",
+      "boxes": [
+        {
+          "flags": 2,
+          "min": [
+            -40,
+            -90,
+            -40
+          ],
+          "max": [
+            40,
+            0,
+            40
+          ]
+        }
+      ]
+    }
+  ],
+  "rules": {
+    "power_min": 0,
+    "power_max": 1024,
+    "power_step": 6,
+    "original_update_hz": 60,
+    "camera_hold_seconds": 2,
+    "return_seconds": 1.024,
+    "fire_sound": 263,
+    "power_sound": 118
+  }
 }

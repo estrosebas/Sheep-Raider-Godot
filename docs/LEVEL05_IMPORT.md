@@ -28,6 +28,15 @@ completado de principio a fin.
   FallingGate hace SwapModel según la propiedad16: se extraen AGRILL01 y
   AGRILL05, incluyendo sus propias cajas, texturas y animaciones. No se usa
   el modelo provisional17 para todas las compuertas.
+- Catapult46 con regulador0–1024, animación TURN de Ralph, piezas6–9 de
+  ACATAP01, indicador ICTJAUG1, cubeta con colisión móvil, botón51 y trayectoria
+  original ajustada por potencia. Cámara572 sigue roca/Ralph/oveja y espera
+  dos segundos después del aterrizaje antes de devolver el control.
+- SmallRock74 recogible con las animaciones del modo de carga original,
+  unión18/offset(10,0,0), colocación aérea con gravedad, presión de botones,
+  impacto AROCHE5B/BREAK, sonido y retorno a su posición de origen.
+  Los controladores también están instalados en el laboratorio. Ver
+  `ORIGINAL_CATAPULT_CONTROLLER.md`.
 - Plataforma RCarpetMobile52: trayectoria559 de dos puntos, botón50,
   avance/retorno a 400 unidades/s (4 m/s), ratio100%, suelo móvil y sonido94.
   Ralph/oveja reciben velocidad de suelo y los objetos usan MovingSupport.
@@ -41,17 +50,11 @@ completado de principio a fin.
 
 ## Pendiente de jugabilidad específica
 
-- Catapult56: modelo, animaciones, colisiones, caja de activación, trayectoria
-  de tres puntos, dimensiones del brazo y límite de tiro extraídos en
-  `data/catapults.json`. Falta portar su control de potencia, cubeta, lanzamiento,
-  cámara y relación con el botón51. Actualmente es un objeto importado.
-- SmallRock65: arte/colisión presentes; falta su recogida/transporte y empleo
-  con la catapulta.
 - Fish162 y Firefly159 están importados como ambientales; falta su movimiento
   propio. Leaf191 sí usa el controlador compartido.
 - La hojarasca conserva la geometría original y sus límites visuales conocidos;
   no se aplican los experimentos descartados del laboratorio.
-- Falta recorrido humano completo: especialmente catapulta, reloj bajo el
+- Falta recorrido humano completo: especialmente ajuste manual de catapulta, reloj bajo el
   escenario, navegación de Sam entre compuertas y extracción de la oveja.
 
 ## Reproducir la extracción

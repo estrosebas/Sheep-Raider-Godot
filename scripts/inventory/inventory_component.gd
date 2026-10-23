@@ -30,10 +30,12 @@ func _ready() -> void:
 	set_process_input(true)
 
 func can_open() -> bool:
+	if actor is RalphController and is_instance_valid(actor.carried_object): return false
 	if actor is RalphController and is_instance_valid(actor.carried_sheep): return false
 	return actor.has_method("can_use_inventory") and actor.can_use_inventory()
 
 func open_wheel() -> bool:
+	if actor is RalphController and is_instance_valid(actor.carried_object): return false
 	if wheel_open:
 		return true
 	if not can_open():
@@ -137,6 +139,7 @@ func register_use_handler(kind: int, handler: Callable) -> void:
 	use_handlers[kind] = handler
 
 func use_selected() -> bool:
+	if actor is RalphController and is_instance_valid(actor.carried_object): return actor.carried_object.interact(actor)
 	if actor is RalphController and actor.climb_motion.active(): return false
 	if actor is RalphController and is_instance_valid(actor.carried_sheep): return false
 	var item = state.get_selected_object()
@@ -172,6 +175,7 @@ func interact_or_use() -> void:
 func interaction_target() -> Node3D:
 	if not actor.can_use_item():
 		return null
+	if is_instance_valid(actor.carried_object): return actor.carried_object
 	if actor.climb_motion.climbing(): return actor.climb_motion.zone
 	var nearest: Node3D = null
 	var best = 2.5

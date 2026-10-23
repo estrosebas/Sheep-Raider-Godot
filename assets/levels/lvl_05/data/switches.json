@@ -39,7 +39,23 @@
       "targets": [
         66,
         68
-      ]
+      ],
+      "camera": {
+        "export_id": 569,
+        "focal": 1236,
+        "rotation": [
+          398,
+          2162,
+          0
+        ],
+        "eye": [
+          -5634,
+          -1641,
+          2575
+        ],
+        "cut": true,
+        "keep_while_pressed": true
+      }
     },
     {
       "res": 50,
@@ -160,7 +176,23 @@
       "targets": [
         69,
         70
-      ]
+      ],
+      "camera": {
+        "export_id": 570,
+        "focal": 1236,
+        "rotation": [
+          449,
+          2485,
+          31
+        ],
+        "eye": [
+          -5289,
+          -1712,
+          138
+        ],
+        "cut": true,
+        "keep_while_pressed": true
+      }
     },
     {
       "res": 54,
@@ -201,7 +233,23 @@
       "targets": [
         72,
         73
-      ]
+      ],
+      "camera": {
+        "export_id": 571,
+        "focal": 1236,
+        "rotation": [
+          304,
+          3131,
+          4031
+        ],
+        "eye": [
+          -4123,
+          -1314,
+          -1176
+        ],
+        "cut": true,
+        "keep_while_pressed": true
+      }
     }
   ],
   "lifts": [],
@@ -243,7 +291,23 @@
             46
           ]
         }
-      ]
+      ],
+      "camera": {
+        "export_id": 569,
+        "focal": 1236,
+        "rotation": [
+          398,
+          2162,
+          0
+        ],
+        "eye": [
+          -5634,
+          -1641,
+          2575
+        ],
+        "cut": true,
+        "keep_while_pressed": true
+      }
     },
     {
       "res": 68,
@@ -282,7 +346,23 @@
             46
           ]
         }
-      ]
+      ],
+      "camera": {
+        "export_id": 569,
+        "focal": 1236,
+        "rotation": [
+          398,
+          2162,
+          0
+        ],
+        "eye": [
+          -5634,
+          -1641,
+          2575
+        ],
+        "cut": true,
+        "keep_while_pressed": true
+      }
     },
     {
       "res": 69,
@@ -321,7 +401,23 @@
             184
           ]
         }
-      ]
+      ],
+      "camera": {
+        "export_id": 570,
+        "focal": 1236,
+        "rotation": [
+          449,
+          2485,
+          31
+        ],
+        "eye": [
+          -5289,
+          -1712,
+          138
+        ],
+        "cut": true,
+        "keep_while_pressed": true
+      }
     },
     {
       "res": 70,
@@ -360,7 +456,23 @@
             184
           ]
         }
-      ]
+      ],
+      "camera": {
+        "export_id": 570,
+        "focal": 1236,
+        "rotation": [
+          449,
+          2485,
+          31
+        ],
+        "eye": [
+          -5289,
+          -1712,
+          138
+        ],
+        "cut": true,
+        "keep_while_pressed": true
+      }
     },
     {
       "res": 72,
@@ -399,7 +511,23 @@
             184
           ]
         }
-      ]
+      ],
+      "camera": {
+        "export_id": 571,
+        "focal": 1236,
+        "rotation": [
+          304,
+          3131,
+          4031
+        ],
+        "eye": [
+          -4123,
+          -1314,
+          -1176
+        ],
+        "cut": true,
+        "keep_while_pressed": true
+      }
     },
     {
       "res": 73,
@@ -438,7 +566,23 @@
             184
           ]
         }
-      ]
+      ],
+      "camera": {
+        "export_id": 571,
+        "focal": 1236,
+        "rotation": [
+          304,
+          3131,
+          4031
+        ],
+        "eye": [
+          -4123,
+          -1314,
+          -1176
+        ],
+        "cut": true,
+        "keep_while_pressed": true
+      }
     }
   ],
   "triggered_stones": []

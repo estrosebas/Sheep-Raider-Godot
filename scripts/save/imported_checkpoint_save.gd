@@ -41,6 +41,9 @@ func capture_checkpoint():
 				if is_instance_valid(box): containers.append({"resource":int(box.get_meta("original_resource",-1)),"position":SaveFiles.vector(box.global_position),"state":box.state,"held":box.held_for_rock})
 			world.mailboxes.append({"resource":child.definition.res,"opened":child.opened,"committed":child.committed,"containers":containers})
 	var daffy = level.get_node_or_null("DaffyLessons")
+	world["controllers"] = {}
+	for child in level.get_children():
+		if child.is_in_group("checkpoint_controllers"): world.controllers[str(child.name)] = child.capture_world_state()
 	var porky = level.get_node_or_null("PorkyLessons")
 	snapshot = {"version":SaveFiles.VERSION,"level":level_id,"checkpoint":{"index":level.get_node("Checkpoints").current_index,"position":SaveFiles.vector(player.checkpoint_position),"facing":player.checkpoint_facing,"camera":SaveFiles.vector(player.checkpoint_camera_rotation)},"inventory":items,"world":world,"lessons":{"daffy_finished":daffy.intro_finished if daffy else false,"porky_without":porky.without_sheep_played if porky else false,"porky_with":porky.with_sheep_played if porky else false}}
 	if daffy and daffy.has_method("capture_progress"): snapshot.lessons["daffy_state"] = daffy.capture_progress()
@@ -156,5 +159,13 @@ func restore_checkpoint(record: Dictionary) -> bool:
 	if daffy and daffy.has_method("restore_progress"):
 		daffy.restore_progress(record.lessons.get("daffy_state",{}))
 	snapshot = record.duplicate(true)
+	# Restore the encounter first; individual mine states then override deployment defaults.
+	var controllers = record.world.get("controllers",{})
+	for identity in controllers:
+		var child = level.get_node_or_null(NodePath(identity))
+		if child and not child is OriginalDefusableMine: child.restore_world_state(controllers[identity])
+	for identity in controllers:
+		var child = level.get_node_or_null(NodePath(identity))
+		if child is OriginalDefusableMine: child.restore_world_state(controllers[identity])
 	restoring = false
 	return true

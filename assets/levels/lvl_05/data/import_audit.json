@@ -13,8 +13,6 @@
   "intro_cine_id": 0,
   "tutorial_cine_ids": [],
   "pending_exclusive_classes": [
-    56,
-    65,
     159,
     162
   ],
@@ -25,11 +23,13 @@
     }
   },
   "implemented_exclusive_classes": [
-    118
+    118,
+    56,
+    65
   ],
   "notes": [
     "No Daffy entity or voiced tutorial exists in the Lv05 WAR.",
     "Gate closedAtStart is 1 unless a Train exists; property0 alone does not select it.",
-    "Catapult and carryable SmallRock need operating controllers; ambient Firefly/Fish need motion."
+    "Catapult and SmallRock use shared operating controllers; ambient Firefly/Fish need motion."
   ]
 }
