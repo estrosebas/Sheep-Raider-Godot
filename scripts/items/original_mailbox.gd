@@ -93,7 +93,7 @@ func _deliver(actor: RalphController) -> void:
 	play_sound(sounds["251"],0.75)
 	previous_camera = get_viewport().get_camera_3d()
 	var record = definition.get("camera")
-	if record != null:
+	if record != null and GameLocalization.camera_assists_enabled():
 		delivery_camera.global_position = GameSpace.original_point(Vector3(record["eye"][0],record["eye"][1],record["eye"][2]))
 		var r = record["rotation"]
 		delivery_camera.global_rotation = Vector3(-r[0],r[1],-r[2])*TAU/4096

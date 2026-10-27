@@ -25,7 +25,7 @@ func _ready() -> void:
 func update_view() -> void:
 	if not is_instance_valid(player): return
 	var occupied = button.pressed and button.occupants.has(player)
-	var unavailable = player.cinematic_controls_locked or player.launch_controls_locked or player.restart_fade_remaining>0 or player.current_state in [player.WolfState.PIT_FALL,player.WolfState.BLAST_DEATH,player.WolfState.SAM_DEATH]
+	var unavailable = not GameLocalization.camera_assists_enabled() or player.cinematic_controls_locked or player.launch_controls_locked or player.restart_fade_remaining>0 or player.current_state in [player.WolfState.PIT_FALL,player.WolfState.BLAST_DEATH,player.WolfState.SAM_DEATH]
 	if not occupied:
 		close()
 		interrupted = false

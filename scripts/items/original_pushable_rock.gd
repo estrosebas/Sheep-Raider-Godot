@@ -126,6 +126,7 @@ func _physics_process(delta: float):
 		# the seesaw, so the returning rock never launched the opposite rider.
 		if descending_speed>0 and is_on_floor():
 			landed_speed = descending_speed
+			register_seesaw_landing(descending_speed)
 			arc.clear(); fall_time = 0
 		elif arc.time>=1: arc.clear(); fall_time = 0
 		return
@@ -144,6 +145,7 @@ func _physics_process(delta: float):
 		if is_instance_valid(seesaw_support): global_position.x = before.x; global_position.z = before.y
 		if not was_grounded:
 			landed_speed = falling_speed
+			register_seesaw_landing(falling_speed)
 			if fall_time>.5 and not impact_sound_path.is_empty(): impact_sound.stream = load(impact_sound_path); impact_sound.play()
 		fall_time = 0
 	try_native_cinematic()
@@ -196,3 +198,9 @@ func reset_to_home():
 	if int(definition.props["0x2c"]) != 0:
 		global_position = home; roll = Basis.IDENTITY; visual.basis = roll
 	velocity = Vector3.ZERO
+
+func register_seesaw_landing(speed: float):
+	for index in range(get_slide_collision_count()):
+		var contact = get_slide_collision(index)
+		if contact.get_collider() is OriginalSeesaw and contact.get_normal().y>.1:
+			contact.get_collider().register_landing(self,speed)

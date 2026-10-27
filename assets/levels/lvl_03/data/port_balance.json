@@ -11,6 +11,13 @@
       8.0
     ]
   },
+  "walking_collision_profiles": [
+    {
+      "description": "Clock tunnel exit bends left. Allow grounded walking to slide along the real cliff wall instead of sticking; there is no floor behind its right side.",
+      "min": [2.3, 5.0, -43.0],
+      "size": [5.7, 7.0, 10.0]
+    }
+  ],
   "elastic": {
     "two_anchor_max_length": 9.5,
     "full_charge_threshold": 0.98,

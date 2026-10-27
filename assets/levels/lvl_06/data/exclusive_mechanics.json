@@ -444,15 +444,9 @@
     "source": "mine.cpp::DefusableMine::Update"
   },
   "pending_classes": [
-    57,
-    58,
-    60,
     74
   ],
   "pending": [
-    "DaffyMilitary dialogue and thaw-triggered CIN1",
-    "HairDryer heating and original hand animations",
-    "IceCube melting/collision/prisoner release",
     "Native fog-manager adaptation"
   ]
 }

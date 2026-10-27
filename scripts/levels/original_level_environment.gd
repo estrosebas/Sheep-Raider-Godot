@@ -18,11 +18,14 @@ func _ready():
 	add_to_group("water_regions")
 	rules = JSON.parse_string(FileAccess.get_file_as_string(level.asset_directory+"/data/environment.json"))
 	data = {"sounds":{"264":level.asset_directory+"/audio/264.wav"}}
+	var tuning_path = level.asset_directory+"/data/port_balance.json"
+	var tuning = JSON.parse_string(FileAccess.get_file_as_string(tuning_path)) if FileAccess.file_exists(tuning_path) else {}
 	var boards = rules.get("seesaws",[])
 	if boards.is_empty() and rules.has("seesaw"): boards = [rules.seesaw]
 	for definition in boards:
 		var old = level.get_node_or_null("seesaw_%d"%int(definition.res))
 		if old: old.queue_free()
+		definition.merge(tuning.get("seesaws",{}).get(str(int(definition.res)),{}),true)
 		var board = OriginalSeesaw.new(); board.definition = definition
 		board.name = "OriginalSeesaw" if seesaws.is_empty() else "OriginalSeesaw_%d"%int(definition.res)
 		level.add_child(board); seesaws.append(board)
@@ -97,11 +100,15 @@ func swim_step(record: Dictionary,delta: float):
 	if record.time >= record.duration: pick_target(record)
 
 func player_launching() -> bool: return not arc.is_empty()
-func start_launch_camera(camera: Dictionary,no_freeze: bool):
-	if is_instance_valid(launch_camera): return
+func start_launch_camera(camera: Dictionary,no_freeze: bool,subject: Node3D = null):
+	if not GameLocalization.camera_assists_enabled(): return
+	if is_instance_valid(launch_camera) and not launch_camera.closed:
+		if is_instance_valid(subject): launch_camera.track_subject(subject)
+		return
 	launch_camera = preload("res://scripts/cinematics/original_launch_camera.gd").new()
 	launch_camera.definition = camera; launch_camera.player = player; launch_camera.no_freeze = no_freeze
 	add_child(launch_camera)
+	if is_instance_valid(subject): launch_camera.track_subject(subject)
 func launch(actor: Node3D,points: Array,rock_impact: bool = true):
 	if actor is OriginalSheep:
 		actor.launch_from_seesaw(seesaw,points,rock_impact); return
@@ -192,6 +199,10 @@ func _physics_process(delta: float):
 
 func reset():
 	attack.clear(); clear_player_launch()
+	for board in seesaws:
+		if board.definition.get("free_tilt",false):
+			board.tilt = 0; board.tilt_velocity = 0; board.tipping_moment = 0
+			board.rotation.z = 0; board.pending_impulse = 0; board.contact_ids.clear(); board.pending_landings.clear()
 	for record in fish: pick_target(record,false)
 
 func clear_death_camera(target: Vector3) -> Vector3:

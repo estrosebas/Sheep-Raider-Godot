@@ -27,7 +27,7 @@ func step(sheep: Node3D, delta: float) -> void:
 	var actor = sheep.carried_by
 	var on_ground = actor.is_on_floor()
 	var input = Vector2.ZERO if actor.launch_controls_locked else Input.get_vector("move_left","move_right","move_forward","move_backward")
-	var direction = actor.camera_pivot.global_basis*Vector3(input.x,0,input.y)
+	var direction = actor.movement_camera_basis()*Vector3(input.x,0,input.y)
 	direction.y = 0
 	var moving = direction.length_squared() > .01
 	direction = direction.normalized() if moving else Vector3.ZERO

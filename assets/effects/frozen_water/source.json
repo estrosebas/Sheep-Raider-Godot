@@ -1,0 +1,28 @@
+{
+  "model": "AGLACON1",
+  "animation": "stand2",
+  "source": "C:\\Users\\estro\\Downloads\\Sheep.Dog.and.Wolf\\Sheep.Dog.and.Wolf\\Sheep.Dog.and.Wolf\\Levels\\Lvl-06\\Lvl-06.WAR",
+  "resource": 13,
+  "export_id": 98,
+  "joint": 0,
+  "offset_native": [
+    0,
+    0,
+    0
+  ],
+  "offset_godot": [
+    0,
+    0,
+    0
+  ],
+  "directory": "res://assets/effects/frozen_water",
+  "materials": {
+    "5": "opaque",
+    "11": "add",
+    "8": "blend",
+    "7": "blend"
+  },
+  "loop_animations": [
+    "stand2"
+  ]
+}

@@ -42,6 +42,7 @@ func _ready() -> void:
 
 	# 4. Load Scenaric Entities info
 	load_entities()
+	preload("res://scripts/cinematics/original_camera_zones.gd").install(self,"res://assets/levels/lvl_00")
 	var sky = preload("res://scripts/levels/original_sky.gd").new()
 	sky.name = "OriginalSky"
 	add_child(sky)

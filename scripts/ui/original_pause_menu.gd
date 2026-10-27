@@ -158,8 +158,8 @@ func show_page(next: String) -> void:
 			rows.assign(["Cargar partida","Comenzar nivel 00","Salir del juego"])
 			actions.assign(["load","restart","quit"])
 		"options":
-			rows.assign(["Música: activar/desactivar","Pantalla completa","Texturas: original/visor",GameLocalization.ui("Pantallas de carga: %s")%GameLocalization.ui("Sí" if GameLocalization.loading_enabled else "No"),GameLocalization.ui("Estilo de carga: %s")%GameLocalization.ui("Clásico" if GameLocalization.loading_style=="classic" else "Moderno"),"Controles (H)","Volver"])
-			actions.assign(["music","fullscreen","textures","loading_enabled","loading_style","controls","root"])
+			rows.assign(["Música: activar/desactivar","Pantalla completa","Texturas: original/visor",GameLocalization.ui("Pantallas de carga: %s")%GameLocalization.ui("Sí" if GameLocalization.loading_enabled else "No"),GameLocalization.ui("Estilo de carga: %s")%GameLocalization.ui("Clásico" if GameLocalization.loading_style=="classic" else "Moderno"),GameLocalization.ui("Ayudas de cámara: %s")%GameLocalization.ui("Sí" if GameLocalization.camera_assists_enabled() else "No"),"Controles (H)","Volver"])
+			actions.assign(["music","fullscreen","textures","loading_enabled","loading_style","camera_assists","controls","root"])
 			var statistics = get_tree().get_first_node_in_group("optional_statistics")
 			if statistics:
 				rows.insert(rows.size()-1,str(statistics.words()[4]))
@@ -244,6 +244,9 @@ func activate(action: String) -> void:
 	elif action == "textures": level.set_texture_profile(1-level.texture_profile)
 	elif action in ["loading_enabled","loading_style"]:
 		GameLocalization.save_loading(not GameLocalization.loading_enabled if action=="loading_enabled" else GameLocalization.loading_enabled,("modern" if GameLocalization.loading_style=="classic" else "classic") if action=="loading_style" else GameLocalization.loading_style)
+		var prior = selected; show_page("options"); selected = prior
+	elif action == "camera_assists":
+		GameLocalization.save_camera_assists(not GameLocalization.camera_assists_enabled())
 		var prior = selected; show_page("options"); selected = prior
 	elif action == "fullscreen":
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED if DisplayServer.window_get_mode() == DisplayServer.WINDOW_MODE_FULLSCREEN else DisplayServer.WINDOW_MODE_FULLSCREEN)

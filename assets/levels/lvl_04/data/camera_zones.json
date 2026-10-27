@@ -1,0 +1,271 @@
+{
+  "level": "lvl_04",
+  "cameras": [
+    {
+      "resource": 97,
+      "boxes": [
+        {
+          "flags": 0,
+          "min": [
+            -3935,
+            182,
+            1039
+          ],
+          "max": [
+            -1349,
+            1284,
+            1952
+          ]
+        }
+      ],
+      "pitch": [
+        -90,
+        90
+      ],
+      "yaw": [
+        0,
+        360
+      ],
+      "roll": [
+        0,
+        360
+      ],
+      "distance": [
+        0.0,
+        320.0
+      ],
+      "focal": 0,
+      "snap_yaw": false,
+      "forbid_pad": false,
+      "follow": true,
+      "mirror_yaw": false,
+      "aim_offset": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "trajectory": [
+        [
+          -4444,
+          288,
+          1499
+        ],
+        [
+          -3998,
+          554,
+          1499
+        ],
+        [
+          -3455,
+          704,
+          1508
+        ],
+        [
+          -3045,
+          736,
+          1512
+        ],
+        [
+          -2745,
+          736,
+          1499
+        ],
+        [
+          -2505,
+          707,
+          1495
+        ],
+        [
+          -2267,
+          637,
+          1512
+        ],
+        [
+          -1997,
+          346,
+          1503
+        ],
+        [
+          -1782,
+          -533,
+          1512
+        ]
+      ],
+      "eye_vertical_max": 327.67
+    },
+    {
+      "resource": 100,
+      "boxes": [
+        {
+          "flags": 0,
+          "min": [
+            -992,
+            -849,
+            -781
+          ],
+          "max": [
+            2150,
+            143,
+            1707
+          ]
+        }
+      ],
+      "pitch": [
+        45,
+        90
+      ],
+      "yaw": [
+        0,
+        360
+      ],
+      "roll": [
+        0,
+        360
+      ],
+      "distance": [
+        0.0,
+        320.0
+      ],
+      "focal": 0,
+      "snap_yaw": false,
+      "forbid_pad": false,
+      "follow": true,
+      "mirror_yaw": false,
+      "aim_offset": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "trajectory": [],
+      "eye_vertical_max": 327.67
+    },
+    {
+      "resource": 106,
+      "boxes": [
+        {
+          "flags": 0,
+          "min": [
+            -2831,
+            -1363,
+            463
+          ],
+          "max": [
+            -882,
+            36,
+            2566
+          ]
+        },
+        {
+          "flags": 0,
+          "min": [
+            -2831,
+            -1829,
+            449
+          ],
+          "max": [
+            -866,
+            -1329,
+            1393
+          ]
+        }
+      ],
+      "pitch": [
+        30,
+        90
+      ],
+      "yaw": [
+        0,
+        360
+      ],
+      "roll": [
+        0,
+        360
+      ],
+      "distance": [
+        0.0,
+        320.0
+      ],
+      "focal": 0,
+      "snap_yaw": false,
+      "forbid_pad": false,
+      "follow": true,
+      "mirror_yaw": false,
+      "aim_offset": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "trajectory": [
+        [
+          -1883,
+          0,
+          1497
+        ],
+        [
+          -1883,
+          -1680,
+          1497
+        ]
+      ],
+      "eye_vertical_max": 327.67
+    },
+    {
+      "resource": 107,
+      "boxes": [
+        {
+          "flags": 0,
+          "min": [
+            -2788,
+            -2717,
+            1402
+          ],
+          "max": [
+            -1188,
+            -1389,
+            2549
+          ]
+        }
+      ],
+      "pitch": [
+        80,
+        90
+      ],
+      "yaw": [
+        0,
+        360
+      ],
+      "roll": [
+        0,
+        360
+      ],
+      "distance": [
+        0.0,
+        4.0
+      ],
+      "focal": 280,
+      "snap_yaw": false,
+      "forbid_pad": false,
+      "follow": true,
+      "mirror_yaw": false,
+      "aim_offset": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "trajectory": [
+        [
+          -1380,
+          -2161,
+          1182
+        ],
+        [
+          -2468,
+          -2161,
+          1182
+        ]
+      ],
+      "eye_vertical_max": 327.67
+    }
+  ],
+  "source": "CameraRestriction::PostLoadInit / WAR class19"
+}

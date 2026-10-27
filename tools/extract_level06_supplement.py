@@ -44,13 +44,16 @@ def main():
                     mines=mines,mine_timing={'cycle_seconds':3.0,'half_cycle_seconds':1.5,
                                              'input_tolerance_seconds':.25,'late_timeout_seconds':.5,
                                              'source':'mine.cpp::DefusableMine::Update'},
-                    pending_classes=[57,58,60,74],
-                    pending=['DaffyMilitary dialogue and thaw-triggered CIN1','HairDryer heating and original hand animations',
-                             'IceCube melting/collision/prisoner release','Native fog-manager adaptation'])
+                    pending_classes=[74],
+                    pending=['Native fog-manager adaptation'])
     languages = json.loads((ROOT/'assets/localization/manifest.json').read_text(encoding='utf8'))
     metadata['daffy']['answer_voice_ids'] = [96,97,98]
     metadata['daffy']['answer_voice_paths'] = [languages['languages']['es']['voices'][str(i)] for i in [96,97,98]]
     save('data/exclusive_mechanics.json',metadata)
+    old_daffy = json.loads((ROOT/'assets/levels/lvl_01/data/daffy.json').read_text(encoding='utf8'))
+    save('data/daffy.json',dict(resource=daffy['res'],cine_id=1,question=texts[1],
+        answers=[dict(choice=texts[i],text=texts[i+1],voice_path=languages['languages']['es']['voices'][str(96+j)]) for j,i in enumerate([2,4,6])],
+        burnt=dict(text=texts[8],voice_path=old_daffy['burnt']['voice_path'])))
     telescope = common(next(e for e in entities if e['class_id']==28))
     telescope['normal_box'] = (boxes(telescope['props']['0x18']) or [None])[0]
     telescope['reverse_box'] = (boxes(telescope['props']['0x20']) or [None])[0]
@@ -63,7 +66,7 @@ def main():
                  cinematic_descriptors={'0':{'name':'intro_camera','description':'Entrada original al nivel06'},
                                         '1':{'name':'military_lesson','description':'Lucas explica las minas tras descongelarlo'},
                                         '2':{'name':'mine_demo','description':'Demostracion original de las minas'}},
-                 implemented_exclusive_classes=[15,16,24,28,35,38,41,56,65,78],pending_exclusive_classes=[57,58,60,64,74])
+                 implemented_exclusive_classes=[15,16,24,28,35,38,41,56,57,58,60,64,65,78],pending_exclusive_classes=[74])
     save('data/import_audit.json',audit)
     # HIT must retain PUNCH3 arms during WIN, as on all previous imported Sams.
     sam = next(e for e in entities if e['class_id']==1)

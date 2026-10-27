@@ -3,7 +3,7 @@
 Base local extraída del PC `Levels/Lvl-06` (WAR/DAV/SND/MLT), cotejada con
 `sdw-decomp/src/objects`. Escena: `scenes/levels/Level06.tscn`, visible con
 texturas en el editor y ejecutable conF6. Es una base para pruebas; todavía
-conserva pendientes el secador, el deshielo y el diálogo militar de Lucas. Las minas y la transición de Sam ya son funcionales.
+incluye secador, deshielo, diálogo militar de Lucas, minas y transición de Sam funcionales.
 
 ## Escenario y materiales
 
@@ -31,8 +31,8 @@ conserva pendientes el secador, el deshielo y el diálogo militar de Lucas. Las 
   con minas; conectada a la flauta mediante OriginalSamFluteEncounter.
 - Diálogo militar: pregunta y tres respuestas originales, voces96/97/98 y
   réplica de castigo. Se conservan en `exclusive_mechanics.json`, con overlays
-  de inglés, español, portugués de Brasil e italiano. Todavía no existe la
-  interacción de hablar/descongelar de esta variante.
+  de inglés, español, portugués de Brasil e italiano. El controlador de
+  deshielo reproduce CIN1 y habilita estas consultas al terminar.
 - Dos letreros originales: mensaje de Sam y explicación de la catapulta.
 
 ## Controladores reutilizados
@@ -43,8 +43,8 @@ conserva pendientes el secador, el deshielo y el diálogo militar de Lucas. Las 
 - Tres lechugas68/75/77, cohete76 y flauta78. El cohete hereda los límites
   de vuelo de este nivel; la flauta se obtiene del buzón54 y activa CIN2 ante Sam, que la retira y pasa a su patrulla original.
 - Buzón53 entrega secador74; buzón54 entrega flauta78. El secador usa un
-  adaptador de importación para caja/recogida/inventario y su modelo original;
-  `prototype_only` indica que su efecto exclusivo todavía no está portado.
+  controlador HairDryerItem con su modelo original, calor y audio283;
+  la entrega, recogida e inventario siguen usando el sistema compartido.
 - Reloj63, goal90 y seis checkpoints con guardado/progreso compartidos.
 - El plató encuentra automáticamente la escena06 y la desbloquea tras05.
   Laboratorio: añadida séptima puerta (Nivel06), sobre el suelo ampliado.
@@ -53,15 +53,16 @@ conserva pendientes el secador, el deshielo y el diálogo militar de Lucas. Las 
 
 1. `hairdryer.cpp`: al soplar consulta objetivos activos no sujetos en un
    volumen de4m. Comprueba distancia horizontal de hasta4m y semicono409
-   unidades angulares (unos36°), y envíaMSG_THAW. Faltan su animación de
-   uso en mano, aire caliente y sonido activo; no sustituirlo por ventilador.
+   unidades angulares (unos36°), y envíaMSG_THAW. HairDryerItem conserva
+   su propio modelo, joint18, poses HELD_FAN y bucle nativo283.
 2. `icecube.cpp`: FROZEN/STAND2 → MELTING/FOND1, avanzando solo cuando recibe
    calor; tras1s acumulado libera al prisionero medianteMSG_THAW y deja
    de bloquear. Termina su animación y pasa a charco. Actualiza la caja de
    colisión mientras se derrite y respeta el progreso de deshielo alReset.
 3. `daffymilitary.cpp`: el deshielo disparaCIN1 y su explicación, después
    permite conversar. Incluye tres respuestas, voz, giro hacia Ralph y
-   reacción quemada/castigo. Falta conectarlo al hielo y al diálogo compartido.
+   reacción quemada/castigo. Conectado al hielo y al diálogo compartido;
+   la primera charla tras una bomba reproduce el castigo original sin salto.
 4. `mine.cpp::DefusableMine`: once minas64..67/69..73/79/80 con código,
    longitud2..4, desfase y radio propios. La fase va en ciclos de3s, con
    medias fases1.5s; hay demostración de botones y repetición rítmica con
@@ -69,8 +70,9 @@ conserva pendientes el secador, el deshielo y el diálogo militar de Lucas. Las 
    Implementadas ondas, activación, explosión/sonido, panel original con flechas,
    teclado/joystick y persistencia. Véase ORIGINAL_DEFUSABLE_MINES.md.
 
-Orden sugerido para el siguiente hito: secador → cubo → liberación y charla
-de Lucas. Las once minas, CIN2 y su restauración ya están implementadas.
+Secador → cubo → CIN1 → charla/castigo de Lucas están implementados.
+Las once minas, CIN2 y su restauración también están implementadas.
+Queda pendiente la adaptación del FogManager.
 
 ## Reproducir y validar
 
@@ -95,4 +97,8 @@ y `build_imported_level_content.gd`, cada uno con `-- lvl_06`.
 `test_level06_foundation.gd`: geometría, materiales, entrada real,11 ovejas,
 Sam, buzones, flauta, referencias pendientes, telescopio, reloj/goal, agua,
 catapulta, balancines, música y escritura real de un checkpoint temporal.
+
+`test_level06_thaw_seesaws.gd`: calor parcial/interrumpido, cono y sonido,
+CIN1 y las tres voces, explosión real de una mina junto a Lucas, castigo,
+guardado/restauración y vuelo completo de Ralph con los dos balancines.
 Captura OpenGL: `validation/level06_overview.png`.

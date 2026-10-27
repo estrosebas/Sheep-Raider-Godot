@@ -26,6 +26,10 @@ var carry_controller: OriginalSheepCarry
 var dead = false
 var death_time = 0.0
 var last_floor_y = 0.0
+var slope_fall_time = 0.0
+var seesaw_slide_time = 0.0
+var seesaw_floor_layers = -1
+var seesaw_on_leave = -1
 var seesaw_support: OriginalSeesaw
 var moving_anchor: Node3D
 var moving_anchor_radius = .5
@@ -200,10 +204,12 @@ func clear_moving_anchor():
 		anchor_floor_layers = -1; anchor_on_leave = -1
 
 func reset_to_home() -> void:
+	restore_seesaw_platform_motion()
 	forget_attraction()
 	clear_moving_anchor()
 	clear_seesaw_launch()
 	seesaw_support = null
+	seesaw_slide_time = 0
 	scent_reaction.reset(self)
 	dead = false
 	death_time = 0
@@ -237,7 +243,12 @@ func _physics_process(delta: float) -> void:
 			seesaw_support = null
 		else:
 			rest_on_seesaw(seesaw_support)
+	if not is_instance_valid(seesaw_support): restore_seesaw_platform_motion()
 	if not carried_by and _check_fatal_drop(): return
+	if step_seesaw_slide(delta): return
+	for slopes in get_tree().get_nodes_in_group("original_slopes"):
+		if slopes.get_parent()==get_parent() and slopes.step_sheep(self,delta): return
+	slope_fall_time = 0
 	if is_instance_valid(carried_by): return
 	if is_instance_valid(moving_anchor) and not moving_anchor.is_rider(self): clear_moving_anchor()
 	if not flock:
@@ -252,7 +263,9 @@ func _physics_process(delta: float) -> void:
 					if source.can_smell_from(other.global_position) and other.global_position.distance_squared_to(source.global_position)<distance: closest = false; break
 				if closest and distance < nearest: nearest = distance; perfume = source
 		if scent_reaction.step(self,perfume,delta): return
+		var waiting_position = global_position
 		super._physics_process(delta)
+		keep_stationary_on_launcher(waiting_position)
 		# The laboratory receiver moves physically but does not select a rig clip.
 		if is_instance_valid(attraction_target) and attraction_target.is_in_group("bushes"):
 			flock_target = attraction_target
@@ -386,7 +399,15 @@ func _physics_process(delta: float) -> void:
 			flock_timer = 0
 			visual.idle(idle_animation)
 	velocity.y = 0 if is_on_floor() else maxf(-20,velocity.y-29*delta)
+	var waiting_position = global_position
+	var incoming_speed = maxf(0,-velocity.y)
+	var was_grounded = is_on_floor()
 	move_and_slide()
+	keep_stationary_on_launcher(waiting_position)
+	if not was_grounded and is_on_floor():
+		for i in range(get_slide_collision_count()):
+			var contact = get_slide_collision(i)
+			if contact.get_collider() is OriginalSeesaw: contact.get_collider().register_landing(self,incoming_speed)
 	if is_on_floor(): last_floor_y = global_position.y
 
 func on_blast(_origin: Vector3) -> void:
@@ -508,16 +529,37 @@ func begin_random_idle(initial: bool):
 	flock_timer = visual.idle_time/visual.idle_speed
 	visual.sample_animation(idle_animation,visual.idle_time,true)
 
+func keep_stationary_on_launcher(previous: Vector3):
+	if not is_instance_valid(seesaw_support) or (int(seesaw_support.definition.props["0x20"])&1): return
+	if is_instance_valid(flock_target) or is_instance_valid(attraction_target) or call_time>0: return
+	global_position.x = previous.x; global_position.z = previous.z
+	global_position.y = seesaw_support.sheep_surface_height(self)+.002
+	velocity = Vector3.ZERO
+
+func restore_seesaw_platform_motion():
+	if seesaw_floor_layers>=0:
+		platform_floor_layers = seesaw_floor_layers
+		platform_on_leave = seesaw_on_leave
+		seesaw_floor_layers = -1; seesaw_on_leave = -1
+
 func rest_on_seesaw(board: OriginalSeesaw):
+	# Native support corrects height, not horizontal position. Godot's rotating
+	# platform velocity otherwise drags the sheep even without native SLIDE.
+	if seesaw_floor_layers<0:
+		seesaw_floor_layers = platform_floor_layers; seesaw_on_leave = platform_on_leave
+	platform_floor_layers = 0
+	platform_on_leave = CharacterBody3D.PLATFORM_ON_LEAVE_DO_NOTHING
 	seesaw_support = board
 	global_position.y = board.sheep_surface_height(self)+.002
 	last_floor_y = global_position.y
 	velocity.y = 0
 
 func launch_from_seesaw(board: OriginalSeesaw,points: Array,rock_impact: bool):
+	restore_seesaw_platform_motion()
 	if dead or carried_by or not seesaw_arc.is_empty(): return
 	clear_moving_anchor()
 	seesaw_support = null
+	seesaw_slide_time = 0
 	scent_reaction.reset(self)
 	if flock: flock.release_idle_variant(self)
 	flock_target = null; last_food_position = null; call_time = 0
@@ -542,13 +584,45 @@ func step_seesaw_launch(delta: float):
 	seesaw_arc.time += delta
 	var target = OriginalSeesaw.arc_point(seesaw_arc.start,seesaw_arc.middle,seesaw_arc.end,minf(seesaw_arc.time/1.024,1))
 	var motion = target-global_position
+	var incoming_speed = maxf(0,-motion.y/delta)
 	var contact = move_and_collide(motion)
+	if contact and contact.get_collider() is OriginalSeesaw:
+		contact.get_collider().register_landing(self,incoming_speed)
 	if seesaw_arc.time >= 1.024 or contact:
 		clear_seesaw_launch()
 		velocity = Vector3.ZERO
 		last_floor_y = global_position.y
 		flock_phase = "idle"; flock_timer = 0
 		begin_random_idle(false)
+
+func step_seesaw_slide(delta: float) -> bool:
+	if carried_by:
+		seesaw_slide_time = 0; return false
+	var on_board = is_instance_valid(seesaw_support)
+	var tilted = on_board and not seesaw_support.slide_velocity().is_zero_approx()
+	if not tilted and seesaw_slide_time==0: return false
+	if not tilted and on_board:
+		seesaw_slide_time = 0; flock_phase = "idle"; flock_timer = 0
+		return false
+	# Sheep::MSG_SEESAW_DRIFT enters FALL from IDLE, fallTime=.5s,
+	# FallStep uses15m/s² capped at14m/s. Preserve FALL beyond the edge.
+	if seesaw_slide_time==0 and flock_phase not in ["idle","return","seesaw_slide"]: return false
+	if seesaw_slide_time==0:
+		seesaw_slide_time = .5
+		if flock: flock.release_idle_variant(self)
+		flock_target = null; last_food_position = null; flock_phase = "seesaw_slide"
+		sheep_audio.stop(); visual.idle("stand1")
+	seesaw_slide_time += delta
+	var downward = Vector3.DOWN*minf(14,seesaw_slide_time*15)
+	if on_board: velocity = downward.slide(seesaw_support.global_basis.y.normalized())
+	else: velocity.y = downward.y # Keep the downhill momentum past the rim.
+	move_and_slide()
+	var landed_on_scenery = is_on_floor()
+	for i in range(get_slide_collision_count()):
+		if get_slide_collision(i).get_collider() is OriginalSeesaw: landed_on_scenery = false
+	if not on_board and landed_on_scenery:
+		seesaw_slide_time = 0; flock_phase = "idle"; flock_timer = 0
+	return true
 
 func clear_seesaw_launch():
 	seesaw_arc.clear()

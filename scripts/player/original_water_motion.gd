@@ -10,8 +10,16 @@ var jump_surface: Variant = null
 var surface_mode = true # Native WOLF_ST_WADE, distinct from submerged SWIM.
 var pose_clip = ""
 var pose_time = 0.0
+var frozen = false
+var frozen_time = 0.0
+var frozen_visual: OriginalCinematicActor
+const FREEZING_FLAG = 0x1000000
+const NO_SURFACE_FLAG = 0x2000000
+const FROZEN_RESTART_SECONDS = 20.0
 
 func reset(actor):
+	frozen = false; frozen_time = 0
+	if is_instance_valid(frozen_visual): frozen_visual.hide()
 	zone = {}; elapsed = 0; sink_time = 0; sinking = false
 	actor.skeleton.rotation.x = 0
 	actor.stop_loop_sfx()
@@ -40,6 +48,8 @@ func jump_out(actor,surface: float):
 	actor.move_and_slide()
 
 func step(actor,delta: float) -> bool:
+	if frozen and actor.current_state==actor.WolfState.FROZEN_FLOAT: return step_frozen(actor,delta)
+	if frozen: frozen = false; frozen_visual.hide()
 	if actor.current_state in [actor.WolfState.PIT_FALL,actor.WolfState.BLAST_DEATH,actor.WolfState.SAM_DEATH]: return false
 	if jump_surface != null:
 		if actor.is_on_floor():
@@ -104,6 +114,9 @@ func step(actor,delta: float) -> bool:
 	if actor.velocity.y<0 and actor.global_position.y+actor.velocity.y*delta<bottom:
 		actor.velocity.y = minf(0,(bottom-actor.global_position.y)/delta)
 	actor.move_and_slide()
+	if not sinking and (int(zone.flags)&FREEZING_FLAG) and not (int(zone.flags)&NO_SURFACE_FLAG):
+		begin_frozen(actor)
+		return true
 	if not sinking: update_swim_pose(actor,delta,surface,input)
 	return true
 
@@ -148,3 +161,53 @@ func advance_pose_audio(actor,clip: String,delta: float):
 			if at<=previous or at>pose_time: continue
 			var sound: Dictionary = actor.run_data.sounds.get(str(int(cue.sound_id)),{})
 			if not sound.is_empty(): actor.play_animation_sfx(sound.path)
+
+func begin_frozen(actor):
+	actor.interrupt_actions()
+	if is_instance_valid(actor.carried_sheep): actor.carried_sheep.reset_to_home()
+	actor.inventory.state.clear_selection(); actor.inventory.equipped_id = ""
+	actor.inventory._equip_world_item({})
+	actor.skeleton.rotation.x = 0
+	actor.set_state(actor.WolfState.FROZEN_FLOAT)
+	actor.play_anim("frozen_float")
+	frozen = true; frozen_time = 0
+	if not is_instance_valid(frozen_visual):
+		frozen_visual = load("res://assets/effects/frozen_water/worn.tscn").instantiate()
+		frozen_visual.name = "FrozenWaterBlock"; actor.add_child(frozen_visual)
+	frozen_visual.show(); frozen_visual.sample_animation("stand2",0,true)
+	update_frozen_attachment(actor)
+
+static func water_current(flags: int) -> Vector3:
+	var diagonal = (flags&0x60000000)!=0 and (flags&0x18000000)!=0
+	var speed = (1.0 if flags&0x800000 else 4.0 if flags&0x4000000 else 2.0)
+	if diagonal: speed *= .71
+	return Vector3(speed if flags&0x10000000 else -speed if flags&0x8000000 else 0,0,-speed if flags&0x40000000 else speed if flags&0x20000000 else 0)
+
+func step_frozen(actor,delta: float) -> bool:
+	frozen_time += delta
+	# WaterFloatUpStep rises200u/s, stopping105u below the water surface.
+	# Keep the last region if a flow crosses a seam; adjacent native boxes
+	# refresh its current and surface without restarting the frozen animation.
+	for provider in actor.get_tree().get_nodes_in_group("water_regions"):
+		if provider.get_parent()!=actor.get_parent(): continue
+		var found: Dictionary = provider.water_at(actor.global_position)
+		if not found.is_empty(): zone = found; break
+	var line = -float(zone.min[1])*.01-1.05
+	actor.velocity = water_current(int(zone.flags))
+	actor.velocity.y = clampf((line-actor.global_position.y)/delta,-2,2)
+	actor.move_and_slide()
+	update_frozen_attachment(actor)
+	# The source holds FREEZE1 instead of looping a swimming/fall animation.
+	if frozen_time >= FROZEN_RESTART_SECONDS:
+		actor.restart_fade.set_iris(true)
+		actor.restart_fade.set_amount(clampf(frozen_time-FROZEN_RESTART_SECONDS,0,1))
+	if frozen_time >= FROZEN_RESTART_SECONDS+1:
+		actor.respawn_at_checkpoint()
+		actor.restart_fade.set_iris(true); actor.restart_fade.set_amount(1)
+		actor.restart_fade_remaining = OriginalRestartFade.DURATION
+	return true
+
+func update_frozen_attachment(actor):
+	if not frozen or not is_instance_valid(frozen_visual) or actor.legacy_skin.last_matrices.is_empty(): return
+	# Wolf::Fx3or4_Start: native AGLACON1 on joint0, zero offset.
+	frozen_visual.global_transform = actor.skeleton.global_transform*actor.legacy_skin.last_matrices[0]

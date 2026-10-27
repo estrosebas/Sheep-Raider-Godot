@@ -1,4 +1,5 @@
 extends Node3D
+signal progress_restored
 # Native CinematicsManager activation boxes; tutorial movies are owned by Lucas.
 var movies: Dictionary = {}
 var triggers: Array
@@ -49,5 +50,6 @@ func capture_progress() -> Dictionary:
 	for identity in movies: if movies[identity].played: played.append(identity)
 	return {"played":played,"intro_finished":intro_finished}
 func restore_progress(saved: Dictionary):
-	for identity in movies: movies[identity].played = saved.get("played",[]).has(identity) or identity==intro_id
+	for identity in movies: movies[identity].played = saved.get("played",[]).any(func(value): return int(value)==identity) or identity==intro_id
 	intro_finished = true
+	progress_restored.emit()

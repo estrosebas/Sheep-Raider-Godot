@@ -39,6 +39,7 @@ func _ready() -> void:
 	sky.mesh_path = asset_directory+"/sky.tres"
 	sky.name = "OriginalSky"
 	add_child(sky)
+	preload("res://scripts/cinematics/original_camera_zones.gd").install(self,asset_directory)
 	if foundation_mode:
 		preload("res://scripts/levels/imported_level_foundation.gd").new().setup(self)
 		return

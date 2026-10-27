@@ -17,8 +17,12 @@ var accumulator = 0.0
 var sound: AudioStreamPlayer3D
 var launch_count = 0
 var movie_active = false
+var pending_landings: Dictionary = {}
+var pending_impulse = 0.0
+var tipping_moment = 0.0
 
 func _ready() -> void:
+	add_to_group("original_seesaws")
 	set_physics_process(false)
 	sync_to_physics = false
 	var box = definition["boxes"][0]
@@ -66,8 +70,22 @@ func sheep_surface_height(actor: OriginalSheep) -> float:
 	return height
 
 func covers(point: Vector3,margin: float = 0.0) -> bool:
-	var p = point-global_position
-	return absf(p.z if axis_z else p.x) < half_length+margin and absf(p.x if axis_z else p.z) < half_width+margin
+	# Test the rotated top footprint, not a horizontal rectangle left behind
+	# when a SLIDE plank swings almost vertical.
+	var on_plane = Vector3(point.x,surface_height(point),point.z)
+	var p = to_local(on_plane)
+	return absf(p.x) < half_length+margin/maxf(.01,absf(global_basis.x.x if not axis_z else global_basis.x.z)) and absf(p.z) < half_width+margin
+
+func slide_velocity() -> Vector3:
+	# seesaw::Update emits MSG_SEESAW_DRIFT above56/4096 of a turn.
+	if not (int(definition.props["0x20"])&1) or absf(tilt)<=56: return Vector3.ZERO
+	var speed = sin(tilt*TAU/4096)
+	return Vector3(0,0,-speed) if axis_z else Vector3(speed,0,0)
+
+func register_landing(actor: Node3D,speed: float):
+	# Native CustomCollide calls AddBody BEFORE the update scan. Preserve that
+	# contact across Godot's body/manager priorities instead of losing its speed.
+	if speed > .5: pending_landings[actor.get_instance_id()] = {"speed":speed,"frame":Engine.get_physics_frames()}
 
 func step(delta: float,player: RalphController,objects: Array,manager: Node) -> void:
 	if movie_active: return
@@ -82,6 +100,9 @@ func step(delta: float,player: RalphController,objects: Array,manager: Node) -> 
 	var torque = 0.0
 	var impact_side = 0
 	var rock_impact = false
+	var impulse = 0.0
+	for identity in pending_landings.keys():
+		if Engine.get_physics_frames()-int(pending_landings[identity].frame)>2: pending_landings.erase(identity)
 	for candidate in [player]+objects:
 		var is_rock = candidate is OriginalRock or candidate.is_in_group("pushable_rocks")
 		var is_box = candidate is OriginalDeliveryBox
@@ -98,12 +119,14 @@ func step(delta: float,player: RalphController,objects: Array,manager: Node) -> 
 		# Native OverlapXZ tests the MODEL BOX, not just the actor origin.
 		# A capsule can remain physically supported at the plank's edge with
 		# its centre outside the footprint. Count that rider too.
+		var identity = candidate.get_instance_id()
+		var contact = pending_landings.get(identity,{})
+		var registered = not contact.is_empty()
 		var margin = .35 if candidate is OriginalSheep or candidate==player else 0.0
-		if not covers(p,margin) or feet-height < -.2 or feet-height > .5: continue
+		if not covers(p,margin) or (not registered and (feet-height < -.2 or feet-height > .5)): continue
 		# An upward moving support can give grounded Ralph positive velocity;
 		# that is not a jump away from the seesaw.
-		if candidate.velocity.y > .5 and not (candidate==player and candidate.is_on_floor() and candidate.current_state!=player.WolfState.JUMP):continue
-		var identity = candidate.get_instance_id()
+		if candidate.velocity.y > .5 and not registered and not (candidate.is_on_floor() and (candidate!=player or candidate.current_state!=player.WolfState.JUMP)):continue
 		seen[identity] = true
 		var offset = p.z-global_position.z if axis_z else p.x-global_position.x
 		if axis_z: offset = -offset
@@ -115,19 +138,33 @@ func step(delta: float,player: RalphController,objects: Array,manager: Node) -> 
 			impact_side = side
 			landing_speed = 48000.0
 			timers = [0.0,0.0]
-		elif is_rock and (candidate.landed_speed > 0 or (impact and candidate.velocity.y < -.5)):
+		elif is_rock and (registered or candidate.landed_speed > 0 or (impact and candidate.velocity.y < -.5)):
 			impact_side = side
 			rock_impact = true
 			# TOUCH can precede CharacterBody's floor collision in the same tick.
 			# Capture incoming speed before support correction zeros it out.
-			landing_speed = maxf(512,maxf(candidate.landed_speed,-candidate.velocity.y)*100)
-		torque += offset*100*weight*landing_speed/65536.0
+			landing_speed = maxf(512,maxf(float(contact.get("speed",0)),maxf(candidate.landed_speed,-candidate.velocity.y))*102.4)
+			candidate.landed_speed = 0 # Consume once, whichever physics priority runs first.
+		elif candidate is OriginalSheep and registered:
+			landing_speed = maxf(512,float(contact.speed)*102.4)
+		torque += offset*100*weight*512/65536.0
+		impulse += offset*100*weight*(landing_speed-512)/65536.0
+		pending_landings.erase(identity)
 		bodies.append({"actor":candidate,"side":side})
 	contact_ids = seen
+	pending_impulse += impulse
 	accumulator += delta
 	while accumulator >= .04:
 		accumulator -= .04
-		var target = clampf(torque,-max_negative,max_positive)
+		var moment = torque+pending_impulse
+		if definition.get("free_tilt",false):
+			# Free balancing plank: unopposed load keeps turning it, rather than
+			# treating its moment as a small fixed rest angle. Retain momentum
+			# after riders leave the shrinking footprint, until the authored stop.
+			if not bodies.is_empty(): tipping_moment = moment
+			moment = tilt+tipping_moment
+		var target = clampf(moment,-max_negative,max_positive)
+		pending_impulse = 0
 		var error = target-tilt
 		tilt_velocity = error*3 if absf(error) > 205 else (error+tilt_velocity*3)/4
 		var previous = tilt
@@ -152,7 +189,7 @@ func step(delta: float,player: RalphController,objects: Array,manager: Node) -> 
 				var cameras: Array = definition.get("launch_cameras",[])
 				var index = 0 if entry["side"]<0 else 1
 				if index<cameras.size() and cameras[index]!=null and manager.has_method("start_launch_camera"):
-					manager.start_launch_camera(cameras[index],bool(int(definition.props["0x20"])&2))
+					manager.start_launch_camera(cameras[index],bool(int(definition.props["0x20"])&2),actor)
 		elif actor is OriginalRock:
 			actor.global_position.y = surface_height(actor.global_position)-actor.local_center.y+actor.half_size.y
 			actor.velocity.y = 0
@@ -160,6 +197,6 @@ func step(delta: float,player: RalphController,objects: Array,manager: Node) -> 
 			actor.rest_on_seesaw(self)
 		elif actor is OriginalDeliveryBox:
 			actor.global_position.y = surface_height(actor.global_position)
-		elif actor == player and (player.cinematic_controls_locked or player.launch_controls_locked or player.tutorial_movement_locked):
+		elif actor == player and (player.cinematic_controls_locked or player.launch_controls_locked or player.tutorial_movement_locked or definition.get("free_tilt",false)):
 			# Original MSG_SEESAW_TOUCH keeps stationary/placing Ralph on support.
 			actor.global_position.y = surface_height(actor.global_position)

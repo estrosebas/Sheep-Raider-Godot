@@ -73,7 +73,9 @@ enum WolfState {
 	COVER_HIDDEN,
 	FLUTE_IDLE,
 	FLUTE_WALK,
-	CLIMB
+	CLIMB,
+	SLOPE_SLIDE,
+	FROZEN_FLOAT
 }
 
 var current_state: WolfState = WolfState.IDLE
@@ -219,6 +221,10 @@ func _ready() -> void:
 	if FileAccess.file_exists("res://assets/models/ralph_climb_data.json"):
 		run_data.animations.merge(JSON.parse_string(FileAccess.get_file_as_string("res://assets/models/ralph_climb_data.json")),true)
 		run_data.sounds.merge(JSON.parse_string(FileAccess.get_file_as_string("res://assets/models/ralph_climb_audio.json")),true)
+	if FileAccess.file_exists("res://assets/models/ralph_slope_data.json"):
+		run_data.animations.merge(JSON.parse_string(FileAccess.get_file_as_string("res://assets/models/ralph_slope_data.json")),true)
+	if FileAccess.file_exists("res://assets/models/ralph_frozen_data.json"):
+		run_data.animations.merge(JSON.parse_string(FileAccess.get_file_as_string("res://assets/models/ralph_frozen_data.json")),true)
 	if animation_player and animation_player.has_animation("idle"):
 		animation_player.play("idle")
 
@@ -271,7 +277,7 @@ func _process(delta: float) -> void:
 	if is_instance_valid(elastic_pull_controller) or is_instance_valid(elastic_motion_owner):
 		apply_legacy_reaction_pose(); return
 	if current_state == WolfState.IDLE and not cinematic_controls_locked and not is_instance_valid(push_target) and not is_instance_valid(carried_sheep) and not is_instance_valid(carried_object) and not is_instance_valid(active_rocket):
-		var fan_active = inventory.equipped_node is FanItem and inventory.equipped_node.active
+		var fan_active = (inventory.equipped_node is FanItem or inventory.equipped_node is HairDryerItem) and inventory.equipped_node.active
 		if fan_active:
 			apply_legacy_reaction_pose()
 			return
@@ -285,8 +291,9 @@ func apply_legacy_reaction_pose() -> void:
 		legacy_skin.update_pose()
 	# Native attached props render after their parent evaluates the hand matrix.
 	# Flute must use this displayed pose, not the previous physics-tick hand.
-	if inventory and inventory.equipped_node is FluteItem and inventory.equipped_node.holder==self:
+	if inventory and (inventory.equipped_node is FluteItem or inventory.equipped_node is HairDryerItem) and inventory.equipped_node.holder==self:
 		inventory.equipped_node.sync_held_pose()
+	water_motion.update_frozen_attachment(self)
 	if dizzy_effect: dizzy_effect.update_attachment()
 
 func _physics_process(delta: float) -> void:
@@ -309,6 +316,8 @@ func _physics_process(delta: float) -> void:
 	if is_instance_valid(elastic_pull_controller):
 		elastic_pull_controller.step_pull(self,delta); return
 	if water_motion.step(self,delta): return
+	for slopes in get_tree().get_nodes_in_group("original_slopes"):
+		if slopes.get_parent()==get_parent() and slopes.step_player(self,delta): return
 	if is_instance_valid(active_bush) and active_bush.is_rising():
 		# Native WOLF_ST_BUSH_RISE is stationary until HEAD1 completes.
 		velocity.x = 0
@@ -319,9 +328,9 @@ func _physics_process(delta: float) -> void:
 	if is_instance_valid(push_target):
 		push_target.step_pusher(self,delta)
 		return
-	if inventory.equipped_node is FanItem and inventory.equipped_node.active and is_on_floor():
+	if (inventory.equipped_node is FanItem or inventory.equipped_node is HairDryerItem) and inventory.equipped_node.active and is_on_floor():
 		var input = Input.get_vector("move_left","move_right","move_forward","move_backward")
-		var direction = camera_pivot.global_basis*Vector3(input.x,0,input.y)
+		var direction = movement_camera_basis()*Vector3(input.x,0,input.y)
 		direction.y = 0
 		if direction.length_squared() > .01: skeleton.rotation.y = lerp_angle(skeleton.rotation.y,atan2(direction.x,direction.z),minf(1,6*delta))
 		var clip = "fan_blow_turn" if direction.length_squared() > .01 else "fan_blow_idle"
@@ -438,7 +447,7 @@ func _physics_process(delta: float) -> void:
 		input_dir = Vector2.ZERO
 	var is_moving = input_dir.length_squared() > 0.01
 
-	var cam_basis = camera_pivot.global_transform.basis if camera_pivot else global_transform.basis
+	var cam_basis = movement_camera_basis()
 	var forward = -cam_basis.z
 	var right = cam_basis.x
 	forward.y = 0.0
@@ -543,6 +552,9 @@ func _physics_process(delta: float) -> void:
 	handle_audio(delta, is_moving, on_ground)
 
 	# 7. Commit movement
+	for board in get_tree().get_nodes_in_group("original_seesaws"):
+		if board.get_world_3d()==get_world_3d() and board.covers(global_position,.3) and absf(global_position.y-board.surface_height(global_position))<.3 and velocity.y<=.5:
+			velocity += board.slide_velocity()
 	if not item_pull_velocity.is_zero_approx():
 		velocity += item_pull_velocity
 		velocity.y = maxf(velocity.y, -3.0)
@@ -599,7 +611,7 @@ func step_air_run(delta: float) -> void:
 	if state_time > AirRules.RUN_AIR_LIMIT: run_tap_timer = 0
 	var direction = Vector2.ZERO if launch_controls_locked else Input.get_vector("move_left","move_right","move_forward","move_backward")
 	if direction.length_squared() > 0.01:
-		var basis = camera_pivot.global_basis
+		var basis = movement_camera_basis()
 		var wanted = basis.x*direction.x+basis.z*direction.y
 		var heading = atan2(run_direction.x,run_direction.z)
 		var change = clampf(wrapf(atan2(wanted.x,wanted.z)-heading,-PI,PI),-RunRules.TURN_SPEED*delta,RunRules.TURN_SPEED*delta)
@@ -801,7 +813,7 @@ func interrupt_actions() -> void:
 	# Freeze starts a neutral pose, so releasing the lock cannot resume a jump/run.
 	if inventory:
 		inventory.close_wheel(true)
-		if is_instance_valid(inventory.equipped_node) and inventory.equipped_node.class_id in [7,10,41]:
+		if is_instance_valid(inventory.equipped_node) and inventory.equipped_node.class_id in [7,10,41,58]:
 			inventory.equipped_node.deactivate()
 	if is_instance_valid(active_rocket):
 		active_rocket.finish_flight()
@@ -998,7 +1010,7 @@ func can_use_inventory() -> bool:
 	if is_instance_valid(active_rocket):
 		return false
 	return current_state in [WolfState.IDLE, WolfState.WALK, WolfState.SNEAK,
-		WolfState.JUMP, WolfState.FALL, WolfState.LAND, WolfState.RUN_RECOVER, WolfState.SWIM, WolfState.COVER_ENTER, WolfState.COVER_HIDDEN, WolfState.FLUTE_IDLE, WolfState.FLUTE_WALK]
+		WolfState.JUMP, WolfState.FALL, WolfState.LAND, WolfState.RUN_RECOVER, WolfState.SWIM, WolfState.COVER_ENTER, WolfState.COVER_HIDDEN, WolfState.FLUTE_IDLE, WolfState.FLUTE_WALK, WolfState.SLOPE_SLIDE]
 
 func hidden_from_observer(observer: Vector3) -> bool:
 	return rock_cover.hidden_from(self,observer)
@@ -1007,6 +1019,15 @@ func can_use_item() -> bool:
 	if climb_motion.climbing(): return not cinematic_controls_locked and not launch_controls_locked and restart_fade_remaining<=0
 	if is_instance_valid(elastic_pull_controller): return not cinematic_controls_locked and restart_fade_remaining<=0
 	return can_use_inventory() or is_instance_valid(active_rocket)
+
+func movement_camera_basis() -> Basis:
+	# ScnControllable::GetStickHeading uses g_camera.rot.y, including CamShot.
+	var view = get_viewport().get_camera_3d()
+	var basis = view.global_basis if is_instance_valid(view) else camera_pivot.global_basis
+	var right = basis.x; right.y = 0
+	if right.length_squared()<.001: right = camera_pivot.global_basis.x; right.y = 0
+	right = right.normalized()
+	return Basis(right,Vector3.UP,right.cross(Vector3.UP))
 
 func item_facing() -> Vector3:
 	return (skeleton.global_transform.basis.z if skeleton else global_transform.basis.z).normalized()

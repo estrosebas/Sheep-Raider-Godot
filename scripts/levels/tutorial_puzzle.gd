@@ -91,6 +91,7 @@ func launch(actor: Node3D,points: Array) -> void:
 					_start_camera(seesaw.definition["cameras"][side])
 
 func _start_camera(record: Dictionary) -> void:
+	if not GameLocalization.camera_assists_enabled(): return
 	saved_camera = get_viewport().get_camera_3d()
 	launch_camera.global_position = OriginalSeesaw.source_point(record["eye"])
 	var r = record["rotation"]

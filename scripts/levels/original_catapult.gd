@@ -232,7 +232,7 @@ func launch() -> bool:
 	flight_end = find_free_landing_spot(projectile,flight_end)
 	flight_tick = 0
 	previous_camera = get_viewport().get_camera_3d()
-	if definition.get("camera") is Dictionary:
+	if definition.get("camera") is Dictionary and GameLocalization.camera_assists_enabled():
 		var setup: Dictionary = definition.camera
 		camera.global_position = GameSpace.original_point(Vector3(setup.eye[0],setup.eye[1],setup.eye[2]))+fixture_offset
 		camera.fov = rad_to_deg(2*atan(384.0/float(setup.focal)))
@@ -262,6 +262,7 @@ func find_free_landing_spot(object: CharacterBody3D,point: Vector3) -> Vector3:
 	return point
 
 func track_camera():
+	if not GameLocalization.camera_assists_enabled(): close_camera(); return
 	if not is_instance_valid(projectile): return
 	var target = projectile.global_position+Vector3.UP*.35
 	if camera.global_position.distance_squared_to(target)>.01: camera.look_at(target)

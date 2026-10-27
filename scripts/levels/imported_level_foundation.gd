@@ -10,6 +10,10 @@ func setup(level: ImportedLevel) -> void:
 	var telescopes = JSON.parse_string(FileAccess.get_file_as_string(base+"/data/telescopes.json")) if FileAccess.file_exists(base+"/data/telescopes.json") else []
 	var previews = JSON.parse_string(FileAccess.get_file_as_string(base+"/data/preview_actors.json")) if FileAccess.file_exists(base+"/data/preview_actors.json") else {}
 	var balance = JSON.parse_string(FileAccess.get_file_as_string(base+"/data/port_balance.json")) if FileAccess.file_exists(base+"/data/port_balance.json") else {}
+	if balance.has("walking_collision_profiles"):
+		var walking = preload("res://scripts/levels/original_local_walk_profile.gd").new()
+		walking.name = "LocalWalkingCollision"; walking.entries = balance.walking_collision_profiles
+		level.add_child(walking)
 	var interactions = JSON.parse_string(FileAccess.get_file_as_string(base+"/data/interactions.json")) if FileAccess.file_exists(base+"/data/interactions.json") else {}
 	var switches = JSON.parse_string(FileAccess.get_file_as_string(base+"/data/switches.json")) if FileAccess.file_exists(base+"/data/switches.json") else {}
 	var wildlife = JSON.parse_string(FileAccess.get_file_as_string(base+"/data/wildlife.json")) if FileAccess.file_exists(base+"/data/wildlife.json") else {}
@@ -49,7 +53,7 @@ func setup(level: ImportedLevel) -> void:
 					for record in telescopes:
 						if int(record.res)==int(entity.res): actor.definition = record
 			58:
-				actor = preload("res://scripts/items/imported_preview_item.gd").new()
+				actor = preload("res://scripts/items/hairdryer_item.gd").new()
 				actor.class_id = kind; actor.item_id = "%s:%d"%[level.manifest.level,int(entity.res)]
 				actor.source_level = level.manifest.level; actor.native_text_list = 59
 				actor.original_scene = definition.directory+"/worn.tscn"
@@ -274,6 +278,14 @@ func setup(level: ImportedLevel) -> void:
 	if FileAccess.file_exists(base+"/data/cinematic_triggers.json"):
 		var cinematics = preload("res://scripts/cinematics/imported_level_cinematics.gd").new()
 		cinematics.name = "LevelCinematics"; level.add_child(cinematics)
+		preload("res://scripts/levels/original_cinematic_prop_collision.gd").install(level,cinematics)
+	if level.manifest.level == "lvl_06":
+		var lessons = preload("res://scripts/cinematics/level06_cinematics.gd").new()
+		lessons.name = "DaffyLessons"
+		level.add_child(lessons)
+	if FileAccess.file_exists(base+"/data/slopes.json"):
+		var slopes = preload("res://scripts/levels/original_slope_zones.gd").new()
+		slopes.name = "SlopeZones"; level.add_child(slopes)
 	var save = ImportedCheckpointSave.new()
 	save.name = "CheckpointSave"
 	level.add_child(save)

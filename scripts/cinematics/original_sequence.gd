@@ -7,6 +7,7 @@ signal finished(skipped: bool)
 @export var sequence_path = "res://assets/cinematics/tutorial_intro/sequence.json"
 @export var allow_skip = false # CIN 1 has CINE_NO_INPUT; opt in for development.
 @export var apply_empty_visibility_defaults = false
+@export var skip_input_delay = 0.0 # Optional protection against the triggering interaction.
 @export_enum("automatic","intro_cinematic","camera_animation","tutorial_cinematic","interaction_camera","camera_focus","death_camera","menu_camera") var camera_kind = "automatic"
 @export_enum("automatic","none","iris") var return_transition = "automatic"
 var camera_descriptor: Dictionary
@@ -157,7 +158,7 @@ func _process(delta: float) -> void:
 		finish_sequence(false)
 
 func _unhandled_input(event: InputEvent) -> void:
-	if playing and allow_skip and (event.is_action_pressed("cancel") or event.is_action_pressed("action")) and not event.is_echo():
+	if playing and allow_skip and elapsed >= skip_input_delay and (event.is_action_pressed("cancel") or event.is_action_pressed("action")) and not event.is_echo():
 		finish_sequence(true)
 		get_viewport().set_input_as_handled()
 

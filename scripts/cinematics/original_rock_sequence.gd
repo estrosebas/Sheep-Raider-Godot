@@ -33,11 +33,13 @@ func start_sequence(replay: bool = false) -> bool:
 		var stream: AudioStreamWAV = load(rock.sound_path).duplicate()
 		stream.loop_mode = AudioStreamWAV.LOOP_FORWARD; stream.loop_end = roundi(stream.get_length()*stream.mix_rate)
 		roll_sound.stream = stream; roll_sound.max_distance = 50; roll_sound.global_position = rock.global_position; roll_sound.play()
-	released_camera = false
+	released_camera = not GameLocalization.camera_assists_enabled()
+	if released_camera: player.camera.make_current()
 	return true
 
 func _process(delta: float):
 	if not playing: return
+	if not released_camera and not GameLocalization.camera_assists_enabled(): player.camera.make_current(); released_camera = true
 	if not released_camera and not rock.definition.get("cine_camera_box",[]).is_empty() and not TutorialProgress.contains_xz(rock.definition.cine_camera_box[0],player.global_position):
 		player.camera.current = true; released_camera = true
 	super._process(delta)

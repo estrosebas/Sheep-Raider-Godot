@@ -12,11 +12,13 @@ static var banks: Dictionary = {}
 static var ui_strings: Dictionary = {}
 static var loading_enabled = true
 static var loading_style = "classic"
+static var camera_assists = false
 
 static func ensure() -> void:
 	if initialized: return
 	initialized = true
 	language_selected = false
+	camera_assists = false
 	manifest = JSON.parse_string(FileAccess.get_file_as_string(MANIFEST))
 	ui_strings = JSON.parse_string(FileAccess.get_file_as_string("res://assets/localization/ui.json"))
 	var settings = ConfigFile.new()
@@ -25,6 +27,7 @@ static func ensure() -> void:
 		if manifest.languages.has(saved):
 			locale = saved
 			language_selected = true
+		camera_assists = bool(settings.get_value("camera","assists",false))
 		loading_enabled = bool(settings.get_value("loading","enabled",true))
 		loading_style = str(settings.get_value("loading","style","classic"))
 		if loading_style not in ["classic","modern"]: loading_style = "classic"
@@ -43,6 +46,18 @@ static func select(code: String, persist: bool = true) -> bool:
 		var saved = settings.save(config_path) == OK
 		if saved: language_selected = true
 		return saved
+	return true
+
+static func camera_assists_enabled() -> bool:
+	ensure()
+	return camera_assists
+
+static func save_camera_assists(enabled: bool) -> bool:
+	ensure()
+	var settings = ConfigFile.new(); settings.load(config_path)
+	settings.set_value("camera","assists",enabled)
+	if settings.save(config_path)!=OK: return false
+	camera_assists = enabled
 	return true
 
 static func save_loading(enabled: bool,style: String) -> bool:
