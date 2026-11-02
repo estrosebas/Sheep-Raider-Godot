@@ -1,0 +1,452 @@
+{
+  "buttons": [
+    {
+      "res": 36,
+      "class_id": 24,
+      "class_name": "SensibleButton",
+      "model_res": 25,
+      "pos": [
+        207.74,
+        251.4,
+        184.15
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ],
+      "props": {
+        "0x0": 490,
+        "0x4": 0,
+        "0x8": 0
+      },
+      "directory": "res://assets/levels/lvl_07/models/25",
+      "boxes": [
+        {
+          "flags": 0,
+          "min": [
+            -35,
+            -45,
+            -37
+          ],
+          "max": [
+            40,
+            0,
+            36
+          ]
+        }
+      ],
+      "targets": [
+        66
+      ],
+      "camera": {
+        "export_id": 549,
+        "focal": 520,
+        "rotation": [
+          386,
+          0,
+          0
+        ],
+        "eye": [
+          20176,
+          -25665,
+          20122
+        ],
+        "cut": true,
+        "keep_while_pressed": false
+      }
+    },
+    {
+      "res": 37,
+      "class_id": 24,
+      "class_name": "SensibleButton",
+      "model_res": 25,
+      "pos": [
+        200.3,
+        251.4,
+        184.19
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ],
+      "props": {
+        "0x0": 488,
+        "0x4": 0,
+        "0x8": 0
+      },
+      "directory": "res://assets/levels/lvl_07/models/25",
+      "boxes": [
+        {
+          "flags": 0,
+          "min": [
+            -35,
+            -45,
+            -37
+          ],
+          "max": [
+            40,
+            0,
+            36
+          ]
+        }
+      ],
+      "targets": [
+        64
+      ],
+      "camera": {
+        "export_id": 548,
+        "focal": 483,
+        "rotation": [
+          517,
+          0,
+          0
+        ],
+        "eye": [
+          20404,
+          -25772,
+          18993
+        ],
+        "cut": true,
+        "keep_while_pressed": false
+      }
+    },
+    {
+      "res": 39,
+      "class_id": 24,
+      "class_name": "SensibleButton",
+      "model_res": 25,
+      "pos": [
+        255.15,
+        251.4,
+        194.20000000000002
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ],
+      "props": {
+        "0x0": 489,
+        "0x4": 0,
+        "0x8": 0
+      },
+      "directory": "res://assets/levels/lvl_07/models/25",
+      "boxes": [
+        {
+          "flags": 0,
+          "min": [
+            -35,
+            -45,
+            -37
+          ],
+          "max": [
+            40,
+            0,
+            36
+          ]
+        }
+      ],
+      "targets": [
+        65
+      ],
+      "camera": {
+        "export_id": 553,
+        "focal": 371,
+        "rotation": [
+          382,
+          3900,
+          16
+        ],
+        "eye": [
+          24821,
+          -26196,
+          19189
+        ],
+        "cut": true,
+        "keep_while_pressed": false
+      }
+    },
+    {
+      "res": 42,
+      "class_id": 24,
+      "class_name": "SensibleButton",
+      "model_res": 25,
+      "pos": [
+        205.75,
+        253.13,
+        173.07
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ],
+      "props": {
+        "0x0": 491,
+        "0x4": 0,
+        "0x8": 0
+      },
+      "directory": "res://assets/levels/lvl_07/models/25",
+      "boxes": [
+        {
+          "flags": 0,
+          "min": [
+            -35,
+            -45,
+            -37
+          ],
+          "max": [
+            40,
+            0,
+            36
+          ]
+        }
+      ],
+      "targets": [
+        67
+      ],
+      "camera": {
+        "export_id": 550,
+        "focal": 530,
+        "rotation": [
+          603,
+          3079,
+          0
+        ],
+        "eye": [
+          20418,
+          -26025,
+          17297
+        ],
+        "cut": true,
+        "keep_while_pressed": false
+      }
+    }
+  ],
+  "lifts": [],
+  "gates": [
+    {
+      "res": 64,
+      "class_id": 26,
+      "class_name": "FallingGate",
+      "model_res": 26,
+      "pos": [
+        204.05,
+        251.25,
+        196.11
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ],
+      "props": {
+        "0x0": 0,
+        "0x4": 1,
+        "0x8": 548,
+        "0xc": 0,
+        "0x10": 1
+      },
+      "directory": "res://assets/levels/lvl_07/models/26",
+      "boxes": [
+        {
+          "flags": 0,
+          "min": [
+            -193,
+            -363,
+            -61
+          ],
+          "max": [
+            189,
+            -15,
+            46
+          ]
+        }
+      ],
+      "camera": {
+        "export_id": 548,
+        "focal": 483,
+        "rotation": [
+          517,
+          0,
+          0
+        ],
+        "eye": [
+          20404,
+          -25772,
+          18993
+        ],
+        "cut": true,
+        "keep_while_pressed": false
+      }
+    },
+    {
+      "res": 65,
+      "class_id": 26,
+      "class_name": "FallingGate",
+      "model_res": 26,
+      "pos": [
+        245.91,
+        259.14,
+        205.22
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ],
+      "props": {
+        "0x0": 1,
+        "0x4": 1,
+        "0x8": 553,
+        "0xc": 0,
+        "0x10": 1
+      },
+      "directory": "res://assets/levels/lvl_07/models/26",
+      "boxes": [
+        {
+          "flags": 0,
+          "min": [
+            -193,
+            -363,
+            -61
+          ],
+          "max": [
+            189,
+            -15,
+            46
+          ]
+        }
+      ],
+      "camera": {
+        "export_id": 553,
+        "focal": 371,
+        "rotation": [
+          382,
+          3900,
+          16
+        ],
+        "eye": [
+          24821,
+          -26196,
+          19189
+        ],
+        "cut": true,
+        "keep_while_pressed": false
+      }
+    },
+    {
+      "res": 66,
+      "class_id": 26,
+      "class_name": "FallingGate",
+      "model_res": 26,
+      "pos": [
+        204.57,
+        251.23000000000002,
+        205.64000000000001
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ],
+      "props": {
+        "0x0": 0,
+        "0x4": 1,
+        "0x8": 549,
+        "0xc": 0,
+        "0x10": 1
+      },
+      "directory": "res://assets/levels/lvl_07/models/26",
+      "boxes": [
+        {
+          "flags": 0,
+          "min": [
+            -193,
+            -363,
+            -61
+          ],
+          "max": [
+            189,
+            -15,
+            46
+          ]
+        }
+      ],
+      "camera": {
+        "export_id": 549,
+        "focal": 520,
+        "rotation": [
+          386,
+          0,
+          0
+        ],
+        "eye": [
+          20176,
+          -25665,
+          20122
+        ],
+        "cut": true,
+        "keep_while_pressed": false
+      }
+    },
+    {
+      "res": 67,
+      "class_id": 26,
+      "class_name": "FallingGate",
+      "model_res": 26,
+      "pos": [
+        211.88,
+        253.04,
+        173.0
+      ],
+      "rot": [
+        0,
+        3073,
+        0
+      ],
+      "props": {
+        "0x0": 0,
+        "0x4": 1,
+        "0x8": 550,
+        "0xc": 0,
+        "0x10": 5
+      },
+      "directory": "res://assets/levels/lvl_07/models/26",
+      "boxes": [
+        {
+          "flags": 0,
+          "min": [
+            -193,
+            -363,
+            -61
+          ],
+          "max": [
+            189,
+            -15,
+            46
+          ]
+        }
+      ],
+      "camera": {
+        "export_id": 550,
+        "focal": 530,
+        "rotation": [
+          603,
+          3079,
+          0
+        ],
+        "eye": [
+          20418,
+          -26025,
+          17297
+        ],
+        "cut": true,
+        "keep_while_pressed": false
+      }
+    }
+  ],
+  "triggered_stones": []
+}

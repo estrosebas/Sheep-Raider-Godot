@@ -2,7 +2,7 @@
 
 Dominio: https://sheepraider.nooxtools.me/
 
-Distribución 1.0.5: Windows x64, Android arm64 y web; niveles00–05.
+Distribución 1.0.6: Windows x64, Android arm64 y web; niveles00–07.
 El nivel05 incluye balsas con transporte de ovejas, plataformas móviles,
 acceso al reloj mediante el elástico y salida por lianas con animaciones
 y sonidos originales. La rueda de idiomas
@@ -60,10 +60,10 @@ Variables y secrets de SSH ya están configurados en el repositorio:
 - UPDATES_REMOTE_DIRECTORY: directorio updates del dominio.
 - UPDATES_SSH_KEY y UPDATES_KNOWN_HOSTS: secrets cifrados, sin acceso root.
 
-La base 1.0.5 contiene bundled_sequence=4, igual que su paquete de contenido
-1.0.5 para instalaciones anteriores. Las instalaciones nuevas no descargan
+La base 1.0.6 contiene bundled_sequence=5, igual que su paquete de contenido
+1.0.6 para instalaciones anteriores. Las instalaciones nuevas no descargan
 el mismo contenido ni montan un parche guardado más antiguo que su base.
-La siguiente publicación de contenido debe usar una secuencia mayor que 4
+La siguiente publicación de contenido debe usar una secuencia mayor que 5
 y una versión nueva; las publicaciones son inmutables.
 
 ## Publicar la portada o una nueva distribución

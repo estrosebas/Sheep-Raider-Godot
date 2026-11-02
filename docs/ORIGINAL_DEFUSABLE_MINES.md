@@ -60,3 +60,19 @@ dispatch, consumption/deployment, actual patrol movement, keyboard and mobile
 input, successful and failed rhythms, hazard lifecycle and checkpoint restore.
 `tools/test_level06_foundation.gd` and `tools/test_level04_flute_and_bull.gd`
 cover integration and existing flute behavior.
+
+## Spent mine visibility and respawn fix
+
+Native DefusableMine::Update calls Reset after20s, restoring Mine::savedPos,
+then waits5s in REARMING. MSG_DROP changes position without changing savedPos.
+The port now preserves that original position when a player places a mine;
+respawn restores the root visibility and model at that origin. Hidden or held
+mines cannot sense the world; MSG_KILL only starts a fuse in ARMED, matching the
+native Mine handler. ICEGROUND surfaces are excluded from wave trigger candidates.
+Explosion completion disables pickup, and checkpoint data keeps phase, timer,
+current position and origin separately. Loading EXPLODING/EXPLODED never broadcasts
+a second explosion. Older saves without these optional fields remain readable.
+Validation: tools/test_mine_explosion_lifecycle.gd places through the actual held
+item action, explodes, applies repeated blasts, saves/loads the spent phase,
+checks the visible return at the original origin, and tests stored/safe immunity.
+Both this test and test_level06_mines passed with0 failures.

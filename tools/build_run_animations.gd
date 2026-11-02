@@ -26,6 +26,10 @@ func _init() -> void:
 	if FileAccess.file_exists("res://assets/models/ralph_climb_data.json"):
 		data.animations.merge(JSON.parse_string(FileAccess.get_file_as_string("res://assets/models/ralph_climb_data.json")),true)
 	data.animations.merge(JSON.parse_string(FileAccess.get_file_as_string("res://assets/models/ralph_sneak_data.json")),true)
+	if FileAccess.file_exists("res://assets/models/ralph_ice_push_data.json"):
+		data.animations.merge(JSON.parse_string(FileAccess.get_file_as_string("res://assets/models/ralph_ice_push_data.json")),true)
+	if FileAccess.file_exists("res://assets/models/ralph_detector_data.json"):
+		data.animations.merge(JSON.parse_string(FileAccess.get_file_as_string("res://assets/models/ralph_detector_data.json")),true)
 	if FileAccess.file_exists("res://assets/models/ralph_slope_data.json"):
 		data.animations.merge(JSON.parse_string(FileAccess.get_file_as_string("res://assets/models/ralph_slope_data.json")),true)
 	if FileAccess.file_exists("res://assets/models/ralph_frozen_data.json"):

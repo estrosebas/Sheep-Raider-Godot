@@ -47,6 +47,7 @@ func _ready():
 				actor.idle("stand1" if randi_range(0,1)==0 else "stand2")
 				actor.idle_time = randf()*float(actor.rig.animations[actor.idle_clip].duration)
 				crowd.append(actor)
+		if int(entry.class_id)==170: ground_level_door.call_deferred(actor)
 	# Native passage gates are independently removed with their world collider.
 	OriginalSolidBuilder.build(self,BASE+"/data/solid_boxes.json",["DoorWorld"])
 	for key in world_doors:
@@ -104,6 +105,8 @@ func _ready():
 	arrival_movie.apply_empty_visibility_defaults = true
 	arrivals.add_child(arrival_movie); arrival_movie.bind_player(player)
 	arrival_movie.finished.connect(finish_sheep_arrival)
+	if FileAccess.file_exists(BASE+"/data/texture_scroll.json"):
+		var scroll = OriginalTextureScroll.new(); scroll.name = "StudioTextureAnimation"; add_child(scroll)
 
 func finish_sheep_arrival(_skipped: bool):
 	if arrival_queue.is_empty(): return
@@ -139,6 +142,18 @@ func add_level_door(identity: String,entry: Dictionary):
 	add_child(door)
 	door.position = GameSpace.from_export(Vector3(entry.pos[0],entry.pos[1],entry.pos[2]))
 	door.rotation.y = -float(entry.rot[1])*TAU/4096
+	ground_level_door.call_deferred(door)
+
+func ground_level_door(door: Node3D):
+	# Native placement includes small art offsets; align the replacement
+	# portal's zero-height base to the actual floor, including raised stages.
+	await get_tree().physics_frame
+	await get_tree().physics_frame
+	if not is_instance_valid(door): return
+	var query = PhysicsRayQueryParameters3D.create(door.global_position+Vector3.UP*.6,door.global_position-Vector3.UP*3,1)
+	query.exclude = [player.get_rid()]
+	var hit = get_world_3d().direct_space_state.intersect_ray(query)
+	if not hit.is_empty() and hit.normal.y>.5: door.global_position.y = hit.position.y+.005
 
 func refresh_progress():
 	observed_progress = OriginalProgress.completed_levels.duplicate()

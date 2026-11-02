@@ -141,6 +141,8 @@ func _input(event):
 
 func item_step(delta: float):
 	if not ready_world or not enabled: return
+	# Stored/held mines cannot sense world objects or restart a hidden fuse.
+	if is_instance_valid(holder) or not is_visible_in_tree(): return
 	if session and player.current_state in [player.WolfState.SAM_DEATH,player.WolfState.BLAST_DEATH,player.WolfState.PIT_FALL]:
 		end_session(); set_phase(State.ARMED)
 	clock += delta; elapsed += delta
@@ -155,8 +157,10 @@ func item_step(delta: float):
 		original_visual.sample_animation("red" if visual_time<red_length else "green",visual_time if visual_time<red_length else visual_time-red_length)
 	if state in [State.PLAYBACK,State.INPUT]: step_defuse()
 	elif state==State.ARMED and not dormant and not is_instance_valid(holder):
-		for target in get_tree().get_nodes_in_group("player")+get_tree().get_nodes_in_group("blast_targets")+get_tree().get_nodes_in_group("carryable_rocks"):
+		for target in get_tree().get_nodes_in_group("player")+get_tree().get_nodes_in_group("blast_targets")+get_tree().get_nodes_in_group("carryable_rocks")+get_tree().get_nodes_in_group("ice_cubes"):
 			if target==self or target is OriginalDefusableMine or target.get_world_3d()!=get_world_3d() or not target.is_visible_in_tree(): continue
+			# Mine_TriggerScoreCB excludes ICEGROUND and static scenery.
+			if target is OriginalBreakableGround: continue
 			var difference = target.global_position-global_position
 			if absf(difference.y)<=wave_radius*.5 and Vector2(difference.x,difference.z).length()<=wave_radius:
 				set_phase(State.COUNTDOWN); break
@@ -167,7 +171,10 @@ func item_step(delta: float):
 		for cue in explosion.rig.animations.boom.sound_cues:
 			if previous<float(cue.time) and elapsed>=float(cue.time): play_cue(int(cue.sound_id))
 		if elapsed>=float(explosion.rig.animations.boom.duration): explosion.hide(); set_phase(State.EXPLODED)
-	elif state==State.EXPLODED and elapsed>=20: original_visual.show(); set_phase(State.REARMING)
+	elif state==State.EXPLODED and elapsed>=20:
+		# Native DefusableMine::Update calls Reset(), restoring the saved
+		# world origin/model, before its five-second visible rearming phase.
+		reset_mine(); set_phase(State.REARMING)
 	elif state==State.REARMING and elapsed>=5 and dormant: set_phase(State.ARMED)
 	draw_ring(state==State.ARMED and not dormant and not is_instance_valid(holder))
 
@@ -211,6 +218,7 @@ func draw_ring(on: bool):
 func explode():
 	if state in [State.EXPLODING,State.EXPLODED]: return
 	end_session(); set_phase(State.EXPLODING)
+	available = false
 	original_visual.hide(); explosion.show(); explosion.sample_animation("boom",0); ring.hide()
 	for cue in explosion.rig.animations.boom.sound_cues:
 		if float(cue.time)==0: play_cue(int(cue.sound_id))
@@ -222,7 +230,8 @@ func explode():
 		elif target is RalphController: target.set_state(target.WolfState.BLAST_DEATH)
 
 func on_blast(_origin: Vector3):
-	if enabled and state not in [State.EXPLODING,State.EXPLODED]: set_phase(State.COUNTDOWN)
+	# Mine::HandleMessage(MSG_KILL): only an armed mine receives a fuse.
+	if enabled and state==State.ARMED and is_visible_in_tree() and original_visual.visible and not is_instance_valid(holder): set_phase(State.COUNTDOWN)
 
 func equip_to(actor: Node3D):
 	state = State.SAFE; super.equip_to(actor); original_visual.sample_animation("link",0)
@@ -239,18 +248,27 @@ func use_item(actor: Node3D) -> Dictionary:
 			if placement.is_empty():
 				actor.item_actions.stages[actor.item_actions.index+1] = {"clip":"placement_refused"}; return
 			holder = null; global_position = placement.position; rotation = Vector3.ZERO
-			OriginalPlacement.follow_support(self,placement); reset_position = global_position
+			# MSG_DROP changes current position, never Mine::savedPos.
+			OriginalPlacement.follow_support(self,placement)
 			available = true; deployed = true; show(); original_visual.show(); original_visual.sample_animation("red",0)
 			actor.inventory.state.remove(item_id); set_phase(State.REARMING)},
 		{"clip":"throw_end"}]),"consumed":false}
 
 func capture_mine_state() -> Dictionary:
-	return {"enabled":enabled,"position":SaveFiles.vector(reset_position),"safe":state==State.SAFE}
+	return {"enabled":enabled,"position":SaveFiles.vector(global_position),"reset_position":SaveFiles.vector(reset_position),"safe":state==State.SAFE,"phase":int(state),"elapsed":elapsed}
 func restore_mine_state(record: Dictionary):
 	enabled = bool(record.get("enabled",not mine_definition.get("staged",false)))
-	if SaveFiles.valid_vector(record.get("position")): reset_position = SaveFiles.to_vector(record.position)
+	if SaveFiles.valid_vector(record.get("reset_position")): reset_position = SaveFiles.to_vector(record.reset_position)
 	reset_mine()
-	if record.get("safe",false): set_phase(State.SAFE)
+	if SaveFiles.valid_vector(record.get("position")): global_position = SaveFiles.to_vector(record.position)
+	var saved_phase = int(record.get("phase",State.SAFE if record.get("safe",false) else State.ARMED))
+	# Do not resume an interactive panel or detonate a saved explosion again.
+	if saved_phase in [State.EXPLODED,State.EXPLODING]:
+		set_phase(State.EXPLODED); elapsed = float(record.get("elapsed",0)) if saved_phase==State.EXPLODED else 0
+		available = false; original_visual.hide(); explosion.hide(); ring.hide()
+	elif saved_phase==State.REARMING:
+		set_phase(State.REARMING); elapsed = float(record.get("elapsed",0))
+	elif saved_phase==State.SAFE: set_phase(State.SAFE)
 	if player.inventory.state.items.has(item_id): state = State.SAFE; store()
 func capture_world_state(): return capture_mine_state()
 func restore_world_state(record: Dictionary):

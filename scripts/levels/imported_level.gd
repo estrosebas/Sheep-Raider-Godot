@@ -1,6 +1,6 @@
 extends Node3D
 class_name ImportedLevel
-const LOGIC_CLASSES = [19,25,32,70,74,106,137,176,184]
+const LOGIC_CLASSES = [19,25,32,70,74,106,137,175,176,184]
 
 @export var asset_directory = "res://assets/levels/lvl_01"
 @export var foundation_mode = false

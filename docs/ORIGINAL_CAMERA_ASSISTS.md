@@ -25,10 +25,10 @@ persiste camera/assists en user://language.cfg sin reemplazar idioma ni
 pantallas de carga. Traducciones en español/inglés/portugués/italiano.
 Funciona con el menú existente de PC/web/móvil y al cambiar de nivel.
 
-OFF libera las zonas y evita los planos opcionales de balancín, buzón,
+OFF libera las zonas y evita los planos opcionales de balancín,
 puertas por botón, catapulta y la cámara de roca dinámica de03. Los objetos
 siguen realizando sus acciones; no se elimina la cinemática de la roca que
-anima objetos, solo su toma de cámara. Las cinemáticas de entrada, diálogos,
+anima objetos, solo su toma de cámara. Las entregas de buzón (cámaras de acción), cinemáticas de entrada, diálogos,
 lecciones y cámaras de muerte permanecen: el ajuste solo cambia las ayudas
 durante juego. La dirección del movimiento sigue usando la cámara visible.
 

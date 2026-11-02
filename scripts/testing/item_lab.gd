@@ -8,7 +8,7 @@ const SheepReceiver = preload("res://scripts/items/original_sheep.gd")
 func _ready() -> void:
 	$HUD.hide()
 	player.inventory.allow_world_placement = true
-	for i in range(7):
+	for i in range(8):
 		var door = LabLevelDoor.new()
 		var identity = "%02d" % i
 		door.name = "LevelDoor_"+identity
@@ -70,16 +70,16 @@ func _ready() -> void:
 	setup_push_and_bush()
 	setup_bull_leaf_heap()
 	# TODO(level04 foliage): revisit rear-face overlap and native leaf-sheet
-	# geometry. A–G lab experiments were rejected as flat; keep the original
+	# geometry. Aâ€“G lab experiments were rejected as flat; keep the original
 	# BullLeafHeap reference above. Archived experiments explain each approach.
 	setup_rock_cover()
 	setup_elastic_area()
 	setup_catapult_area()
 	var studio = LabLevelDoor.new()
-	studio.name = "StudioDoor"; studio.level_label = GameLocalization.ui("Plató")
+	studio.name = "StudioDoor"; studio.level_label = GameLocalization.ui("PlatÃ³")
 	studio.level_scene = SaveFiles.STUDIO_SCENE; studio.position = Vector3(20,0,-4); studio.rotation.y = PI/2
 	add_child(studio)
-	add_child(LabFloorLabel.create(GameLocalization.ui("Plató").to_upper(),Vector3(16,.035,-4),30))
+	add_child(LabFloorLabel.create(GameLocalization.ui("PlatÃ³").to_upper(),Vector3(16,.035,-4),30))
 	var ghost = Node3D.new()
 	ghost.name = "GhostTarget"
 	ghost.set_script(load("res://scripts/testing/ghost_item_fixture.gd"))
@@ -255,5 +255,5 @@ func _unhandled_input(event: InputEvent) -> void:
 func _process(_delta: float) -> void:
 	var suffix = ""
 	if is_instance_valid(player.active_rocket):
-		suffix = " · Cohete: %.1f s / daño %.0f%%" % [player.active_rocket.fuel, (1.0-player.active_rocket.health/player.active_rocket.durability)*100]
-	$HUD/Label.text = "LABORATORIO · Puertas Nivel 00 / Nivel 01 / Nivel 02 / Nivel 03 / Nivel 04: E para entrar\nE: recoger/usar · R: usar o colocar equipado · Tab + A/D: inventario\nCohete: W baja / S sube · A/D girar · Shift impulsar · E/R bajar" + suffix
+		suffix = " Â· Cohete: %.1f s / daÃ±o %.0f%%" % [player.active_rocket.fuel, (1.0-player.active_rocket.health/player.active_rocket.durability)*100]
+	$HUD/Label.text = "LABORATORIO Â· Puertas Nivel 00 / Nivel 01 / Nivel 02 / Nivel 03 / Nivel 04: E para entrar\nE: recoger/usar Â· R: usar o colocar equipado Â· Tab + A/D: inventario\nCohete: W baja / S sube Â· A/D girar Â· Shift impulsar Â· E/R bajar" + suffix

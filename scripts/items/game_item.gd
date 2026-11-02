@@ -129,7 +129,7 @@ func place_in_world(actor: Node3D) -> bool:
 	return true
 
 func _physics_process(delta: float) -> void:
-	if class_id in [2,3,39] and follows_ground_support() and not has_node("MovingSupport"):
+	if class_id in [2,3,39,61] and follows_ground_support() and not has_node("MovingSupport"):
 		add_child(preload("res://scripts/items/original_moving_support.gd").new())
 	if is_instance_valid(holder):
 		_update_held_position()

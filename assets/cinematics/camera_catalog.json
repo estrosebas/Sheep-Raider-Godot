@@ -24,6 +24,11 @@
       "director": "LevelCinematics",
       "first": "lvl06_intro_camera",
       "last": "lvl06_intro_camera"
+    },
+    "res://assets/levels/lvl_07": {
+      "director": "LevelCinematics",
+      "first": "lvl07_intro_camera",
+      "last": "lvl07_intro_camera"
     }
   },
   "sequences": {
@@ -233,6 +238,15 @@
       "trigger": "world_trigger",
       "return_transition": "none",
       "description": "Demostracion original de las minas"
+    },
+    "lvl07_intro_camera": {
+      "source": "res://assets/levels/lvl_07/cinematics/sequence_0.json",
+      "level": "lvl_07",
+      "cine_id": 0,
+      "kind": "intro_cinematic",
+      "trigger": "level_entry",
+      "return_transition": "iris",
+      "description": "Recorrido de entrada y demostracion original del campo de minas"
     }
   },
   "procedural_cameras": {

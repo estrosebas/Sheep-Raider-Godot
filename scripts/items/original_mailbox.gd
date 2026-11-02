@@ -82,7 +82,19 @@ func interact(actor: Node3D) -> bool:
 	return actor.item_actions.begin([
 		{"clip":"mailbox_hit","enter":func(): actor.item_actions.face(global_position),"exit":func(): _deliver(actor)},
 		{"clip":"mailbox_end"},
-		{"clip":"idle","duration":maxf(0,float(definition["props"]["0x34"])*0.001-0.31),"exit":_release_camera}],_release_camera)
+		{"clip":"idle","duration":delivery_wait_seconds(),"exit":_release_camera}],_release_camera)
+
+func delivery_wait_seconds() -> float:
+	var duration = maxf(0,float(definition.props["0x34"])*.001-.31)
+	# Free-camera adaptation: keep the shot until the high-altitude delivery
+	# has landed and opened instead of cutting before the box enters frame.
+	for point in spawn_positions:
+		var query = PhysicsRayQueryParameters3D.create(point,point+Vector3.DOWN*100,1)
+		var actor = get_parent().get_node_or_null("Player")
+		if actor: query.exclude = [actor.get_rid()]
+		var hit = get_world_3d().direct_space_state.intersect_ray(query)
+		if not hit.is_empty(): duration = maxf(duration,(point.y-hit.position.y)/8+1.5)
+	return duration
 
 func _deliver(actor: RalphController) -> void:
 	if opened or not has_pending_delivery(actor): return
@@ -93,7 +105,9 @@ func _deliver(actor: RalphController) -> void:
 	play_sound(sounds["251"],0.75)
 	previous_camera = get_viewport().get_camera_3d()
 	var record = definition.get("camera")
-	if record != null and GameLocalization.camera_assists_enabled():
+	# Delivery is an authored action scene, independent of optional gameplay
+	# zone assists: otherwise the player cannot see where the package lands.
+	if record != null:
 		delivery_camera.global_position = GameSpace.original_point(Vector3(record["eye"][0],record["eye"][1],record["eye"][2]))
 		var r = record["rotation"]
 		delivery_camera.global_rotation = Vector3(-r[0],r[1],-r[2])*TAU/4096

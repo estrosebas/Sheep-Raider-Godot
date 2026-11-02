@@ -39,8 +39,9 @@ func _ready() -> void:
 					mesh.mesh.surface_set_material(surface,material)
 				material.set_shader_parameter("albedo_texture",pages[page]["texture"])
 				material.set_shader_parameter("albedo_texture_linear",pages[page]["texture"])
-	var data = JSON.parse_string(FileAccess.get_file_as_string(base+"/data/effects.json"))
-	for p in data["water_anchors"]:
+	var effects_path = base+"/data/effects.json"
+	var data = JSON.parse_string(FileAccess.get_file_as_string(effects_path)) if FileAccess.file_exists(effects_path) else {}
+	for p in data.get("water_anchors",[]):
 		var emitter = OriginalSpriteEmitter.new()
 		get_parent().add_child(emitter)
 		emitter.name = "WaterSpray"

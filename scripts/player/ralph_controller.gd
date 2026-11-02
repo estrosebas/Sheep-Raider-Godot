@@ -221,6 +221,10 @@ func _ready() -> void:
 	if FileAccess.file_exists("res://assets/models/ralph_climb_data.json"):
 		run_data.animations.merge(JSON.parse_string(FileAccess.get_file_as_string("res://assets/models/ralph_climb_data.json")),true)
 		run_data.sounds.merge(JSON.parse_string(FileAccess.get_file_as_string("res://assets/models/ralph_climb_audio.json")),true)
+	if FileAccess.file_exists("res://assets/models/ralph_ice_push_data.json"):
+		run_data.animations.merge(JSON.parse_string(FileAccess.get_file_as_string("res://assets/models/ralph_ice_push_data.json")),true)
+	if FileAccess.file_exists("res://assets/models/ralph_detector_data.json"):
+		run_data.animations.merge(JSON.parse_string(FileAccess.get_file_as_string("res://assets/models/ralph_detector_data.json")),true)
 	if FileAccess.file_exists("res://assets/models/ralph_slope_data.json"):
 		run_data.animations.merge(JSON.parse_string(FileAccess.get_file_as_string("res://assets/models/ralph_slope_data.json")),true)
 	if FileAccess.file_exists("res://assets/models/ralph_frozen_data.json"):
@@ -277,7 +281,7 @@ func _process(delta: float) -> void:
 	if is_instance_valid(elastic_pull_controller) or is_instance_valid(elastic_motion_owner):
 		apply_legacy_reaction_pose(); return
 	if current_state == WolfState.IDLE and not cinematic_controls_locked and not is_instance_valid(push_target) and not is_instance_valid(carried_sheep) and not is_instance_valid(carried_object) and not is_instance_valid(active_rocket):
-		var fan_active = (inventory.equipped_node is FanItem or inventory.equipped_node is HairDryerItem) and inventory.equipped_node.active
+		var fan_active = ((inventory.equipped_node is FanItem or inventory.equipped_node is HairDryerItem) and inventory.equipped_node.active) or (inventory.equipped_node is MineDetectorItem and inventory.equipped_node.phase!="idle")
 		if fan_active:
 			apply_legacy_reaction_pose()
 			return
@@ -291,7 +295,7 @@ func apply_legacy_reaction_pose() -> void:
 		legacy_skin.update_pose()
 	# Native attached props render after their parent evaluates the hand matrix.
 	# Flute must use this displayed pose, not the previous physics-tick hand.
-	if inventory and (inventory.equipped_node is FluteItem or inventory.equipped_node is HairDryerItem) and inventory.equipped_node.holder==self:
+	if inventory and (inventory.equipped_node is FluteItem or inventory.equipped_node is HairDryerItem or inventory.equipped_node is MineDetectorItem) and inventory.equipped_node.holder==self:
 		inventory.equipped_node.sync_held_pose()
 	water_motion.update_frozen_attachment(self)
 	if dizzy_effect: dizzy_effect.update_attachment()
@@ -344,6 +348,8 @@ func _physics_process(delta: float) -> void:
 		velocity.y = 0 if is_on_floor() else move_toward(velocity.y,-TERMINAL_VELOCITY,FALL_GRAVITY*delta)
 		move_and_slide()
 		return
+	if inventory.equipped_node is MineDetectorItem:
+		if inventory.equipped_node.step_player(self,delta): return
 	if inventory.equipped_node is FluteItem and inventory.equipped_node.active:
 		if inventory.equipped_node.step_player(self,delta): return
 	if is_instance_valid(active_rocket):
@@ -813,7 +819,7 @@ func interrupt_actions() -> void:
 	# Freeze starts a neutral pose, so releasing the lock cannot resume a jump/run.
 	if inventory:
 		inventory.close_wheel(true)
-		if is_instance_valid(inventory.equipped_node) and inventory.equipped_node.class_id in [7,10,41,58]:
+		if is_instance_valid(inventory.equipped_node) and inventory.equipped_node.class_id in [7,10,41,58,61]:
 			inventory.equipped_node.deactivate()
 	if is_instance_valid(active_rocket):
 		active_rocket.finish_flight()

@@ -1,0 +1,138 @@
+{
+  "mines": [
+    {
+      "res": 73,
+      "class_id": 64,
+      "class_name": "DefusableMine",
+      "model_res": 5,
+      "pos": [
+        272.72,
+        248.03,
+        176.76
+      ],
+      "rot": [
+        0,
+        3073,
+        0
+      ],
+      "props": {
+        "0x0": 5,
+        "0x4": 0,
+        "0x8": 3,
+        "0xc": 150
+      },
+      "directory": "res://assets/levels/lvl_07/models/5",
+      "pattern": [
+        1,
+        1,
+        0
+      ],
+      "phase_seconds": 0.0,
+      "staged": false
+    },
+    {
+      "res": 74,
+      "class_id": 64,
+      "class_name": "DefusableMine",
+      "model_res": 5,
+      "pos": [
+        263.15,
+        251.4,
+        173.37
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ],
+      "props": {
+        "0x0": 12,
+        "0x4": 0,
+        "0x8": 4,
+        "0xc": 150
+      },
+      "directory": "res://assets/levels/lvl_07/models/5",
+      "pattern": [
+        0,
+        3,
+        0,
+        0
+      ],
+      "phase_seconds": 0.0,
+      "staged": false
+    },
+    {
+      "res": 75,
+      "class_id": 64,
+      "class_name": "DefusableMine",
+      "model_res": 5,
+      "pos": [
+        247.86,
+        251.4,
+        190.88
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ],
+      "props": {
+        "0x0": 7,
+        "0x4": 0,
+        "0x8": 2,
+        "0xc": 150
+      },
+      "directory": "res://assets/levels/lvl_07/models/5",
+      "pattern": [
+        3,
+        1
+      ],
+      "phase_seconds": 0.0,
+      "staged": false
+    },
+    {
+      "res": 76,
+      "class_id": 64,
+      "class_name": "DefusableMine",
+      "model_res": 5,
+      "pos": [
+        260.65,
+        251.4,
+        169.1
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ],
+      "props": {
+        "0x0": 2,
+        "0x4": 0,
+        "0x8": 4,
+        "0xc": 150
+      },
+      "directory": "res://assets/levels/lvl_07/models/5",
+      "pattern": [
+        2,
+        0,
+        0,
+        0
+      ],
+      "phase_seconds": 0.0,
+      "staged": false
+    }
+  ],
+  "sprites": {
+    "panel": "res://assets/levels/lvl_07/effects/mines/panel.png",
+    "top": "res://assets/levels/lvl_07/effects/mines/top.png",
+    "glyph": "res://assets/levels/lvl_07/effects/mines/glyph.png",
+    "beat": "res://assets/levels/lvl_07/effects/mines/beat.png"
+  },
+  "explosion": {
+    "directory": "res://assets/levels/lvl_07/effects/mines/explosion",
+    "materials": {
+      "10": "add"
+    }
+  },
+  "source": "mine.cpp::DefusableMine::Update/PostLoadInit; triangle/circle/square/cross -> up/right/left/down"
+}

@@ -21,11 +21,13 @@ func setup(level: ImportedLevel) -> void:
 	var rafts = JSON.parse_string(FileAccess.get_file_as_string(base+"/data/rafts.json")) if FileAccess.file_exists(base+"/data/rafts.json") else {}
 	var mobile = JSON.parse_string(FileAccess.get_file_as_string(base+"/data/mobile_platforms.json")) if FileAccess.file_exists(base+"/data/mobile_platforms.json") else {}
 	var catapults = JSON.parse_string(FileAccess.get_file_as_string(base+"/data/catapults.json")) if FileAccess.file_exists(base+"/data/catapults.json") else {}
+	var snow = JSON.parse_string(FileAccess.get_file_as_string(base+"/data/snow.json")) if FileAccess.file_exists(base+"/data/snow.json") else {}
 	var excluded = ["Mailbox","Salad","SignPostSimple","Rock","Bush","seesaw"] if not interactions.is_empty() else ["Mailbox","Salad","SignPostSimple"]
 	if not switches.is_empty(): excluded.append_array(["SensibleButton","Wooden Lift","WoodenPlatForm","FallingGate"])
-	excluded.append_array(["Rocks","box","HiddenRocks","TimeKeeper","Flute","TriggedStone","bull","HeapOfLeaf","Leaf","Shark"])
+	excluded.append_array(["Rocks","box","HiddenRocks","TimeKeeper","Flute","SheepCostume","MineDetector","TriggedStone","bull","HeapOfLeaf","Leaf","Shark"])
 	if not rafts.is_empty(): excluded.append("Raft")
 	if not mines.is_empty(): excluded.append("DefusableMine")
+	if not snow.is_empty(): excluded.append_array(["SlidingIceCube","Snowball","SnowyGround","IceGround","GroundMine"])
 	if not mobile.is_empty(): excluded.append("RCarpetMobile")
 	if catapults.has("rules"): excluded.append_array(["Catapult","SmallRock"])
 	OriginalSolidBuilder.build(level,base+"/data/solid_boxes.json",excluded)
@@ -38,6 +40,20 @@ func setup(level: ImportedLevel) -> void:
 		if definition == null: continue
 		var actor: Node3D
 		match kind:
+			75,76,77,79,88:
+				if snow.is_empty(): actor = load(definition.directory+"/worn.tscn").instantiate()
+				else:
+					var record: Dictionary = snow.records.filter(func(e): return int(e.res)==int(entity.res))[0].duplicate(true)
+					if kind==79:
+						actor = preload("res://scripts/levels/original_sliding_ice.gd").new(); actor.definition = record; actor.sounds = runtime.sounds
+					elif kind in [76,77]:
+						actor = preload("res://scripts/levels/original_breakable_ground.gd").new(); actor.definition = record
+					elif kind==88:
+						actor = preload("res://scripts/levels/original_buried_mines.gd").new(); actor.definition = record; actor.assets = mines; actor.sounds = runtime.sounds
+					else:
+						actor = preload("res://scripts/items/original_snowball.gd").new()
+						record.box = record.boxes[0]; record.push_zones = record.zones; record.props["0x4"] = 1; record.props["0x8"] = 1
+						actor.definition = record; actor.visual_scene = definition.directory+"/worn.tscn"; actor.sound_path = runtime.sounds.get("123","")
 			64:
 				if mines.is_empty(): actor = load(definition.directory+"/worn.tscn").instantiate()
 				else:
@@ -52,6 +68,12 @@ func setup(level: ImportedLevel) -> void:
 					actor = OriginalTelescope.new()
 					for record in telescopes:
 						if int(record.res)==int(entity.res): actor.definition = record
+			61:
+				actor = preload("res://scripts/items/mine_detector_item.gd").new()
+				actor.class_id = kind; actor.item_id = "%s:%d"%[level.manifest.level,int(entity.res)]
+				actor.source_level = level.manifest.level; actor.native_text_list = 62
+				actor.original_scene = definition.directory+"/worn.tscn"
+				delivered[int(entity.res)] = actor
 			58:
 				actor = preload("res://scripts/items/hairdryer_item.gd").new()
 				actor.class_id = kind; actor.item_id = "%s:%d"%[level.manifest.level,int(entity.res)]
@@ -153,7 +175,7 @@ func setup(level: ImportedLevel) -> void:
 				actor.definition = entity
 				actor.visual_scene = definition.directory+"/worn.tscn"
 				actor.idle_animation = "stand3"
-			2,3,7,10,39:
+			2,3,7,10,39,80:
 				actor = ItemCatalog.create_item(kind,"%s:%d"%[level.manifest.level,int(entity.res)])
 				if kind == 3:
 					actor.original_scene = definition.directory+"/worn.tscn"
@@ -286,6 +308,10 @@ func setup(level: ImportedLevel) -> void:
 	if FileAccess.file_exists(base+"/data/slopes.json"):
 		var slopes = preload("res://scripts/levels/original_slope_zones.gd").new()
 		slopes.name = "SlopeZones"; level.add_child(slopes)
+	if not snow.is_empty():
+		var access = preload("res://scripts/levels/original_ice_access.gd").new(); access.name = "IceAccess"; level.add_child(access)
+		var effects = preload("res://scripts/levels/original_snow_effects.gd").new(); effects.data = snow
+		effects.name = "SnowEffects"; level.add_child(effects)
 	var save = ImportedCheckpointSave.new()
 	save.name = "CheckpointSave"
 	level.add_child(save)

@@ -1,0 +1,689 @@
+{
+  "level": "lvl_07",
+  "cameras": [
+    {
+      "resource": 86,
+      "boxes": [
+        {
+          "flags": 0,
+          "min": [
+            25493,
+            -25362,
+            21901
+          ],
+          "max": [
+            26945,
+            -25073,
+            23549
+          ]
+        }
+      ],
+      "pitch": [
+        0,
+        90
+      ],
+      "yaw": [
+        270,
+        270
+      ],
+      "roll": [
+        0,
+        360
+      ],
+      "distance": [
+        0.0,
+        320.0
+      ],
+      "focal": 290,
+      "snap_yaw": true,
+      "forbid_pad": false,
+      "follow": true,
+      "mirror_yaw": false,
+      "aim_offset": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "trajectory": [
+        [
+          25294,
+          -26368,
+          23135
+        ],
+        [
+          25291,
+          -26362,
+          22054
+        ]
+      ],
+      "eye_vertical_max": 327.67
+    },
+    {
+      "resource": 87,
+      "boxes": [
+        {
+          "flags": 0,
+          "min": [
+            22301,
+            -25626,
+            14999
+          ],
+          "max": [
+            22848,
+            -25073,
+            19016
+          ]
+        }
+      ],
+      "pitch": [
+        45,
+        90
+      ],
+      "yaw": [
+        90,
+        90
+      ],
+      "roll": [
+        0,
+        360
+      ],
+      "distance": [
+        0.0,
+        320.0
+      ],
+      "focal": 280,
+      "snap_yaw": true,
+      "forbid_pad": false,
+      "follow": true,
+      "mirror_yaw": false,
+      "aim_offset": [
+        5.0,
+        0.0,
+        0.0
+      ],
+      "trajectory": [
+        [
+          23386,
+          -25888,
+          19466
+        ],
+        [
+          23386,
+          -25888,
+          18937
+        ],
+        [
+          23386,
+          -25888,
+          18055
+        ],
+        [
+          23590,
+          -25888,
+          17686
+        ],
+        [
+          23655,
+          -25888,
+          17201
+        ],
+        [
+          23549,
+          -25888,
+          16758
+        ],
+        [
+          23398,
+          -25888,
+          16410
+        ],
+        [
+          23386,
+          -25888,
+          15748
+        ]
+      ],
+      "eye_vertical_max": 327.67
+    },
+    {
+      "resource": 89,
+      "boxes": [
+        {
+          "flags": 0,
+          "min": [
+            21298,
+            -26715,
+            23831
+          ],
+          "max": [
+            24522,
+            -25010,
+            27033
+          ]
+        }
+      ],
+      "pitch": [
+        30,
+        90
+      ],
+      "yaw": [
+        0,
+        0
+      ],
+      "roll": [
+        0,
+        360
+      ],
+      "distance": [
+        7.0,
+        320.0
+      ],
+      "focal": 0,
+      "snap_yaw": true,
+      "forbid_pad": false,
+      "follow": true,
+      "mirror_yaw": true,
+      "aim_offset": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "trajectory": [],
+      "eye_vertical_max": 320.0
+    },
+    {
+      "resource": 90,
+      "boxes": [
+        {
+          "flags": 0,
+          "min": [
+            27130,
+            -25733,
+            17321
+          ],
+          "max": [
+            29323,
+            -24028,
+            18659
+          ]
+        },
+        {
+          "flags": 0,
+          "min": [
+            27416,
+            -25733,
+            16646
+          ],
+          "max": [
+            29609,
+            -24028,
+            17322
+          ]
+        }
+      ],
+      "pitch": [
+        30,
+        90
+      ],
+      "yaw": [
+        0,
+        360
+      ],
+      "roll": [
+        0,
+        360
+      ],
+      "distance": [
+        7.0,
+        7.0
+      ],
+      "focal": 384,
+      "snap_yaw": true,
+      "forbid_pad": false,
+      "follow": true,
+      "mirror_yaw": false,
+      "aim_offset": [
+        0.0,
+        1.5,
+        0.0
+      ],
+      "trajectory": [
+        [
+          29003,
+          -25225,
+          16694
+        ],
+        [
+          29003,
+          -25225,
+          18631
+        ]
+      ],
+      "eye_vertical_max": 320.0
+    },
+    {
+      "resource": 92,
+      "boxes": [
+        {
+          "flags": 0,
+          "min": [
+            21918,
+            -24917,
+            15782
+          ],
+          "max": [
+            24111,
+            -21369,
+            19044
+          ]
+        }
+      ],
+      "pitch": [
+        30,
+        90
+      ],
+      "yaw": [
+        0,
+        360
+      ],
+      "roll": [
+        0,
+        360
+      ],
+      "distance": [
+        0.0,
+        320.0
+      ],
+      "focal": 0,
+      "snap_yaw": false,
+      "forbid_pad": false,
+      "follow": true,
+      "mirror_yaw": false,
+      "aim_offset": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "trajectory": [],
+      "eye_vertical_max": -251.0
+    },
+    {
+      "resource": 94,
+      "boxes": [
+        {
+          "flags": 0,
+          "min": [
+            26627,
+            -25293,
+            18659
+          ],
+          "max": [
+            28820,
+            -23588,
+            21168
+          ]
+        },
+        {
+          "flags": 0,
+          "min": [
+            26407,
+            -25293,
+            20195
+          ],
+          "max": [
+            27226,
+            -23588,
+            21112
+          ]
+        }
+      ],
+      "pitch": [
+        -90,
+        90
+      ],
+      "yaw": [
+        0,
+        360
+      ],
+      "roll": [
+        0,
+        360
+      ],
+      "distance": [
+        6.1000000000000005,
+        6.1000000000000005
+      ],
+      "focal": 384,
+      "snap_yaw": false,
+      "forbid_pad": false,
+      "follow": true,
+      "mirror_yaw": false,
+      "aim_offset": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "trajectory": [
+        [
+          26753,
+          -25765,
+          20936
+        ],
+        [
+          26755,
+          -25436,
+          20819
+        ],
+        [
+          26758,
+          -25092,
+          20710
+        ],
+        [
+          26759,
+          -24928,
+          20639
+        ],
+        [
+          26780,
+          -24800,
+          20517
+        ],
+        [
+          26830,
+          -24769,
+          20344
+        ],
+        [
+          26891,
+          -24788,
+          20107
+        ],
+        [
+          27086,
+          -24981,
+          19617
+        ],
+        [
+          27152,
+          -25179,
+          19152
+        ],
+        [
+          27305,
+          -25342,
+          18844
+        ],
+        [
+          27490,
+          -25350,
+          18337
+        ]
+      ],
+      "eye_vertical_max": 320.0
+    },
+    {
+      "resource": 97,
+      "boxes": [
+        {
+          "flags": 0,
+          "min": [
+            19557,
+            -25818,
+            17943
+          ],
+          "max": [
+            21055,
+            -25053,
+            20501
+          ]
+        }
+      ],
+      "pitch": [
+        45,
+        90
+      ],
+      "yaw": [
+        0,
+        360
+      ],
+      "roll": [
+        0,
+        360
+      ],
+      "distance": [
+        7.0,
+        70.0
+      ],
+      "focal": 300,
+      "snap_yaw": true,
+      "forbid_pad": false,
+      "follow": true,
+      "mirror_yaw": false,
+      "aim_offset": [
+        0.0,
+        0.0,
+        -1.0
+      ],
+      "trajectory": [],
+      "eye_vertical_max": 327.67
+    },
+    {
+      "resource": 98,
+      "boxes": [
+        {
+          "flags": 0,
+          "min": [
+            22693,
+            -25818,
+            14949
+          ],
+          "max": [
+            23698,
+            -25053,
+            19108
+          ]
+        }
+      ],
+      "pitch": [
+        45,
+        90
+      ],
+      "yaw": [
+        0,
+        360
+      ],
+      "roll": [
+        0,
+        360
+      ],
+      "distance": [
+        0.0,
+        320.0
+      ],
+      "focal": 280,
+      "snap_yaw": true,
+      "forbid_pad": false,
+      "follow": true,
+      "mirror_yaw": true,
+      "aim_offset": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "trajectory": [],
+      "eye_vertical_max": 327.67
+    },
+    {
+      "resource": 99,
+      "boxes": [
+        {
+          "flags": 0,
+          "min": [
+            19127,
+            -25818,
+            20485
+          ],
+          "max": [
+            20625,
+            -25053,
+            21742
+          ]
+        }
+      ],
+      "pitch": [
+        0,
+        90
+      ],
+      "yaw": [
+        0,
+        360
+      ],
+      "roll": [
+        0,
+        360
+      ],
+      "distance": [
+        0.0,
+        320.0
+      ],
+      "focal": 0,
+      "snap_yaw": false,
+      "forbid_pad": false,
+      "follow": true,
+      "mirror_yaw": true,
+      "aim_offset": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "trajectory": [
+        [
+          19672,
+          -25922,
+          21125
+        ],
+        [
+          19673,
+          -25944,
+          21125
+        ]
+      ],
+      "eye_vertical_max": 327.67
+    },
+    {
+      "resource": 100,
+      "boxes": [
+        {
+          "flags": 0,
+          "min": [
+            24088,
+            -26082,
+            16532
+          ],
+          "max": [
+            26598,
+            -23882,
+            20175
+          ]
+        }
+      ],
+      "pitch": [
+        85,
+        90
+      ],
+      "yaw": [
+        0,
+        0
+      ],
+      "roll": [
+        0,
+        360
+      ],
+      "distance": [
+        7.0,
+        7.0
+      ],
+      "focal": 250,
+      "snap_yaw": true,
+      "forbid_pad": false,
+      "follow": true,
+      "mirror_yaw": false,
+      "aim_offset": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "trajectory": [],
+      "eye_vertical_max": 327.67
+    },
+    {
+      "resource": 105,
+      "boxes": [
+        {
+          "flags": 0,
+          "min": [
+            26618,
+            -25921,
+            16630
+          ],
+          "max": [
+            27415,
+            -24921,
+            17321
+          ]
+        }
+      ],
+      "pitch": [
+        -90,
+        90
+      ],
+      "yaw": [
+        0,
+        360
+      ],
+      "roll": [
+        0,
+        360
+      ],
+      "distance": [
+        0.0,
+        320.0
+      ],
+      "focal": 0,
+      "snap_yaw": false,
+      "forbid_pad": false,
+      "follow": true,
+      "mirror_yaw": false,
+      "aim_offset": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "trajectory": [
+        [
+          27489,
+          -25382,
+          17269
+        ],
+        [
+          27105,
+          -25489,
+          17089
+        ],
+        [
+          26875,
+          -25553,
+          17015
+        ],
+        [
+          26508,
+          -25624,
+          16938
+        ]
+      ],
+      "eye_vertical_max": 327.67
+    }
+  ],
+  "source": "CameraRestriction::PostLoadInit / WAR class19"
+}

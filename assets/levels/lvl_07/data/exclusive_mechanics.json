@@ -1,0 +1,699 @@
+{
+  "records": [
+    {
+      "res": 31,
+      "class_id": 76,
+      "class_name": "SnowyGround",
+      "model_res": 20,
+      "pos": [
+        267.2,
+        251.59,
+        207.52
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ],
+      "props": {},
+      "directory": "res://assets/levels/lvl_07/models/20",
+      "boxes": [
+        {
+          "flags": 0,
+          "min": [
+            -218,
+            -29,
+            -249
+          ],
+          "max": [
+            211,
+            29,
+            242
+          ]
+        }
+      ]
+    },
+    {
+      "res": 32,
+      "class_id": 77,
+      "class_name": "IceGround",
+      "model_res": 2,
+      "pos": [
+        280.67,
+        247.18,
+        176.6
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ],
+      "props": {
+        "0x0": 0
+      },
+      "directory": "res://assets/levels/lvl_07/models/2",
+      "boxes": [
+        {
+          "flags": 0,
+          "min": [
+            -270,
+            -82,
+            -194
+          ],
+          "max": [
+            366,
+            -28,
+            255
+          ]
+        }
+      ]
+    },
+    {
+      "res": 33,
+      "class_id": 79,
+      "class_name": "SlidingIceCube",
+      "model_res": 3,
+      "pos": [
+        272.94,
+        248.07,
+        183.73
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ],
+      "props": {
+        "0x0": 555,
+        "0x4": 1,
+        "0x8": 1
+      },
+      "directory": "res://assets/levels/lvl_07/models/3",
+      "boxes": [
+        {
+          "flags": 0,
+          "min": [
+            -86,
+            -166,
+            -108
+          ],
+          "max": [
+            92,
+            0,
+            87
+          ]
+        }
+      ],
+      "zones": [
+        {
+          "flags": 0,
+          "min": [
+            27090,
+            -25188,
+            16625
+          ],
+          "max": [
+            28720,
+            -24670,
+            18699
+          ]
+        }
+      ]
+    },
+    {
+      "res": 34,
+      "class_id": 79,
+      "class_name": "SlidingIceCube",
+      "model_res": 3,
+      "pos": [
+        255.41,
+        251.4,
+        168.96
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ],
+      "props": {
+        "0x0": 577,
+        "0x4": 1,
+        "0x8": 1
+      },
+      "directory": "res://assets/levels/lvl_07/models/3",
+      "boxes": [
+        {
+          "flags": 0,
+          "min": [
+            -86,
+            -166,
+            -108
+          ],
+          "max": [
+            92,
+            0,
+            87
+          ]
+        }
+      ],
+      "zones": [
+        {
+          "flags": 0,
+          "min": [
+            24231,
+            -25927,
+            16592
+          ],
+          "max": [
+            26517,
+            -24222,
+            20287
+          ]
+        }
+      ]
+    },
+    {
+      "res": 35,
+      "class_id": 77,
+      "class_name": "IceGround",
+      "model_res": 28,
+      "pos": [
+        255.22,
+        251.4,
+        183.69
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ],
+      "props": {
+        "0x0": 0
+      },
+      "directory": "res://assets/levels/lvl_07/models/28",
+      "boxes": [
+        {
+          "flags": 0,
+          "min": [
+            -170,
+            -430,
+            -27
+          ],
+          "max": [
+            151,
+            0,
+            26
+          ]
+        }
+      ]
+    },
+    {
+      "res": 38,
+      "class_id": 77,
+      "class_name": "IceGround",
+      "model_res": 28,
+      "pos": [
+        244.31,
+        251.4,
+        192.48000000000002
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ],
+      "props": {
+        "0x0": 0
+      },
+      "directory": "res://assets/levels/lvl_07/models/28",
+      "boxes": [
+        {
+          "flags": 0,
+          "min": [
+            -170,
+            -430,
+            -27
+          ],
+          "max": [
+            151,
+            0,
+            26
+          ]
+        }
+      ]
+    },
+    {
+      "res": 40,
+      "class_id": 79,
+      "class_name": "SlidingIceCube",
+      "model_res": 3,
+      "pos": [
+        232.02,
+        251.14000000000001,
+        188.26
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ],
+      "props": {
+        "0x0": 571,
+        "0x4": 0,
+        "0x8": 1
+      },
+      "directory": "res://assets/levels/lvl_07/models/3",
+      "boxes": [
+        {
+          "flags": 0,
+          "min": [
+            -86,
+            -166,
+            -108
+          ],
+          "max": [
+            92,
+            0,
+            87
+          ]
+        }
+      ],
+      "zones": [
+        {
+          "flags": 0,
+          "min": [
+            22389,
+            -25452,
+            15618
+          ],
+          "max": [
+            24018,
+            -24943,
+            19121
+          ]
+        }
+      ]
+    },
+    {
+      "res": 41,
+      "class_id": 77,
+      "class_name": "IceGround",
+      "model_res": 28,
+      "pos": [
+        273.06,
+        247.95000000000002,
+        174.22
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ],
+      "props": {
+        "0x0": 0
+      },
+      "directory": "res://assets/levels/lvl_07/models/28",
+      "boxes": [
+        {
+          "flags": 0,
+          "min": [
+            -170,
+            -430,
+            -27
+          ],
+          "max": [
+            151,
+            0,
+            26
+          ]
+        }
+      ]
+    },
+    {
+      "res": 43,
+      "class_id": 79,
+      "class_name": "SlidingIceCube",
+      "model_res": 3,
+      "pos": [
+        201.76,
+        251.46,
+        184.34
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ],
+      "props": {
+        "0x0": 572,
+        "0x4": 1,
+        "0x8": 0
+      },
+      "directory": "res://assets/levels/lvl_07/models/3",
+      "boxes": [
+        {
+          "flags": 0,
+          "min": [
+            -86,
+            -166,
+            -108
+          ],
+          "max": [
+            92,
+            0,
+            87
+          ]
+        }
+      ],
+      "zones": [
+        {
+          "flags": 0,
+          "min": [
+            19478,
+            -25547,
+            17254
+          ],
+          "max": [
+            21108,
+            -25038,
+            20757
+          ]
+        }
+      ]
+    },
+    {
+      "res": 44,
+      "class_id": 77,
+      "class_name": "IceGround",
+      "model_res": 28,
+      "pos": [
+        251.39000000000001,
+        251.4,
+        170.94
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ],
+      "props": {
+        "0x0": 0
+      },
+      "directory": "res://assets/levels/lvl_07/models/28",
+      "boxes": [
+        {
+          "flags": 0,
+          "min": [
+            -170,
+            -430,
+            -27
+          ],
+          "max": [
+            151,
+            0,
+            26
+          ]
+        }
+      ]
+    },
+    {
+      "res": 45,
+      "class_id": 79,
+      "class_name": "SlidingIceCube",
+      "model_res": 3,
+      "pos": [
+        232.02,
+        251.14000000000001,
+        159.34
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ],
+      "props": {
+        "0x0": 571,
+        "0x4": 0,
+        "0x8": 1
+      },
+      "directory": "res://assets/levels/lvl_07/models/3",
+      "boxes": [
+        {
+          "flags": 0,
+          "min": [
+            -86,
+            -166,
+            -108
+          ],
+          "max": [
+            92,
+            0,
+            87
+          ]
+        }
+      ],
+      "zones": [
+        {
+          "flags": 0,
+          "min": [
+            22389,
+            -25452,
+            15618
+          ],
+          "max": [
+            24018,
+            -24943,
+            19121
+          ]
+        }
+      ]
+    },
+    {
+      "res": 46,
+      "class_id": 79,
+      "class_name": "SlidingIceCube",
+      "model_res": 3,
+      "pos": [
+        204.05,
+        251.46,
+        207.55
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ],
+      "props": {
+        "0x0": 572,
+        "0x4": 0,
+        "0x8": 1
+      },
+      "directory": "res://assets/levels/lvl_07/models/3",
+      "boxes": [
+        {
+          "flags": 0,
+          "min": [
+            -86,
+            -166,
+            -108
+          ],
+          "max": [
+            92,
+            0,
+            87
+          ]
+        }
+      ],
+      "zones": [
+        {
+          "flags": 0,
+          "min": [
+            19478,
+            -25547,
+            17254
+          ],
+          "max": [
+            21108,
+            -25038,
+            20757
+          ]
+        }
+      ]
+    },
+    {
+      "res": 61,
+      "class_id": 88,
+      "class_name": "GroundMine",
+      "model_res": 22,
+      "pos": [
+        230.98000000000002,
+        254.34,
+        254.31
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ],
+      "props": {
+        "0x0": 562,
+        "0x4": 50,
+        "0x8": 0,
+        "0xc": 563
+      },
+      "directory": "res://assets/levels/lvl_07/models/22",
+      "boxes": [
+        {
+          "flags": 2,
+          "min": [
+            -17,
+            -60,
+            -17
+          ],
+          "max": [
+            17,
+            0,
+            17
+          ]
+        }
+      ],
+      "zones": [
+        {
+          "flags": 0,
+          "min": [
+            21340,
+            -26110,
+            23988
+          ],
+          "max": [
+            24778,
+            -25189,
+            26879
+          ]
+        }
+      ]
+    },
+    {
+      "res": 63,
+      "class_id": 75,
+      "class_name": "Snowball",
+      "model_res": 12,
+      "pos": [
+        248.66,
+        253.34,
+        229.59
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ],
+      "props": {
+        "0x0": 594
+      },
+      "directory": "res://assets/levels/lvl_07/models/12",
+      "boxes": [
+        {
+          "flags": 4,
+          "min": [
+            -200,
+            -200,
+            -200
+          ],
+          "max": [
+            200,
+            200,
+            200
+          ]
+        }
+      ],
+      "zones": [
+        {
+          "flags": 0,
+          "min": [
+            24864,
+            -25742,
+            22934
+          ],
+          "max": [
+            25774,
+            -25098,
+            22974
+          ]
+        },
+        {
+          "flags": 0,
+          "min": [
+            25713,
+            -25729,
+            21973
+          ],
+          "max": [
+            25774,
+            -25098,
+            22965
+          ]
+        }
+      ]
+    },
+    {
+      "res": 72,
+      "class_id": 61,
+      "class_name": "MineDetector",
+      "model_res": 21,
+      "pos": [
+        267.48,
+        268.54,
+        206.81
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ],
+      "props": {},
+      "directory": "res://assets/levels/lvl_07/models/21",
+      "boxes": []
+    },
+    {
+      "res": 91,
+      "class_id": 175,
+      "class_name": "MirrorManager",
+      "model_res": 8,
+      "pos": [
+        246.42000000000002,
+        251.61,
+        157.3
+      ],
+      "rot": [
+        0,
+        0,
+        0
+      ],
+      "props": {
+        "0x0": 2048,
+        "0x4": 4294942161,
+        "0x8": 496,
+        "0xc": 468,
+        "0x10": 462,
+        "0x14": 459,
+        "0x18": 458,
+        "0x1c": 500,
+        "0x20": 498,
+        "0x24": 499,
+        "0x28": 576,
+        "0x2c": 12167284
+      },
+      "directory": "res://assets/levels/lvl_07/models/8",
+      "boxes": []
+    }
+  ],
+  "pending_classes": [
+    175
+  ],
+  "pending": [
+    "Mirror rendering",
+    "Exact flat-ice movement profile; downhill zones already use shared slope controller"
+  ],
+  "source": "objects/minedetector.cpp, mine.cpp, snowball.cpp, snowyground.cpp, iceground.cpp, slidingicecube.cpp, mirror.cpp"
+}
